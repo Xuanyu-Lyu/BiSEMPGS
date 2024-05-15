@@ -20,7 +20,7 @@
 
 #Load packages & functions needed
 require(MASS)
-require(fields)
+#require(fields)
 require(matrixcalc)
 
 #Global options for this script - important to run this or script breaks
