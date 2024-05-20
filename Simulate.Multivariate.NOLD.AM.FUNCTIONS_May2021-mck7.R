@@ -167,8 +167,8 @@ if(num.males.mate<num.females.mate) {females.PHENDATA <- females.PHENDATA[- samp
 
 ## Xuanyu 02/15/24: The correlation matrix are not always positive definite. Adapt some code to use SVD to make it positive definite
 
-print(MATCOR)
-cat(is.positive.definite(MATCOR),"\n")
+#print(MATCOR)
+#cat(is.positive.definite(MATCOR),"\n")
 if (!is.positive.definite(MATCOR)) {
     s <- svd(MATCOR)
     V <- s$v
@@ -176,7 +176,7 @@ if (!is.positive.definite(MATCOR)) {
     X <- (V %*% D) %*% matrix(rnorm(4*1e5), 4) 
     MATCOR <- cov(t(X))
 }
-print(MATCOR)
+#print(MATCOR)
 #Create simulated m1, m2, f1, f2 data with a specified correlation structure. This is the template correlated data
 Xsim <- mvrnorm(nrow(males.PHENDATA),rep(0,4),MATCOR,empirical=TRUE)
 XsimM <- Xsim[,1:2]

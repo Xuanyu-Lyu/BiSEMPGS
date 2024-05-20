@@ -1,8 +1,8 @@
 # this script is used to simulate the data for the BiSEMPGS model to test the math
 
-source("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Simulate.Multivariate.NOLD.AM.FUNCTIONS_May2021-mck7.R")
+source("Simulate.Multivariate.NOLD.AM.FUNCTIONS_May2021-mck7.R")
 library(expm)
-setwd("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS")
+#setwd("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS")
 
 # create a list of starting parameters for different conditions
 conditionNames <- c("f_trans_full", "am_trans_full", "delta_trans_full", "f_half_full", "am_half_full", "delta_half_full", "normal_full")
@@ -12,11 +12,12 @@ startingParamList <- list(vg1 = c(.36,.36,.09,.36,.36,.18,.36),
 						  am12 = c(.2,.2,.2,.2,.1,.2,.2),
 						  am21 = c(.2,.2,.2,.2,.1,.2,.2),
 						  am22 = c(.3,.4,.3,.3,.15,.3,.3),
-						  f11 = c(.15,.1,.15,.15/2,.15,.15,.15),
+						  f11 = c(.1,.15,.15,.15/2,.15,.15,.15),
 						  f12 = c(.1,.1,.1,.05,.1,.1,.1),
 						  f21 = c(.05,.05,.05,.025,.05,.05,.05),
-						  f22 = c(.1,.15,.1,.1,.1,.1,.1))
-for (condition in 1: length(conditionNames)){
+						  f22 = c(.15,.1,.1,.05,.1,.1,.1))
+
+for (condition in 1: 2){
 	# WILDCARD parameters
 	pop.size <- 20000 #maybe something like 2e4, or 20000, when running for real
 	num.cvs <- 200 #maybe 25
@@ -114,21 +115,30 @@ for (condition in 1: length(conditionNames)){
 	alphas <- alphas.pre * cbind(sqrt(1/((num.cvs-1)*gentp.var)),sqrt(1/((num.cvs-1)*gentp.var)))
 
 	cv.info <- data.frame(maf=maf.vector,alpha1=alphas[,1],alpha2=alphas[,2]) #we'll use this for both the observed and latent
-
+	ObjectsKeep <- as.character(ls())
 	# write a loop to run the simulation 100 times and save all the summary data in a list
-	l.summaryLast <- list()
-	l.all <- list()
+	#l.summaryLast <- list()
+	#l.all <- list()
 	for (i in 1:100){
 		AM.DATA <- AM.SIMULATE(CV.INFO=cv.info, NUM.GENERATIONS=15, POP.SIZE=pop.size, AVOID.INB=avoid.inb, SAVE.EACH.GEN=save.history, SAVE.COVS=save.covariances, SEED=seed*i, 
 							cove.mat=cove.mat, fmat=f.mat, amat=a.mat, dmat=delta.mat, cor.list=am.list, covy=COVY, k2.matrix=k2.matrix)
 		SUMMARY.last <- AM.DATA$SUMMARY.RES[[15]]
-		l.summaryLast[[i]] <- SUMMARY.last
-		l.all[[i]] <- AM.DATA
+		#l.summaryLast[[i]] <- SUMMARY.last
+		#l.all[[i]] <- AM.DATA
+		# test if a folder exist, if not, create one
+		if (!dir.exists(paste0("Summary/",conditionNames[condition]))){
+			dir.create(paste0("Summary/",conditionNames[condition]))
+		}		
+		if (!dir.exists(paste0("Data/",conditionNames[condition]))){
+			dir.create(paste0("Data/",conditionNames[condition]))
+		}
+		saveRDS(SUMMARY.last, file=paste0("Summary/",conditionNames[condition],"/loop",i,".rds"))
+		saveRDS(AM.DATA, file=paste0("Data/",conditionNames[condition],"/loop",i,".rds"))
 		cat(conditionNames[condition],"Simulation",i,"done\n")
+		rm(list = setdiff(ls(), c(ObjectsKeep, "ObjectsKeep")))
 	}
 	# save the summary data into a rds file
-	saveRDS(l.summaryLast, file=paste0("Summary_",conditionNames[condition],".rds"))
-	saveRDS(l.all, file=paste0("SimulatedData_All_",conditionNames[condition],".rds"))
+	
 }
 
 
