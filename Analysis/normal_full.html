@@ -1167,6 +1167,548 @@ averages</code></pre>
 ##    AL1 AL2
 ## F1  -1  -1
 ## F2  -1  -1</code></pre>
+<pre class="r"><code># specify the model want to check, model 1 or 2
+model = 2
+
+# read all the empirical data files
+l.empMateCor &lt;- vector(&quot;list&quot;, 300)
+l.empMateCov &lt;- vector(&quot;list&quot;, 300)
+l.empDelta &lt;- vector(&quot;list&quot;, 300)
+# test &lt;- readRDS(paste0(&quot;/Users/xuly4739/Library/CloudStorage/OneDrive-UCB-O365/Documents/coding/R-projects/BiSEMPGS/Data/&quot;,pathName,&quot;/loop&quot;, 1, &quot;.rds&quot;))
+# test$HISTORY |&gt; names()
+# test$SUMMARY.RES[[1]]$thetaT
+# |&gt; cov2cor()
+# test$SUMMARY.RES[[11]]$VP
+
+# test$HISTORY$PHEN[[15]] |&gt; cov()
+# test$HISTORY$MATE[15][[1]] |&gt; class()
+# read all the rds files into the list
+for(i in 1:300){
+    dataAll &lt;- readRDS(paste0(&quot;/Users/xuly4739/Library/CloudStorage/OneDrive-UCB-O365/Documents/coding/R-projects/BiSEMPGS/Data/&quot;,pathName,&quot;/loop&quot;, i, &quot;.rds&quot;))
+    for (j in 2:16){
+    l.empMateCor[[i]][[j]] &lt;- cov2cor(dataAll$SUMMARY.RES[[j]]$covY)[3:4,1:2]
+    l.empMateCov[[i]][[j]] &lt;- dataAll$SUMMARY.RES[[j]]$covY[3:4,1:2]
+    l.empDelta[[i]][[j]] &lt;- dataAll$SUMMARY.RES[[j]]$thetaT - dataAll$SUMMARY.RES[[j]]$thetaNT
+    }
+
+}
+
+avg_empMateCor &lt;- list()
+avg_empMateCov &lt;- list()
+avg_empDelta &lt;- list()
+  
+for (j in 2:16) {
+    temp_empMateCor &lt;- lapply(l.empMateCor, function(x) x[[j]])
+    avg_empMateCor[[j]] &lt;- Reduce(&quot;+&quot;, temp_empMateCor) / length(temp_empMateCor)
+    
+    temp_empMateCov &lt;- lapply(l.empMateCov, function(x) x[[j]])
+    avg_empMateCov[[j]] &lt;- Reduce(&quot;+&quot;, temp_empMateCov) / length(temp_empMateCov)
+
+    temp_empDelta &lt;- lapply(l.empDelta, function(x) x[[j]])
+    avg_empDelta[[j]] &lt;- Reduce(&quot;+&quot;, temp_empDelta) / length(temp_empDelta)
+}
+
+avg_empDelta[[1]] &lt;- delta.t0
+avg_empMateCor[[1]] &lt;- rmate.t0
+avg_empMateCov[[1]] &lt;- COVY
+
+if (model == 1){
+
+} else {
+   for (it in 2:gens){
+        (exp.Omega[[it]] &lt;- 2*delta.t0%*%exp.gc[[it-1]] + avg_empDelta[[it-1]] %*% k.t0 + .5*exp.w[[it-1]] + 2*a.t0%*%exp.ic[[it-1]])
+        cat(&quot;Omega&quot;,it,&quot;\n&quot;,exp.Omega[[it]],&quot;\n&quot;)
+        (exp.Gamma[[it]] &lt;- 2*a.t0%*%exp.hc[[it-1]] + 2*avg_empDelta[[it-1]]%*%t(exp.ic[[it-1]]) + a.t0%*%j.t0 + .5*exp.v[[it-1]])
+        cat(&quot;Gamma&quot;,it,&quot;\n&quot;,exp.Gamma[[it]],&quot;\n&quot;)
+
+        (exp.VY[[it]] &lt;- 2 * avg_empDelta[[it-1]] %*% t(exp.Omega[[it]]) + 2 * a.t0 %*% t(exp.Gamma[[it]]) + exp.w[[it-1]] %*% avg_empDelta[[it-1]] + exp.v[[it-1]] %*% t(a.t0) + exp.VF[[it-1]] + covE.t0 )
+        cat(&quot;VY&quot;,&quot;\n&quot;)
+        print(exp.VY[[it]])
+
+        # # two potential ways: fix mu or fix mate.cor
+        # exp.VY.diagonal[[it]] &lt;- exp.VY[[it]]
+        # exp.VY.diagonal[[it]][1,2] &lt;- 0
+        # exp.VY.diagonal[[it]][2,1] &lt;- 0
+
+        # exp.covY.full.diagonal[[it]] &lt;- cbind(rbind(exp.VY.diagonal[[it]],matrix(0,2,2)),rbind(matrix(0,2,2),exp.VY.diagonal[[it]]))
+
+        # exp.corVY[[it]] &lt;- cov2cor(exp.VY[[it]])
+        # exp.corY.full[[it]] &lt;- exp.corY.full[[1]]
+        # exp.corY.full[[it]][1,2] &lt;- exp.corVY[[it]][1,2]
+        # exp.corY.full[[it]][2,1] &lt;- exp.corVY[[it]][2,1]
+        # exp.corY.full[[it]][3,4] &lt;- exp.corVY[[it]][1,2]
+        # exp.corY.full[[it]][4,3] &lt;- exp.corVY[[it]][2,1]
+        # #exp.covY.full[[it]] &lt;- cor2cov(exp.corY.full[[it]],exp.VY[[it]][1,1],exp.VY[[it]][2,2],exp.VY[[it]][1,1],exp.VY[[it]][2,2]) 
+        # exp.covY.full[[it]] &lt;- sqrt(exp.covY.full.diagonal[[it]]) %*% exp.corY.full[[it]] %*% sqrt(exp.covY.full.diagonal[[it]])
+        mate.cov[[it]] &lt;- avg_empMateCov[[it]] ## this is the mate.cov fixing mate.cor
+        mate.cor[[it]] &lt;- avg_empMateCor[[it]]
+        (exp.mu[[it]] &lt;- solve(exp.VY[[it]]) %*% mate.cov[[it]] %*% solve(t(exp.VY[[it]]))) 
+
+        (exp.gt[[it]] &lt;- t(exp.Omega[[it]])%*%exp.mu[[it]]%*%exp.Omega[[it]])
+        cat(&quot;gt&quot;,it,&quot;\n&quot;,exp.gt[[it]],&quot;\n&quot;)
+        (exp.gc[[it]] &lt;- .5*(exp.gt[[it]] + t(exp.gt[[it]])))
+
+        (exp.ht[[it]] &lt;- t(exp.Gamma[[it]])%*%exp.mu[[it]]%*%exp.Gamma[[it]])
+        
+        (exp.hc[[it]] &lt;- .5*(exp.ht[[it]] + t(exp.ht[[it]])))  
+        
+        (exp.w[[it]] &lt;- 2*f.t0%*%exp.Omega[[it]] + f.t0%*%exp.VY[[it]]%*%exp.mu[[it]]%*%exp.Omega[[it]] + f.t0%*%exp.VY[[it]]%*%t(exp.mu[[it]])%*%exp.Omega[[it]])
+        cat(&quot;w&quot;, &quot;\n&quot;)
+        print(exp.w[[it]])
+        (exp.v[[it]] &lt;- 2*f.t0%*%exp.Gamma[[it]] + f.t0%*%exp.VY[[it]]%*%exp.mu[[it]]%*%exp.Gamma[[it]] + f.t0%*%exp.VY[[it]]%*%t(exp.mu[[it]])%*%exp.Gamma[[it]])  
+
+        (exp.VF[[it]] &lt;- 2*f.t0%*%exp.VY[[it]]%*%t(f.t0) + f.t0%*%exp.VY[[it]]%*%exp.mu[[it]]%*%exp.VY[[it]]%*%t(f.t0) +  f.t0%*%exp.VY[[it]]%*%t(exp.mu[[it]])%*%exp.VY[[it]]%*%t(f.t0))
+        cat(&quot;VF&quot;,&quot;\n&quot;)
+        print(exp.VF[[it]])
+        (exp.itlo[[it]] &lt;- t(exp.Gamma[[it]])%*%exp.mu[[it]]%*%exp.Omega[[it]])
+        
+        (exp.itol[[it]] &lt;- t(exp.Omega[[it]])%*%exp.mu[[it]]%*%exp.Gamma[[it]])
+
+        (exp.ic[[it]] &lt;- .5*(exp.itol[[it]] + t(exp.itlo[[it]])))
+
+        (exp.VGO[[it]] &lt;- 2*delta.t0%*%k.t0%*%t(delta.t0) + 4*delta.t0%*%exp.gc[[it]]%*%t(delta.t0))
+        (exp.VGL[[it]] &lt;- 2*a.t0%*%j.t0%*%t(a.t0) + 4*a.t0%*%exp.hc[[it]]%*%t(a.t0))
+        (exp.COVLO[[it]] &lt;- 4*delta.t0%*%t(exp.ic[[it]])%*%t(a.t0) + 4*a.t0%*%exp.ic[[it]]%*%t(delta.t0))
+
+}
+    EXP &lt;- list(
+        Omega=exp.Omega[[gens]],
+        #theta=exp.thetaNT[[gens]],
+        Gamma=exp.Gamma[[gens]],
+        gc=exp.gc[[gens]],
+        hc=exp.hc[[gens]],
+        itlo=exp.itlo[[gens]],
+        itol=exp.itol[[gens]],
+        ic=exp.ic[[gens]],
+        VF=exp.VF[[gens]],
+        w=exp.w[[gens]],
+        q=exp.v[[gens]],
+        VY=exp.VY[[gens]],
+        mate.cov=mate.cov[[gens]],
+        mu=exp.mu[[gens]],
+        VGO=exp.VGO[[gens]],
+        VGL=exp.VGL[[gens]],
+        COVLO=exp.COVLO[[gens]]
+        )
+
+        (cov.fin.gen &lt;- exp.VY[[gens]]%*%exp.mu[[gens]]%*%exp.VY[[gens]])
+        cor.fin.gen &lt;- cov.fin.gen/exp.VY[[gens]]
+        cor.fin.gen[1,2] &lt;- cov.fin.gen[1,2]/(sqrt(exp.VY[[gens]][1,1])*sqrt(exp.VY[[gens]][2,2]))
+        cor.fin.gen[2,1] &lt;- cov.fin.gen[2,1]/(sqrt(exp.VY[[gens]][1,1])*sqrt(exp.VY[[gens]][2,2]))
+        cor.fin.gen
+        rmate.t0 
+}</code></pre>
+<pre><code>## Omega 2 
+##  0.3 0 0 0.15 
+## Gamma 2 
+##  0 0 0 0 
+## VY 
+##       [,1]  [,2]
+## [1,] 1.065 0.035
+## [2,] 0.035 1.025
+## gt 2 
+##  0.03244511 0.007535882 0.007553692 0.006270019 
+## w 
+##            [,1]       [,2]
+## [1,] 0.13615044 0.04721917
+## [2,] 0.05276232 0.04156977
+## VF 
+##            [,1]       [,2]
+## [1,] 0.10800763 0.05857245
+## [2,] 0.05857245 0.03887186
+## Omega 3 
+##  0.4071043 0.03113243 0.03288756 0.1745204 
+## Gamma 3 
+##  0 0 0 0 
+## VY 
+##          Y1       Y2
+## Y1 1.318454 0.110324
+## Y2 0.110353 1.066086
+## gt 3 
+##  0.0484444 0.01327841 0.01333568 0.009275344 
+## w 
+##            [,1]       [,2]
+## [1,] 0.18975955 0.06864119
+## [2,] 0.07685639 0.05335383
+## VF 
+##            [,1]       [,2]
+## [1,] 0.13055002 0.06879892
+## [2,] 0.06879988 0.04364793
+## Omega 4 
+##  0.4529316 0.04650456 0.05014264 0.1825548 
+## Gamma 4 
+##  0 0 0 0 
+## VY 
+##           Y1        Y2
+## Y1 1.4277286 0.1450621
+## Y2 0.1452263 1.0794433
+## gt 4 
+##  0.05540817 0.01604538 0.01602731 0.01054666 
+## w 
+##            [,1]       [,2]
+## [1,] 0.21298895 0.07825086
+## [2,] 0.08748823 0.05812752
+## VF 
+##            [,1]       [,2]
+## [1,] 0.14027207 0.07317589
+## [2,] 0.07318129 0.04564058
+## Omega 5 
+##  0.4721199 0.05305865 0.05847879 0.1854214 
+## Gamma 5 
+##  0 0 0 0 
+## VY 
+##           Y1        Y2
+## Y1 1.4725863 0.1602709
+## Y2 0.1600012 1.0843111
+## gt 5 
+##  0.05851147 0.01728395 0.01731176 0.01111983 
+## w 
+##            [,1]       [,2]
+## [1,] 0.22286077 0.08261257
+## [2,] 0.09199495 0.06017852
+## VF 
+##           [,1]       [,2]
+## [1,] 0.1443764 0.07503297
+## [2,] 0.0750241 0.04647986
+## Omega 6 
+##  0.4808001 0.05633978 0.06159378 0.1869801 
+## Gamma 6 
+##  0 0 0 0 
+## VY 
+##           Y1        Y2
+## Y1 1.4929316 0.1667095
+## Y2 0.1670016 1.0868170
+## gt 6 
+##  0.06029437 0.0178663 0.01794749 0.01135223 
+## w 
+##            [,1]       [,2]
+## [1,] 0.22781362 0.08443021
+## [2,] 0.09430287 0.06107388
+## VF 
+##            [,1]       [,2]
+## [1,] 0.14644100 0.07594661
+## [2,] 0.07595621 0.04689061
+## Omega 7 
+##  0.4857809 0.05769133 0.06382929 0.1874105 
+## Gamma 7 
+##  0 0 0 0 
+## VY 
+##           Y1       Y2
+## Y1 1.5049145 0.170557
+## Y2 0.1703392 1.087690
+## gt 7 
+##  0.06143845 0.01823883 0.01818844 0.01146154 
+## w 
+##            [,1]       [,2]
+## [1,] 0.23058181 0.08547787
+## [2,] 0.09545135 0.06150947
+## VF 
+##           [,1]       [,2]
+## [1,] 0.1476127 0.07643737
+## [2,] 0.0764302 0.04708836
+## Omega 8 
+##  0.488053 0.05867132 0.06456147 0.1871808 
+## Gamma 8 
+##  0 0 0 0 
+## VY 
+##           Y1        Y2
+## Y1 1.5092929 0.1721421
+## Y2 0.1721737 1.0874544
+## gt 8 
+##  0.06204405 0.01835542 0.01837966 0.01146533 
+## w 
+##            [,1]       [,2]
+## [1,] 0.23201229 0.08574484
+## [2,] 0.09613303 0.06156595
+## VF 
+##            [,1]       [,2]
+## [1,] 0.14811343 0.07664847
+## [2,] 0.07664951 0.04717287
+## Omega 9 
+##  0.4902668 0.0593984 0.06494949 0.187219 
+## Gamma 9 
+##  0 0 0 0 
+## VY 
+##           Y1       Y2
+## Y1 1.5152375 0.173572
+## Y2 0.1737959 1.087669
+## gt 9 
+##  0.06236863 0.01841138 0.01849889 0.01146948 
+## w 
+##            [,1]       [,2]
+## [1,] 0.23316198 0.08593150
+## [2,] 0.09667058 0.06163468
+## VF 
+##            [,1]       [,2]
+## [1,] 0.14863259 0.07687089
+## [2,] 0.07687825 0.04726721
+## Omega 10 
+##  0.4911819 0.05961136 0.06479859 0.1872993 
+## Gamma 10 
+##  0 0 0 0 
+## VY 
+##           Y1        Y2
+## Y1 1.5173147 0.1736768
+## Y2 0.1740333 1.0877763
+## gt 10 
+##  0.06276469 0.01848671 0.0185106 0.01146369 
+## w 
+##            [,1]       [,2]
+## [1,] 0.23386058 0.08592348
+## [2,] 0.09696604 0.06164018
+## VF 
+##            [,1]       [,2]
+## [1,] 0.14890544 0.07697372
+## [2,] 0.07698546 0.04730688
+## Omega 11 
+##  0.4914661 0.05940165 0.06517578 0.1871998 
+## Gamma 11 
+##  0 0 0 0 
+## VY 
+##           Y1        Y2
+## Y1 1.5170515 0.1737804
+## Y2 0.1736117 1.0876443
+## gt 11 
+##  0.06307744 0.01856535 0.01856223 0.0115269 
+## w 
+##            [,1]       [,2]
+## [1,] 0.23415821 0.08613403
+## [2,] 0.09703262 0.06173523
+## VF 
+##           [,1]       [,2]
+## [1,] 0.1490133 0.07703307
+## [2,] 0.0770275 0.04734125
+## Omega 12 
+##  0.4923568 0.05942088 0.06512311 0.1875937 
+## Gamma 12 
+##  0 0 0 0 
+## VY 
+##           Y1        Y2
+## Y1 1.5192263 0.1737782
+## Y2 0.1737017 1.0881537
+## gt 12 
+##  0.06313383 0.01864505 0.01861205 0.01154023 
+## w 
+##            [,1]       [,2]
+## [1,] 0.23452908 0.08624754
+## [2,] 0.09720578 0.06182346
+## VF 
+##            [,1]       [,2]
+## [1,] 0.14917441 0.07710410
+## [2,] 0.07710157 0.04737042
+## Omega 13 
+##  0.4922656 0.05948061 0.06589765 0.1877086 
+## Gamma 13 
+##  0 0 0 0 
+## VY 
+##           Y1        Y2
+## Y1 1.5188176 0.1746643
+## Y2 0.1741558 1.0884416
+## gt 13 
+##  0.06314282 0.01865939 0.01865647 0.01159035 
+## w 
+##            [,1]       [,2]
+## [1,] 0.23445881 0.08656588
+## [2,] 0.09714254 0.06196265
+## VF 
+##            [,1]       [,2]
+## [1,] 0.14916229 0.07711070
+## [2,] 0.07709393 0.04737697
+## Omega 14 
+##  0.4933678 0.05981842 0.06563742 0.1875864 
+## Gamma 14 
+##  0 0 0 0 
+## VY 
+##           Y1        Y2
+## Y1 1.5227750 0.1748472
+## Y2 0.1748514 1.0882181
+## gt 14 
+##  0.06314241 0.01862586 0.01864173 0.01155438 
+## w 
+##            [,1]       [,2]
+## [1,] 0.23490648 0.08641672
+## [2,] 0.09736669 0.06188547
+## VF 
+##            [,1]       [,2]
+## [1,] 0.14939884 0.07719544
+## [2,] 0.07719558 0.04740979
+## Omega 15 
+##  0.4921928 0.06005541 0.0653148 0.1879732 
+## Gamma 15 
+##  0 0 0 0 
+## VY 
+##           Y1        Y2
+## Y1 1.5184259 0.1746457
+## Y2 0.1750305 1.0888416
+## gt 15 
+##  0.06335434 0.01864768 0.01867521 0.01156564 
+## w 
+##            [,1]       [,2]
+## [1,] 0.23479034 0.08640711
+## [2,] 0.09738294 0.06193727
+## VF 
+##            [,1]       [,2]
+## [1,] 0.14927625 0.07715726
+## [2,] 0.07716995 0.04740598</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]  0.4  0.2
+## [2,]  0.2  0.3</code></pre>
+<pre class="r"><code>    element_wise_proportion &lt;- function(matrix1, matrix2) {
+  
+  proportion_matrix &lt;- (matrix1 - matrix2) / matrix2
+  return(proportion_matrix)
+}
+    list(exp.Omega[[gens]],  averages$omega, element_wise_proportion(exp.Omega[[gens]], averages$omega))</code></pre>
+<pre><code>## [[1]]
+##          [,1]      [,2]
+## Y1 0.49219282 0.0653148
+## Y2 0.06005541 0.1879732
+## 
+## [[2]]
+##          TPO1       TPO2
+## Y1P 0.4850027 0.06491453
+## Y2P 0.0596119 0.18560463
+## 
+## [[3]]
+##           [,1]        [,2]
+## Y1 0.014824975 0.006166028
+## Y2 0.007440002 0.012761162</code></pre>
+<pre class="r"><code>    #list(exp.mu[[gens]], averages$mu, element_wise_proportion(exp.mu[[gens]], averages$mu))
+    list(exp.ht[[gens]], averages$covH, element_wise_proportion(exp.ht[[gens]], averages$covH))</code></pre>
+<pre><code>## [[1]]
+##      [,1] [,2]
+## [1,]    0    0
+## [2,]    0    0
+## 
+## [[2]]
+##               [,1]          [,2]
+## [1,] -0.0004017114 -2.204303e-04
+## [2,] -0.0002204303  2.887807e-05
+## 
+## [[3]]
+##      [,1] [,2]
+## [1,]   -1   -1
+## [2,]   -1   -1</code></pre>
+<pre class="r"><code>    list(exp.Gamma[[gens]], averages$gamma, element_wise_proportion(exp.Gamma[[gens]], averages$gamma))</code></pre>
+<pre><code>## [[1]]
+##    [,1] [,2]
+## Y1    0    0
+## Y2    0    0
+## 
+## [[2]]
+##             TPL1          TPL2
+## Y1P 0.0004820275 -0.0008683435
+## Y2P 0.0007649085  0.0001829763
+## 
+## [[3]]
+##    [,1] [,2]
+## Y1   -1   -1
+## Y2   -1   -1</code></pre>
+<pre class="r"><code>    list(exp.gt[[gens]], averages$covG, element_wise_proportion(exp.gt[[gens]], averages$covG))</code></pre>
+<pre><code>## [[1]]
+##            [,1]       [,2]
+## [1,] 0.06335434 0.01867521
+## [2,] 0.01864768 0.01156564
+## 
+## [[2]]
+##            [,1]       [,2]
+## [1,] 0.06072868 0.01876759
+## [2,] 0.01876759 0.01109639
+## 
+## [[3]]
+##              [,1]         [,2]
+## [1,]  0.043235911 -0.004922623
+## [2,] -0.006389215  0.042288971</code></pre>
+<pre class="r"><code>    list(exp.VF[[gens]], averages$VF, element_wise_proportion(exp.VF[[gens]], averages$VF))</code></pre>
+<pre><code>## [[1]]
+##            [,1]       [,2]
+## [1,] 0.14927625 0.07715726
+## [2,] 0.07716995 0.04740598
+## 
+## [[2]]
+##            F1         F2
+## F1 0.14823501 0.07665206
+## F2 0.07665206 0.04709393
+## 
+## [[3]]
+##             F1          F2
+## F1 0.007024229 0.006590812
+## F2 0.006756465 0.006626160</code></pre>
+<pre class="r"><code>    list(exp.VY[[gens]], averages$VP, element_wise_proportion(exp.VY[[gens]], averages$VP))</code></pre>
+<pre><code>## [[1]]
+##           Y1        Y2
+## Y1 1.5184259 0.1746457
+## Y2 0.1750305 1.0888416
+## 
+## [[2]]
+##           Y1        Y2
+## Y1 1.5131139 0.1745661
+## Y2 0.1745661 1.0882215
+## 
+## [[3]]
+##             Y1           Y2
+## Y1 0.003510681 0.0004558548
+## Y2 0.002660565 0.0005698207</code></pre>
+<pre class="r"><code>    list(exp.VGO[[gens]], averages$VAO, element_wise_proportion(exp.VGO[[gens]], averages$VAO))</code></pre>
+<pre><code>## [[1]]
+##            [,1]       [,2]
+## [1,] 0.45123025 0.01343624
+## [2,] 0.01343624 0.09416363
+## 
+## [[2]]
+##            AOy1       AOy2
+## AOy1 0.44751986 0.01342355
+## AOy2 0.01342355 0.09412161
+## 
+## [[3]]
+##              AOy1         AOy2
+## AOy1 0.0082909896 0.0009452016
+## AOy2 0.0009452016 0.0004464670</code></pre>
+<pre class="r"><code>    list(exp.VGL[[gens]], averages$VAL, element_wise_proportion(exp.VGL[[gens]], averages$VAL))</code></pre>
+<pre><code>## [[1]]
+##      [,1] [,2]
+## [1,]    0    0
+## [2,]    0    0
+## 
+## [[2]]
+##      ALy1 ALy2
+## ALy1    0    0
+## ALy2    0    0
+## 
+## [[3]]
+##      ALy1 ALy2
+## ALy1  NaN  NaN
+## ALy2  NaN  NaN</code></pre>
+<pre class="r"><code>    list(exp.w[[gens]], averages$w, element_wise_proportion(exp.w[[gens]], averages$w))</code></pre>
+<pre><code>## [[1]]
+##            [,1]       [,2]
+## [1,] 0.23479034 0.08640711
+## [2,] 0.09738294 0.06193727
+## 
+## [[2]]
+##           AO1        AO2
+## F1 0.23219489 0.08624395
+## F2 0.09644946 0.06162133
+## 
+## [[3]]
+##            AO1         AO2
+## F1 0.011177923 0.001891884
+## F2 0.009678495 0.005127201</code></pre>
+<pre class="r"><code>    list(exp.v[[gens]], averages$q, element_wise_proportion(exp.v[[gens]], averages$q))</code></pre>
+<pre><code>## [[1]]
+##      [,1] [,2]
+## [1,]    0    0
+## [2,]    0    0
+## 
+## [[2]]
+##             AL1           AL2
+## F1 0.0007660894 -1.283691e-04
+## F2 0.0005325111  6.400613e-06
+## 
+## [[3]]
+##    AL1 AL2
+## F1  -1  -1
+## F2  -1  -1</code></pre>
 
 
 

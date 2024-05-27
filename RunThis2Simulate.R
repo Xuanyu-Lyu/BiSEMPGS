@@ -17,7 +17,7 @@ startingParamList <- list(vg1 = c(.36,.36,.09,.36,.36,.18,.36),
 						  f21 = c(.05,.05,.05,.025,.05,.05,.05),
 						  f22 = c(.15,.1,.1,.05,.1,.1,.1))
 
-for (condition in 1: 2){
+for (condition in 7){
 	# WILDCARD parameters
 	pop.size <- 20000 #maybe something like 2e4, or 20000, when running for real
 	num.cvs <- 200 #maybe 25
@@ -119,7 +119,7 @@ for (condition in 1: 2){
 	# write a loop to run the simulation 100 times and save all the summary data in a list
 	#l.summaryLast <- list()
 	#l.all <- list()
-	for (i in 1:100){
+	for (i in 101:300){
 		AM.DATA <- AM.SIMULATE(CV.INFO=cv.info, NUM.GENERATIONS=15, POP.SIZE=pop.size, AVOID.INB=avoid.inb, SAVE.EACH.GEN=save.history, SAVE.COVS=save.covariances, SEED=seed*i, 
 							cove.mat=cove.mat, fmat=f.mat, amat=a.mat, dmat=delta.mat, cor.list=am.list, covy=COVY, k2.matrix=k2.matrix)
 		SUMMARY.last <- AM.DATA$SUMMARY.RES[[15]]

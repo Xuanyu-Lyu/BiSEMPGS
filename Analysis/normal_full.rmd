@@ -346,6 +346,8 @@ if (model == 1){
 }
 ```
 
+
+
 ```{r getEmpirical}
 l.summaryLast <- list()
 # read all the rds files into the list
@@ -401,3 +403,161 @@ averages
 
 
 ```
+
+```{r checkEmpiMath}
+# specify the model want to check, model 1 or 2
+model = 2
+
+# read all the empirical data files
+l.empMateCor <- vector("list", 300)
+l.empMateCov <- vector("list", 300)
+l.empDelta <- vector("list", 300)
+# test <- readRDS(paste0("/Users/xuly4739/Library/CloudStorage/OneDrive-UCB-O365/Documents/coding/R-projects/BiSEMPGS/Data/",pathName,"/loop", 1, ".rds"))
+# test$HISTORY |> names()
+# test$SUMMARY.RES[[1]]$thetaT
+# |> cov2cor()
+# test$SUMMARY.RES[[11]]$VP
+
+# test$HISTORY$PHEN[[15]] |> cov()
+# test$HISTORY$MATE[15][[1]] |> class()
+# read all the rds files into the list
+for(i in 1:300){
+    dataAll <- readRDS(paste0("/Users/xuly4739/Library/CloudStorage/OneDrive-UCB-O365/Documents/coding/R-projects/BiSEMPGS/Data/",pathName,"/loop", i, ".rds"))
+    for (j in 2:16){
+    l.empMateCor[[i]][[j]] <- cov2cor(dataAll$SUMMARY.RES[[j]]$covY)[3:4,1:2]
+    l.empMateCov[[i]][[j]] <- dataAll$SUMMARY.RES[[j]]$covY[3:4,1:2]
+    l.empDelta[[i]][[j]] <- dataAll$SUMMARY.RES[[j]]$thetaT - dataAll$SUMMARY.RES[[j]]$thetaNT
+    }
+
+}
+
+avg_empMateCor <- list()
+avg_empMateCov <- list()
+avg_empDelta <- list()
+  
+for (j in 2:16) {
+    temp_empMateCor <- lapply(l.empMateCor, function(x) x[[j]])
+    avg_empMateCor[[j]] <- Reduce("+", temp_empMateCor) / length(temp_empMateCor)
+    
+    temp_empMateCov <- lapply(l.empMateCov, function(x) x[[j]])
+    avg_empMateCov[[j]] <- Reduce("+", temp_empMateCov) / length(temp_empMateCov)
+
+    temp_empDelta <- lapply(l.empDelta, function(x) x[[j]])
+    avg_empDelta[[j]] <- Reduce("+", temp_empDelta) / length(temp_empDelta)
+}
+
+avg_empDelta[[1]] <- delta.t0
+avg_empMateCor[[1]] <- rmate.t0
+avg_empMateCov[[1]] <- COVY
+
+if (model == 1){
+
+} else {
+   for (it in 2:gens){
+        (exp.Omega[[it]] <- 2*delta.t0%*%exp.gc[[it-1]] + avg_empDelta[[it-1]] %*% k.t0 + .5*exp.w[[it-1]] + 2*a.t0%*%exp.ic[[it-1]])
+        cat("Omega",it,"\n",exp.Omega[[it]],"\n")
+        (exp.Gamma[[it]] <- 2*a.t0%*%exp.hc[[it-1]] + 2*avg_empDelta[[it-1]]%*%t(exp.ic[[it-1]]) + a.t0%*%j.t0 + .5*exp.v[[it-1]])
+        cat("Gamma",it,"\n",exp.Gamma[[it]],"\n")
+
+        (exp.VY[[it]] <- 2 * avg_empDelta[[it-1]] %*% t(exp.Omega[[it]]) + 2 * a.t0 %*% t(exp.Gamma[[it]]) + exp.w[[it-1]] %*% avg_empDelta[[it-1]] + exp.v[[it-1]] %*% t(a.t0) + exp.VF[[it-1]] + covE.t0 )
+        cat("VY","\n")
+        print(exp.VY[[it]])
+
+        # # two potential ways: fix mu or fix mate.cor
+        # exp.VY.diagonal[[it]] <- exp.VY[[it]]
+        # exp.VY.diagonal[[it]][1,2] <- 0
+        # exp.VY.diagonal[[it]][2,1] <- 0
+
+        # exp.covY.full.diagonal[[it]] <- cbind(rbind(exp.VY.diagonal[[it]],matrix(0,2,2)),rbind(matrix(0,2,2),exp.VY.diagonal[[it]]))
+
+        # exp.corVY[[it]] <- cov2cor(exp.VY[[it]])
+        # exp.corY.full[[it]] <- exp.corY.full[[1]]
+        # exp.corY.full[[it]][1,2] <- exp.corVY[[it]][1,2]
+        # exp.corY.full[[it]][2,1] <- exp.corVY[[it]][2,1]
+        # exp.corY.full[[it]][3,4] <- exp.corVY[[it]][1,2]
+        # exp.corY.full[[it]][4,3] <- exp.corVY[[it]][2,1]
+        # #exp.covY.full[[it]] <- cor2cov(exp.corY.full[[it]],exp.VY[[it]][1,1],exp.VY[[it]][2,2],exp.VY[[it]][1,1],exp.VY[[it]][2,2]) 
+        # exp.covY.full[[it]] <- sqrt(exp.covY.full.diagonal[[it]]) %*% exp.corY.full[[it]] %*% sqrt(exp.covY.full.diagonal[[it]])
+        mate.cov[[it]] <- avg_empMateCov[[it]] ## this is the mate.cov fixing mate.cor
+        mate.cor[[it]] <- avg_empMateCor[[it]]
+        (exp.mu[[it]] <- solve(exp.VY[[it]]) %*% mate.cov[[it]] %*% solve(t(exp.VY[[it]]))) 
+
+        (exp.gt[[it]] <- t(exp.Omega[[it]])%*%exp.mu[[it]]%*%exp.Omega[[it]])
+        cat("gt",it,"\n",exp.gt[[it]],"\n")
+        (exp.gc[[it]] <- .5*(exp.gt[[it]] + t(exp.gt[[it]])))
+
+        (exp.ht[[it]] <- t(exp.Gamma[[it]])%*%exp.mu[[it]]%*%exp.Gamma[[it]])
+        
+        (exp.hc[[it]] <- .5*(exp.ht[[it]] + t(exp.ht[[it]])))  
+        
+        (exp.w[[it]] <- 2*f.t0%*%exp.Omega[[it]] + f.t0%*%exp.VY[[it]]%*%exp.mu[[it]]%*%exp.Omega[[it]] + f.t0%*%exp.VY[[it]]%*%t(exp.mu[[it]])%*%exp.Omega[[it]])
+        cat("w", "\n")
+        print(exp.w[[it]])
+        (exp.v[[it]] <- 2*f.t0%*%exp.Gamma[[it]] + f.t0%*%exp.VY[[it]]%*%exp.mu[[it]]%*%exp.Gamma[[it]] + f.t0%*%exp.VY[[it]]%*%t(exp.mu[[it]])%*%exp.Gamma[[it]])  
+
+        (exp.VF[[it]] <- 2*f.t0%*%exp.VY[[it]]%*%t(f.t0) + f.t0%*%exp.VY[[it]]%*%exp.mu[[it]]%*%exp.VY[[it]]%*%t(f.t0) +  f.t0%*%exp.VY[[it]]%*%t(exp.mu[[it]])%*%exp.VY[[it]]%*%t(f.t0))
+        cat("VF","\n")
+        print(exp.VF[[it]])
+        (exp.itlo[[it]] <- t(exp.Gamma[[it]])%*%exp.mu[[it]]%*%exp.Omega[[it]])
+        
+        (exp.itol[[it]] <- t(exp.Omega[[it]])%*%exp.mu[[it]]%*%exp.Gamma[[it]])
+
+        (exp.ic[[it]] <- .5*(exp.itol[[it]] + t(exp.itlo[[it]])))
+
+        (exp.VGO[[it]] <- 2*delta.t0%*%k.t0%*%t(delta.t0) + 4*delta.t0%*%exp.gc[[it]]%*%t(delta.t0))
+        (exp.VGL[[it]] <- 2*a.t0%*%j.t0%*%t(a.t0) + 4*a.t0%*%exp.hc[[it]]%*%t(a.t0))
+        (exp.COVLO[[it]] <- 4*delta.t0%*%t(exp.ic[[it]])%*%t(a.t0) + 4*a.t0%*%exp.ic[[it]]%*%t(delta.t0))
+
+}
+    EXP <- list(
+        Omega=exp.Omega[[gens]],
+        #theta=exp.thetaNT[[gens]],
+        Gamma=exp.Gamma[[gens]],
+        gc=exp.gc[[gens]],
+        hc=exp.hc[[gens]],
+        itlo=exp.itlo[[gens]],
+        itol=exp.itol[[gens]],
+        ic=exp.ic[[gens]],
+        VF=exp.VF[[gens]],
+        w=exp.w[[gens]],
+        q=exp.v[[gens]],
+        VY=exp.VY[[gens]],
+        mate.cov=mate.cov[[gens]],
+        mu=exp.mu[[gens]],
+        VGO=exp.VGO[[gens]],
+        VGL=exp.VGL[[gens]],
+        COVLO=exp.COVLO[[gens]]
+        )
+
+        (cov.fin.gen <- exp.VY[[gens]]%*%exp.mu[[gens]]%*%exp.VY[[gens]])
+        cor.fin.gen <- cov.fin.gen/exp.VY[[gens]]
+        cor.fin.gen[1,2] <- cov.fin.gen[1,2]/(sqrt(exp.VY[[gens]][1,1])*sqrt(exp.VY[[gens]][2,2]))
+        cor.fin.gen[2,1] <- cov.fin.gen[2,1]/(sqrt(exp.VY[[gens]][1,1])*sqrt(exp.VY[[gens]][2,2]))
+        cor.fin.gen
+        rmate.t0 
+}
+```
+
+
+```{r comparison2}
+    element_wise_proportion <- function(matrix1, matrix2) {
+  
+  proportion_matrix <- (matrix1 - matrix2) / matrix2
+  return(proportion_matrix)
+}
+    list(exp.Omega[[gens]],  averages$omega, element_wise_proportion(exp.Omega[[gens]], averages$omega))
+    #list(exp.mu[[gens]], averages$mu, element_wise_proportion(exp.mu[[gens]], averages$mu))
+    list(exp.ht[[gens]], averages$covH, element_wise_proportion(exp.ht[[gens]], averages$covH))
+    list(exp.Gamma[[gens]], averages$gamma, element_wise_proportion(exp.Gamma[[gens]], averages$gamma))
+    list(exp.gt[[gens]], averages$covG, element_wise_proportion(exp.gt[[gens]], averages$covG))
+    list(exp.VF[[gens]], averages$VF, element_wise_proportion(exp.VF[[gens]], averages$VF))
+    list(exp.VY[[gens]], averages$VP, element_wise_proportion(exp.VY[[gens]], averages$VP))
+    list(exp.VGO[[gens]], averages$VAO, element_wise_proportion(exp.VGO[[gens]], averages$VAO))
+    list(exp.VGL[[gens]], averages$VAL, element_wise_proportion(exp.VGL[[gens]], averages$VAL))
+    list(exp.w[[gens]], averages$w, element_wise_proportion(exp.w[[gens]], averages$w))
+    list(exp.v[[gens]], averages$q, element_wise_proportion(exp.v[[gens]], averages$q))
+
+
+```
+
+
