@@ -1,28 +1,43 @@
 # this script is used to simulate the data for the BiSEMPGS model to test the math
 
-source("Simulate.Multivariate.NOLD.AM.FUNCTIONS_May2021-mck7.R")
+# load the Gene Evolve simulation functions
+source("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Simulate.Multivariate.NOLD.AM.FUNCTIONS_May2021-mck7.R")
 #library(expm)
 #setwd("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS")
 
-# create a list of starting parameters for different conditions
-conditionNames <- c("f_trans_full", "am_trans_full", "delta_trans_full", "f_half_full", "am_half_full", "delta_half_full", "normal_full")
-startingParamList <- list(vg1 = c(.36,.36,.09,.36,.36,.18,.36),
-						  vg2 = c(.09,.09,.36,.09,.09,.045,.09),
-						  am11 = c(.4,.3,.4,.4,.2,.4,.4),
-						  am12 = c(.2,.2,.2,.2,.1,.2,.2),
-						  am21 = c(.2,.2,.2,.2,.1,.2,.2),
-						  am22 = c(.3,.4,.3,.3,.15,.3,.3),
-						  f11 = c(.1,.15,.15,.15/2,.15,.15,.15),
-						  f12 = c(.1,.1,.1,.05,.1,.1,.1),
-						  f21 = c(.05,.05,.05,.025,.05,.05,.05),
-						  f22 = c(.15,.1,.1,.05,.1,.1,.1))
+# fetch the job array information
+args <- commandArgs(trailingOnly = TRUE)
+con <- as.numeric(args[1])
 
-for (condition in 7){
+# saving directory
+save_dir <- "/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS"
+
+# create a list of starting parameters for different conditions
+conditionNames <- c("Full Model", "trait1-fully measure pgs", "trait2-fully measure pgs", "trait12-fully measure pgs", 
+"f11-decrease", "f12-decrease", "f11.12.21.22-decrease", "am11-decrease", "am12-decrease", "am11.12.21.22-decrease")
+# starting parameter list 1 is for the full model with different sample sizes
+startingParamList1 <- list(vg1 = rep(.49,10),
+						   vg2 = rep(.16,10),
+						   am11 = c(0.4,0.4,0.4,0.4,0.4,0.4,0.4,0,0.4,0),
+						   am12 = c(0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0,0),
+						   am21 = c(0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0),
+						   am22 = c(0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0),
+						   f11 = c(0.15,0.15,0.15,0.15,0.075,0.15,0.075,0.15,0.15,0.15),
+						   f12 = c(0.1,0.1,0.1,0.1,0.1,0.05,0.05,0.1,0.1,0.1),
+						   f21 = c(0.05,0.05,0.05,0.05,0.05,0.05,0.025,0.05,0.05,0.05),
+						   f22 = c(0.1,0.1,0.1,0.1,0.1,0.1,0.05,0.1,0.1,0.1),
+						   Nfam = c(1e5, rep(5e4,9)),
+						   rg = rep(.1,10),
+						   re = rep(.1,10),
+						   prop.h2.latent1 = c(0.5,0,0.5,0,rep(0.5,6)),
+						   prop.h2.latent2 = c(0.7,0.7,0,0,rep(0.7,6)))
+
+for (condition in 1){
 	# WILDCARD parameters
-	pop.size <- 20000 #maybe something like 2e4, or 20000, when running for real
+	pop.size <- Nfam #maybe something like 2e4, or 20000, when running for real
 	num.cvs <- 200 #maybe 25
 	seed <- 62*condition
-	num.gen <-  15 #8 should be sufficient to get to AM equilibrium
+	num.gen <-  20 #8 should be sufficient to get to AM equilibrium
 	avoid.inb <- TRUE #avoid inbreeding?
 	save.covariances <- TRUE #save the covariance matrices?
 	save.history <- TRUE #save the data for each generation?
@@ -33,10 +48,10 @@ for (condition in 7){
 	#VG
 	vg1 <- startingParamList["vg1"][[1]][[condition]] #trait 1 vg
 	vg2 <- startingParamList["vg2"][[1]][[condition]] #trait 2 vg
-	rg <- 0 #genetic CORRELATION @t0 bw trait 1 and trait 2 for both obs. PGS and latent PGS (assumed to be the same). NOTE: this is NOT the full rg at t0. It is the rg bw PGSs, and the rg bw LGSs. The full rg may be a bit different (Simpson's paradox)
+	rg <- startingParamList["rg"][[1]][[condition]] #genetic CORRELATION @t0 bw trait 1 and trait 2 for both obs. PGS and latent PGS (assumed to be the same). NOTE: this is NOT the full rg at t0. It is the rg bw PGSs, and the rg bw LGSs. The full rg may be a bit different (Simpson's paradox)
 	(k2.matrix <- matrix(c(1,rg,rg,1),nrow=2,byrow=T)) #k2 matrix is 2 * k matrix - i.e., genotypic (instead of haplotypic) var/covar at t0
-	prop.h2.latent1 <- 0 #  trait 1, e.g., height
-	prop.h2.latent2 <- 0 # trait 2, e.g., IQ
+	prop.h2.latent1 <- startingParamList["prop.h2.latent1"][[1]][[condition]] #  trait 1, e.g., height
+	prop.h2.latent2 <- startingParamList["prop.h2.latent2"][[1]][[condition]] # trait 2, e.g., IQ
 
 	#AM - these are NOT the mu copaths. They are the CORRELATIONS between male & female traits
 	am11 <-  startingParamList["am11"][[1]][[condition]] #height.m-height.f am across 2 its
@@ -51,7 +66,7 @@ for (condition in 7){
 	f22 <- startingParamList["f22"][[1]][[condition]] # regression of offspring trait 2 F on parental trait 2
 
 	#E
-	re <- 0 #environmental CORRELATION between trait 1 & trait 2
+	re <- startingParamList["re"][[1]][[condition]] #environmental CORRELATION between trait 1 & trait 2
 
 	# IMPLIED variables
 	#This section just converts the above inputs into matrices in our algebra
@@ -119,24 +134,28 @@ for (condition in 7){
 	# write a loop to run the simulation 100 times and save all the summary data in a list
 	#l.summaryLast <- list()
 	#l.all <- list()
-	for (i in 301){
-		AM.DATA <- AM.SIMULATE(CV.INFO=cv.info, NUM.GENERATIONS=15, POP.SIZE=pop.size, AVOID.INB=avoid.inb, SAVE.EACH.GEN=save.history, SAVE.COVS=save.covariances, SEED=seed*i, 
+	for(array in con){
+		for (i in 1:10){
+		AM.DATA <- AM.SIMULATE(CV.INFO=cv.info, NUM.GENERATIONS=num.gen, POP.SIZE=pop.size, AVOID.INB=avoid.inb, SAVE.EACH.GEN=save.history, SAVE.COVS=save.covariances, SEED=seed*i, 
 							cove.mat=cove.mat, fmat=f.mat, amat=a.mat, dmat=delta.mat, cor.list=am.list, covy=COVY, k2.matrix=k2.matrix)
-		SUMMARY.last <- AM.DATA$SUMMARY.RES[[15]]
+		SUMMARY.last <- AM.DATA$SUMMARY.RES[[num.gen]]
 		#l.summaryLast[[i]] <- SUMMARY.last
 		#l.all[[i]] <- AM.DATA
 		# test if a folder exist, if not, create one
-		if (!dir.exists(paste0("Summary/",conditionNames[condition]))){
-			dir.create(paste0("Summary/",conditionNames[condition]))
+		if (!dir.exists(paste0(save_dir, "/Summary/",conditionNames[condition]))){
+			dir.create(paste0(save_dir, "/Summary/",conditionNames[condition]))
 		}		
-		if (!dir.exists(paste0("Data/",conditionNames[condition]))){
-			dir.create(paste0("Data/",conditionNames[condition]))
+		if (!dir.exists(paste0(save_dir,"/Data/",conditionNames[condition]))){
+			dir.create(paste0(save_dir, "/Data/",conditionNames[condition]))
 		}
-		saveRDS(SUMMARY.last, file=paste0("Summary/",conditionNames[condition],"/loop",i,".rds"))
-		saveRDS(AM.DATA, file=paste0("Data/",conditionNames[condition],"/loop",i,".rds"))
-		cat(conditionNames[condition],"Simulation",i,"done\n")
-		rm(list = setdiff(ls(), c(ObjectsKeep, "ObjectsKeep")))
+		loop_index <- (array-1)*10 + i 
+		saveRDS(SUMMARY.last, file=paste0(save_dir,"/Summary/",conditionNames[condition],"/loop",loop_index,".rds"))
+		saveRDS(AM.DATA, file=paste0(save_dir,"/Data/",conditionNames[condition],"/loop",loop_index,".rds"))
+		cat(conditionNames[condition],"/Simulation",loop_index,"done\n")
+		rm(list = setdiff(ls(), c(ObjectsKeep, "/ObjectsKeep")))
 	}
+	}
+
 	# save the summary data into a rds file
 	
 }
