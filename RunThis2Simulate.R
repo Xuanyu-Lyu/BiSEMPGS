@@ -19,7 +19,7 @@ startingParamList <- list(vg1 = c(.36,.36,.09,.36,.36,.18,.36),
 
 for (condition in 7){
 	# WILDCARD parameters
-	pop.size <- 20000 #maybe something like 2e4, or 20000, when running for real
+	pop.size <- 1e5 #maybe something like 2e4, or 20000, when running for real
 	num.cvs <- 200 #maybe 25
 	seed <- 62*condition
 	num.gen <-  15 #8 should be sufficient to get to AM equilibrium
