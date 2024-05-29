@@ -34,7 +34,7 @@ startingParamList1 <- list(vg1 = rep(.49,10),
 
 for (condition in 1){
 	# WILDCARD parameters
-	pop.size <-  startingParamList["Nfam"][[1]][[condition]] #maybe something like 2e4, or 20000, when running for real
+	pop.size <-  startingParamList1["Nfam"][[1]][[condition]] #maybe something like 2e4, or 20000, when running for real
 	num.cvs <- 200 #maybe 25
 	seed <- 62*condition
 	num.gen <-  20 #8 should be sufficient to get to AM equilibrium
@@ -46,27 +46,27 @@ for (condition in 1){
 
 	#USER INPUT VARIABLES
 	#VG
-	vg1 <- startingParamList["vg1"][[1]][[condition]] #trait 1 vg
-	vg2 <- startingParamList["vg2"][[1]][[condition]] #trait 2 vg
-	rg <- startingParamList["rg"][[1]][[condition]] #genetic CORRELATION @t0 bw trait 1 and trait 2 for both obs. PGS and latent PGS (assumed to be the same). NOTE: this is NOT the full rg at t0. It is the rg bw PGSs, and the rg bw LGSs. The full rg may be a bit different (Simpson's paradox)
+	vg1 <- startingParamList1["vg1"][[1]][[condition]] #trait 1 vg
+	vg2 <- startingParamList1["vg2"][[1]][[condition]] #trait 2 vg
+	rg <- startingParamList1["rg"][[1]][[condition]] #genetic CORRELATION @t0 bw trait 1 and trait 2 for both obs. PGS and latent PGS (assumed to be the same). NOTE: this is NOT the full rg at t0. It is the rg bw PGSs, and the rg bw LGSs. The full rg may be a bit different (Simpson's paradox)
 	(k2.matrix <- matrix(c(1,rg,rg,1),nrow=2,byrow=T)) #k2 matrix is 2 * k matrix - i.e., genotypic (instead of haplotypic) var/covar at t0
-	prop.h2.latent1 <- startingParamList["prop.h2.latent1"][[1]][[condition]] #  trait 1, e.g., height
-	prop.h2.latent2 <- startingParamList["prop.h2.latent2"][[1]][[condition]] # trait 2, e.g., IQ
+	prop.h2.latent1 <- startingParamList1["prop.h2.latent1"][[1]][[condition]] #  trait 1, e.g., height
+	prop.h2.latent2 <- startingParamList1["prop.h2.latent2"][[1]][[condition]] # trait 2, e.g., IQ
 
 	#AM - these are NOT the mu copaths. They are the CORRELATIONS between male & female traits
-	am11 <-  startingParamList["am11"][[1]][[condition]] #height.m-height.f am across 2 its
-	am12 <-  startingParamList["am12"][[1]][[condition]] #height.m-iq.f; e.g., tall males choose smart females
-	am21 <-  startingParamList["am21"][[1]][[condition]] #iq.m-height.f
-	am22 <-  startingParamList["am22"][[1]][[condition]] #iq.m - iq.f
+	am11 <-  startingParamList1["am11"][[1]][[condition]] #height.m-height.f am across 2 its
+	am12 <-  startingParamList1["am12"][[1]][[condition]] #height.m-iq.f; e.g., tall males choose smart females
+	am21 <-  startingParamList1["am21"][[1]][[condition]] #iq.m-height.f
+	am22 <-  startingParamList1["am22"][[1]][[condition]] #iq.m - iq.f
 
 	#VT
-	f11 <- startingParamList["f11"][[1]][[condition]] # regression of offspring trait 1 F on parental trait 1
-	f12 <- startingParamList["f12"][[1]][[condition]] # regression of offspring trait 1 F on parental trait 2
-	f21 <- startingParamList["f21"][[1]][[condition]] # regression of offspring trait 2 F on parental trait 1
-	f22 <- startingParamList["f22"][[1]][[condition]] # regression of offspring trait 2 F on parental trait 2
+	f11 <- startingParamList1["f11"][[1]][[condition]] # regression of offspring trait 1 F on parental trait 1
+	f12 <- startingParamList1["f12"][[1]][[condition]] # regression of offspring trait 1 F on parental trait 2
+	f21 <- startingParamList1["f21"][[1]][[condition]] # regression of offspring trait 2 F on parental trait 1
+	f22 <- startingParamList1["f22"][[1]][[condition]] # regression of offspring trait 2 F on parental trait 2
 
 	#E
-	re <- startingParamList["re"][[1]][[condition]] #environmental CORRELATION between trait 1 & trait 2
+	re <- startingParamList1["re"][[1]][[condition]] #environmental CORRELATION between trait 1 & trait 2
 
 	# IMPLIED variables
 	#This section just converts the above inputs into matrices in our algebra
