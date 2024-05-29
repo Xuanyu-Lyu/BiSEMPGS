@@ -136,7 +136,8 @@ for (condition in 1){
 	#l.all <- list()
 	for(array in con){
 		for (i in 1:10){
-		AM.DATA <- AM.SIMULATE(CV.INFO=cv.info, NUM.GENERATIONS=num.gen, POP.SIZE=pop.size, AVOID.INB=avoid.inb, SAVE.EACH.GEN=save.history, SAVE.COVS=save.covariances, SEED=seed*i, 
+		loop_index <- (array-1)*10 + i 
+		AM.DATA <- AM.SIMULATE(CV.INFO=cv.info, NUM.GENERATIONS=num.gen, POP.SIZE=pop.size, AVOID.INB=avoid.inb, SAVE.EACH.GEN=save.history, SAVE.COVS=save.covariances, SEED=seed*loop_index, 
 							cove.mat=cove.mat, fmat=f.mat, amat=a.mat, dmat=delta.mat, cor.list=am.list, covy=COVY, k2.matrix=k2.matrix)
 		SUMMARY.last <- AM.DATA$SUMMARY.RES[[num.gen]]
 		#l.summaryLast[[i]] <- SUMMARY.last
@@ -148,7 +149,7 @@ for (condition in 1){
 		if (!dir.exists(paste0(save_dir,"/Data/",conditionNames[condition]))){
 			dir.create(paste0(save_dir, "/Data/",conditionNames[condition]))
 		}
-		loop_index <- (array-1)*10 + i 
+
 		saveRDS(SUMMARY.last, file=paste0(save_dir,"/Summary/",conditionNames[condition],"/loop",loop_index,".rds"))
 		saveRDS(AM.DATA, file=paste0(save_dir,"/Data/",conditionNames[condition],"/loop",loop_index,".rds"))
 		cat(conditionNames[condition],"/Simulation",loop_index,"done\n")
