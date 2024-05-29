@@ -2,7 +2,7 @@
 #SBATCH --qos=preemptable
 #SBATCH --time=5:00:00
 #SBATCH --ntasks=2
-#SBATCH --mem=50gb
+#SBATCH --mem=80gb
 #SBATCH --array=1-10
 #SBATCH -J BiSEMPGS
 #SBATCH --chdir /projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS
