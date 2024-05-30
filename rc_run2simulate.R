@@ -7,7 +7,7 @@ source("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Simulate.Multivariate.NO
 
 # fetch the job array information
 args <- commandArgs(trailingOnly = TRUE)
-con <- as.numeric(args[1])
+array_idx <- as.numeric(args[1])
 
 # saving directory
 save_dir <- "/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS"
@@ -134,31 +134,28 @@ for (condition in 1){
 	# write a loop to run the simulation 100 times and save all the summary data in a list
 	#l.summaryLast <- list()
 	#l.all <- list()
-	for(array in con){
-		for (i in 1:10){
-		loop_index <- (array-1)*10 + i 
-		AM.DATA <- AM.SIMULATE(CV.INFO=cv.info, NUM.GENERATIONS=num.gen, POP.SIZE=pop.size, AVOID.INB=avoid.inb, SAVE.EACH.GEN=save.history, SAVE.COVS=save.covariances, SEED=seed*loop_index, 
-							cove.mat=cove.mat, fmat=f.mat, amat=a.mat, dmat=delta.mat, cor.list=am.list, covy=COVY, k2.matrix=k2.matrix)
-		SUMMARY.last <- AM.DATA$SUMMARY.RES[[num.gen]]
-		#l.summaryLast[[i]] <- SUMMARY.last
-		#l.all[[i]] <- AM.DATA
-		# test if a folder exist, if not, create one
-		if (!dir.exists(paste0(save_dir, "/Summary/",conditionNames[condition]))){
-			dir.create(paste0(save_dir, "/Summary/",conditionNames[condition]))
-		}		
-		if (!dir.exists(paste0(save_dir,"/Data/",conditionNames[condition]))){
-			dir.create(paste0(save_dir, "/Data/",conditionNames[condition]))
-		}
-
-		saveRDS(SUMMARY.last, file=paste0(save_dir,"/Summary/",conditionNames[condition],"/loop",loop_index,".rds"))
-		saveRDS(AM.DATA, file=paste0(save_dir,"/Data/",conditionNames[condition],"/loop",loop_index,".rds"))
-		cat(conditionNames[condition],"/Simulation",loop_index,"done\n")
-		rm(list = setdiff(ls(), c(ObjectsKeep, "/ObjectsKeep")))
+	for (i in 1:10){
+	loop_index <- (array_idx-1)*10 + i 
+	AM.DATA <- AM.SIMULATE(CV.INFO=cv.info, NUM.GENERATIONS=num.gen, POP.SIZE=pop.size, AVOID.INB=avoid.inb, SAVE.EACH.GEN=save.history, SAVE.COVS=save.covariances, SEED=seed*loop_index, 
+						cove.mat=cove.mat, fmat=f.mat, amat=a.mat, dmat=delta.mat, cor.list=am.list, covy=COVY, k2.matrix=k2.matrix)
+	SUMMARY.last <- AM.DATA$SUMMARY.RES[[num.gen]]
+	#l.summaryLast[[i]] <- SUMMARY.last
+	#l.all[[i]] <- AM.DATA
+	# test if a folder exist, if not, create one
+	if (!dir.exists(paste0(save_dir, "/Summary/",conditionNames[condition]))){
+		dir.create(paste0(save_dir, "/Summary/",conditionNames[condition]))
+	}		
+	if (!dir.exists(paste0(save_dir,"/Data/",conditionNames[condition]))){
+		dir.create(paste0(save_dir, "/Data/",conditionNames[condition]))
 	}
-	}
+	# save the data
+	saveRDS(SUMMARY.last, file=paste0(save_dir,"/Summary/",conditionNames[condition],"/loop",loop_index,".rds"))
+	saveRDS(AM.DATA, file=paste0(save_dir,"/Data/",conditionNames[condition],"/loop",loop_index,".rds"))
+	cat(conditionNames[condition],"/Simulation",loop_index,"done\n")
+	rm(list = setdiff(ls(), c(ObjectsKeep, "/ObjectsKeep")))
+}
 
-	# save the summary data into a rds file
-	
+
 }
 
 

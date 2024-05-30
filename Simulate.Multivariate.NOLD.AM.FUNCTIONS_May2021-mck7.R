@@ -353,6 +353,7 @@ NTPO <- males.NT.haps.obs %*% as.matrix(CV.INFO[,c("alpha1","alpha2")])
 NTMO <- females.NT.haps.obs %*% as.matrix(CV.INFO[,c("alpha1","alpha2")])
 BV.NT.O <- NTPO+NTMO
 
+
 #Create Phenotypes & haplotype breeding values - LATENT
 AL <- XL %*% as.matrix(CV.INFO[,c("alpha1","alpha2")])  #this is the latent (PGS) breeding values for traits 1 and 2
 TPL <- males.haps.lat %*% as.matrix(CV.INFO[,c("alpha1","alpha2")])
