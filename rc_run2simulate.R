@@ -13,7 +13,7 @@ array_idx <- as.numeric(args[1])
 save_dir <- "/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS"
 
 # create a list of starting parameters for different conditions
-conditionNames <- c("Full Model", "trait1-fully measure pgs", "trait2-fully measure pgs", "trait12-fully measure pgs", 
+conditionNames <- c("Full_Model", "trait1-fullyMeasurePgs", "trait2-fullyMeasurePgs", "trait12-fullyMeasurePgs", 
 "f11-decrease", "f12-decrease", "f11.12.21.22-decrease", "am11-decrease", "am12-decrease", "am11.12.21.22-decrease")
 # starting parameter list 1 is for the full model with different sample sizes
 startingParamList1 <- list(vg1 = rep(.49,10),
@@ -152,7 +152,7 @@ for (condition in 1){
 	saveRDS(SUMMARY.last, file=paste0(save_dir,"/Summary/",conditionNames[condition],"/loop",loop_index,".rds"))
 	saveRDS(AM.DATA, file=paste0(save_dir,"/Data/",conditionNames[condition],"/loop",loop_index,".rds"))
 	cat(conditionNames[condition],"/Simulation",loop_index,"done\n")
-	rm(list = setdiff(ls(), c(ObjectsKeep, "/ObjectsKeep")))
+	rm(list = setdiff(ls(), c(ObjectsKeep, "i", "ObjectsKeep")))
 }
 
 

@@ -1,9 +1,9 @@
 #!/bin/bash
 #SBATCH --qos=preemptable
 #SBATCH --time=12:00:00
-#SBATCH --ntasks=2
+#SBATCH --ntasks=1
 #SBATCH --mem=80gb
-#SBATCH --array=2-50%10
+#SBATCH --array=1-50%10
 #SBATCH -J BiSEMPGS
 #SBATCH --chdir /projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS
 #SBATCH --exclude bmem-rico1,bnode010[1-5]
