@@ -10,7 +10,8 @@ args <- commandArgs(trailingOnly = TRUE)
 array_idx <- as.numeric(args[1])
 
 # saving directory
-save_dir <- "/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS"
+save_dir_summary <- "/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS"
+save_dir_data <- "/rc_scratch/xuly4739/BiSEMPGS"
 
 # create a list of starting parameters for different conditions
 conditionNames <- c("Full_Model", "trait1-fullyMeasurePgs", "trait2-fullyMeasurePgs", "trait12-fullyMeasurePgs", 
@@ -142,15 +143,15 @@ for (condition in 1){
 	#l.summaryLast[[i]] <- SUMMARY.last
 	#l.all[[i]] <- AM.DATA
 	# test if a folder exist, if not, create one
-	if (!dir.exists(paste0(save_dir, "/Summary/",conditionNames[condition]))){
-		dir.create(paste0(save_dir, "/Summary/",conditionNames[condition]))
+	if (!dir.exists(paste0(save_dir_summary, "/Summary/",conditionNames[condition]))){
+		dir.create(paste0(save_dir_summary, "/Summary/",conditionNames[condition]))
 	}		
-	if (!dir.exists(paste0(save_dir,"/Data/",conditionNames[condition]))){
-		dir.create(paste0(save_dir, "/Data/",conditionNames[condition]))
+	if (!dir.exists(paste0(save_dir_data,"/Data/",conditionNames[condition]))){
+		dir.create(paste0(save_dir_data, "/Data/",conditionNames[condition]))
 	}
 	# save the data
-	saveRDS(SUMMARY.last, file=paste0(save_dir,"/Summary/",conditionNames[condition],"/loop",loop_index,".rds"))
-	saveRDS(AM.DATA, file=paste0(save_dir,"/Data/",conditionNames[condition],"/loop",loop_index,".rds"))
+	saveRDS(SUMMARY.last, file=paste0(save_dir_summary,"/Summary/",conditionNames[condition],"/loop",loop_index,".rds"))
+	saveRDS(AM.DATA, file=paste0(save_dir_data,"/Data/",conditionNames[condition],"/loop",loop_index,".rds"))
 	cat(conditionNames[condition],"/Simulation",loop_index,"done\n")
 	rm(list = setdiff(ls(), c(ObjectsKeep, "i", "ObjectsKeep")))
 }
