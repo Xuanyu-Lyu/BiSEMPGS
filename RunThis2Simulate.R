@@ -119,10 +119,10 @@ for (condition in 7){
 	# write a loop to run the simulation 100 times and save all the summary data in a list
 	#l.summaryLast <- list()
 	#l.all <- list()
-	for (i in 301){
-		AM.DATA <- AM.SIMULATE(CV.INFO=cv.info, NUM.GENERATIONS=15, POP.SIZE=pop.size, AVOID.INB=avoid.inb, SAVE.EACH.GEN=save.history, SAVE.COVS=save.covariances, SEED=seed*i, 
+	for (i in 1){
+		AM.DATA <- AM.SIMULATE(CV.INFO=cv.info, NUM.GENERATIONS=20, POP.SIZE=pop.size, AVOID.INB=avoid.inb, SAVE.EACH.GEN=save.history, SAVE.COVS=save.covariances, SEED=seed*i, 
 							cove.mat=cove.mat, fmat=f.mat, amat=a.mat, dmat=delta.mat, cor.list=am.list, covy=COVY, k2.matrix=k2.matrix)
-		SUMMARY.last <- AM.DATA$SUMMARY.RES[[15]]
+		SUMMARY.last <- AM.DATA$SUMMARY.RES[[20]]
 		#l.summaryLast[[i]] <- SUMMARY.last
 		#l.all[[i]] <- AM.DATA
 		# test if a folder exist, if not, create one

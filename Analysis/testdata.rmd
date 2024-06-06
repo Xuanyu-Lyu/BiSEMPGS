@@ -28,7 +28,7 @@ startingParamList1 <- list(vg1 = rep(.49,10),
 						   prop.h2.latent2 = c(0.7,0.7,0,0,rep(0.7,6)))
 
     condition =1
-    pathName = conditionNames[condition]
+    pathName = "testdata"
     # WILDCARD parameters
 	pop.size <-  startingParamList1["Nfam"][[1]][[condition]] #maybe something like 2e4, or 20000, when running for real
 	num.cvs <- 200 #maybe 25
@@ -426,9 +426,9 @@ averages
 model = 2
 
 # read all the empirical data files
-l.empMateCor <- vector("list", 5)
-l.empMateCov <- vector("list", 5)
-l.empDelta <- vector("list", 5)
+l.empMateCor <- vector("list", 1)
+l.empMateCov <- vector("list", 1)
+l.empDelta <- vector("list", 1)
 # test <- readRDS(paste0("/Users/xuly4739/Library/CloudStorage/OneDrive-UCB-O365/Documents/coding/R-projects/BiSEMPGS/Data/",pathName,"/loop", 1, ".rds"))
 # test$HISTORY |> names()
 # test$SUMMARY.RES[[1]]$thetaT
@@ -438,7 +438,7 @@ l.empDelta <- vector("list", 5)
 # test$HISTORY$PHEN[[15]] |> cov()
 # test$HISTORY$MATE[15][[1]] |> class()
 # read all the rds files into the list
-for(i in 1:5){
+for(i in 1:1){
     dataAll <- readRDS(paste0("/Users/xuly4739/Library/CloudStorage/OneDrive-UCB-O365/Documents/coding/R-projects/BiSEMPGS/Data/",pathName,"/loop", i, ".rds"))
     for (j in 2:16){
     l.empMateCor[[i]][[j]] <- cov2cor(dataAll$SUMMARY.RES[[j]]$covY)[3:4,1:2]
