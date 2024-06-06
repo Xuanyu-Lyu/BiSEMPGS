@@ -14,7 +14,7 @@ save_dir_summary <- "/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS"
 save_dir_data <- "/rc_scratch/xuly4739/BiSEMPGS"
 
 # create a list of starting parameters for different conditions
-conditionNames <- c("Full_Model", "trait1-fullyMeasurePgs", "trait2-fullyMeasurePgs", "trait12-fullyMeasurePgs", 
+conditionNames <- c("Full_Model", "MeasurePgs30", "MeasurePgs10", "MeasurePgsFully", 
 "f11-decrease", "f12-decrease", "f11.12.21.22-decrease", "am11-decrease", "am12-decrease", "am11.12.21.22-decrease")
 # starting parameter list 1 is for the full model with different sample sizes
 startingParamList1 <- list(vg1 = rep(.49,10),
@@ -30,10 +30,10 @@ startingParamList1 <- list(vg1 = rep(.49,10),
 						   Nfam = c(5e4, rep(5e4,9)),
 						   rg = rep(.1,10),
 						   re = rep(.1,10),
-						   prop.h2.latent1 = c(0.5,0,0.5,0,rep(0.5,6)),
-						   prop.h2.latent2 = c(0.7,0.7,0,0,rep(0.7,6)))
+						   prop.h2.latent1 = c(0.5,0.7,0.9,0,rep(0.5,6)),
+						   prop.h2.latent2 = c(0.7,0.7,0.9,0,rep(0.7,6)))
 
-for (condition in 1){
+for (condition in 2:3){
 	# WILDCARD parameters
 	pop.size <-  startingParamList1["Nfam"][[1]][[condition]] #maybe something like 2e4, or 20000, when running for real
 	num.cvs <- 200 #maybe 25
