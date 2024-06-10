@@ -26,9 +26,9 @@ library(stringr)
 
     VY_Algebra <- mxAlgebra(2 * delta %*% t(Omega) + 2 * a %*% t(Gamma) + w %*% t(delta) + v %*% t(a) + VF + VE, name="VY_Algebra")
     VF_Algebra <- mxAlgebra(2 * f %*% VY %*% t(f) + f %*% VY %*% mu %*% VY %*% t(f) + f %*% VY %*% t(mu) %*% VY %*% t(f), name="VF_Algebra")
-
-    VY_Constraint    <- mxConstraint(VY == VY_Algebra,       name='VY_Constraint')
-    VF_Constraint    <- mxConstraint(VF == VF_Algebra,       name='VF_Constraint')
+    # comment out some constraints
+    #VY_Constraint    <- mxConstraint(VY == VY_Algebra,       name='VY_Constraint')
+    #VF_Constraint    <- mxConstraint(VF == VF_Algebra,       name='VF_Constraint')
 # Genetic effects:
     delta <- mxMatrix(type="Diag", nrow=2, ncol=2, free=c(T,T), values=c(.4,.3), label=c("delta11", "delta22"),name="delta") # Effect of PGS on phen
     a     <- mxMatrix(type="Diag", nrow=2, ncol=2, free=c(T,T), values=c(.2,.1), label=c("a11", "a22"),    name="a")     # Effect of latent PGS on phen
@@ -61,13 +61,13 @@ library(stringr)
     itol_Algebra <- mxAlgebra(t(Omega) %*% mu %*% Gamma, name="itol_Algebra") # E.g., cov(TPL, TMO)
     ic_Algebra <- mxAlgebra(.25 * (itlo + t(itlo) + itol + t(itol)), name="ic_Algebra") # ic should be symmetric
     
-    gt_constraint <- mxConstraint(gt == gt_Algebra, name='gt_constraint')
-    ht_constraint <- mxConstraint(ht == ht_Algebra, name='ht_constraint')
+    #gt_constraint <- mxConstraint(gt == gt_Algebra, name='gt_constraint')
+    #ht_constraint <- mxConstraint(ht == ht_Algebra, name='ht_constraint')
     gc_constraint <- mxConstraint(gc == gc_Algebra, name='gc_constraint')
     hc_constraint <- mxConstraint(hc == hc_Algebra, name='hc_constraint')
     gchc_constraint <- mxConstraint(gc == gchc_constraint_Algebra, name='gchc_constraint')
-    itlo_constraint <- mxConstraint(itlo == itlo_Algebra, name='itlo_constraint')
-    itol_constraint <- mxConstraint(itol == itol_Algebra, name='itol_constraint')
+    #itlo_constraint <- mxConstraint(itlo == itlo_Algebra, name='itlo_constraint')
+    #itol_constraint <- mxConstraint(itol == itol_Algebra, name='itol_constraint')
     ic_constraint <- mxConstraint(ic == ic_Algebra, name='ic_constraint')
 
 # Vertical transmission effects
@@ -130,29 +130,29 @@ library(stringr)
     options(warning.length = 8000)
     Model1 <- mxModel("BiSEM_PGS", Params, Example_Data_Mx)
 
-    fitModel1 <- mxRun(Model1, intervals=T, silent=F)
+    fitModel1 <- mxTryHard(Model1, intervals=T, silent=F)
 
     summary(fitModel1)
 
 
-covariance =  matrix(c(    # 14x14
- 3, 0.1, 1.35, 0.002, 2.233, 0.0612, 0.6, 0.2, 0.6, 0.2, 0.27, 0.004, 0.27, 0.004
-, 0.1,   5, 0.001, 7.5, 0.0202, 9.175, 0.4, 0.5, 0.4, 0.5, 0.004, 0.75, 0.004, 0.75
-, 1.35, 0.001,   3, 0.1, 2.233, 0.0606, 0.27, 0.002, 0.27, 0.002, 0.6, 0.2, 0.6, 0.2
-, 0.002, 7.5, 0.1,   5, 0.0204, 9.175, 0.008, 0.75, 0.008, 0.75, 0.4, 0.5, 0.4, 0.5
-, 2.233, 0.0202, 2.233, 0.0204,   3, 0.1, 1.438, 0.1, 1.238, 0.1, 1.438, 0.1, 1.238, 0.1
-, 0.0612, 9.175, 0.0606, 9.175, 0.1,   5, 0.05, 1.2, 0.05, 0.9, 0.05, 1.2, 0.05, 0.9
-, 0.6, 0.4, 0.27, 0.008, 1.438, 0.05,   1, 0.41, 0.5, 0.31, 0.2, 0.2, 0.2, 0.2
-, 0.2, 0.5, 0.002, 0.75, 0.1, 1.2, 0.41, 0.6, 0.31, 0.1, 0.7, 0.1, 0.7, 0.1
-, 0.6, 0.4, 0.27, 0.008, 1.238, 0.05, 0.5, 0.31,   1, 0.41, 0.2, 0.2, 0.2, 0.2
-, 0.2, 0.5, 0.002, 0.75, 0.1, 0.9, 0.31, 0.1, 0.41, 0.6, 0.7, 0.1, 0.7, 0.1
-, 0.27, 0.004, 0.6, 0.4, 1.438, 0.05, 0.2, 0.7, 0.2, 0.7,   1, 0.41, 0.5, 0.31
-, 0.004, 0.75, 0.2, 0.5, 0.1, 1.2, 0.2, 0.1, 0.2, 0.1, 0.41, 0.6, 0.31, 0.1
-, 0.27, 0.004, 0.6, 0.4, 1.238, 0.05, 0.2, 0.7, 0.2, 0.7, 0.5, 0.31,   1, 0.41
-, 0.004, 0.75, 0.2, 0.5, 0.1, 0.9, 0.2, 0.1, 0.2, 0.1, 0.31, 0.1, 0.41, 0.6), 
-byrow=TRUE, nrow=14, ncol=14)
-#[c(5:14),c(5:14)]
-eigen(covariance)$values
-eigen(mxGetExpected(Model1, "covariance"))$values
- eigen(mxGetExpected(Model1, "covariance")[c(2,4,6,8,10,12,14),c(2,4,6,8,10,12,14)])$values
- eigen(mxGetExpected(Model1, "covariance")[c(1,3,5,7,9,11,13),c(1,3,5,7,9,11,13)])$values
+# covariance =  matrix(c(    # 14x14
+#  3, 0.1, 1.35, 0.002, 2.233, 0.0612, 0.6, 0.2, 0.6, 0.2, 0.27, 0.004, 0.27, 0.004
+# , 0.1,   5, 0.001, 7.5, 0.0202, 9.175, 0.4, 0.5, 0.4, 0.5, 0.004, 0.75, 0.004, 0.75
+# , 1.35, 0.001,   3, 0.1, 2.233, 0.0606, 0.27, 0.002, 0.27, 0.002, 0.6, 0.2, 0.6, 0.2
+# , 0.002, 7.5, 0.1,   5, 0.0204, 9.175, 0.008, 0.75, 0.008, 0.75, 0.4, 0.5, 0.4, 0.5
+# , 2.233, 0.0202, 2.233, 0.0204,   3, 0.1, 1.438, 0.1, 1.238, 0.1, 1.438, 0.1, 1.238, 0.1
+# , 0.0612, 9.175, 0.0606, 9.175, 0.1,   5, 0.05, 1.2, 0.05, 0.9, 0.05, 1.2, 0.05, 0.9
+# , 0.6, 0.4, 0.27, 0.008, 1.438, 0.05,   1, 0.41, 0.5, 0.31, 0.2, 0.2, 0.2, 0.2
+# , 0.2, 0.5, 0.002, 0.75, 0.1, 1.2, 0.41, 0.6, 0.31, 0.1, 0.7, 0.1, 0.7, 0.1
+# , 0.6, 0.4, 0.27, 0.008, 1.238, 0.05, 0.5, 0.31,   1, 0.41, 0.2, 0.2, 0.2, 0.2
+# , 0.2, 0.5, 0.002, 0.75, 0.1, 0.9, 0.31, 0.1, 0.41, 0.6, 0.7, 0.1, 0.7, 0.1
+# , 0.27, 0.004, 0.6, 0.4, 1.438, 0.05, 0.2, 0.7, 0.2, 0.7,   1, 0.41, 0.5, 0.31
+# , 0.004, 0.75, 0.2, 0.5, 0.1, 1.2, 0.2, 0.1, 0.2, 0.1, 0.41, 0.6, 0.31, 0.1
+# , 0.27, 0.004, 0.6, 0.4, 1.238, 0.05, 0.2, 0.7, 0.2, 0.7, 0.5, 0.31,   1, 0.41
+# , 0.004, 0.75, 0.2, 0.5, 0.1, 0.9, 0.2, 0.1, 0.2, 0.1, 0.31, 0.1, 0.41, 0.6), 
+# byrow=TRUE, nrow=14, ncol=14)
+# #[c(5:14),c(5:14)]
+# eigen(covariance)$values
+# eigen(mxGetExpected(Model1, "covariance"))$values
+#  eigen(mxGetExpected(Model1, "covariance")[c(2,4,6,8,10,12,14),c(2,4,6,8,10,12,14)])$values
+#  eigen(mxGetExpected(Model1, "covariance")[c(1,3,5,7,9,11,13),c(1,3,5,7,9,11,13)])$values
