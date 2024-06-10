@@ -16,7 +16,7 @@ data_prep <- function(data_path, save_path, target_n){
         # load the data
         data <- readRDS(paste0(data_path, "/", l_files[i]))
         data_df <- data$PHEN
-        colnames(data_df)
+
         data_df <- data_df[,c("ID", "Father.ID", "Mother.ID",
                               "Y1P","Y2P","Y1M","Y2M","Y1","Y2",
                               "TPO1","TPO2","NTPO1","NTPO2",
@@ -24,7 +24,7 @@ data_prep <- function(data_path, save_path, target_n){
         
         # remove the rows with the same Father.ID
         data_df <- data_df[!duplicated(data_df$Father.ID),]
-        
+        print(nrow(data_df))
         # remove the columns with ID
         data_df <- data_df[,-(1:3)]
         
