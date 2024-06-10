@@ -3,7 +3,7 @@
 # the path to the data
 conditionNames <- c("Full_Model", "MeasurePgs30", "MeasurePgs10", "MeasurePgsFully", 
 "f11-decrease", "f12-decrease", "f11.12.21.22-decrease", "am11-decrease", "am12-decrease", "am11.12.21.22-decrease")
-data_path <- past0("/rc_scratch/xuly4739/BiSEMPGS/Data/", conditionNames[1])
+data_path <- paste0("/rc_scratch/xuly4739/BiSEMPGS/Data/", conditionNames[1])
 save_path <- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data", conditionNames[1])
 
 # a data prep function
