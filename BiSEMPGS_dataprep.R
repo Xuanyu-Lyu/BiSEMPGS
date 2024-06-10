@@ -12,10 +12,15 @@ data_df <- data_df[,c("ID", "Father.ID", "Mother.ID",
                       "Y1P","Y2P","Y1M","Y2M","Y1","Y2",
                       "TPO1","TPO2","NTPO1","NTPO2",
                       "TMO1","TMO2","NTMO1","NTMO2")] |> as.data.frame()
+nrow(data_df)
+
+summary(table(data_df$Father.ID) |> as.factor())
+# if more than one rows has the same Father.ID, remove until only one row is left
+
 
 # remove the rows with the same Father.ID
 data_df <- data_df[!duplicated(data_df$Father.ID),]
-
+nrow(data_df)
 # remove the columns with ID
 data_df <- data_df[,-(1:3)]
 

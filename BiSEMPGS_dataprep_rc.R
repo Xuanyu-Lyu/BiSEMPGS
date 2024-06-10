@@ -43,4 +43,4 @@ data_prep <- function(data_path, save_path, target_n){
 }
 
 # run the function
-data_prep(data_path, save_path, 3.2e4)
+data_prep(data_path, save_path, 1.6e4)
