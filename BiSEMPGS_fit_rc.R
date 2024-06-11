@@ -2,7 +2,7 @@
 # OpenMx summary will be saved  in a list and then saved as a .rds file in the analysis subfolder
 
 # the path to the data
-source("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/BiSEMPGS_fitOpen.R")
+source("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/BiSEMPGS_fitOpenMx.R")
 conditionNames <- c("Full_Model", "MeasurePgs30", "MeasurePgs10", "MeasurePgsFully", 
 "f11-decrease", "f12-decrease", "f11.12.21.22-decrease", "am11-decrease", "am12-decrease", "am11.12.21.22-decrease")
 # the path to the dir with all txt files
