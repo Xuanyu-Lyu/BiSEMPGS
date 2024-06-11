@@ -11,6 +11,7 @@ data_path <- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/", con
 save_path <- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Analysis/", conditionNames[1])
 
 data_pattern <- "_16000.txt"
+save_pattern <- "_16000"
 model_type <- "m2"
 
 # a list to save all the summary data
@@ -24,7 +25,7 @@ for (i in 1:length(l_files)){
     # fit the model
     fit <- fitBiSEMPGS_m2(paste0(data_path, "/", l_files[i]))
     # save the summary
-    summary_list[[l_files[i]]] <- summary(fit)
+    summary_list[[l_files[i]]] <- fit
     # save the fit
     cat("Model", l_files[i], "has been fitted\n")
 }
@@ -32,4 +33,4 @@ if (!dir.exists(save_path)){
 	 dir.create(save_path)}
 
 # save the summary list
-saveRDS(summary_list, paste0(save_path, "/", model_type, data_pattern, "_summary_list.rds"))
+saveRDS(summary_list, paste0(save_path, "/", model_type, save_pattern, "_summary_list.rds"))
