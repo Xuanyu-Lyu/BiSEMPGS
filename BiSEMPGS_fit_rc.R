@@ -10,7 +10,7 @@ data_path <- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/", con
 # the path to the dir to save the results
 save_path <- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Analysis/", conditionNames[1])
 
-data_pattern <- "_32000.txt"
+data_pattern <- "_16000.txt"
 model_type <- "m2"
 
 # a list to save all the summary data
