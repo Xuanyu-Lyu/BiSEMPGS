@@ -1,0 +1,3 @@
+Error in library(OpenMx) : there is no package called ‘OpenMx’
+Calls: fitBiSEMPGS_m2 -> library
+Execution halted
