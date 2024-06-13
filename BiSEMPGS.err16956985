@@ -7,9 +7,9 @@ and overview of this package.
 Help for individual functions is also obtained by adding the
 suffix '.spam' to the function name, e.g. 'help( chol.spam)'.
 
-Attaching package: ‘spam’
+Attaching package: 'spam'
 
-The following objects are masked from ‘package:base’:
+The following objects are masked from 'package:base':
 
     backsolve, forwardsolve
 
@@ -17,3 +17,4 @@ Loading required package: viridisLite
 
 Try help(fields) to get started.
 Loading required package: matrixcalc
+rixcalc

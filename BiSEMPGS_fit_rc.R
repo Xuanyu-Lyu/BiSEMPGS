@@ -13,7 +13,7 @@ save_path <- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Analysis/",
 data_pattern <- "_16000.txt"
 save_pattern <- "_16000"
 model_type <- "m2"
-
+mxSetup <- "_.55lb"
 # a list to save all the summary data
 summary_list <- list()
 
@@ -33,4 +33,4 @@ if (!dir.exists(save_path)){
 	 dir.create(save_path)}
 
 # save the summary list
-saveRDS(summary_list, paste0(save_path, "/", model_type, save_pattern, "_summary_list.rds"))
+saveRDS(summary_list, paste0(save_path, "/", model_type,mxSetup, save_pattern, "_summary_list.rds"))
