@@ -17,6 +17,7 @@ fitBiSEMPGS_m2 <- function(data_path){
     # some optimizer options - adapted from Yongkong's script
     
     mxOption(NULL,"Feasibility tolerance","1e-5")
+    mxOption(NULL,"Number of Threads","4")
     #mxOption(NULL,"Analytic Gradients","No")
 
     options()$mxOptions$'Feasibility tolerance'
@@ -81,7 +82,7 @@ fitBiSEMPGS_m2 <- function(data_path){
     ic_constraint <- mxConstraint(ic == ic_Algebra, name='ic_constraint')
 
 # Vertical transmission effects
-    f     <- mxMatrix(type="Full", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.4,0,0,.3), label=c("f11", "f21","f12","f22"),  name="f", lbound = -.55) # Vertical Transmission effect
+    f     <- mxMatrix(type="Full", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.16,0,0,.08), label=c("f11", "f21","f12","f22"),  name="f", lbound = -.55) # Vertical Transmission effect
     w     <- mxMatrix(type="Full", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.3,0,0,.51), label=c("w11", "w21", "w12","w22"),  name="w", lbound = -.55) # Genetic nurture
     v     <- mxMatrix(type="Full", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.2,0.1,0.1,.1), label=c("v11", "v21", "v12","v22"),  name="v", lbound = -.55) # Latent nurture
     w_Algebra     <- mxAlgebra(2 * f %*% Omega + f %*% VY %*% mu %*% Omega + f %*% VY %*% t(mu) %*% Omega, name="w_Algebra")    
