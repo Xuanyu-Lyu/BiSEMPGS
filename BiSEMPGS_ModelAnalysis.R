@@ -1,7 +1,11 @@
 # This script is designed for looking into the output estimates and try to find a better way of fitting the BiSEMPGS model
 
 # read the summary list
+# no constraints on gc and hc, 16000 samples, lb = -.05
 summary_list <- readRDS("Summary/Full_Model/m2_16000_summary_list.rds")
+# constraints on everything, 16000 samples, lb = -.05
+
+summary_list <- readRDS("Summary/Full_Model/m2_allConst_16000_summary_list.rds")
 summary_list[[3]]$parameters
 # extract all the estimates in the list and put each parameter as a column in a data frame
 # Initialize an empty 78 column data frame
@@ -19,7 +23,9 @@ for(i in 1:length(summary_list)) {
     }
 }
 
-plot(df$VY11, ylim = c(0,5))
+sum(df$VY11 <1.9, na.rm = TRUE)
+
+plot(df$VY11[1:20], ylim = c(0,5))
 abline(h = 1.7292875, col = "red", lwd = 2)
 summary(df$VY11)
 

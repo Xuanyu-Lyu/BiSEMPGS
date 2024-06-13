@@ -14,6 +14,15 @@ fitBiSEMPGS_m2 <- function(data_path){
         mxOption(NULL,"Default optimizer","NPSOL")
         #mxOption(NULL,"mxByRow","TRUE")
 
+    # some optimizer options - adapted from Yongkong's script
+    
+    mxOption(NULL,"Feasibility tolerance","1e-5")
+    #mxOption(NULL,"Analytic Gradients","No")
+
+    options()$mxOptions$'Feasibility tolerance'
+    #options()$mxOptions$'Analytic Gradients'
+    options()$mxOptions$'Gradient step size'  #1e-7
+    options()$mxOptions$'Optimality tolerance'  #1e-7
     # Load the simulated data for this demonstration:
         Example_Data  <- fread(data_path, header = T)
 
