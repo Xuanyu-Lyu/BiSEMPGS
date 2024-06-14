@@ -6,7 +6,7 @@ conditionNames <- c("Full_Model", "MeasurePgs30", "MeasurePgs10", "MeasurePgsFul
 data_path <- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/", conditionNames[1])
 save_path <- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/", conditionNames[1], "/nfam48000")
 
-save_path2<- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/", conditionNames[1], "/nfam64000")
+#save_path2<- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/", conditionNames[1], "/nfam64000")
 # a function to merge the txt files
 merge_txt <- function(data_path, save_path, merge_count = 2){
     l_files <- list.files(data_path, pattern = "16000.txt")
@@ -27,5 +27,5 @@ merge_txt <- function(data_path, save_path, merge_count = 2){
 } 
 
 # run the function
-merge_txt(data_path = data_path, save_path = save_path, 3)
-merge_txt(data_path = data_path, save_path = save_path2, 4)
+merge_txt(data_path = data_path, save_path = save_path, 2)
+#merge_txt(data_path = data_path, save_path = save_path2, 4)
