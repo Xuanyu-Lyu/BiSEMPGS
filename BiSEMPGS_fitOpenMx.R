@@ -89,7 +89,7 @@ fitBiSEMPGS_m2 <- function(data_path){
         v     <- mxMatrix(type="Full", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.2,0.1,0.07,.08), label=c("v11", "v21", "v12","v22"),  name="v", lbound = -.05) # Latent nurture
         w_Algebra     <- mxAlgebra(2 * f %*% Omega + f %*% VY %*% mu %*% Omega + f %*% VY %*% t(mu) %*% Omega, name="w_Algebra")    
         v_Algebra     <- mxAlgebra(2 * f %*% Gamma + f %*% VY %*% mu %*% Gamma + f %*% VY %*% t(mu) %*% Gamma, name="v_Algebra")    
-        wv_constraint_algebra <- mxAlgebra((w * (2*delta%*%k%*%t(delta))/(2*a%*%j%*%t(a))), name='wv_constraint_algebra')
+        wv_constraint_algebra <- mxAlgebra((w * sqrt(2*delta%*%k%*%t(delta))/sqrt(2*a%*%j%*%t(a))), name='wv_constraint_algebra')
 
         v_constraint <- mxConstraint(v == v_Algebra, name='v_constraint')
         w_constraint <- mxConstraint(w == w_Algebra, name='w_constraint')

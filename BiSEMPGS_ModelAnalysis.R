@@ -9,8 +9,14 @@ summary_list <- readRDS("Analysis/Full_Model/m2_allConst_16000_summary_list.rds"
 summary_list <- readRDS("Analysis/Full_Model/m2_.55lb_16000_summary_list.rds")
 # no constraints on gc and hc, 48000 samples, lb = -.55, smaller tolerance, adjust f starting values
 summary_list <- readRDS("Analysis/Full_Model/m2_.55lb_smallerTol_adjustf_48000_summary_list.rds")
+# no constraints on gc and hc, 16000 samples, lb = -.05, smaller tolerance, adjust f starting values
+summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_smallerTol_newSetup_16000_summary_list.rds")
+# no constraints on gc and hc, 32000 samples, lb = -.05, smaller tolerance, adjust f starting values
+summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_smallerTol_newSetup_32000_summary_list.rds")
 # no constraints on gc and hc, 48000 samples, lb = -.05, smaller tolerance, new setup for constraints
 summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_smallerTol_newSetup_48000_summary_list.rds")
+# no constraints on gc and hc, 64000 samples, lb = -.05, smaller tolerance, new setup for constraints
+summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_smallerTol_newSetup_64000_summary_list.rds")
 
 # extract all the status code of openmx and put them into a vector
 status_codes <- sapply(summary_list, function(x) x$statusCode)
@@ -96,11 +102,33 @@ ggplot(df_long, aes(x = Index, y = Value)) +
   facet_wrap(~ Variable, scales = "free") +
   theme_minimal()
 
-plot(df$VY11, ylim = c(0,5))
-abline(h = 1.7292875, col = "red", lwd = 2)
-summary(df$VY11)
+# a plot for four Omega estimates
+true_values <- c(Omega11 = 0.42719846, Omega12 = 0.1124501, Omega21 = 0.07169126, Omega22 = 0.1497856)
+df_long <- tidyr::pivot_longer(df, c("Omega11", "Omega12",  "Omega21", "Omega22"), names_to = "Variable", values_to = "Value")
+df_long$Index <- 1:nrow(df_long)
+ggplot(df_long, aes(x = Index, y = Value)) +
+  geom_point() +
+  geom_hline(aes(yintercept = true_values[Variable]), color = "red") +
+  facet_wrap(~ Variable, scales = "free") +
+  theme_minimal()
+
+# a plot for four Gamma estimates
+true_values <- c(Gamma11 = 0.42874770, Gamma12 = 0.09775105, Gamma21 = 0.07171512, Gamma22 = 0.21521151)
+df_long <- tidyr::pivot_longer(df, c("Gamma11", "Gamma12",  "Gamma21", "Gamma22"), names_to = "Variable", values_to = "Value")
+df_long$Index <- 1:nrow(df_long)
+ggplot(df_long, aes(x = Index, y = Value)) +
+  geom_point() +
+  geom_hline(aes(yintercept = true_values[Variable]), color = "red") +
+  facet_wrap(~ Variable, scales = "free") +
+  theme_minimal()
+# plot(df$VY11, ylim = c(0,5))
+# abline(h = 1.7292875, col = "red", lwd = 2)
+# summary(df$VY11)
 
 
-plot(df$f22, ylim = c(0,1))
-abline(h = 0.10, col = "red", lwd = 2)
-# Now df is a data frame where each column is the estimates from each element in the summary_list
+# plot(df$f22, ylim = c(0,1))
+# abline(h = 0.10, col = "red", lwd = 2)
+# # Now df is a data frame where each column is the estimates from each element in the summary_list
+
+
+
