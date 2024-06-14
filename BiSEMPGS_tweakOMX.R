@@ -12,7 +12,7 @@ library(stringr)
     # some optimizer options - adapted from Yongkong's script
     
     mxOption(NULL,"Feasibility tolerance","1e-5")
-    mxOption(NULL,"Number of Threads","4")
+    mxOption(NULL,"Number of Threads",parallel::detectCores())
     #mxOption(NULL,"Analytic Gradients","No")
 
     options()$mxOptions$'Feasibility tolerance'
