@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --qos=normal
+#SBATCH --qos=preemptable
 #SBATCH --time=8:00:00
 #SBATCH --ntasks=8
 #SBATCH --mem=20gb
