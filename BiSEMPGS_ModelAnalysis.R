@@ -7,12 +7,17 @@ summary_list <- readRDS("Analysis/Full_Model/m2_16000_summary_list.rds")
 summary_list <- readRDS("Analysis/Full_Model/m2_allConst_16000_summary_list.rds")
 # no constraints on gc and hc, 16000 samples, lb = -.55
 summary_list <- readRDS("Analysis/Full_Model/m2_.55lb_16000_summary_list.rds")
+# no constraints on gc and hc, 48000 samples, lb = -.55, smaller tolerance, adjust f starting values
+summary_list <- readRDS("Analysis/Full_Model/m2_.55lb_smallerTol_adjustf_48000_summary_list.rds")
 
+# extract all the status code of openmx and put them into a vector
+status_codes <- sapply(summary_list, function(x) x$statusCode)
+summary(status_codes)
 # extract all the estimates in the list and put each parameter as a column in a data frame
 # Initialize an empty 78 column data frame
 df <- data.frame(matrix(ncol = nrow(summary_list[[1]]$parameters), nrow = length(summary_list)))
-colnames(df) <- summary_list$loop1.rds_16000.txt$parameters$name
-
+colnames(df) <- summary_list[[1]]$parameters$name
+colnames(df) 
 # Loop over the elements in the summary_list
 for(i in 1:length(summary_list)) {
     for(j in 1:nrow(summary_list[[i]]$parameters)){
@@ -24,17 +29,15 @@ for(i in 1:length(summary_list)) {
     }
 }
 
-sum(df$VY11 <1.9, na.rm = TRUE)
+df$status_codes <- status_codes
+aggregate(df$f11, by = list(status_codes), FUN = mean)
 
 library(ggplot2)
 
 # a plot for three VY estimates
 true_values <- c(VY11 = 1.7292875, VY12 = 0.3693813,  VY22 = 1.1455869)
-
 df_long <- tidyr::pivot_longer(df, c("VY11", "VY12",  "VY22"), names_to = "Variable", values_to = "Value")
-# Add an index variable
 df_long$Index <- 1:nrow(df_long)
-
 ggplot(df_long, aes(x = Index, y = Value)) +
   geom_point() +
   geom_hline(aes(yintercept = true_values[Variable]), color = "red") +
@@ -43,16 +46,34 @@ ggplot(df_long, aes(x = Index, y = Value)) +
 
 # a plot for four f estimates
 true_values <- c(f11 = 0.15, f12 = 0.1, f21 = 0.05, f22 = 0.1)
-
 df_long <- tidyr::pivot_longer(df, c("f11", "f12",  "f21", "f22"), names_to = "Variable", values_to = "Value")
-# Add an index variable
 df_long$Index <- 1:nrow(df_long)
-
 ggplot(df_long, aes(x = Index, y = Value)) +
   geom_point() +
   geom_hline(aes(yintercept = true_values[Variable]), color = "red") +
   facet_wrap(~ Variable, scales = "free") +
   theme_minimal()
+
+# a plot for two delta estimates
+true_values <- c(delta11 = sqrt(.49*.5), delta22 = sqrt(.16*.3))
+df_long <- tidyr::pivot_longer(df, c("delta11", "delta22"), names_to = "Variable", values_to = "Value")
+df_long$Index <- 1:nrow(df_long)
+ggplot(df_long, aes(x = Index, y = Value)) +
+  geom_point() +
+  geom_hline(aes(yintercept = true_values[Variable]), color = "red") +
+  facet_wrap(~ Variable, scales = "free") +
+  theme_minimal()
+
+# a plot for two a estimates
+true_values <- c(a11 = sqrt(.49*.5), a22 = sqrt(.16*.7))
+df_long <- tidyr::pivot_longer(df, c("a11", "a22"), names_to = "Variable", values_to = "Value")
+df_long$Index <- 1:nrow(df_long)
+ggplot(df_long, aes(x = Index, y = Value)) +
+  geom_point() +
+  geom_hline(aes(yintercept = true_values[Variable]), color = "red") +
+  facet_wrap(~ Variable, scales = "free") +
+  theme_minimal()
+
 
 plot(df$VY11, ylim = c(0,5))
 abline(h = 1.7292875, col = "red", lwd = 2)
