@@ -1,3 +1,6 @@
+#!/bin/bash
+#SBATCH --qos=normal
+#SBATCH --time=8:00:00
 #SBATCH --ntasks=8
 #SBATCH --mem=20gb
 #SBATCH -J BiSEMPGS_fit
