@@ -17,3 +17,7 @@ Loading required package: viridisLite
 
 Try help(fields) to get started.
 Loading required package: matrixcalc
+slurmstepd: error: *** JOB 16875565 ON bhpc-c7-u31-6 CANCELLED AT 2024-06-13T15:05:19 DUE TO TIME LIMIT ***
+slurmstepd: error: *** JOB 16875564 ON bhpc-c7-u19-18 CANCELLED AT 2024-06-13T15:58:15 DUE TO TIME LIMIT ***
+slurmstepd: error: *** JOB 16921557 ON blanca-cores1 CANCELLED AT 2024-06-13T17:31:45 DUE TO TIME LIMIT ***
+slurmstepd: error: *** JOB 16921558 ON bhpc-c7-u31-6 CANCELLED AT 2024-06-13T19:44:33 DUE TO TIME LIMIT ***
