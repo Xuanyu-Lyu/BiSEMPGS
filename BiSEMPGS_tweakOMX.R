@@ -44,7 +44,7 @@ library(stringr)
 # Genetic effects:
     delta <- mxMatrix(type="Diag", nrow=2, ncol=2, free=c(T,T), values=c(.4,.3), label=c("delta11", "delta22"),name="delta", lbound = -.05) # Effect of PGS on phen
     a     <- mxMatrix(type="Diag", nrow=2, ncol=2, free=c(T,T), values=c(.2,.1), label=c("a11", "a22"),    name="a", lbound = -.05)     # Effect of latent PGS on phen
-    k     <- mxMatrix(type="Symm", nrow=2, ncol=2, free=matrix(c(F,T,T,F),nrow = 2,ncol = 2), values=c(.5,0.02,0.02,.5), label=c("k11", "k12", "k12","k22"),    name="k", lbound = -.05)     # PGS variance (if no AM)
+    k     <- mxMatrix(type="Symm", nrow=2, ncol=2, free=matrix(c(F,T,T,F),nrow = 2,ncol = 2), values=c(.5,0.04,0.04,.5), label=c("k11", "k12", "k12","k22"),    name="k", lbound = -.05)     # PGS variance (if no AM)
     j     <- mxMatrix(type="Symm", nrow=2, ncol=2, free=matrix(c(F,T,T,F),nrow = 2,ncol = 2), values=c(.5,0.1,0.1,.5), label=c("j11", "j12", "j12","j22"),    name="j", lbound = -.05)     # Latent PGS variance (if no AM)
     Omega <- mxMatrix(type="Full", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.6,0.15,0.1,.5), label=c("Omega11", "Omega21", "Omega12","Omega22"),name="Omega", lbound = -.05) # Within-person PGS-Phen covariance
     Gamma <- mxMatrix(type="Full", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.5,0.15,0.1,.3), label=c("Gamma11", "Gamma21", "Gamma12","Gamma22"),name="Gamma", lbound = -.05) # Within-person latent PGS-Phen covariance
@@ -59,12 +59,14 @@ library(stringr)
     gt     <- mxMatrix(type="Full", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.2,0.15,0.1,.1), label=c("gt11", "gt21", "gt12","gt22"),  name="gt", lbound = -.05)  # Increase in cross-mate PGS (co)variances from AM
     ht     <- mxMatrix(type="Full", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.05,0.15,0.1,.05), label=c("ht11", "ht21", "ht12","ht22"),  name="ht", lbound = -.05)  # Increase in cross-mate latent PGS (co)variances from AM
     gc     <- mxMatrix(type="Symm", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.14,0.1,0.1,.1), label=c("gc11", "gc12", "gc12","gc22"),   name="gc", lbound = -.05)  # Increase in within-mate PGS (co)variances from AM
-    hc     <- mxMatrix(type="Symm", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.7,0.1,0.1,.25), label=c("hc11", "hc12", "hc12","hc22"),  name="hc", lbound = -.05)  # Increase in within-mate latent PGS (co)variances from AM
+    hc     <- mxMatrix(type="Symm", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.17,0.05,0.05,.15), label=c("hc11", "hc12", "hc12","hc22"),  name="hc", lbound = -.05)  # Increase in within-mate latent PGS (co)variances from AM
     gt_Algebra <- mxAlgebra(t(Omega) %*% mu %*% Omega, name="gt_Algebra") # E.g., cov(TPO, TMO)
     ht_Algebra <- mxAlgebra(t(Gamma) %*% mu %*% Gamma, name="ht_Algebra") # E.g., cov(TPL, TML)
     gc_Algebra <- mxAlgebra(0.5 * (gt + t(gt)), name="gc_Algebra") # gc should be symmetric
     hc_Algebra <- mxAlgebra(0.5 * (ht + t(ht)), name="hc_Algebra") # hc should be symmetric
+    
     gchc_constraint_Algebra <- mxAlgebra( hc * (2*delta%*%k%*%t(delta)/(2*a%*%j%*%t(a))), name = "gchc_constraint_Algebra") # g and h are equally proportional to a and delta
+    #gchc_constraint_Algebra <- mxAlgebra( solve(t(chol(solve(2* delta %*% k %*% t(delta))))) %*% t(chol(solve(2* a %*% j %*% t(a)))) %*% hc %*% chol(solve(2* a %*% j %*% t(a))) %*% solve(chol(solve(2* delta %*% k %*% t(delta)))), name = "gchc_constraint_Algebra") # g and h are equally proportional to a and delta
 
     itlo  <- mxMatrix(type="Full", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.05,0.15,0.1,.03), label=c("itlo11", "itlo21", "itlo12","itlo22"), name="itlo", lbound = -.05) 
     itol  <- mxMatrix(type="Full", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.05,0.15,0.1,.03), label=c("itol11", "itol21", "itol12","itol22"), name="itol", lbound = -.05)
@@ -91,7 +93,7 @@ library(stringr)
     w_Algebra     <- mxAlgebra(2 * f %*% Omega + f %*% VY %*% mu %*% Omega + f %*% VY %*% t(mu) %*% Omega, name="w_Algebra")    
     v_Algebra     <- mxAlgebra(2 * f %*% Gamma + f %*% VY %*% mu %*% Gamma + f %*% VY %*% t(mu) %*% Gamma, name="v_Algebra")    
     wv_constraint_algebra <- mxAlgebra((w * (2*delta%*%k%*%t(delta))/(2*a%*%j%*%t(a))), name='wv_constraint_algebra')
-
+    #wv_constraint_algebra <- mxAlgebra(solve(t(chol(solve(2* delta %*% k %*% t(delta))))) %*% t(chol(solve(2* a %*% j %*% t(a)))) %*% v %*% chol(solve(2* a %*% j %*% t(a))) %*% solve(chol(solve(2* delta %*% k %*% t(delta)))), name = "wv_constraint_algebra") # w and v are equally proportional to a and delta
     v_constraint <- mxConstraint(v == v_Algebra, name='v_constraint')
     w_constraint <- mxConstraint(w == w_Algebra, name='w_constraint')
     wv_constraint <- mxConstraint(v == wv_constraint_algebra, name='wv_constraint')
@@ -368,6 +370,8 @@ t(chol(solve(2* a %*% j %*% t(a)))) %*% hc %*% chol(solve(2* a %*% j %*% t(a)))
 #6
 a <- matrix(c(sqrt(.35*.65),0,0,sqrt(.2*.8)),nrow=2,byrow=T)
 delta <- matrix(c(sqrt(.35*.35),0,0,sqrt(.2*.2)),nrow=2,byrow=T)
+
+.05 * delta[1,1] * delta[2,2]
 
 g11 <- 0.02121644
 g12 <- 0.005760222

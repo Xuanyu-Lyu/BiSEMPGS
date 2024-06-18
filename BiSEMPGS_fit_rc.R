@@ -25,7 +25,7 @@ for (j in 1:1){
     l_files <- list.files(data_path[j], pattern = data_pattern[j])
 
     # fit the model for each data file
-    for (i in 1:100){
+    for (i in 1:50){
         # fit the model
         fit <- fitBiSEMPGS_m2(paste0(data_path[j], "/", l_files[i]))
         # save the summary

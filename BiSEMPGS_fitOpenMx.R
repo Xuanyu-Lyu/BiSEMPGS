@@ -150,7 +150,7 @@ fitBiSEMPGS_m2 <- function(data_path){
                     #ic_constraint, 
                     v_constraint, 
                     w_constraint,
-                    wv_constraint,
+                    #wv_constraint,
                     thetaNT, thetaT, Yp_PGSm, Ym_PGSp, Yp_Ym, Ym_Yp, Yo_Yp, Yo_Ym, 
                     CovMatrix, Means, ModelExpectations, FitFunctionML)
     # Create the model:
