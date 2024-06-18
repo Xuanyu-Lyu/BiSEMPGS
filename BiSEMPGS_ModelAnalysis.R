@@ -18,6 +18,11 @@ summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_smallerTol_newSetup_48000_
 # no constraints on gc and hc, 64000 samples, lb = -.05, smaller tolerance, new setup for constraints
 summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_smallerTol_newSetup_64000_summary_list.rds")
 
+# no constraints on gc and hc, 16000 samples, lb = -.05, smaller tolerance, new setup, sqrt wvconstraint
+summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_smallerTol_newSetup_16000_summary_list (1).rds")
+
+
+
 # extract all the status code of openmx and put them into a vector
 status_codes <- sapply(summary_list, function(x) x$statusCode)
 summary(status_codes)
@@ -121,6 +126,30 @@ ggplot(df_long, aes(x = Index, y = Value)) +
   geom_hline(aes(yintercept = true_values[Variable]), color = "red") +
   facet_wrap(~ Variable, scales = "free") +
   theme_minimal()
+
+# a plot for three gc estimates
+true_values <- c(gc11 = 0.04243337, gc12 = 0.009898546, gc22 = 0.006565526)
+df_long <- tidyr::pivot_longer(df, c("gc11", "gc12",  "gc22"), names_to = "Variable", values_to = "Value")
+df_long$Index <- 1:nrow(df_long)
+ggplot(df_long, aes(x = Index, y = Value)) +
+  geom_point() +
+  geom_hline(aes(yintercept = true_values[Variable]), color = "red") +
+  facet_wrap(~ Variable, scales = "free") +
+  ylim(0,.05)
+  theme_minimal()
+
+# a plot for three hc estimates
+true_values <- c(hc11 = 0.04322826, hc12 = 0.01270896, hc22 = 0.01348196)
+df_long <- tidyr::pivot_longer(df, c("hc11", "hc12",  "hc22"), names_to = "Variable", values_to = "Value")
+df_long$Index <- 1:nrow(df_long)
+ggplot(df_long, aes(x = Index, y = Value)) +
+  geom_point() +
+  geom_hline(aes(yintercept = true_values[Variable]), color = "red") +
+  facet_wrap(~ Variable, scales = "free") +
+  ylim(0,.05)+
+  theme_minimal()
+
+
 # plot(df$VY11, ylim = c(0,5))
 # abline(h = 1.7292875, col = "red", lwd = 2)
 # summary(df$VY11)

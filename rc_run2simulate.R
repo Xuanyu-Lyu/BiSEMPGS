@@ -15,25 +15,25 @@ save_dir_data <- "/rc_scratch/xuly4739/BiSEMPGS"
 
 # create a list of starting parameters for different conditions
 conditionNames <- c("Full_Model", "MeasurePgs30", "MeasurePgs10", "MeasurePgsFully", 
-"f11-decrease", "f12-decrease", "f11.12.21.22-decrease", "am11-decrease", "am12-decrease", "am11.12.21.22-decrease")
+"f11-decrease", "f12-decrease", "f11.12.21.22-decrease", "am11-decrease", "am12-decrease", "am11.12.21.22-decrease", "Full_Model_.5latent")
 # starting parameter list 1 is for the full model with different sample sizes
-startingParamList1 <- list(vg1 = rep(.49,10),
-						   vg2 = rep(.16,10),
-						   am11 = c(0.4,0.4,0.4,0.4,0.4,0.4,0.4,0,0.4,0),
-						   am12 = c(0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0,0),
-						   am21 = c(0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0),
-						   am22 = c(0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0),
-						   f11 = c(0.15,0.15,0.15,0.15,0.075,0.15,0.075,0.15,0.15,0.15),
-						   f12 = c(0.1,0.1,0.1,0.1,0.1,0.05,0.05,0.1,0.1,0.1),
-						   f21 = c(0.05,0.05,0.05,0.05,0.05,0.05,0.025,0.05,0.05,0.05),
-						   f22 = c(0.1,0.1,0.1,0.1,0.1,0.1,0.05,0.1,0.1,0.1),
-						   Nfam = c(5e4, rep(5e4,9)),
-						   rg = rep(.1,10),
-						   re = rep(.1,10),
-						   prop.h2.latent1 = c(0.5,0.7,0.9,0,rep(0.5,6)),
-						   prop.h2.latent2 = c(0.7,0.7,0.9,0,rep(0.7,6)))
+startingParamList1 <- list(vg1 = rep(.49,11),
+						   vg2 = rep(.16,11),
+						   am11 = c(0.4,0.4,0.4,0.4,0.4,0.4,0.4,0,0.4,0,.4),
+						   am12 = c(0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0,0,.2),
+						   am21 = c(0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0,.1),
+						   am22 = c(0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0,.3),
+						   f11 = c(0.15,0.15,0.15,0.15,0.075,0.15,0.075,0.15,0.15,0.15,.15),
+						   f12 = c(0.1,0.1,0.1,0.1,0.1,0.05,0.05,0.1,0.1,0.1,.1),
+						   f21 = c(0.05,0.05,0.05,0.05,0.05,0.05,0.025,0.05,0.05,0.05,.05),
+						   f22 = c(0.1,0.1,0.1,0.1,0.1,0.1,0.05,0.1,0.1,0.1,.1),
+						   Nfam = c(5e4, rep(5e4,10)),
+						   rg = rep(.1,11),
+						   re = rep(.1,11),
+						   prop.h2.latent1 = c(0.5,0.7,0.9,0,rep(0.5,6),.5),
+						   prop.h2.latent2 = c(0.7,0.7,0.9,0,rep(0.7,6),.5))
 
-for (condition in 5:6){
+for (condition in 11){
 	# WILDCARD parameters
 	pop.size <-  startingParamList1["Nfam"][[1]][[condition]] #maybe something like 2e4, or 20000, when running for real
 	num.cvs <- 200 #maybe 25
@@ -135,7 +135,7 @@ for (condition in 5:6){
 	# write a loop to run the simulation 100 times and save all the summary data in a list
 	#l.summaryLast <- list()
 	#l.all <- list()
-	for (i in 1:10){
+	for (i in 1:20){
 	loop_index <- (array_idx-1)*10 + i 
 	AM.DATA <- AM.SIMULATE(CV.INFO=cv.info, NUM.GENERATIONS=num.gen, POP.SIZE=pop.size, AVOID.INB=avoid.inb, SAVE.EACH.GEN=save.history, SAVE.COVS=save.covariances, SEED=seed*loop_index, 
 						cove.mat=cove.mat, fmat=f.mat, amat=a.mat, dmat=delta.mat, cor.list=am.list, covy=COVY, k2.matrix=k2.matrix)

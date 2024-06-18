@@ -11,8 +11,8 @@ output: html_document
 
 ```{r parameters, include=FALSE}
 conditionNames <- c("f_trans_full", "am_trans_full", "delta_trans_full", "f_half_full", "am_half_full", "delta_half_full", "normal_full")
-startingParamList1 <- list(vg1 = rep(.49,10),
-						   vg2 = rep(.16,10),
+startingParamList1 <- list(vg1 = rep(.80,10),
+						   vg2 = rep(.40,10),
 						   am11 = c(0.4,0.4,0.4,0.4,0.4,0.4,0.4,0,0.4,0),
 						   am12 = c(0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0,0),
 						   am21 = c(0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0),
@@ -24,10 +24,27 @@ startingParamList1 <- list(vg1 = rep(.49,10),
 						   Nfam = c(5e4, rep(5e4,9)),
 						   rg = rep(.1,10),
 						   re = rep(.1,10),
-						   prop.h2.latent1 = c(0.5,0,0.5,0,rep(0.5,6)),
+						   prop.h2.latent1 = c(0.2,0,0.5,0,rep(0.5,6)),
 						   prop.h2.latent2 = c(0.7,0.7,0,0,rep(0.7,6)))
+# a starting parameter list for solving alpha beta and tau
+startingParamList2 <- list(vg1 = c(.8,.6,.3,.5,.4,.35),
+						   vg2 = c(.2,.7,.4,.6,.75,.2),
+						   am11 = c(0.4,0.4,0.4,0.4,0.4,0.4),
+						   am12 = c(0.2,0.2,0.2,0.2,0.2,0.2),
+						   am21 = c(0.1,0.1,0.1,0.1,0.1,0.1),
+						   am22 = c(0.3,0.3,0.3,0.3,0.3,0.3),
+						   f11 = c(0.15,0.15,0.15,0.15,0.15,0.15),
+						   f12 = c(0.1,0.1,0.1,0.1,0.1,0.1),
+						   f21 = c(0.05,0.05,0.05,0.05,0.05,0.05),
+						   f22 = c(0.1,0.1,0.1,0.1,0.1,0.1),
+						   Nfam = c(rep(5e4,6)),
+						   rg = rep(.1,6),
+						   re = rep(.1,6),
+						   prop.h2.latent1 = c(0.2,.3,.2,.1,.4,.65),
+						   prop.h2.latent2 = c(0.7,.4,.3,.5,.6,.8))
+startingParamList1 <- startingParamList2
 
-    condition =1
+    condition =6
     pathName = "testdata"
     # WILDCARD parameters
 	pop.size <-  startingParamList1["Nfam"][[1]][[condition]] #maybe something like 2e4, or 20000, when running for real
@@ -310,9 +327,9 @@ if (model == 1){
         (exp.gt[[it]] <- t(exp.Omega[[it]])%*%exp.mu[[it]]%*%exp.Omega[[it]])
         cat("gt",it,"\n",exp.gt[[it]],"\n")
         (exp.gc[[it]] <- .5*(exp.gt[[it]] + t(exp.gt[[it]])))
-        cat("gc",it,"\n",exp.gc[[it]],"\n")
+        cat("gc",it,"\n",exp.gc[[it]],"\n")     
         (exp.ht[[it]] <- t(exp.Gamma[[it]])%*%exp.mu[[it]]%*%exp.Gamma[[it]])
-        
+        cat("ht",it,"\n",exp.ht[[it]],"\n")
         (exp.hc[[it]] <- .5*(exp.ht[[it]] + t(exp.ht[[it]])))  
         cat("hc",it,"\n",exp.hc[[it]],"\n")
         (exp.w[[it]] <- 2*f.t0%*%exp.Omega[[it]] + f.t0%*%exp.VY[[it]]%*%exp.mu[[it]]%*%exp.Omega[[it]] + f.t0%*%exp.VY[[it]]%*%t(exp.mu[[it]])%*%exp.Omega[[it]])

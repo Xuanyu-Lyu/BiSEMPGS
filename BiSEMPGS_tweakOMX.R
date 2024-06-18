@@ -151,7 +151,7 @@ library(stringr)
                 #ic_constraint, 
                 v_constraint, 
                 w_constraint,
-                wv_constraint,
+                #wv_constraint,
                 thetaNT, thetaT, Yp_PGSm, Ym_PGSp, Yp_Ym, Ym_Yp, Yo_Yp, Yo_Ym, 
                 CovMatrix, Means, ModelExpectations, FitFunctionML)
 # Create the model:
@@ -161,3 +161,240 @@ library(stringr)
     fitModel1 <- mxTryHard(Model1, extraTries = 5, intervals=T, silent=F)
 
     summary(fitModel1)
+
+
+
+# some code check the constraints
+a <- matrix(c(sqrt(.49*.5),0,0,sqrt(.16*.7)),nrow=2,byrow=T)
+j <- matrix(c(.5,.05,.05,.5),nrow=2,byrow=T)
+delta <- matrix(c(sqrt(.49*.5),0,0,sqrt(.16*.3)),nrow=2,byrow=T)
+k <- matrix(c(.5,.05,.05,.5),nrow=2,byrow=T)
+gt <- matrix(c(0.042433374,0.012050565,0.007746527,0.006565526),nrow=2,byrow=T)
+gc <- (gt + t(gt))/2
+print(gc)
+ht <- matrix(c(0.043228259,0.01599563,0.009422301,0.01348196),nrow=2,byrow=T)
+hc <- (ht + t(ht))/2
+gc/(2* delta %*% k %*% t(delta))
+hc/(2* a %*% j %*% t(a))
+print(gc)
+
+#a = delta
+w <- matrix(c(0.20374558,0.07627376,0.08259022,0.05076416),nrow=2,byrow=T)
+w/(2* delta %*% k %*% t(delta))
+v <- matrix(c(0.20766181,0.10233118,0.08560629,0.07192283),nrow=2,byrow=T)
+v/(2* a %*% j %*% t(a))
+
+
+
+
+# some code check the constraints
+a <- matrix(c(sqrt(.8*.2),0,0,sqrt(.2*.7)),nrow=2,byrow=T)
+j <- matrix(c(.5,.05,.05,.5),nrow=2,byrow=T)
+delta <- matrix(c(sqrt(.8*.8),0,0,sqrt(.2*.3)),nrow=2,byrow=T)
+k <- matrix(c(.5,.05,.05,.5),nrow=2,byrow=T)
+gt <- matrix(c(0.1040189,0.01429702,0.02546207,0.01548387),nrow=2,byrow=T)
+gc <- (gt + t(gt))/2
+print(gc)
+
+gc/hc
+ht <- matrix(c(0.02739692,0.01081928,0.01081928,0.03019162),nrow=2,byrow=T)
+hc <- (ht + t(ht))/2
+print(hc)
+#a = delta
+gc/(2* delta %*% k %*% t(delta))
+hc/(2* a %*% j %*% t(a))
+gc * solve(2* delta %*% k %*% t(delta))
+hc * solve(2* a %*% j %*% t(a))
+t(chol(solve(2* delta %*% k %*% t(delta)))) %*% gc %*% chol(solve(2* delta %*% k %*% t(delta)))
+t(chol(solve(2* a %*% j %*% t(a)))) %*% hc %*% chol(solve(2* a %*% j %*% t(a)))
+#print(gc)
+
+#a = delta
+w <- matrix(c(0.3707127,0.13154873,0.1488213,0.08749667),nrow=2,byrow=T)
+w/(2* delta %*% k %*% t(delta))
+w %*% solve(2* delta %*% k %*% t(delta))
+v <- matrix(c(0.19777621,0.1516655,0.08412774,0.1142102),nrow=2,byrow=T)
+v/(2* a %*% j %*% t(a))
+v %*% solve(2* a %*% j %*% t(a))
+t(chol(solve(sqrt(2* delta %*% k %*% t(delta))))) %*% (.5*(w+t(w))) %*% chol(solve(sqrt(2* delta %*% k %*% t(delta))))
+t(chol(solve(sqrt(2* a %*% j %*% t(a))))) %*% (.5*(v+t(v))) %*% chol(solve(sqrt(2* a %*% j %*% t(a))))
+
+
+
+
+
+# use pairs of delta and a to solve for alpha, beta and tau
+library(matlib)
+#1
+a <- matrix(c(sqrt(.8*.2),0,0,sqrt(.2*.7)),nrow=2,byrow=T)
+delta <- matrix(c(sqrt(.8*.8),0,0,sqrt(.2*.3)),nrow=2,byrow=T)
+
+g11 <- 0.1038053
+g12 <- 0.01982926
+g22 <- 0.009278857
+
+h11 <- 0.02724393
+h12 <- 0.009351237
+h22 <- 0.01543556
+
+x11 = delta[1,1]^2/g11 - a[1,1]^2/h11
+x12 = delta[1,1]*delta[2,2]/g11 - a[1,1]*a[2,2]/h11
+x13 = delta[2,2]^2/g11 - a[2,2]^2/h11
+
+y11 = delta[1,1]*delta[2,2]/g11
+y12 = -a[1,1]*a[2,2]/h11
+
+b1 = a[1,1]^2/h11 - delta[1,1]^2/g11
+
+
+#2
+a <- matrix(c(sqrt(.6*.3),0,0,sqrt(.7*.4)),nrow=2,byrow=T)
+delta <- matrix(c(sqrt(.6*.7),0,0,sqrt(.7*.6)),nrow=2,byrow=T)
+
+g11 <- 0.07267078
+g12 <- 0.0172996
+g22 <- 0.04569342
+
+h11 <- 0.03141719
+h12 <- 0.009036486
+h22 <- 0.03007751
+
+x21 = delta[1,1]^2/g11 - a[1,1]^2/h11
+x22 = delta[1,1]*delta[2,2]/g11 - a[1,1]*a[2,2]/h11
+x23 = delta[2,2]^2/g11 - a[2,2]^2/h11
+
+y21 = delta[1,1]*delta[2,2]/g11
+y22 = -a[1,1]*a[2,2]/h11
+b2 = a[1,1]^2/h11 - delta[1,1]^2/g11
+
+A = matrix(c(y11,y12,y21,y22),nrow=2,byrow=T)
+b = c(b1,b2)
+showEqn(A,b)
+Solve(A,b)
+
+#3 
+a <- matrix(c(sqrt(.3*.2),0,0,sqrt(.4*.3)),nrow=2,byrow=T)
+delta <- matrix(c(sqrt(.3*.8),0,0,sqrt(.4*.7)),nrow=2,byrow=T)
+
+g11 <- 0.04209733
+g12 <- 0.01624357
+g22 <- 0.03215703
+
+h11 <- 0.01078906
+h12 <- 0.005306831
+h22 <- 0.01343727
+
+x31 = delta[1,1]^2/g11 - a[1,1]^2/h11
+x32 = delta[1,1]*delta[2,2]/g11 - a[1,1]*a[2,2]/h11
+x33 = delta[2,2]^2/g11 - a[2,2]^2/h11
+
+
+# try to solve for alpha, beta and tau
+A <- matrix(c(x11,x12,x13,x21,x22,x23,x31,x32,x33),nrow=3,byrow=T)
+b <- c(0,0,0)
+showEqn(A,b)
+plotEqn3d(A,b)
+Solve(A,b)
+
+# some code check the constraints
+j <- matrix(c(.5,.05,.05,.5),nrow=2,byrow=T)
+k <- matrix(c(.5,.05,.05,.5),nrow=2,byrow=T)
+gc <- matrix(c(g11,g12,g12,g22),nrow=2,byrow=T)
+hc <- matrix(c(h11,h12,h12,h22),nrow=2,byrow=T)
+#a = delta
+gc/(2* delta %*% k %*% t(delta))
+hc/(2* a %*% j %*% t(a))
+gc * solve(2* delta %*% k %*% t(delta))
+hc * solve(2* a %*% j %*% t(a))
+t(chol(solve(2* delta %*% k %*% t(delta)))) %*% gc %*% chol(solve(2* delta %*% k %*% t(delta)))
+t(chol(solve(2* a %*% j %*% t(a)))) %*% hc %*% chol(solve(2* a %*% j %*% t(a)))
+
+
+#4
+a <- matrix(c(sqrt(.5*.1),0,0,sqrt(.6*.5)),nrow=2,byrow=T)
+delta <- matrix(c(sqrt(.5*.9),0,0,sqrt(.6*.5)),nrow=2,byrow=T)
+
+g11 <- 0.07815197
+g12 <- 0.01936456
+g22 <- 0.03428412
+
+h11 <- 0.00955794
+h12 <- 0.00697541
+h22 <- 0.03200986
+
+# some code check the constraints
+j <- matrix(c(.5,.05,.05,.5),nrow=2,byrow=T)
+k <- matrix(c(.5,.05,.05,.5),nrow=2,byrow=T)
+gc <- matrix(c(g11,g12,g12,g22),nrow=2,byrow=T)
+hc <- matrix(c(h11,h12,h12,h22),nrow=2,byrow=T)
+#a = delta
+gc/(2* delta %*% k %*% t(delta))
+hc/(2* a %*% j %*% t(a))
+gc * solve(2* delta %*% k %*% t(delta))
+hc * solve(2* a %*% j %*% t(a))
+t(chol(solve(2* delta %*% k %*% t(delta)))) %*% gc %*% chol(solve(2* delta %*% k %*% t(delta)))
+t(chol(solve(2* a %*% j %*% t(a)))) %*% hc %*% chol(solve(2* a %*% j %*% t(a)))
+
+#5
+a <- matrix(c(sqrt(.4*.4),0,0,sqrt(.75*.6)),nrow=2,byrow=T)
+delta <- matrix(c(sqrt(.4*.6),0,0,sqrt(.75*.4)),nrow=2,byrow=T)
+
+g11 <- 0.04196104
+g12 <- 0.01209637
+g22 <- 0.03269869
+
+h11 <- 0.02870104
+h12 <- 0.01234879
+h22 <- 0.04802063
+
+y11 = delta[1,1]*delta[2,2]/g11
+y12 = -a[1,1]*a[2,2]/h11
+
+b1 = a[1,1]^2/h11 - delta[1,1]^2/g11
+
+# some code check the constraints
+j <- matrix(c(.5,.05,.05,.5),nrow=2,byrow=T)
+k <- matrix(c(.5,.05,.05,.5),nrow=2,byrow=T)
+gc <- matrix(c(g11,g12,g12,g22),nrow=2,byrow=T)
+hc <- matrix(c(h11,h12,h12,h22),nrow=2,byrow=T)
+#a = delta
+gc/(2* delta %*% k %*% t(delta))
+hc/(2* a %*% j %*% t(a))
+gc * solve(2* delta %*% k %*% t(delta))
+hc * solve(2* a %*% j %*% t(a))
+t(chol(solve(2* delta %*% k %*% t(delta)))) %*% gc %*% chol(solve(2* delta %*% k %*% t(delta)))
+t(chol(solve(2* a %*% j %*% t(a)))) %*% hc %*% chol(solve(2* a %*% j %*% t(a)))
+
+#6
+a <- matrix(c(sqrt(.35*.65),0,0,sqrt(.2*.8)),nrow=2,byrow=T)
+delta <- matrix(c(sqrt(.35*.35),0,0,sqrt(.2*.2)),nrow=2,byrow=T)
+
+g11 <- 0.02121644
+g12 <- 0.005760222
+g22 <- 0.005132298
+
+h11 <- 0.040252
+h12 <- 0.01401233
+h22 <- 0.018841
+
+y21 = delta[1,1]*delta[2,2]/g11
+y22 = -a[1,1]*a[2,2]/h11
+b2 = a[1,1]^2/h11 - delta[1,1]^2/g11
+
+A = matrix(c(y11,y12,y21,y22),nrow=2,byrow=T)
+b = c(b1,b2)
+showEqn(A,b)
+Solve(A,b)
+
+# some code check the constraints
+j <- matrix(c(.5,.05,.05,.5),nrow=2,byrow=T)
+k <- matrix(c(.5,.05,.05,.5),nrow=2,byrow=T)
+gc <- matrix(c(g11,g12,g12,g22),nrow=2,byrow=T)
+hc <- matrix(c(h11,h12,h12,h22),nrow=2,byrow=T)
+#a = delta
+gc/(2* delta %*% k %*% t(delta))
+hc/(2* a %*% j %*% t(a))
+gc %*% solve(2* delta %*% k %*% t(delta))
+hc %*% solve(2* a %*% j %*% t(a))
+t(chol(solve(2* delta %*% k %*% t(delta)))) %*% gc %*% chol(solve(2* delta %*% k %*% t(delta)))
+t(chol(solve(2* a %*% j %*% t(a)))) %*% hc %*% chol(solve(2* a %*% j %*% t(a)))
