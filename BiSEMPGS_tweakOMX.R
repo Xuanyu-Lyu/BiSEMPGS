@@ -29,6 +29,8 @@ library(stringr)
 
     cov(Example_Data, use="pairwise.complete.obs")
 
+# change the type of the first column of the df
+
 # Create variables and define the algebra for each variables
 
  
@@ -218,8 +220,8 @@ w %*% solve(2* delta %*% k %*% t(delta))
 v <- matrix(c(0.19777621,0.1516655,0.08412774,0.1142102),nrow=2,byrow=T)
 v/(2* a %*% j %*% t(a))
 v %*% solve(2* a %*% j %*% t(a))
-t(chol(solve(sqrt(2* delta %*% k %*% t(delta))))) %*% (.5*(w+t(w))) %*% chol(solve(sqrt(2* delta %*% k %*% t(delta))))
-t(chol(solve(sqrt(2* a %*% j %*% t(a))))) %*% (.5*(v+t(v))) %*% chol(solve(sqrt(2* a %*% j %*% t(a))))
+t(chol(solve(sqrt(2* delta %*% k %*% t(delta))))) %*% (w) %*% chol(solve(sqrt(2* delta %*% k %*% t(delta))))
+t(chol(solve(sqrt(2* a %*% j %*% t(a))))) %*% (v) %*% chol(solve(sqrt(2* a %*% j %*% t(a))))
 
 
 
@@ -257,9 +259,13 @@ g11 <- 0.07267078
 g12 <- 0.0172996
 g22 <- 0.04569342
 
+
 h11 <- 0.03141719
 h12 <- 0.009036486
 h22 <- 0.03007751
+
+g11/(delta[1,1]^2+.5*.1*delta[1,1]*delta[2,2])
+h11/(a[1,1]^2+.5*.1*a[1,1]*a[2,2])
 
 x21 = delta[1,1]^2/g11 - a[1,1]^2/h11
 x22 = delta[1,1]*delta[2,2]/g11 - a[1,1]*a[2,2]/h11
@@ -310,6 +316,7 @@ gc * solve(2* delta %*% k %*% t(delta))
 hc * solve(2* a %*% j %*% t(a))
 t(chol(solve(2* delta %*% k %*% t(delta)))) %*% gc %*% chol(solve(2* delta %*% k %*% t(delta)))
 t(chol(solve(2* a %*% j %*% t(a)))) %*% hc %*% chol(solve(2* a %*% j %*% t(a)))
+
 
 
 #4
@@ -368,6 +375,7 @@ t(chol(solve(2* delta %*% k %*% t(delta)))) %*% gc %*% chol(solve(2* delta %*% k
 t(chol(solve(2* a %*% j %*% t(a)))) %*% hc %*% chol(solve(2* a %*% j %*% t(a)))
 
 #6
+
 a <- matrix(c(sqrt(.35*.65),0,0,sqrt(.2*.8)),nrow=2,byrow=T)
 delta <- matrix(c(sqrt(.35*.35),0,0,sqrt(.2*.2)),nrow=2,byrow=T)
 

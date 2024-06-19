@@ -2,11 +2,11 @@
 
 # the path to the txt files
 conditionNames <- c("Full_Model", "MeasurePgs30", "MeasurePgs10", "MeasurePgsFully", 
-"f11-decrease", "f12-decrease", "f11.12.21.22-decrease", "am11-decrease", "am12-decrease", "am11.12.21.22-decrease")
-data_path <- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/", conditionNames[1])
-save_path <- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/", conditionNames[1], "/nfam48000")
-
-#save_path2<- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/", conditionNames[1], "/nfam64000")
+"f11-decrease", "f12-decrease", "f11.12.21.22-decrease", "am11-decrease", "am12-decrease", "am11.12.21.22-decrease", "Full_Model_.5latent")
+data_path <- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/", conditionNames[11])
+save_path <- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/", conditionNames[11], "/nfam32000")
+save_path2<- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/", conditionNames[11], "/nfam48000")
+save_path3<- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/", conditionNames[11], "/nfam64000")
 # a function to merge the txt files
 merge_txt <- function(data_path, save_path, merge_count = 2){
     l_files <- list.files(data_path, pattern = "16000.txt")
@@ -28,4 +28,6 @@ merge_txt <- function(data_path, save_path, merge_count = 2){
 
 # run the function
 merge_txt(data_path = data_path, save_path = save_path, 2)
-#merge_txt(data_path = data_path, save_path = save_path2, 4)
+merge_txt(data_path = data_path, save_path = save_path2, 3)
+merge_txt(data_path = data_path, save_path = save_path3, 4)
+

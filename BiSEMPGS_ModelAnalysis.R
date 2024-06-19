@@ -20,6 +20,8 @@ summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_smallerTol_newSetup_64000_
 
 # no constraints on gc and hc, 16000 samples, lb = -.05, smaller tolerance, new setup, sqrt wvconstraint
 summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_smallerTol_newSetup_16000_summary_list (1).rds")
+# no constraints on gc and hc, 16000 samples, lb = -.05, smaller tolerance, new setup, no wvconstraint
+summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_smallerTol_newSetup_freewv_16000_summary_list.rds")
 
 
 
@@ -28,8 +30,8 @@ status_codes <- sapply(summary_list, function(x) x$statusCode)
 summary(status_codes)
 # extract all the estimates in the list and put each parameter as a column in a data frame
 # Initialize an empty 78 column data frame
-df <- data.frame(matrix(ncol = nrow(summary_list[[1]]$parameters), nrow = length(summary_list)))
-colnames(df) <- summary_list[[1]]$parameters$name
+df <- data.frame(matrix(ncol = nrow(summary_list[[2]]$parameters), nrow = length(summary_list)))
+colnames(df) <- summary_list[[2]]$parameters$name
 colnames(df) 
 # Loop over the elements in the summary_list
 for(i in 1:length(summary_list)) {
@@ -44,12 +46,12 @@ for(i in 1:length(summary_list)) {
 
 df$status_codes <- status_codes
 aggregate(df$f11, by = list(status_codes), FUN = mean)
-
+df <- df[-1,]
 library(ggplot2)
-
+library(tidyr)
 # a plot for three VY estimates
 true_values <- c(VY11 = 1.7292875, VY12 = 0.3693813,  VY22 = 1.1455869)
-df_long <- tidyr::pivot_longer(df, c("VY11", "VY12",  "VY22"), names_to = "Variable", values_to = "Value")
+df_long <- tidyr::pivot_longer(df, c("VY11", "VY12", "VY22"), names_to = "Variable", values_to = "Value")
 df_long$Index <- 1:nrow(df_long)
 ggplot(df_long, aes(x = Index, y = Value)) +
   geom_point() +
@@ -158,6 +160,7 @@ ggplot(df_long, aes(x = Index, y = Value)) +
 # plot(df$f22, ylim = c(0,1))
 # abline(h = 0.10, col = "red", lwd = 2)
 # # Now df is a data frame where each column is the estimates from each element in the summary_list
+
 
 
 
