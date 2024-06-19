@@ -17,7 +17,7 @@ data_pattern <- c("_16000.txt", "_48000.txt", "_32000.txt", "_64000.txt")
 save_pattern <- c("_16000","_48000", "_32000", "_64000")
 model_type <- "m2"
 mxSetup <- "_.05lb_smallerTol_newSetup_freewv"
-for (j in 1:1){
+for (j in 2:4){
     # a list to save all the summary data
     summary_list <- list()
 
@@ -25,7 +25,7 @@ for (j in 1:1){
     l_files <- list.files(data_path[j], pattern = data_pattern[j])
 
     # fit the model for each data file
-    for (i in 1:100){
+    for (i in 1:length(l_files){
         # fit the model
         fit <- fitBiSEMPGS_m2(paste0(data_path[j], "/", l_files[i]))
         # save the summary

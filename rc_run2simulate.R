@@ -135,7 +135,7 @@ for (condition in 11){
 	# write a loop to run the simulation 100 times and save all the summary data in a list
 	#l.summaryLast <- list()
 	#l.all <- list()
-	for (i in 1:20){
+	for (i in 1:10){
 	loop_index <- (array_idx-1)*10 + i 
 	AM.DATA <- AM.SIMULATE(CV.INFO=cv.info, NUM.GENERATIONS=num.gen, POP.SIZE=pop.size, AVOID.INB=avoid.inb, SAVE.EACH.GEN=save.history, SAVE.COVS=save.covariances, SEED=seed*loop_index, 
 						cove.mat=cove.mat, fmat=f.mat, amat=a.mat, dmat=delta.mat, cor.list=am.list, covy=COVY, k2.matrix=k2.matrix)
