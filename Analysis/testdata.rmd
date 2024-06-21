@@ -9,7 +9,7 @@ output: html_document
 #source("Simulate.Multivariate.NOLD.AM.FUNCTIONS_May2021-mck7.R")
 ```
 
-```{r parameters, include=FALSE}
+```{r parameters, include=TRUE}
 conditionNames <- c("f_trans_full", "am_trans_full", "delta_trans_full", "f_half_full", "am_half_full", "delta_half_full", "normal_full")
 startingParamList1 <- list(vg1 = rep(.49,10),
 						   vg2 = rep(.16,10),
@@ -25,7 +25,7 @@ startingParamList1 <- list(vg1 = rep(.49,10),
 						   rg = rep(.1,10),
 						   re = rep(.1,10),
 						   prop.h2.latent1 = c(0.5,0,0.5,0,rep(0.5,6)),
-						   prop.h2.latent2 = c(0.7,0.7,0,0,rep(0.7,6)))
+						   prop.h2.latent2 = c(0.5,0.7,0,0,rep(0.7,6)))
 
     condition =1
     pathName = "testdata"
@@ -306,7 +306,7 @@ if (model == 1){
         mate.cov[[it]] <- exp.covY.full[[it]][3:4,1:2] ## this is the mate.cov fixing mate.cor
         mate.cor[[it]] <- exp.corY.full[[1]][3:4,1:2]
         (exp.mu[[it]] <- solve(exp.VY[[it]]) %*% mate.cov[[it]] %*% solve(t(exp.VY[[it]]))) 
-
+        cat("mu",it,"\n",exp.mu[[it]],"\n")
         (exp.gt[[it]] <- t(exp.Omega[[it]])%*%exp.mu[[it]]%*%exp.Omega[[it]])
         cat("gt",it,"\n",exp.gt[[it]],"\n")
         (exp.gc[[it]] <- .5*(exp.gt[[it]] + t(exp.gt[[it]])))
@@ -319,7 +319,8 @@ if (model == 1){
         cat("w", "\n")
         print(exp.w[[it]])
         (exp.v[[it]] <- 2*f.t0%*%exp.Gamma[[it]] + f.t0%*%exp.VY[[it]]%*%exp.mu[[it]]%*%exp.Gamma[[it]] + f.t0%*%exp.VY[[it]]%*%t(exp.mu[[it]])%*%exp.Gamma[[it]])  
-
+        cat("v", "\n")
+        print(exp.v[[it]])
         (exp.VF[[it]] <- 2*f.t0%*%exp.VY[[it]]%*%t(f.t0) + f.t0%*%exp.VY[[it]]%*%exp.mu[[it]]%*%exp.VY[[it]]%*%t(f.t0) +  f.t0%*%exp.VY[[it]]%*%t(exp.mu[[it]])%*%exp.VY[[it]]%*%t(f.t0))
         cat("VF","\n")
         print(exp.VF[[it]])
@@ -426,9 +427,9 @@ averages
 model = 2
 
 # read all the empirical data files
-l.empMateCor <- vector("list", 1)
-l.empMateCov <- vector("list", 1)
-l.empDelta <- vector("list", 1)
+l.empMateCor <- vector("list", 500)
+l.empMateCov <- vector("list", 500)
+l.empDelta <- vector("list", 500)
 # test <- readRDS(paste0("/Users/xuly4739/Library/CloudStorage/OneDrive-UCB-O365/Documents/coding/R-projects/BiSEMPGS/Data/",pathName,"/loop", 1, ".rds"))
 # test$HISTORY |> names()
 # test$SUMMARY.RES[[1]]$thetaT
@@ -440,7 +441,7 @@ l.empDelta <- vector("list", 1)
 # read all the rds files into the list
 for(i in 1:1){
     dataAll <- readRDS(paste0("/Users/xuly4739/Library/CloudStorage/OneDrive-UCB-O365/Documents/coding/R-projects/BiSEMPGS/Data/",pathName,"/loop", i, ".rds"))
-    for (j in 2:16){
+    for (j in 2:21){
     l.empMateCor[[i]][[j]] <- cov2cor(dataAll$SUMMARY.RES[[j]]$covY)[3:4,1:2]
     l.empMateCov[[i]][[j]] <- dataAll$SUMMARY.RES[[j]]$covY[3:4,1:2]
     l.empDelta[[i]][[j]] <- dataAll$SUMMARY.RES[[j]]$thetaT - dataAll$SUMMARY.RES[[j]]$thetaNT
@@ -452,7 +453,7 @@ avg_empMateCor <- list()
 avg_empMateCov <- list()
 avg_empDelta <- list()
   
-for (j in 2:16) {
+for (j in 2:21) {
     temp_empMateCor <- lapply(l.empMateCor, function(x) x[[j]])
     avg_empMateCor[[j]] <- Reduce("+", temp_empMateCor) / length(temp_empMateCor)
     
@@ -498,20 +499,21 @@ if (model == 1){
         mate.cov[[it]] <- avg_empMateCov[[it]] ## this is the mate.cov fixing mate.cor
         mate.cor[[it]] <- avg_empMateCor[[it]]
         (exp.mu[[it]] <- solve(exp.VY[[it]]) %*% mate.cov[[it]] %*% solve(t(exp.VY[[it]]))) 
-
+        cat("mu",it,"\n",exp.mu[[it]],"\n")
         (exp.gt[[it]] <- t(exp.Omega[[it]])%*%exp.mu[[it]]%*%exp.Omega[[it]])
         cat("gt",it,"\n",exp.gt[[it]],"\n")
         (exp.gc[[it]] <- .5*(exp.gt[[it]] + t(exp.gt[[it]])))
-
+        cat("gc",it,"\n",exp.gc[[it]],"\n")
         (exp.ht[[it]] <- t(exp.Gamma[[it]])%*%exp.mu[[it]]%*%exp.Gamma[[it]])
         
         (exp.hc[[it]] <- .5*(exp.ht[[it]] + t(exp.ht[[it]])))  
-        
+        cat("hc",it,"\n",exp.hc[[it]],"\n")
         (exp.w[[it]] <- 2*f.t0%*%exp.Omega[[it]] + f.t0%*%exp.VY[[it]]%*%exp.mu[[it]]%*%exp.Omega[[it]] + f.t0%*%exp.VY[[it]]%*%t(exp.mu[[it]])%*%exp.Omega[[it]])
         cat("w", "\n")
         print(exp.w[[it]])
         (exp.v[[it]] <- 2*f.t0%*%exp.Gamma[[it]] + f.t0%*%exp.VY[[it]]%*%exp.mu[[it]]%*%exp.Gamma[[it]] + f.t0%*%exp.VY[[it]]%*%t(exp.mu[[it]])%*%exp.Gamma[[it]])  
-
+        cat("v", "\n")
+        print(exp.v[[it]])
         (exp.VF[[it]] <- 2*f.t0%*%exp.VY[[it]]%*%t(f.t0) + f.t0%*%exp.VY[[it]]%*%exp.mu[[it]]%*%exp.VY[[it]]%*%t(f.t0) +  f.t0%*%exp.VY[[it]]%*%t(exp.mu[[it]])%*%exp.VY[[it]]%*%t(f.t0))
         cat("VF","\n")
         print(exp.VF[[it]])
