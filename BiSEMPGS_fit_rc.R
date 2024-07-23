@@ -6,18 +6,18 @@ source("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/BiSEMPGS_fitOpenMx.R")
 conditionNames <- c("Full_Model", "MeasurePgs30", "MeasurePgs10", "MeasurePgsFully", 
 "f11-decrease", "f12-decrease", "f11.12.21.22-decrease", "am11-decrease", "am12-decrease", "am11.12.21.22-decrease", "Full_Model_.5latent")
 # the path to the dir with all txt files
-data_path <- c( paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/", conditionNames[11], "/nfam16000"),
-                paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/", conditionNames[11], "/nfam48000"),
-                paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/", conditionNames[11], "/nfam32000"),
-                paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/", conditionNames[11], "/nfam64000"))
+data_path <- c( #paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/", conditionNames[1], "/nfam16000"),
+                paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/", conditionNames[1], "/nfam48000"),
+                paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/", conditionNames[1], "/nfam32000"),
+                paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/", conditionNames[1], "/nfam64000"))
 # the path to the dir to save the results
-save_path <- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Analysis/", conditionNames[11])
+save_path <- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Analysis/", conditionNames[1])
 
-data_pattern <- c("_16000.txt", "_48000.txt", "_32000.txt", "_64000.txt")
-save_pattern <- c("_16000","_48000", "_32000", "_64000")
+data_pattern <- c( "_48000.txt", "_32000.txt", "_64000.txt")
+save_pattern <- c("_48000", "_32000", "_64000")
 model_type <- "m2"
-mxSetup <- "_.05lb_smallerTol_newSetup_adelta"
-for (j in 1:4){
+mxSetup <- "_.05lb_smallerTol_newSetup_fixedA"
+for (j in 1:length(data_path)){
     # a list to save all the summary data
     summary_list <- list()
 
