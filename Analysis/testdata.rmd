@@ -370,7 +370,7 @@ if (model == 1){
 l.summaryLast <- list()
 # read all the rds files into the list
 for(i in 1:1){
-    l.summaryLast[[i]] <- readRDS(paste0("/Users/xuly4739/Library/CloudStorage/OneDrive-UCB-O365/Documents/coding/R-projects/BiSEMPGS/Summary/",pathName,"/loop", i, ".rds"))
+    l.summaryLast[[i]] <- readRDS(paste0("/rc_scratch/xuly4739/BiSEMPGS/Data/Full_Model_.5latent","/loop", i, ".rds"))
 }
 
 average_parameters <- function(simulations) {
@@ -439,8 +439,8 @@ l.empDelta <- vector("list", 500)
 # test$HISTORY$PHEN[[15]] |> cov()
 # test$HISTORY$MATE[15][[1]] |> class()
 # read all the rds files into the list
-for(i in 1:1){
-    dataAll <- readRDS(paste0("/Users/xuly4739/Library/CloudStorage/OneDrive-UCB-O365/Documents/coding/R-projects/BiSEMPGS/Data/",pathName,"/loop", i, ".rds"))
+for(i in 1:100){
+    dataAll <- readRDS(paste0("/rc_scratch/xuly4739/BiSEMPGS/Data/Full_Model_.5latent","/loop", i, ".rds"))
     for (j in 2:21){
     l.empMateCor[[i]][[j]] <- cov2cor(dataAll$SUMMARY.RES[[j]]$covY)[3:4,1:2]
     
