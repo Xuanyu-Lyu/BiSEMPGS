@@ -304,7 +304,7 @@ fitBiSEMPGS_m2_fixH2 <- function(data_path){
     # Specify what parameters we're going to be including in our model:
         Params <- list(
                     VY, VF, VE, delta, a, k, j, Omega, Gamma, mu, gt, ht, gc, hc, itlo, itol, ic, f, w, v, 
-                    VY_Algebra, VF_Algebra, Omega_Algebra, Gamma_Algebra, adelta_Constraint_Algebra, gt_Algebra, ht_Algebra, gc_Algebra, hc_Algebra, gchc_constraint_Algebra, itlo_Algebra, itol_Algebra, ic_Algebra, w_Algebra, v_Algebra, wv_constraint_algebra,
+                    VY_Algebra, VF_Algebra, Omega_Algebra, Gamma_Algebra,  gt_Algebra, ht_Algebra, gc_Algebra, hc_Algebra, gchc_constraint_Algebra, itlo_Algebra, itol_Algebra, ic_Algebra, w_Algebra, v_Algebra, wv_constraint_algebra,
                     VY_Constraint, 
                     VF_Constraint, 
                     #Omega_Constraint, 
