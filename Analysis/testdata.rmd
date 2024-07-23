@@ -140,7 +140,7 @@ startingParamList1 <- list(vg1 = rep(.49,10),
     (exp.VF[[1]] <- covf.mat)
     (exp.mu[[1]] <- solve(COVY) %*% rmate.t0 %*% solve(t(COVY)))
     (mate.cov[[1]] <- COVY %*% exp.mu[[1]] %*% COVY )
-    (exp.covY.full[[1]] <- rbind(cbind(exp.VY[[1]], mate.cov[[1]]),cbind(mate.cov[[1]], exp.VY[[1]])))
+    (exp.covY.full[[1]] <- rbind(cbind(exp.VY[[1]], t(mate.cov[[1]])),cbind(mate.cov[[1]], exp.VY[[1]])))
     (exp.corY.full[[1]] <- cov2cor(exp.covY.full[[1]]))
     mate.cor[[1]] <- mate.cov[[1]]/COVY
     mate.cor[[1]][1,2] <- mate.cov[[1]][1,2]/sqrt(COVY[1,1]*COVY[2,2])
@@ -443,6 +443,7 @@ for(i in 1:1){
     dataAll <- readRDS(paste0("/Users/xuly4739/Library/CloudStorage/OneDrive-UCB-O365/Documents/coding/R-projects/BiSEMPGS/Data/",pathName,"/loop", i, ".rds"))
     for (j in 2:21){
     l.empMateCor[[i]][[j]] <- cov2cor(dataAll$SUMMARY.RES[[j]]$covY)[3:4,1:2]
+    
     l.empMateCov[[i]][[j]] <- dataAll$SUMMARY.RES[[j]]$covY[3:4,1:2]
     l.empDelta[[i]][[j]] <- dataAll$SUMMARY.RES[[j]]$thetaT - dataAll$SUMMARY.RES[[j]]$thetaNT
     }

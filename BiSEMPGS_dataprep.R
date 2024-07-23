@@ -14,9 +14,8 @@ data_df <- data_df[,c("ID", "Father.ID", "Mother.ID",
                       "TMO1","TMO2","NTMO1","NTMO2")] |> as.data.frame()
 nrow(data_df)
 
+# check the n of offspring distribution
 summary(table(data_df$Father.ID) |> as.factor())
-# if more than one rows has the same Father.ID, remove until only one row is left
-
 
 # remove the rows with the same Father.ID
 data_df <- data_df[!duplicated(data_df$Father.ID),]

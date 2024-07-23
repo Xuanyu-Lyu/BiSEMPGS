@@ -1,5 +1,6 @@
 # this script is designed for making plots using the .5 latent simulated data
-
+library(psych)
+library(ggplot2)
 # read a summary list
 # no constraints on gc and hc, 16000 samples, lb = -.05, smaller tolerance, new setup, no wvconstraint
 summary_list1 <- readRDS("Analysis/Full_Model_.5latent/m2_.05lb_smallerTol_newSetup_16000_summary_list.rds")
@@ -47,6 +48,18 @@ df1$SampleSize <- "16k"
 df2$SampleSize <- "32k"
 df3$SampleSize <- "48k"
 df4$SampleSize <- "64k"
+
+# exclude the rows with a status code is not "OK" or "OK/green"
+df1 <- df1[df1$status_codes %in% c("OK", "OK/green"),]
+df2 <- df2[df2$status_codes %in% c("OK", "OK/green"),]
+df3 <- df3[df3$status_codes %in% c("OK", "OK/green"),]
+df4 <- df4[df4$status_codes %in% c("OK", "OK/green"),]
+
+# get the SE of the estimates with four digits in four sample sizes
+as.data.frame(describe(df1, trim = 0 ))[,c(1,4,13)]
+as.data.frame(describe(df2, trim = 0 ))[,c(1,4,13)]
+as.data.frame(describe(df3, trim = 0 ))[,c(1,4,13)]
+as.data.frame(describe(df4, trim = 0 ))[,c(1,4,13)]
 # pick the estimates of interest and paste them into a new dataframe 
 df_plot <- rbind(df1, df2, df3,df4)
 # exclude the rows with a status code is not "OK" or "OK/green"
@@ -56,6 +69,19 @@ df_plot <- df_plot[df_plot$status_codes %in% c("OK", "OK/green"),]
 df_plot <- df_plot[rowSums(df_plot[,c(1:23,28:64)] < 0) == 0,]
 
 
+# test the accuracy of mu
+Vy_matrix <- matrix(c(mean(df_plot$VY11), mean(df_plot$VY12), mean(df_plot$VY12), mean(df_plot$VY22)), nrow = 2, byrow = T)
+mu_matrix <- matrix(c(mean(df_plot$mu11), mean(df_plot$mu12), mean(df_plot$mu21), mean(df_plot$mu22)), nrow = 2, byrow = T)
+
+Vy_matrix <- matrix(c(median(df_plot$VY11), median(df_plot$VY12), median(df_plot$VY12), median(df_plot$VY22)), nrow = 2, byrow = T)
+mu_matrix <- matrix(c(median(df_plot$mu11), median(df_plot$mu12), median(df_plot$mu21), median(df_plot$mu22)), nrow = 2, byrow = T)
+
+mu_matrix <- matrix(c(0.2207511, 0.01191484, -0.06126167, 0.2467678), nrow = 2, byrow = T)
+matecov <- Vy_matrix%*%mu_matrix%*%t(Vy_matrix)
+# put the Vy and Matecov into a 4 by 4 matrix
+Vy_4by4 <- matrix(rbind(cbind(Vy_matrix, t(matecov)),
+                        cbind(matecov, Vy_matrix)), nrow = 4, byrow = T)
+Vy_4by4 |> cov2cor()
 head(df_plot)
 
 # make the plot for f11
@@ -72,7 +98,11 @@ g1<-ggplot(df_plot, aes(x = SampleSize, y = f11)) +
   theme(panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         panel.border = element_blank(),
-        axis.line = element_line(color = "black", size = 1))
+        axis.line = element_line(color = "black", size = 1),
+        axis.title.x = element_text(size = 20),
+        axis.title.y = element_text(size = 20),
+        axis.text.x = element_text(size = 20),
+        axis.text.y = element_text(size = 20))
 g1
 ggsave(paste0(save_path,"/f11.png"), g1, width = 4, height = 6, type = "cairo-png", dpi = 600)
 
@@ -88,7 +118,11 @@ g1<-ggplot(df_plot, aes(x = SampleSize, y = f12)) +
   theme(panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         panel.border = element_blank(),
-        axis.line = element_line(color = "black", size = 1))
+        axis.line = element_line(color = "black", size = 1),
+        axis.title.x = element_text(size = 20),
+        axis.title.y = element_text(size = 20),
+        axis.text.x = element_text(size = 20),
+        axis.text.y = element_text(size = 20))
 g1
 ggsave(paste0(save_path,"/f12.png"), g1, width = 4, height = 6, type = "cairo-png", dpi = 600)
 
@@ -104,7 +138,11 @@ g1<-ggplot(df_plot, aes(x = SampleSize, y = f22)) +
   theme(panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         panel.border = element_blank(),
-        axis.line = element_line(color = "black", size = 1))
+        axis.line = element_line(color = "black", size = 1),
+        axis.title.x = element_text(size = 20),
+        axis.title.y = element_text(size = 20),
+        axis.text.x = element_text(size = 20),
+        axis.text.y = element_text(size = 20))
 g1
 ggsave(paste0(save_path,"/f22.png"), g1, width = 4, height = 6, type = "cairo-png", dpi = 600)
 
@@ -120,7 +158,11 @@ g1<-ggplot(df_plot, aes(x = SampleSize, y = delta11)) +
   theme(panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         panel.border = element_blank(),
-        axis.line = element_line(color = "black", size = 1))
+        axis.line = element_line(color = "black", size = 1),
+        axis.title.x = element_text(size = 20),
+        axis.title.y = element_text(size = 20),
+        axis.text.x = element_text(size = 20),
+        axis.text.y = element_text(size = 20))
 g1
 ggsave(paste0(save_path,"/delta11.png"), g1, width = 4, height = 6, type = "cairo-png", dpi = 600)
 
@@ -135,7 +177,11 @@ g1<-ggplot(df_plot, aes(x = SampleSize, y = delta22)) +
   theme(panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         panel.border = element_blank(),
-        axis.line = element_line(color = "black", size = 1))
+        axis.line = element_line(color = "black", size = 1),
+        axis.title.x = element_text(size = 20),
+        axis.title.y = element_text(size = 20),
+        axis.text.x = element_text(size = 20),
+        axis.text.y = element_text(size = 20))
 g1
 ggsave(paste0(save_path,"/delta22.png"), g1, width = 4, height = 6, type = "cairo-png", dpi = 600)
 
@@ -150,7 +196,11 @@ g1<-ggplot(df_plot, aes(x = SampleSize, y = a11)) +
   theme(panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         panel.border = element_blank(),
-        axis.line = element_line(color = "black", size = 1))
+        axis.line = element_line(color = "black", size = 1),
+        axis.title.x = element_text(size = 20),
+        axis.title.y = element_text(size = 20),
+        axis.text.x = element_text(size = 20),
+        axis.text.y = element_text(size = 20))
 g1
 ggsave(paste0(save_path,"/a11.png"), g1, width = 4, height = 6, type = "cairo-png", dpi = 600)
 
@@ -165,12 +215,16 @@ g1<-ggplot(df_plot, aes(x = SampleSize, y = a22)) +
   theme(panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         panel.border = element_blank(),
-        axis.line = element_line(color = "black", size = 1))
+        axis.line = element_line(color = "black", size = 1),
+        axis.title.x = element_text(size = 20),
+        axis.title.y = element_text(size = 20),
+        axis.text.x = element_text(size = 20),
+        axis.text.y = element_text(size = 20))
 g1
 ggsave(paste0(save_path,"/a22.png"), g1, width = 4, height = 6, type = "cairo-png", dpi = 600)
 
 # plot for mu11
-true_value <- 0.2256723
+true_value <- 0.2207511
 g1<-ggplot(df_plot, aes(x = SampleSize, y = mu11)) +
   geom_boxplot(width = .4, fill = "#00a6ffd1", color = "#1313a3", size = 1, staplewidth = .2 ,outlier.shape = 5) +
   geom_jitter(width = 0.2, size = 1.5, alpha = 0.6, color = "#2a6fef") +
@@ -180,12 +234,16 @@ g1<-ggplot(df_plot, aes(x = SampleSize, y = mu11)) +
   theme(panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         panel.border = element_blank(),
-        axis.line = element_line(color = "black", size = 1))
+        axis.line = element_line(color = "black", size = 1),
+        axis.title.x = element_text(size = 20),
+        axis.title.y = element_text(size = 20),
+        axis.text.x = element_text(size = 20),
+        axis.text.y = element_text(size = 20))
 g1
 ggsave(paste0(save_path,"/mu11.png"), g1, width = 4, height = 6, type = "cairo-png", dpi = 600)
 
 # plot for mu12
-true_value <- 0.0255152
+true_value <- 0.02661484
 g1<-ggplot(df_plot, aes(x = SampleSize, y = mu12)) +
   geom_boxplot(width = .4, fill = "#00a6ffd1", color = "#1313a3", size = 1, staplewidth = .2 ,outlier.shape = 5) +
   geom_jitter(width = 0.2, size = 1.5, alpha = 0.6, color = "#2a6fef") +
@@ -195,7 +253,11 @@ g1<-ggplot(df_plot, aes(x = SampleSize, y = mu12)) +
   theme(panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         panel.border = element_blank(),
-        axis.line = element_line(color = "black", size = 1))
+        axis.line = element_line(color = "black", size = 1),
+        axis.title.x = element_text(size = 20),
+        axis.title.y = element_text(size = 20),
+        axis.text.x = element_text(size = 20),
+        axis.text.y = element_text(size = 20))
 g1
 ggsave(paste0(save_path,"/mu12.png"), g1, width = 4, height = 6, type = "cairo-png", dpi = 600)
 
@@ -210,7 +272,11 @@ g1<-ggplot(df_plot, aes(x = SampleSize, y = k12)) +
   theme(panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         panel.border = element_blank(),
-        axis.line = element_line(color = "black", size = 1))
+        axis.line = element_line(color = "black", size = 1),
+        axis.title.x = element_text(size = 20),
+        axis.title.y = element_text(size = 20),
+        axis.text.x = element_text(size = 20),
+        axis.text.y = element_text(size = 20))
 g1
 ggsave(paste0(save_path,"/k12.png"), g1, width = 4, height = 6, type = "cairo-png", dpi = 600)
 
@@ -286,3 +352,5 @@ g1<-ggplot(df_compare, aes(x = type, y = f12)) +
         axis.line = element_line(color = "black", size = 1))
 g1
 ggsave(paste0(save_path,"/f12_compare.png"), g1, width = 6, height = 6, type = "cairo-png", dpi = 400)
+
+mean(df_plot$VY11)

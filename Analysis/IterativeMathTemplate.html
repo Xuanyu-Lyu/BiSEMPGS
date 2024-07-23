@@ -1051,6 +1051,14 @@ for (it in 2:gens){
 </div>
 <div id="fourth-chunk-play-with-the-constraints-of-ghwv" class="section level1">
 <h1>fourth chunk: play with the constraints of g,h,w,v</h1>
+<pre class="r"><code># the package expm to check the logarithm of the constraints
+library(expm)</code></pre>
+<pre><code>## Loading required package: Matrix</code></pre>
+<pre><code>## 
+## Attaching package: &#39;expm&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:Matrix&#39;:
+## 
+##     expm</code></pre>
 <pre class="r"><code># this chunk is to check the constraints of h,g,w,v
 # get the values of delta, a, j and k
 delta &lt;- delta.t0
@@ -1063,6 +1071,7 @@ gc &lt;- exp.gc[[gens]]
 w &lt;- exp.w[[gens]]
 v &lt;- exp.v[[gens]]
 # three ways of constraining h, g
+# devision
 gc/(2* delta %*% k %*% t(delta))</code></pre>
 <pre><code>##           [,1]      [,2]
 ## [1,] 0.1621957 1.0119077
@@ -1071,7 +1080,8 @@ gc/(2* delta %*% k %*% t(delta))</code></pre>
 <pre><code>##           [,1]      [,2]
 ## [1,] 0.1702746 0.6248058
 ## [2,] 0.6248058 0.1102540</code></pre>
-<pre class="r"><code>gc * solve(2* delta %*% k %*% t(delta))</code></pre>
+<pre class="r"><code># inverse
+gc * solve(2* delta %*% k %*% t(delta))</code></pre>
 <pre><code>##             [,1]        [,2]
 ## [1,]  0.16383406 -0.01022129
 ## [2,] -0.01022129  0.15620972</code></pre>
@@ -1079,7 +1089,8 @@ gc/(2* delta %*% k %*% t(delta))</code></pre>
 <pre><code>##             [,1]        [,2]
 ## [1,]  0.17199451 -0.00631117
 ## [2,] -0.00631117  0.11136771</code></pre>
-<pre class="r"><code>t(chol(solve(2* delta %*% k %*% t(delta)))) %*% gc %*% chol(solve(2* delta %*% k %*% t(delta)))</code></pre>
+<pre class="r"><code># cholesky
+t(chol(solve(2* delta %*% k %*% t(delta)))) %*% gc %*% chol(solve(2* delta %*% k %*% t(delta)))</code></pre>
 <pre><code>##            [,1]       [,2]
 ## [1,] 0.16383406 0.04819257
 ## [2,] 0.04819257 0.10569273</code></pre>
@@ -1087,7 +1098,17 @@ gc/(2* delta %*% k %*% t(delta))</code></pre>
 <pre><code>##            [,1]       [,2]
 ## [1,] 0.17199451 0.04440836
 ## [2,] 0.04440836 0.09879348</code></pre>
+<pre class="r"><code># log
+logm(gc) - logm(2* delta %*% k %*% t(delta))</code></pre>
+<pre><code>##            [,1]       [,2]
+## [1,] -1.8969330  0.5029918
+## [2,]  0.5029918 -2.3032024</code></pre>
+<pre class="r"><code>logm(hc) - logm(2* a %*% j %*% t(a))</code></pre>
+<pre><code>##            [,1]       [,2]
+## [1,] -1.8597739  0.3850375
+## [2,]  0.3850375 -2.3386099</code></pre>
 <pre class="r"><code># three ways of constraining w, v
+# devision
 w/(2* delta %*% k %*% t(delta))</code></pre>
 <pre><code>##           [,1]     [,2]
 ## [1,] 0.5726294 5.355770
@@ -1096,7 +1117,8 @@ w/(2* delta %*% k %*% t(delta))</code></pre>
 <pre><code>##          [,1]      [,2]
 ## [1,] 1.201625 7.3594608
 ## [2,] 5.310187 0.5645297</code></pre>
-<pre class="r"><code>v %*% solve(2* a %*% j %*% t(a))</code></pre>
+<pre class="r"><code># inverse
+v %*% solve(2* a %*% j %*% t(a))</code></pre>
 <pre><code>##           [,1]      [,2]
 ## [1,] 1.1394246 0.6649498
 ## [2,] 0.4483996 0.5165938</code></pre>
@@ -1104,7 +1126,8 @@ w/(2* delta %*% k %*% t(delta))</code></pre>
 <pre><code>##           [,1]     [,2]
 ## [1,] 0.5243149 1.577946
 ## [2,] 0.1961317 1.013000</code></pre>
-<pre class="r"><code>t(chol(solve(sqrt(2* delta %*% k %*% t(delta))))) %*% (w) %*% chol(solve(sqrt(2* delta %*% k %*% t(delta))))</code></pre>
+<pre class="r"><code># cholesky
+t(chol(solve(sqrt(2* delta %*% k %*% t(delta))))) %*% (w) %*% chol(solve(sqrt(2* delta %*% k %*% t(delta))))</code></pre>
 <pre><code>##            [,1]        [,2]
 ## [1,] 0.50900393 -0.04097980
 ## [2,] 0.05527715  0.08941302</code></pre>
@@ -1112,6 +1135,14 @@ w/(2* delta %*% k %*% t(delta))</code></pre>
 <pre><code>##            [,1]       [,2]
 ## [1,] 0.53405554 0.12549819
 ## [2,] 0.04193004 0.09939197</code></pre>
+<pre class="r"><code>logm(w) - logm(2* delta %*% k %*% t(delta))</code></pre>
+<pre><code>##           [,1]       [,2]
+## [1,] -0.780956  0.7259307
+## [2,]  1.036426 -0.7257198</code></pre>
+<pre class="r"><code>logm(v) - logm(2* a %*% j %*% t(a))</code></pre>
+<pre><code>##            [,1]      [,2]
+## [1,] -0.1073774  1.023837
+## [2,]  0.7108272 -1.128924</code></pre>
 </div>
 
 

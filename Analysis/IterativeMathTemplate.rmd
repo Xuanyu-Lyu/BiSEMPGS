@@ -236,6 +236,8 @@ for (it in 2:gens){
 
 # fourth chunk: play with the constraints of g,h,w,v
 ```{r checkConstraints}
+# the package expm to check the logarithm of the constraints
+library(expm)
 # this chunk is to check the constraints of h,g,w,v
 # get the values of delta, a, j and k
 delta <- delta.t0
@@ -248,19 +250,31 @@ gc <- exp.gc[[gens]]
 w <- exp.w[[gens]]
 v <- exp.v[[gens]]
 # three ways of constraining h, g
+# devision
 gc/(2* delta %*% k %*% t(delta))
 hc/(2* a %*% j %*% t(a))
+# inverse
 gc * solve(2* delta %*% k %*% t(delta))
 hc * solve(2* a %*% j %*% t(a))
+# cholesky
 t(chol(solve(2* delta %*% k %*% t(delta)))) %*% gc %*% chol(solve(2* delta %*% k %*% t(delta)))
 t(chol(solve(2* a %*% j %*% t(a)))) %*% hc %*% chol(solve(2* a %*% j %*% t(a)))
+# log
+logm(gc) - logm(2* delta %*% k %*% t(delta))
+logm(hc) - logm(2* a %*% j %*% t(a))
 
 # three ways of constraining w, v
+# devision
 w/(2* delta %*% k %*% t(delta))
 v/(2* a %*% j %*% t(a))
+# inverse
 v %*% solve(2* a %*% j %*% t(a))
 w %*% solve(2* delta %*% k %*% t(delta))
+# cholesky
 t(chol(solve(sqrt(2* delta %*% k %*% t(delta))))) %*% (w) %*% chol(solve(sqrt(2* delta %*% k %*% t(delta))))
 t(chol(solve(sqrt(2* a %*% j %*% t(a))))) %*% (v) %*% chol(solve(sqrt(2* a %*% j %*% t(a))))
+logm(w) - logm(2* delta %*% k %*% t(delta))
+logm(v) - logm(2* a %*% j %*% t(a))
+
 
 ```
