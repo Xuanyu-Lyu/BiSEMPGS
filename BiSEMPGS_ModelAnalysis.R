@@ -25,7 +25,8 @@ summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_smallerTol_newSetup_freewv
 
 # no constraints on gc and hc, 48k samples, lb = -.05, smaller tolerance, new setup, fixed a
 summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_smallerTol_newSetup_fixedA_48000_summary_list.rds")
-
+# no constraints on gc and hc, 48k samples, lb = -.05, smaller tolerance, new setup, fixed a
+summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_smallerTol_newSetup_fixedA_32000_summary_list.rds")
 
 # extract all the status code of openmx and put them into a vector
 status_codes <- sapply(summary_list, function(x) x$statusCode)
@@ -143,7 +144,7 @@ ggplot(df_long, aes(x = Index, y = Value)) +
   geom_point() +
   geom_hline(aes(yintercept = true_values[Variable]), color = "red") +
   facet_wrap(~ Variable, scales = "free") +
-  ylim(0,.05)
+  ylim(-.05,.05)
   theme_minimal()
 
 # a plot for three hc estimates
@@ -154,7 +155,7 @@ ggplot(df_long, aes(x = Index, y = Value)) +
   geom_point() +
   geom_hline(aes(yintercept = true_values[Variable]), color = "red") +
   facet_wrap(~ Variable, scales = "free") +
-  ylim(0,.05)+
+  ylim(-.05,.25)+
   theme_minimal()
 
 
