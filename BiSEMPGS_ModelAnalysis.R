@@ -23,6 +23,8 @@ summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_smallerTol_newSetup_16000_
 # no constraints on gc and hc, 16000 samples, lb = -.05, smaller tolerance, new setup, no wvconstraint
 summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_smallerTol_newSetup_freewv_16000_summary_list.rds")
 
+# no constraints on gc and hc, 48k samples, lb = -.05, smaller tolerance, new setup, fixed a
+summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_smallerTol_newSetup_fixedA_48000_summary_list.rds")
 
 
 # extract all the status code of openmx and put them into a vector
@@ -47,18 +49,22 @@ for(i in 1:length(summary_list)) {
 df$status_codes <- status_codes
 aggregate(df$f11, by = list(status_codes), FUN = mean)
 df <- df[-1,]
+# get only the results with green status code
+df <- df[df$status_codes %in% c("OK", "OK/green"),]
+library(psych)
+describe(df)
 library(ggplot2)
 library(tidyr)
 # a plot for three VY estimates
-true_values <- c(VY11 = 1.7292875, VY12 = 0.3693813,  VY22 = 1.1455869)
+true_values <- c(VY11 = 1.7478366, VY12 = 0.3401594,  VY22 = 1.1359723)
 df_long <- tidyr::pivot_longer(df, c("VY11", "VY12", "VY22"), names_to = "Variable", values_to = "Value")
 df_long$Index <- 1:nrow(df_long)
-ggplot(df_long, aes(x = Index, y = Value)) +
+g1 <- ggplot(df_long, aes(x = Index, y = Value)) +
   geom_point() +
   geom_hline(aes(yintercept = true_values[Variable]), color = "red") +
   facet_wrap(~ Variable, scales = "free") +
   theme_minimal()
-
+g1
 # a plot for four f estimates
 true_values <- c(f11 = 0.15, f12 = 0.1, f21 = 0.05, f22 = 0.1)
 df_long <- tidyr::pivot_longer(df, c("f11", "f12",  "f21", "f22"), names_to = "Variable", values_to = "Value")
@@ -90,7 +96,7 @@ ggplot(df_long, aes(x = Index, y = Value)) +
   theme_minimal()
 
 # a plot for four v estimates
-true_values <- c(v11 = 0.20214807, v12 = 0.09995314, v21 = 0.08287606, v22 = 0.07056632)
+true_values <- c(v11 = 0.20765721, v12 = 0.10233074, v21 = 0.08560434, v22 = 0.07192265)
 df_long <- tidyr::pivot_longer(df, c("v11", "v12",  "v21", "v22"), names_to = "Variable", values_to = "Value")
 df_long$Index <- 1:nrow(df_long)
 ggplot(df_long, aes(x = Index, y = Value)) +
@@ -100,7 +106,7 @@ ggplot(df_long, aes(x = Index, y = Value)) +
   theme_minimal()
 
 # a plot for four w estimates
-true_values <- c(w11 = 0.20148136, w12 = 0.08849580, w21 = 0.08263773, w22 = 0.05576877)
+true_values <- c(w11 = 0.20374099, w12 = 0.07627324, w21 = 0.08258827, w22 = 0.05076394)
 df_long <- tidyr::pivot_longer(df, c("w11", "w12",  "w21", "w22"), names_to = "Variable", values_to = "Value")
 df_long$Index <- 1:nrow(df_long)
 ggplot(df_long, aes(x = Index, y = Value)) +
@@ -110,7 +116,7 @@ ggplot(df_long, aes(x = Index, y = Value)) +
   theme_minimal()
 
 # a plot for four Omega estimates
-true_values <- c(Omega11 = 0.42719846, Omega12 = 0.1124501, Omega21 = 0.07169126, Omega22 = 0.1497856)
+true_values <- c(Omega11 = 0.4337504, Omega12 = 0.08469132, Omega21 = 0.0634763, Omega22 = 0.1440672)
 df_long <- tidyr::pivot_longer(df, c("Omega11", "Omega12",  "Omega21", "Omega22"), names_to = "Variable", values_to = "Value")
 df_long$Index <- 1:nrow(df_long)
 ggplot(df_long, aes(x = Index, y = Value)) +
@@ -120,7 +126,7 @@ ggplot(df_long, aes(x = Index, y = Value)) +
   theme_minimal()
 
 # a plot for four Gamma estimates
-true_values <- c(Gamma11 = 0.42874770, Gamma12 = 0.09775105, Gamma21 = 0.07171512, Gamma22 = 0.21521151)
+true_values <- c(Gamma11 = 0.4364954, Gamma12 = 0.09868633, Gamma21 = 0.0733564, Gamma22 = 0.2164179)
 df_long <- tidyr::pivot_longer(df, c("Gamma11", "Gamma12",  "Gamma21", "Gamma22"), names_to = "Variable", values_to = "Value")
 df_long$Index <- 1:nrow(df_long)
 ggplot(df_long, aes(x = Index, y = Value)) +

@@ -25,7 +25,7 @@ startingParamList1 <- list(vg1 = rep(.49,10),
 						   rg = rep(.1,10),
 						   re = rep(.1,10),
 						   prop.h2.latent1 = c(0.5,0,0.5,0,rep(0.5,6)),
-						   prop.h2.latent2 = c(0.5,0.7,0,0,rep(0.7,6)))
+						   prop.h2.latent2 = c(0.7,0.7,0,0,rep(0.7,6)))
 
     condition =1
     pathName = "testdata"
@@ -366,11 +366,11 @@ if (model == 1){
 
 
 
-```{r getEmpirical}
+```{r getEmpirical, eval = FALSE}
 l.summaryLast <- list()
 # read all the rds files into the list
 for(i in 1:1){
-    l.summaryLast[[i]] <- readRDS(paste0("/rc_scratch/xuly4739/BiSEMPGS/Data/Full_Model_.5latent","/loop", i, ".rds"))
+    l.summaryLast[[i]] <- readRDS("/Users/xuly4739/Library/CloudStorage/OneDrive-UCB-O365/Documents/coding/R-projects/BiSEMPGS/Data/testdata/loop1.rds")
 }
 
 average_parameters <- function(simulations) {
@@ -401,7 +401,7 @@ averages <- average_parameters(l.summaryLast)
 averages
 ```
 
-```{r comparison}
+```{r comparison, eval = FALSE}
     element_wise_proportion <- function(matrix1, matrix2) {
   
   proportion_matrix <- (matrix1 - matrix2) / matrix2
@@ -422,7 +422,7 @@ averages
 
 ```
 
-```{r checkEmpiMath}
+```{r checkEmpiMath, eval = FALSE}
 # specify the model want to check, model 1 or 2
 model = 2
 
@@ -559,7 +559,7 @@ if (model == 1){
 ```
 
 
-```{r comparison2}
+```{r comparison2, eval = FALSE}
     element_wise_proportion <- function(matrix1, matrix2) {
   
   proportion_matrix <- (matrix1 - matrix2) / matrix2
