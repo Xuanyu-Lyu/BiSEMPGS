@@ -28,6 +28,13 @@ summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_smallerTol_newSetup_fixedA
 # no constraints on gc and hc, 48k samples, lb = -.05, smaller tolerance, new setup, fixed a
 summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_smallerTol_newSetup_fixedA_32000_summary_list.rds")
 
+
+# no constraints on gc and hc, 48k samples, lb = -.05, smaller tolerance, new setup, fixed a, rg
+summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_smallerTol_newSetup_fixedArg_32000_summary_list.rds")
+
+# no constraints on gc and hc, 48k samples, lb = -.05, smaller tolerance, new setup, fixed a, rg
+summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_smallerTol_newSetup_fixedArg_64000_summary_list.rds")
+
 # extract all the status code of openmx and put them into a vector
 status_codes <- sapply(summary_list, function(x) x$statusCode)
 summary(status_codes)
@@ -167,6 +174,7 @@ ggplot(df_long, aes(x = Index, y = Value)) +
 # plot(df$f22, ylim = c(0,1))
 # abline(h = 0.10, col = "red", lwd = 2)
 # # Now df is a data frame where each column is the estimates from each element in the summary_list
+
 
 
 
