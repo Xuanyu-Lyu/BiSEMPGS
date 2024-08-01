@@ -25,15 +25,17 @@ summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_smallerTol_newSetup_freewv
 
 # no constraints on gc and hc, 48k samples, lb = -.05, smaller tolerance, new setup, fixed a
 summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_smallerTol_newSetup_fixedA_48000_summary_list.rds")
-# no constraints on gc and hc, 48k samples, lb = -.05, smaller tolerance, new setup, fixed a
+# no constraints on gc and hc, 32k samples, lb = -.05, smaller tolerance, new setup, fixed a
 summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_smallerTol_newSetup_fixedA_32000_summary_list.rds")
 
 
-# no constraints on gc and hc, 48k samples, lb = -.05, smaller tolerance, new setup, fixed a, rg
+# no constraints on gc and hc, 32k samples, lb = -.05, smaller tolerance, new setup, fixed a, rg
 summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_smallerTol_newSetup_fixedArg_32000_summary_list.rds")
 
-# no constraints on gc and hc, 48k samples, lb = -.05, smaller tolerance, new setup, fixed a, rg
+# no constraints on gc and hc, 64k samples, lb = -.05, smaller tolerance, new setup, fixed a, rg
 summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_smallerTol_newSetup_fixedArg_64000_summary_list.rds")
+
+#summary_list[[2]]$parameters$Std.Error[1]
 
 # extract all the status code of openmx and put them into a vector
 status_codes <- sapply(summary_list, function(x) x$statusCode)
@@ -54,11 +56,33 @@ for(i in 1:length(summary_list)) {
     }
 }
 
+# initialize a df for the standard errors\
+df_se <- data.frame(matrix(ncol = nrow(summary_list[[2]]$parameters), nrow = length(summary_list)))
+colnames(df_se) <- summary_list[[2]]$parameters$name
+colnames(df_se)
+# Loop over the elements in the summary_list
+for(i in 1:length(summary_list)) {
+    for(j in 1:nrow(summary_list[[i]]$parameters)){
+        if (!is.null(summary_list[[i]]$parameters$Std.Error[j])) {
+            df_se[i,j] <- summary_list[[i]]$parameters$Std.Error[j]
+        } else {
+            print(paste("NULL value at i =", i, "and j =", j))
+        }
+    }
+}
+# show how many rows of the dataframe has NA
+sum(is.na(df_se))/prod(dim(df_se))
+
+cor(df_se[,c("mu11","mu21","mu12","mu22","ht11","ht21","ht12","ht22","f11","f21","f12","f22","v11","v21","v12","v22","Gamma11","Gamma21","Gamma12","Gamma22")], use = "pairwise.complete.obs")
+
+
 df$status_codes <- status_codes
 aggregate(df$f11, by = list(status_codes), FUN = mean)
 df <- df[-1,]
 # get only the results with green status code
 df <- df[df$status_codes %in% c("OK", "OK/green"),]
+# get only the results with positive f11 and f22 estimates
+df <- df[df$f11 > 0 & df$f22 > 0,]
 library(psych)
 describe(df)
 library(ggplot2)
@@ -74,6 +98,7 @@ g1 <- ggplot(df_long, aes(x = Index, y = Value)) +
   theme_minimal()
 g1
 # a plot for four f estimates
+describe(df[,c("f11","f12","f21","f22")], trim = 0)
 true_values <- c(f11 = 0.15, f12 = 0.1, f21 = 0.05, f22 = 0.1)
 df_long <- tidyr::pivot_longer(df, c("f11", "f12",  "f21", "f22"), names_to = "Variable", values_to = "Value")
 df_long$Index <- 1:nrow(df_long)
@@ -174,6 +199,7 @@ ggplot(df_long, aes(x = Index, y = Value)) +
 # plot(df$f22, ylim = c(0,1))
 # abline(h = 0.10, col = "red", lwd = 2)
 # # Now df is a data frame where each column is the estimates from each element in the summary_list
+
 
 
 
