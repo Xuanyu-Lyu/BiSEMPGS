@@ -39,6 +39,9 @@ summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_smallerTol_newSetup_fixedA
 summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_smallerTol_newSetup_fixedArg_closerh_64000_summary_list.rds")
 #summary_list[[2]]$parameters$Std.Error[1]
 
+# no constraints on gc and hc, 64k samples, lb = -.001 for f and hc, smaller tolerance, new setup, fixed a, rg, closer h
+summary_list <- readRDS("Analysis/Full_Model/m2_.001lbfh_sTol_newSetup_fixedArg_closerh_64000_summary_list.rds")
+
 # extract all the status code of openmx and put them into a vector
 status_codes <- sapply(summary_list, function(x) x$statusCode)
 summary(status_codes)
@@ -91,12 +94,14 @@ cor(df_se[,c("mu11","mu21","mu12","mu22",
 
 
 df$status_codes <- status_codes
-aggregate(df$f11, by = list(status_codes), FUN = mean)
+aggregate(df$f11, by = list(df$status_codes), FUN = mean)
 df <- df[-1,]
 # get only the results with green status code
 df <- df[df$status_codes %in% c("OK", "OK/green"),]
 # get only the results with positive f11 and f22 estimates
 df <- df[df$f11 > 0 & df$f22 > 0,]
+aggregate(df$f11, by = list(df$status_codes), FUN = mean)
+
 library(psych)
 describe(df)
 library(ggplot2)

@@ -17,7 +17,7 @@ data_pattern <- c( "_48000.txt", "_32000.txt", "_64000.txt")
 save_pattern <- c("_48000", "_32000", "_64000")
 model_type <- "m2"
 mxSetup <- "_.001lbfh_sTol_newSetup_fixedArg_closerh"
-for (j in 3:3){
+for (j in 1:2){
     # a list to save all the summary data
     summary_list <- list()
 
