@@ -35,6 +35,8 @@ summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_smallerTol_newSetup_fixedA
 # no constraints on gc and hc, 64k samples, lb = -.05, smaller tolerance, new setup, fixed a, rg
 summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_smallerTol_newSetup_fixedArg_64000_summary_list.rds")
 
+# no constraints on gc and hc, 64k samples, lb = -.05, smaller tolerance, new setup, fixed a, rg, closer h
+summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_smallerTol_newSetup_fixedArg_closerh_64000_summary_list.rds")
 #summary_list[[2]]$parameters$Std.Error[1]
 
 # extract all the status code of openmx and put them into a vector
@@ -73,7 +75,19 @@ for(i in 1:length(summary_list)) {
 # show how many rows of the dataframe has NA
 sum(is.na(df_se))/prod(dim(df_se))
 
-cor(df_se[,c("mu11","mu21","mu12","mu22","ht11","ht21","ht12","ht22","f11","f21","f12","f22","v11","v21","v12","v22","Gamma11","Gamma21","Gamma12","Gamma22")], use = "pairwise.complete.obs")
+# correlation among the latent estimates
+cor(df[,c("mu11","mu21","mu12","mu22",
+             "hc11","hc12","hc22",
+             "f11","f21","f12","f22",
+             "v11","v21","v12","v22",
+             "Gamma11","Gamma21","Gamma12","Gamma22")], use = "pairwise.complete.obs")
+
+# correlation among the latent estimates' se
+cor(df_se[,c("mu11","mu21","mu12","mu22",
+             "hc11","hc12","hc22",
+             "f11","f21","f12","f22",
+             "v11","v21","v12","v22",
+             "Gamma11","Gamma21","Gamma12","Gamma22")], use = "pairwise.complete.obs")
 
 
 df$status_codes <- status_codes
