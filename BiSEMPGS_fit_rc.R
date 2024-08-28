@@ -17,14 +17,14 @@ data_pattern <- c( "_48000.txt", "_32000.txt", "_64000.txt")
 save_pattern <- c("_48000", "_32000", "_64000")
 model_type <- "m2"
 mxSetup <- "_.05lb_fixedArg_closerh_hcCon"
-n_models <- 100
-for (j in 1){
+n_models <- "All"
+for (j in 1:3){
     # a list to save all the summary data
     summary_list <- list()
 
     # get all the names of the text files that end with 32000.txt
     l_files <- list.files(data_path[j], pattern = data_pattern[j])
-    l_files <- l_files[1:n_models]
+    #l_files <- l_files[1:n_models]
 
     # fit the model for each data file
     for (i in 1:length(l_files)){

@@ -42,6 +42,9 @@ summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_smallerTol_newSetup_fixedA
 # no constraints on gc and hc, 64k samples, lb = -.001 for f and hc, smaller tolerance, new setup, fixed a, rg, closer h
 summary_list <- readRDS("Analysis/Full_Model/m2_.001lbfh_sTol_newSetup_fixedArg_closerh_64000_summary_list.rds")
 
+# constraint on hc but not gc, 48k samples, lb = -0.5, fixed a, rg, 100 models
+summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_fixedArg_closerh_hcCon_48000_nModel100_summary_list.rds")
+
 # extract all the status code of openmx and put them into a vector
 status_codes <- sapply(summary_list, function(x) x$statusCode)
 summary(status_codes)
@@ -195,7 +198,7 @@ ggplot(df_long, aes(x = Index, y = Value)) +
   geom_point() +
   geom_hline(aes(yintercept = true_values[Variable]), color = "red") +
   facet_wrap(~ Variable, scales = "free") +
-  ylim(-.05,.05)
+  ylim(-.05,.05)+
   theme_minimal()
 
 # a plot for three hc estimates
@@ -221,12 +224,12 @@ ggplot(df_long, aes(x = Index, y = Value)) +
   theme_minimal()
 
 # a plot for four ht estimates
-true_values <- c(ht11 = 0.04322826, ht12 =0.009422301, ht21 = 0.01599563, ht22 = 0.01348196)
+true_values <- c(ht11 = 0.04322826, ht12 =0.01599563, ht21 = 0.009422301, ht22 = 0.01348196)
 df_long <- tidyr::pivot_longer(df, c("ht11", "ht12",  "ht21", "ht22"), names_to = "Variable", values_to = "Value")
 df_long$Index <- 1:nrow(df_long)
 ggplot(df_long, aes(x = Index, y = Value)) +
   geom_point() +
-  #geom_hline(aes(yintercept = true_values[Variable]), color = "red") +
+  geom_hline(aes(yintercept = true_values[Variable]), color = "red") +
   facet_wrap(~ Variable, scales = "free") +
   theme_minimal()
 
@@ -249,6 +252,7 @@ ggplot(df_long, aes(x = Index, y = Value)) +
 # plot(df$f22, ylim = c(0,1))
 # abline(h = 0.10, col = "red", lwd = 2)
 # # Now df is a data frame where each column is the estimates from each element in the summary_list
+
 
 
 

@@ -17,7 +17,7 @@ fitBiSEMPGS_m2 <- function(data_path){
     # some optimizer options - adapted from Yongkong's script
     
     mxOption(NULL,"Feasibility tolerance","1e-5")
-    mxOption(NULL,"Number of Threads","4")
+    mxOption(NULL,"Number of Threads","8")
     #mxOption(NULL,"Analytic Gradients","No")
 
     options()$mxOptions$'Feasibility tolerance'
