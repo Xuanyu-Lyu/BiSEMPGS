@@ -106,6 +106,23 @@ g1<-ggplot(df_plot, aes(x = SampleSize, y = f11)) +
 g1
 ggsave(paste0(save_path,"/f11.png"), g1, width = 4, height = 6, type = "cairo-png", dpi = 600)
 
+# make the plot for hc11
+true_value <- 0.01
+g1<-ggplot(df_plot, aes(x = SampleSize, y = hc11)) +
+  geom_boxplot(width = .4, fill = "#00a6ffd1", color = "#1313a3", size = 1, staplewidth = .2 ,outlier.shape = 5) +
+  geom_jitter(width = 0.2, size = 1.5, alpha = 0.6, color = "#2a6fef") +
+  geom_hline(aes(yintercept = true_value), color = "gold", size = 1.25, linetype = "24") +
+  coord_cartesian(ylim = c(.02, .06)) +
+  theme_minimal() +
+  theme(panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.border = element_blank(),
+        axis.line = element_line(color = "black", size = 1),
+        axis.title.x = element_text(size = 20),
+        axis.title.y = element_text(size = 20),
+        axis.text.x = element_text(size = 20),
+        axis.text.y = element_text(size = 20))
+g1
 # plot for f12
 
 true_value <- 0.10

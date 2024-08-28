@@ -19,26 +19,26 @@ The constraints of g,h,w,v will be checked at the end of the markdown.
 ```{r setup}
 # a list of starting parameters for the iterative math
 # feel free to add or change values in the list
-startingParamList1 <- list(vg1 = c(.8,.6,.3,.5,.4,.35),
-						   vg2 = c(.2,.7,.4,.6,.75,.2),
-						   am11 = c(0.4,0.4,0.4,0.4,0.4,0.4),
-						   am12 = c(0.2,0.2,0.2,0.2,0.2,0.2),
-						   am21 = c(0.1,0.1,0.1,0.1,0.1,0.1),
-						   am22 = c(0.3,0.3,0.3,0.3,0.3,0.3),
-						   f11 = c(0.15,0.15,0.15,0.15,0.15,0.15),
-						   f12 = c(0.1,0.1,0.1,0.1,0.1,0.1),
-						   f21 = c(0.05,0.05,0.05,0.05,0.05,0.05),
-						   f22 = c(0.1,0.1,0.1,0.1,0.1,0.1),
-						   Nfam = c(rep(5e4,6)),
-						   rg = rep(.1,6),
-						   re = rep(.1,6),
-						   prop.h2.latent1 = c(0.2,.3,.2,.1,.4,.65),
-						   prop.h2.latent2 = c(0.7,.4,.3,.5,.6,.8))
+startingParamList1 <- list(vg1 = c(.8,.6,.3,.5,.4,.35,.49),
+						   vg2 = c(.2,.7,.4,.6,.75,.2,.49),
+						   am11 = c(0.4,0.4,0.4,0.4,0.4,0.4,.3),
+						   am12 = c(0.2,0.2,0.2,0.2,0.2,0.2,0),
+						   am21 = c(0.1,0.1,0.1,0.1,0.1,0.1,0),
+						   am22 = c(0.3,0.3,0.3,0.3,0.3,0.3,.3),
+						   f11 = c(0.15,0.15,0.15,0.15,0.15,0.15,.2),
+						   f12 = c(0.1,0.1,0.1,0.1,0.1,0.1,0),
+						   f21 = c(0.05,0.05,0.05,0.05,0.05,0.05,0),
+						   f22 = c(0.1,0.1,0.1,0.1,0.1,0.1,.2),
+						   Nfam = c(rep(5e4,7)),
+						   rg = c(rep(.1,6),0),
+						   re = c(rep(.1,6),0),
+						   prop.h2.latent1 = c(0.2,.3,.2,.1,.4,.65,.7),
+						   prop.h2.latent2 = c(0.7,.4,.3,.5,.6,.8,.7))
 
 # please specify the number of condition in the list you want to do the iterative math for
-condition = 1
+condition = 7
 # specify the number of generations you want to run iterative math for
-gens = 15
+gens = 20
 ```
 
 # second chunk: initialize the matrices and variables (don't need to tweak unless interested)
@@ -224,7 +224,8 @@ for (it in 2:gens){
         (exp.itol[[it]] <- t(exp.Omega[[it]])%*%exp.mu[[it]]%*%exp.Gamma[[it]])
 
         (exp.ic[[it]] <- .5*(exp.itol[[it]] + t(exp.itlo[[it]])))
-
+		cat("ic",it,"\n")
+		print(exp.ic[[it]])
         (exp.VGO[[it]] <- 2*delta.t0%*%k.t0%*%t(delta.t0) + 4*delta.t0%*%exp.gc[[it]]%*%t(delta.t0))
 
         (exp.VGL[[it]] <- 2*a.t0%*%j.t0%*%t(a.t0) + 4*a.t0%*%exp.hc[[it]]%*%t(a.t0))
@@ -273,6 +274,11 @@ w %*% solve(2* delta %*% k %*% t(delta))
 # cholesky
 t(chol(solve(sqrt(2* delta %*% k %*% t(delta))))) %*% (w) %*% chol(solve(sqrt(2* delta %*% k %*% t(delta))))
 t(chol(solve(sqrt(2* a %*% j %*% t(a))))) %*% (v) %*% chol(solve(sqrt(2* a %*% j %*% t(a))))
+
+# log
+logm(gc) - logm(2* delta %*% k %*% t(delta))
+logm(hc) - logm(2* a %*% j %*% t(a))
+
 logm(w) - logm(2* delta %*% k %*% t(delta))
 logm(v) - logm(2* a %*% j %*% t(a))
 

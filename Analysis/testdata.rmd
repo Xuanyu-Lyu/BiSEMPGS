@@ -312,7 +312,7 @@ if (model == 1){
         (exp.gc[[it]] <- .5*(exp.gt[[it]] + t(exp.gt[[it]])))
         cat("gc",it,"\n",exp.gc[[it]],"\n")
         (exp.ht[[it]] <- t(exp.Gamma[[it]])%*%exp.mu[[it]]%*%exp.Gamma[[it]])
-        
+        cat("ht",it,"\n",exp.ht[[it]],"\n")
         (exp.hc[[it]] <- .5*(exp.ht[[it]] + t(exp.ht[[it]])))  
         cat("hc",it,"\n",exp.hc[[it]],"\n")
         (exp.w[[it]] <- 2*f.t0%*%exp.Omega[[it]] + f.t0%*%exp.VY[[it]]%*%exp.mu[[it]]%*%exp.Omega[[it]] + f.t0%*%exp.VY[[it]]%*%t(exp.mu[[it]])%*%exp.Omega[[it]])
@@ -329,7 +329,7 @@ if (model == 1){
         (exp.itol[[it]] <- t(exp.Omega[[it]])%*%exp.mu[[it]]%*%exp.Gamma[[it]])
 
         (exp.ic[[it]] <- .5*(exp.itol[[it]] + t(exp.itlo[[it]])))
-
+        cat("ic",it,"\n",exp.ic[[it]],"\n")
         (exp.VGO[[it]] <- 2*delta.t0%*%k.t0%*%t(delta.t0) + 4*delta.t0%*%exp.gc[[it]]%*%t(delta.t0))
         (exp.VGL[[it]] <- 2*a.t0%*%j.t0%*%t(a.t0) + 4*a.t0%*%exp.hc[[it]]%*%t(a.t0))
         (exp.COVLO[[it]] <- 4*delta.t0%*%t(exp.ic[[it]])%*%t(a.t0) + 4*a.t0%*%exp.ic[[it]]%*%t(delta.t0))

@@ -16,13 +16,15 @@ save_path <- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Analysis/",
 data_pattern <- c( "_48000.txt", "_32000.txt", "_64000.txt")
 save_pattern <- c("_48000", "_32000", "_64000")
 model_type <- "m2"
-mxSetup <- "_.001lbfh_sTol_newSetup_fixedArg_closerh"
-for (j in 1:2){
+mxSetup <- "_.05lb_fixedArg_closerh_hcCon"
+n_models <- 100
+for (j in 1){
     # a list to save all the summary data
     summary_list <- list()
 
     # get all the names of the text files that end with 32000.txt
     l_files <- list.files(data_path[j], pattern = data_pattern[j])
+    l_files <- l_files[1:n_models]
 
     # fit the model for each data file
     for (i in 1:length(l_files)){
@@ -40,5 +42,5 @@ for (j in 1:2){
         dir.create(save_path)}
 
     # save the summary list
-    saveRDS(summary_list, paste0(save_path, "/", model_type,mxSetup, save_pattern[j], "_summary_list.rds"))
+    saveRDS(summary_list, paste0(save_path, "/", model_type,mxSetup, save_pattern[j], "_nModel", n_models, "_summary_list.rds"))
 }

@@ -75,22 +75,22 @@ for(i in 1:length(summary_list)) {
         }
     }
 }
-# show how many rows of the dataframe has NA
-sum(is.na(df_se))/prod(dim(df_se))
+# # show how many rows of the dataframe has NA
+# sum(is.na(df_se))/prod(dim(df_se))
 
-# correlation among the latent estimates
-cor(df[,c("mu11","mu21","mu12","mu22",
-             "hc11","hc12","hc22",
-             "f11","f21","f12","f22",
-             "v11","v21","v12","v22",
-             "Gamma11","Gamma21","Gamma12","Gamma22")], use = "pairwise.complete.obs")
+# # correlation among the latent estimates
+# cor(df[,c("mu11","mu21","mu12","mu22",
+#              "hc11","hc12","hc22",
+#              "f11","f21","f12","f22",
+#              "v11","v21","v12","v22",
+#              "Gamma11","Gamma21","Gamma12","Gamma22")], use = "pairwise.complete.obs")
 
-# correlation among the latent estimates' se
-cor(df_se[,c("mu11","mu21","mu12","mu22",
-             "hc11","hc12","hc22",
-             "f11","f21","f12","f22",
-             "v11","v21","v12","v22",
-             "Gamma11","Gamma21","Gamma12","Gamma22")], use = "pairwise.complete.obs")
+# # correlation among the latent estimates' se
+# cor(df_se[,c("mu11","mu21","mu12","mu22",
+#              "hc11","hc12","hc22",
+#              "f11","f21","f12","f22",
+#              "v11","v21","v12","v22",
+#              "Gamma11","Gamma21","Gamma12","Gamma22")], use = "pairwise.complete.obs")
 
 
 df$status_codes <- status_codes
@@ -98,9 +98,9 @@ aggregate(df$f11, by = list(df$status_codes), FUN = mean)
 df <- df[-1,]
 # get only the results with green status code
 df <- df[df$status_codes %in% c("OK", "OK/green"),]
-# get only the results with positive f11 and f22 estimates
+nrow(df)# get only the results with positive f11 and f22 estimates
 df <- df[df$f11 > 0 & df$f22 > 0,]
-aggregate(df$f11, by = list(df$status_codes), FUN = mean)
+#aggregate(df$f11, by = list(df$status_codes), FUN = mean)
 
 library(psych)
 describe(df)
@@ -209,6 +209,37 @@ ggplot(df_long, aes(x = Index, y = Value)) +
   ylim(-.05,.25)+
   theme_minimal()
 
+
+# a plot for four mu estimates
+true_values <- c(mu11 = 0.2226081, mu12 =0.02948167, mu21 = -0.04587792, mu22 = 0.2490391)
+df_long <- tidyr::pivot_longer(df, c("mu11", "mu12",  "mu21", "mu22"), names_to = "Variable", values_to = "Value")
+df_long$Index <- 1:nrow(df_long)
+ggplot(df_long, aes(x = Index, y = Value)) +
+  geom_point() +
+  geom_hline(aes(yintercept = true_values[Variable]), color = "red") +
+  facet_wrap(~ Variable, scales = "free") +
+  theme_minimal()
+
+# a plot for four ht estimates
+true_values <- c(ht11 = 0.04322826, ht12 =0.009422301, ht21 = 0.01599563, ht22 = 0.01348196)
+df_long <- tidyr::pivot_longer(df, c("ht11", "ht12",  "ht21", "ht22"), names_to = "Variable", values_to = "Value")
+df_long$Index <- 1:nrow(df_long)
+ggplot(df_long, aes(x = Index, y = Value)) +
+  geom_point() +
+  #geom_hline(aes(yintercept = true_values[Variable]), color = "red") +
+  facet_wrap(~ Variable, scales = "free") +
+  theme_minimal()
+
+
+# a plot for four gt estimates
+true_values <- c(gt11 = 0.04243337, gt12 =0.007746527, gt21 = 0.01205056, gt22 = 0.006565526)
+df_long <- tidyr::pivot_longer(df, c("gt11", "gt12",  "gt21", "gt22"), names_to = "Variable", values_to = "Value")
+df_long$Index <- 1:nrow(df_long)
+ggplot(df_long, aes(x = Index, y = Value)) +
+  geom_point() +
+  geom_hline(aes(yintercept = true_values[Variable]), color = "red") +
+  facet_wrap(~ Variable, scales = "free") +
+  theme_minimal()
 
 # plot(df$VY11, ylim = c(0,5))
 # abline(h = 1.7292875, col = "red", lwd = 2)
