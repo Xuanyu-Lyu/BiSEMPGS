@@ -95,12 +95,12 @@ for(i in 1:length(summary_list)) {
 #              "v11","v21","v12","v22",
 #              "Gamma11","Gamma21","Gamma12","Gamma22")], use = "pairwise.complete.obs")
 
-
 df$status_codes <- status_codes
 aggregate(df$f11, by = list(df$status_codes), FUN = mean)
 df <- df[-1,]
 # get only the results with green status code
 df <- df[df$status_codes %in% c("OK", "OK/green"),]
+#df <- df[df$status_codes %in% c("OK"),]
 nrow(df)# get only the results with positive f11 and f22 estimates
 df <- df[df$f11 > 0 & df$f22 > 0,]
 #aggregate(df$f11, by = list(df$status_codes), FUN = mean)
@@ -109,34 +109,48 @@ library(psych)
 describe(df)
 library(ggplot2)
 library(tidyr)
+save_path <- "/Users/xuly4739/Library/CloudStorage/OneDrive-UCB-O365/Documents/coding/R-projects/BiSEMPGS/Analysis/Full_Model/DistributionFigures"
 # a plot for three VY estimates
 true_values <- c(VY11 = 1.7478366, VY12 = 0.3401594,  VY22 = 1.1359723)
 df_long <- tidyr::pivot_longer(df, c("VY11", "VY12", "VY22"), names_to = "Variable", values_to = "Value")
 df_long$Index <- 1:nrow(df_long)
+# Calculate means for VY variables
+means <- aggregate(Value ~ Variable, data = df_long, FUN = mean)
 g1 <- ggplot(df_long, aes(x = Index, y = Value)) +
   geom_point() +
   geom_hline(aes(yintercept = true_values[Variable]), color = "red") +
-  facet_wrap(~ Variable, scales = "free") +
+  geom_hline(data = means, aes(yintercept = Value), color = "blue", linetype = "dashed") +
+  facet_wrap(~ Variable, scales = "free") 
   theme_minimal()
 g1
+ggsave(paste0(save_path,"/VY.png"), g1, width = 8, height = 8, type = "cairo-png", dpi = 400)
+
+
 # a plot for four f estimates
 describe(df[,c("f11","f12","f21","f22")], trim = 0)
 true_values <- c(f11 = 0.15, f12 = 0.1, f21 = 0.05, f22 = 0.1)
 df_long <- tidyr::pivot_longer(df, c("f11", "f12",  "f21", "f22"), names_to = "Variable", values_to = "Value")
 df_long$Index <- 1:nrow(df_long)
-ggplot(df_long, aes(x = Index, y = Value)) +
+means <- aggregate(Value ~ Variable, data = df_long, FUN = mean)
+g1 = ggplot(df_long, aes(x = Index, y = Value)) +
   geom_point() +
   geom_hline(aes(yintercept = true_values[Variable]), color = "red") +
-  facet_wrap(~ Variable, scales = "free") +
-  theme_minimal()
+  geom_hline(data = means, aes(yintercept = Value), color = "blue", linetype = "dashed") +
+  facet_wrap(~ Variable, scales = "free") 
+g1
+ggsave(paste0(save_path,"/f.png"), g1, width = 8, height = 8, type = "cairo-png", dpi = 400)
+
+
 
 # a plot for two delta estimates
 true_values <- c(delta11 = sqrt(.49*.5), delta22 = sqrt(.16*.3))
 df_long <- tidyr::pivot_longer(df, c("delta11", "delta22"), names_to = "Variable", values_to = "Value")
 df_long$Index <- 1:nrow(df_long)
+means <- aggregate(Value ~ Variable, data = df_long, FUN = mean)
 ggplot(df_long, aes(x = Index, y = Value)) +
   geom_point() +
   geom_hline(aes(yintercept = true_values[Variable]), color = "red") +
+  geom_hline(data = means, aes(yintercept = Value), color = "blue", linetype = "dashed") +
   facet_wrap(~ Variable, scales = "free") +
   theme_minimal()
 
@@ -144,9 +158,11 @@ ggplot(df_long, aes(x = Index, y = Value)) +
 true_values <- c(a11 = sqrt(.49*.5), a22 = sqrt(.16*.7))
 df_long <- tidyr::pivot_longer(df, c("a11", "a22"), names_to = "Variable", values_to = "Value")
 df_long$Index <- 1:nrow(df_long)
+means <- aggregate(Value ~ Variable, data = df_long, FUN = mean)
 ggplot(df_long, aes(x = Index, y = Value)) +
   geom_point() +
   geom_hline(aes(yintercept = true_values[Variable]), color = "red") +
+  geom_hline(data = means, aes(yintercept = Value), color = "blue", linetype = "dashed") +
   facet_wrap(~ Variable, scales = "free") +
   theme_minimal()
 
@@ -154,19 +170,25 @@ ggplot(df_long, aes(x = Index, y = Value)) +
 true_values <- c(v11 = 0.20765721, v12 = 0.10233074, v21 = 0.08560434, v22 = 0.07192265)
 df_long <- tidyr::pivot_longer(df, c("v11", "v12",  "v21", "v22"), names_to = "Variable", values_to = "Value")
 df_long$Index <- 1:nrow(df_long)
-ggplot(df_long, aes(x = Index, y = Value)) +
+means <- aggregate(Value ~ Variable, data = df_long, FUN = mean)
+g1 = ggplot(df_long, aes(x = Index, y = Value)) +
   geom_point() +
   geom_hline(aes(yintercept = true_values[Variable]), color = "red") +
-  facet_wrap(~ Variable, scales = "free") +
-  theme_minimal()
+  geom_hline(data = means, aes(yintercept = Value), color = "blue", linetype = "dashed") +
+  facet_wrap(~ Variable, scales = "free") 
+g1
+ggsave(paste0(save_path,"/v.png"), g1, width = 8, height = 8, type = "cairo-png", dpi = 400)
+
 
 # a plot for four w estimates
 true_values <- c(w11 = 0.20374099, w12 = 0.07627324, w21 = 0.08258827, w22 = 0.05076394)
 df_long <- tidyr::pivot_longer(df, c("w11", "w12",  "w21", "w22"), names_to = "Variable", values_to = "Value")
 df_long$Index <- 1:nrow(df_long)
+means <- aggregate(Value ~ Variable, data = df_long, FUN = mean)
 ggplot(df_long, aes(x = Index, y = Value)) +
   geom_point() +
   geom_hline(aes(yintercept = true_values[Variable]), color = "red") +
+  geom_hline(data = means, aes(yintercept = Value), color = "blue", linetype = "dashed") +
   facet_wrap(~ Variable, scales = "free") +
   theme_minimal()
 
@@ -174,9 +196,11 @@ ggplot(df_long, aes(x = Index, y = Value)) +
 true_values <- c(Omega11 = 0.4337504, Omega12 = 0.08469132, Omega21 = 0.0634763, Omega22 = 0.1440672)
 df_long <- tidyr::pivot_longer(df, c("Omega11", "Omega12",  "Omega21", "Omega22"), names_to = "Variable", values_to = "Value")
 df_long$Index <- 1:nrow(df_long)
+means <- aggregate(Value ~ Variable, data = df_long, FUN = mean)
 ggplot(df_long, aes(x = Index, y = Value)) +
   geom_point() +
   geom_hline(aes(yintercept = true_values[Variable]), color = "red") +
+  geom_hline(data = means, aes(yintercept = Value), color = "blue", linetype = "dashed") +
   facet_wrap(~ Variable, scales = "free") +
   theme_minimal()
 
@@ -184,9 +208,11 @@ ggplot(df_long, aes(x = Index, y = Value)) +
 true_values <- c(Gamma11 = 0.4364954, Gamma12 = 0.09868633, Gamma21 = 0.0733564, Gamma22 = 0.2164179)
 df_long <- tidyr::pivot_longer(df, c("Gamma11", "Gamma12",  "Gamma21", "Gamma22"), names_to = "Variable", values_to = "Value")
 df_long$Index <- 1:nrow(df_long)
+means <- aggregate(Value ~ Variable, data = df_long, FUN = mean)
 ggplot(df_long, aes(x = Index, y = Value)) +
   geom_point() +
   geom_hline(aes(yintercept = true_values[Variable]), color = "red") +
+  geom_hline(data = means, aes(yintercept = Value), color = "blue", linetype = "dashed") +
   facet_wrap(~ Variable, scales = "free") +
   theme_minimal()
 
@@ -194,9 +220,11 @@ ggplot(df_long, aes(x = Index, y = Value)) +
 true_values <- c(gc11 = 0.04243337, gc12 = 0.009898546, gc22 = 0.006565526)
 df_long <- tidyr::pivot_longer(df, c("gc11", "gc12",  "gc22"), names_to = "Variable", values_to = "Value")
 df_long$Index <- 1:nrow(df_long)
+means <- aggregate(Value ~ Variable, data = df_long, FUN = mean)
 ggplot(df_long, aes(x = Index, y = Value)) +
   geom_point() +
   geom_hline(aes(yintercept = true_values[Variable]), color = "red") +
+  geom_hline(data = means, aes(yintercept = Value), color = "blue", linetype = "dashed") +
   facet_wrap(~ Variable, scales = "free") +
   ylim(-.05,.05)+
   theme_minimal()
@@ -205,21 +233,26 @@ ggplot(df_long, aes(x = Index, y = Value)) +
 true_values <- c(hc11 = 0.04322826, hc12 = 0.01270896, hc22 = 0.01348196)
 df_long <- tidyr::pivot_longer(df, c("hc11", "hc12",  "hc22"), names_to = "Variable", values_to = "Value")
 df_long$Index <- 1:nrow(df_long)
-ggplot(df_long, aes(x = Index, y = Value)) +
+means <- aggregate(Value ~ Variable, data = df_long, FUN = mean)
+g1 <- ggplot(df_long, aes(x = Index, y = Value)) +
   geom_point() +
   geom_hline(aes(yintercept = true_values[Variable]), color = "red") +
+  geom_hline(data = means, aes(yintercept = Value), color = "blue", linetype = "dashed") +
   facet_wrap(~ Variable, scales = "free") +
-  ylim(-.05,.25)+
-  theme_minimal()
+  ylim(-.05,.25)
+g1
+ggsave(paste0(save_path,"/hc.png"), g1, width = 8, height = 8, type = "cairo-png", dpi = 400)
 
 
 # a plot for four mu estimates
 true_values <- c(mu11 = 0.2226081, mu12 =0.02948167, mu21 = -0.04587792, mu22 = 0.2490391)
 df_long <- tidyr::pivot_longer(df, c("mu11", "mu12",  "mu21", "mu22"), names_to = "Variable", values_to = "Value")
 df_long$Index <- 1:nrow(df_long)
+means <- aggregate(Value ~ Variable, data = df_long, FUN = mean)
 ggplot(df_long, aes(x = Index, y = Value)) +
   geom_point() +
   geom_hline(aes(yintercept = true_values[Variable]), color = "red") +
+  geom_hline(data = means, aes(yintercept = Value), color = "blue", linetype = "dashed") +
   facet_wrap(~ Variable, scales = "free") +
   theme_minimal()
 
@@ -227,20 +260,24 @@ ggplot(df_long, aes(x = Index, y = Value)) +
 true_values <- c(ht11 = 0.04322826, ht12 =0.01599563, ht21 = 0.009422301, ht22 = 0.01348196)
 df_long <- tidyr::pivot_longer(df, c("ht11", "ht12",  "ht21", "ht22"), names_to = "Variable", values_to = "Value")
 df_long$Index <- 1:nrow(df_long)
+means <- aggregate(Value ~ Variable, data = df_long, FUN = mean)
 ggplot(df_long, aes(x = Index, y = Value)) +
   geom_point() +
   geom_hline(aes(yintercept = true_values[Variable]), color = "red") +
+  geom_hline(data = means, aes(yintercept = Value), color = "blue", linetype = "dashed") +
   facet_wrap(~ Variable, scales = "free") +
   theme_minimal()
 
 
 # a plot for four gt estimates
-true_values <- c(gt11 = 0.04243337, gt12 =0.007746527, gt21 = 0.01205056, gt22 = 0.006565526)
+true_values <- c(gt11 = 0.04243337, gt12 =0.01205056, gt21 = 0.007746527, gt22 = 0.006565526)
 df_long <- tidyr::pivot_longer(df, c("gt11", "gt12",  "gt21", "gt22"), names_to = "Variable", values_to = "Value")
 df_long$Index <- 1:nrow(df_long)
+means <- aggregate(Value ~ Variable, data = df_long, FUN = mean)
 ggplot(df_long, aes(x = Index, y = Value)) +
   geom_point() +
   geom_hline(aes(yintercept = true_values[Variable]), color = "red") +
+  geom_hline(data = means, aes(yintercept = Value), color = "blue", linetype = "dashed") +
   facet_wrap(~ Variable, scales = "free") +
   theme_minimal()
 

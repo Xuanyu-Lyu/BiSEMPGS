@@ -16,8 +16,14 @@ fitBiSEMPGS_m2 <- function(data_path){
 
     # some optimizer options - adapted from Yongkong's script
     
-    mxOption(NULL,"Feasibility tolerance","1e-5")
-    mxOption(NULL,"Number of Threads","8")
+    mxOption(NULL,"Feasibility tolerance","1e-6")
+    mxOption(NULL,"Number of Threads","4")
+    #mxOption(NULL,"Analytic Gradients","No")
+
+    options()$mxOptions$'Feasibility tolerance'
+    #options()$mxOptions$'Analytic Gradients'
+    options()$mxOptions$'Gradient step size'  #1e-7
+    options()$mxOptions$'Optimality tolerance'  #1e-7
     #mxOption(NULL,"Analytic Gradients","No")
 
     options()$mxOptions$'Feasibility tolerance'
@@ -42,7 +48,7 @@ fitBiSEMPGS_m2 <- function(data_path){
         VF_Constraint    <- mxConstraint(VF == VF_Algebra,       name='VF_Constraint')
     # Genetic effects:
         delta <- mxMatrix(type="Diag", nrow=2, ncol=2, free=c(T,T), values=c(.4,.3), label=c("delta11", "delta22"),name="delta", lbound = -.05) # Effect of PGS on phen
-        a     <- mxMatrix(type="Diag", nrow=2, ncol=2, free=c(T,T), values=c(.2,.1), label=c("a11", "a22"),    name="a", lbound = -.05)     # Effect of latent PGS on phen
+        a     <- mxMatrix(type="Diag", nrow=2, ncol=2, free=c(T,T), values=c(.4,.4), label=c("a11", "a22"),    name="a", lbound = -.05)     # Effect of latent PGS on phen
         k     <- mxMatrix(type="Symm", nrow=2, ncol=2, free=matrix(c(F,T,T,F),nrow = 2,ncol = 2), values=c(.5,0.02,0.02,.5), label=c("k11", "k12", "k12","k22"),    name="k", lbound = -.05)     # PGS variance (if no AM)
         j     <- mxMatrix(type="Symm", nrow=2, ncol=2, free=matrix(c(F,T,T,F),nrow = 2,ncol = 2), values=c(.5,0.03,0.03,.5), label=c("j11", "j12", "j12","j22"),    name="j", lbound = -.05)     # Latent PGS variance (if no AM)
         Omega <- mxMatrix(type="Full", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.6,0.15,0.1,.5), label=c("Omega11", "Omega21", "Omega12","Omega22"),name="Omega", lbound = -.05) # Within-person PGS-Phen covariance
@@ -57,11 +63,11 @@ fitBiSEMPGS_m2 <- function(data_path){
         adelta_Constraint_Algebra <- mxAlgebra(delta, name = "adelta_Constraint_Algebra")
         adelta_Constraint <- mxConstraint(a == delta, name = "adelta_Constraint")
     # Assortative mating effects:
-        mu    <- mxMatrix(type="Full", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.15,0.15,0.1,.3), label=c("mu11", "mu21", "mu12","mu22"), name="mu", lbound = -.05) # AM co-path coefficient
+       mu    <- mxMatrix(type="Full", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.15,0.15,0.1,.3), label=c("mu11", "mu21", "mu12","mu22"), name="mu", lbound = -.05) # AM co-path coefficient
         gt     <- mxMatrix(type="Full", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.2,0.15,0.1,.1), label=c("gt11", "gt21", "gt12","gt22"),  name="gt", lbound = -.05)  # Increase in cross-mate PGS (co)variances from AM
-        ht     <- mxMatrix(type="Full", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.05,0.15,0.1,.05), label=c("ht11", "ht21", "ht12","ht22"),  name="ht", lbound = -.05)  # Increase in cross-mate latent PGS (co)variances from AM
+        ht     <- mxMatrix(type="Full", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.05,0.015,0.01,.02), label=c("ht11", "ht21", "ht12","ht22"),  name="ht", lbound = -.05)  # Increase in cross-mate latent PGS (co)variances from AM
         gc     <- mxMatrix(type="Symm", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.14,0.1,0.1,.1), label=c("gc11", "gc12", "gc12","gc22"),   name="gc", lbound = -.05)  # Increase in within-mate PGS (co)variances from AM
-        hc     <- mxMatrix(type="Symm", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.7,0.1,0.1,.25), label=c("hc11", "hc12", "hc12","hc22"),  name="hc", lbound = -.05)  # Increase in within-mate latent PGS (co)variances from AM
+        hc     <- mxMatrix(type="Symm", nrow=2, ncol=2, free=c(T,T,T,T), values=c(0.04,0.01,0.01,.015), label=c("hc11", "hc12", "hc12","hc22"),  name="hc", lbound = -.05)  # Increase in within-mate latent PGS (co)variances from AM
         gt_Algebra <- mxAlgebra(t(Omega) %*% mu %*% Omega, name="gt_Algebra") # E.g., cov(TPO, TMO)
         ht_Algebra <- mxAlgebra(t(Gamma) %*% mu %*% Gamma, name="ht_Algebra") # E.g., cov(TPL, TML)
         gc_Algebra <- mxAlgebra(0.5 * (gt + t(gt)), name="gc_Algebra") # gc should be symmetric
@@ -87,7 +93,7 @@ fitBiSEMPGS_m2 <- function(data_path){
         ic_constraint <- mxConstraint(ic == ic_Algebra, name='ic_constraint')
 
     # Vertical transmission effects
-        f     <- mxMatrix(type="Full", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.16,0.15,0.1,.08), label=c("f11", "f21","f12","f22"),  name="f", lbound = -.05) # Vertical Transmission effect
+        f     <- mxMatrix(type="Full", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.16,0.04,0.11,.09), label=c("f11", "f21","f12","f22"),  name="f", lbound = -.05) # Vertical Transmission effect
         w     <- mxMatrix(type="Full", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.3,0.15,0.1,.51), label=c("w11", "w21", "w12","w22"),  name="w", lbound = -.05) # Genetic nurture
         v     <- mxMatrix(type="Full", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.2,0.1,0.07,.08), label=c("v11", "v21", "v12","v22"),  name="v", lbound = -.05) # Latent nurture
         w_Algebra     <- mxAlgebra(2 * f %*% Omega + f %*% VY %*% mu %*% Omega + f %*% VY %*% t(mu) %*% Omega, name="w_Algebra")    
@@ -143,15 +149,15 @@ fitBiSEMPGS_m2 <- function(data_path){
                     VF_Constraint, 
                     #Omega_Constraint, 
                     Gamma_Constraint, 
-                    adelta_Constraint,
+                    #adelta_Constraint,
                     #gt_constraint, 
                     ht_constraint, 
                     #gc_constraint, 
-                    #hc_constraint, 
+                    hc_constraint, 
                     #gchc_constraint, 
                     itlo_constraint, 
                     itol_constraint, 
-                    #ic_constraint, 
+                    ic_constraint, 
                     v_constraint, 
                     w_constraint,
                     #wv_constraint,
