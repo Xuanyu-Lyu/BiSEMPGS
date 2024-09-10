@@ -36,7 +36,7 @@ startingParamList1 <- list(vg1 = c(.8,.6,.3,.5,.4,.35,.49),
 						   prop.h2.latent2 = c(0.7,.4,.3,.5,.6,.8,.7))
 
 # please specify the number of condition in the list you want to do the iterative math for
-condition = 7
+condition = 1
 # specify the number of generations you want to run iterative math for
 gens = 20
 ```

@@ -18,7 +18,7 @@ save_pattern <- c("_48000", "_32000", "_64000")
 model_type <- "m2"
 mxSetup <- "_.05lb_freeArg_closerh_hcCon_forceJ"
 n_models <- "All"
-for (j in 1){
+for (j in 1:3){
     # a list to save all the summary data
     summary_list <- list()
 
