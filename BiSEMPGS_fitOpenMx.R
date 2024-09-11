@@ -38,8 +38,8 @@ fitBiSEMPGS_m2 <- function(data_path){
     # Create variables and define the algebra for each variables
 
         VY    <- mxMatrix(type="Symm", nrow=2, ncol=2, free=c(T,T,T,T), values=c(2,.4,.4,1.5), label=c("VY11", "VY12", "VY12","VY22"), name="VY", lbound = -.05) # Phenotypic variance
-        VF    <- mxMatrix(type="Symm", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.5,0.3,0.3,.2), label=c("VF11", "VF12", "VF12","VF22"), name="VF", lbound = -.05) # Variance due to VT
-        VE    <- mxMatrix(type="Symm", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.7,.1,0.1,.5), label=c("VE11", "VE12", "VE12","VE22"), name="VE", lbound = -.05) # Residual variance
+        VF    <- mxMatrix(type="Symm", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.15,0.06,0.06,.04), label=c("VF11", "VF12", "VF12","VF22"), name="VF", lbound = -.05) # Variance due to VT
+        VE    <- mxMatrix(type="Symm", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.5,.06,0.06,.84), label=c("VE11", "VE12", "VE12","VE22"), name="VE", lbound = -.05) # Residual variance
 
         VY_Algebra <- mxAlgebra(2 * delta %*% t(Omega) + 2 * a %*% t(Gamma) + w %*% t(delta) + v %*% t(a) + VF + VE, name="VY_Algebra")
         VF_Algebra <- mxAlgebra(2 * f %*% VY %*% t(f) + f %*% VY %*% mu %*% VY %*% t(f) + f %*% VY %*% t(mu) %*% VY %*% t(f), name="VF_Algebra")
@@ -150,16 +150,16 @@ fitBiSEMPGS_m2 <- function(data_path){
         Params <- list(
                     VY, VF, VE, delta, a, k, j, Omega, Gamma, mu, gt, ht, gc, hc, itlo, itol, ic, f, w, v, 
                     VY_Algebra, VF_Algebra, Omega_Algebra, Gamma_Algebra, adelta_Constraint_Algebra, j_Algebra, gt_Algebra, ht_Algebra, gc_Algebra, hc_Algebra, gchc_constraint_Algebra, itlo_Algebra, itol_Algebra, ic_Algebra, w_Algebra, v_Algebra, wv_constraint_algebra,
-                    #VY_Constraint, 
+                    VY_Constraint, 
                     VF_Constraint, 
                     Omega_Constraint, 
                     Gamma_Constraint, 
                     #adelta_Constraint,
                     j_constraint,
-                    gt_constraint, 
-                    #ht_constraint, 
-                    gc_constraint, 
-                    #hc_constraint, 
+                    #gt_constraint, 
+                    ht_constraint, 
+                    #gc_constraint, 
+                    hc_constraint, 
                     #gchc_constraint, 
                     itlo_constraint, 
                     itol_constraint, 

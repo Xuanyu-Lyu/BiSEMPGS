@@ -64,17 +64,25 @@ summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_freeArg_closerh_hcCon_4800
 summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_freeArg_closerh_hcCon_64000_nModelAll_summary_list.rds")
 
 # constraint on hc but not gc, 32k samples, lb = -0.5, free a, rg, constraint on j
-summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_freeArg_closerh_hcCon_forceJ_32000_nModelAll_summary_list.rds") # does not work
+summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_freeArg_closerh_hcCon_forceJ_32000_nModelAll_summary_list.rds") # does not work, a is the same as delta
 
 # constraint on hc but not gc, 48k samples, lb = -0.5, free a, rg, constraint on j
-summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_freeArg_closerh_hcCon_forceJ_48000_nModelAll_summary_list.rds") # does not work
+summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_freeArg_closerh_hcCon_forceJ_48000_nModelAll_summary_list.rds") # does not work, a is the same as delta
 
 # constraint on hc but not gc, 64k samples, lb = -0.5, free a, rg, constraint on j
-summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_freeArg_closerh_hcCon_forceJ_64000_nModelAll_summary_list.rds") # does not work
+summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_freeArg_closerh_hcCon_forceJ_64000_nModelAll_summary_list.rds") # does not work, a is the same as delta
+
+# constraint on hc but not gc, 64k samples, lb = -0.5, free a, rg, constraint on j, using matt's constraints
+summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_freeArg_closerh_hcCon_forceJ_tweakConst_48000_nModelAll_summary_list.rds") # does not work
+
 
 # extract all the status code of openmx and put them into a vector
 status_codes <- sapply(summary_list, function(x) x$statusCode)
 summary(status_codes)
+
+#get a covariance matrix example
+summary_list$loop3.rds_48000.txt
+
 # extract all the estimates in the list and put each parameter as a column in a data frame
 # Initialize an empty 78 column data frame
 df <- data.frame(matrix(ncol = nrow(summary_list[[2]]$parameters), nrow = length(summary_list)))
