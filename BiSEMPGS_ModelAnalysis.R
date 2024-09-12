@@ -64,30 +64,30 @@ summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_freeArg_closerh_hcCon_4800
 summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_freeArg_closerh_hcCon_64000_nModelAll_summary_list.rds")
 
 # constraint on hc but not gc, 32k samples, lb = -0.5, free a, rg, constraint on j
-summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_freeArg_closerh_hcCon_forceJ_32000_nModelAll_summary_list.rds") # does not work, a is the same as delta
+summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_freeArg_closerh_hcCon_forceJ_32000_nModelAll_summary_list.rds") # does not work
 
 # constraint on hc but not gc, 48k samples, lb = -0.5, free a, rg, constraint on j
-summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_freeArg_closerh_hcCon_forceJ_48000_nModelAll_summary_list.rds") # does not work, a is the same as delta
+summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_freeArg_closerh_hcCon_forceJ_48000_nModelAll_summary_list.rds") # does not work
 
 # constraint on hc but not gc, 64k samples, lb = -0.5, free a, rg, constraint on j
-summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_freeArg_closerh_hcCon_forceJ_64000_nModelAll_summary_list.rds") # does not work, a is the same as delta
+summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_freeArg_closerh_hcCon_forceJ_64000_nModelAll_summary_list.rds") 
+# does not work well, a is underestimated. When using stringent filtering, the estimates are not that bad.
 
 # constraint on hc but not gc, 64k samples, lb = -0.5, free a, rg, constraint on j, using matt's constraints
-summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_freeArg_closerh_hcCon_forceJ_tweakConst_48000_nModelAll_summary_list.rds") # does not work
+summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_freeArg_closerh_hcCon_forceJ_tweakConst_48000_nModelAll_summary_list.rds") # does not work, a and delta are too off.
+
+# constraint on hc but not gc, 64k samples, lb = -0.5, free a, rg, constraint on j, using my constraints + Omega Constraints
+summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_freeArg_closerh_hcCon_forceJ_tweakConst2_48000_nModel100_summary_list.rds") # does not work, a and delta are too off.
 
 
 # extract all the status code of openmx and put them into a vector
 status_codes <- sapply(summary_list, function(x) x$statusCode)
 summary(status_codes)
-
-#get a covariance matrix example
-summary_list$loop3.rds_48000.txt
-
 # extract all the estimates in the list and put each parameter as a column in a data frame
 # Initialize an empty 78 column data frame
 df <- data.frame(matrix(ncol = nrow(summary_list[[2]]$parameters), nrow = length(summary_list)))
 colnames(df) <- summary_list[[2]]$parameters$name
-colnames(df) 
+#colnames(df) 
 # Loop over the elements in the summary_list
 for(i in 1:length(summary_list)) {
     for(j in 1:nrow(summary_list[[i]]$parameters)){
@@ -99,47 +99,44 @@ for(i in 1:length(summary_list)) {
     }
 }
 
-# initialize a df for the standard errors\
-df_se <- data.frame(matrix(ncol = nrow(summary_list[[2]]$parameters), nrow = length(summary_list)))
-colnames(df_se) <- summary_list[[2]]$parameters$name
-colnames(df_se)
-# Loop over the elements in the summary_list
-for(i in 1:length(summary_list)) {
-    for(j in 1:nrow(summary_list[[i]]$parameters)){
-        if (!is.null(summary_list[[i]]$parameters$Std.Error[j])) {
-            df_se[i,j] <- summary_list[[i]]$parameters$Std.Error[j]
-        } else {
-            print(paste("NULL value at i =", i, "and j =", j))
-        }
-    }
-}
+# # initialize a df for the standard errors\
+# df_se <- data.frame(matrix(ncol = nrow(summary_list[[2]]$parameters), nrow = length(summary_list)))
+# colnames(df_se) <- summary_list[[2]]$parameters$name
+# colnames(df_se)
+# # Loop over the elements in the summary_list
+# for(i in 1:length(summary_list)) {
+#     for(j in 1:nrow(summary_list[[i]]$parameters)){
+#         if (!is.null(summary_list[[i]]$parameters$Std.Error[j])) {
+#             df_se[i,j] <- summary_list[[i]]$parameters$Std.Error[j]
+#         } else {
+#             print(paste("NULL value at i =", i, "and j =", j))
+#         }
+#     }
+# }
 # # show how many rows of the dataframe has NA
 # sum(is.na(df_se))/prod(dim(df_se))
 
-# # correlation among the latent estimates
-# cor(df[,c("mu11","mu21","mu12","mu22",
-#              "hc11","hc12","hc22",
-#              "f11","f21","f12","f22",
-#              "v11","v21","v12","v22",
-#              "Gamma11","Gamma21","Gamma12","Gamma22")], use = "pairwise.complete.obs")
 
-# # correlation among the latent estimates' se
-# cor(df_se[,c("mu11","mu21","mu12","mu22",
-#              "hc11","hc12","hc22",
-#              "f11","f21","f12","f22",
-#              "v11","v21","v12","v22",
-#              "Gamma11","Gamma21","Gamma12","Gamma22")], use = "pairwise.complete.obs")
 
 df$status_codes <- status_codes
 #aggregate(df$f11, by = list(df$status_codes), FUN = mean)
 df <- df[-1,]
 # get only the results with green status code
 df <- df[df$status_codes %in% c("OK", "OK/green"),]
-#df <- df[df$status_codes %in% c("OK"),]
 nrow(df)
 # get only the results with positive f11 and f22 estimates
 #df <- df[df$f11 > 0 & df$f22 > 0,]
 #aggregate(df$f11, by = list(df$status_codes), FUN = mean)
+
+#remove the
+
+#remove all rows with any value smaller than -.045 exactly
+#df <- df[!apply(df[,1:64] <= -0.048, 1, any), ]
+
+#remove the outliers that are three sd away from the mean of VY11 VY12 and VY22
+df <- df[abs(df$VY11 - mean(df$VY11)) < 3*sd(df$VY11),]
+nrow(df)
+
 
 library(psych)
 describe(df)
@@ -157,10 +154,34 @@ g1 <- ggplot(df_long, aes(x = Index, y = Value)) +
   geom_hline(aes(yintercept = true_values[Variable]), color = "red") +
   geom_hline(data = means, aes(yintercept = Value), color = "blue", linetype = "dashed") +
   facet_wrap(~ Variable, scales = "free") 
-  theme_minimal()
+  #theme_minimal()
 g1
-ggsave(paste0(save_path,"/VY_fixarg.png"), g1, width = 8, height = 8, type = "cairo-png", dpi = 400)
+#ggsave(paste0(save_path,"/VY_fixarg.png"), g1, width = 8, height = 8, type = "cairo-png", dpi = 400)
 
+# a plot for three VF estimates
+true_values <- c(VF11 = 0.17274308, VF12 = 0.08830186, VF22 = 0.05280104)
+df_long <- tidyr::pivot_longer(df, c("VF11", "VF12", "VF22"), names_to = "Variable", values_to = "Value")
+df_long$Index <- 1:nrow(df_long)
+means <- aggregate(Value ~ Variable, data = df_long, FUN = median)
+g1 <- ggplot(df_long, aes(x = Index, y = Value)) +
+  geom_point() +
+  geom_hline(aes(yintercept = true_values[Variable]), color = "red") +
+  geom_hline(data = means, aes(yintercept = Value), color = "blue", linetype = "dashed") +
+  facet_wrap(~ Variable, scales = "free") 
+
+g1
+
+# a plot for three VE estimates
+true_values <- c(VE11 = 0.51000000, VE12 = 0.06545227, VE22 = 0.84000000)
+df_long <- tidyr::pivot_longer(df, c("VE11", "VE12", "VE22"), names_to = "Variable", values_to = "Value")
+df_long$Index <- 1:nrow(df_long)
+means <- aggregate(Value ~ Variable, data = df_long, FUN = median)
+g1 <- ggplot(df_long, aes(x = Index, y = Value)) +
+  geom_point() +
+  geom_hline(aes(yintercept = true_values[Variable]), color = "red") +
+  geom_hline(data = means, aes(yintercept = Value), color = "blue", linetype = "dashed") +
+  facet_wrap(~ Variable, scales = "free")
+g1
 
 # a plot for four f estimates
 describe(df[,c("f11","f12","f21","f22")], trim = 0)
@@ -174,7 +195,7 @@ g1 = ggplot(df_long, aes(x = Index, y = Value)) +
   geom_hline(data = means, aes(yintercept = Value), color = "blue", linetype = "dashed") +
   facet_wrap(~ Variable, scales = "free") 
 g1
-ggsave(paste0(save_path,"/f_fixarg.png"), g1, width = 8, height = 8, type = "cairo-png", dpi = 400)
+#ggsave(paste0(save_path,"/f_fixarg.png"), g1, width = 8, height = 8, type = "cairo-png", dpi = 400)
 
 
 
@@ -213,7 +234,7 @@ g1 = ggplot(df_long, aes(x = Index, y = Value)) +
   geom_hline(data = means, aes(yintercept = Value), color = "blue", linetype = "dashed") +
   facet_wrap(~ Variable, scales = "free") 
 g1
-ggsave(paste0(save_path,"/v_fixarg.png"), g1, width = 8, height = 8, type = "cairo-png", dpi = 400)
+#ggsave(paste0(save_path,"/v_fixarg.png"), g1, width = 8, height = 8, type = "cairo-png", dpi = 400)
 
 
 # a plot for four w estimates
@@ -277,7 +298,7 @@ g1 <- ggplot(df_long, aes(x = Index, y = Value)) +
   facet_wrap(~ Variable, scales = "free") +
   ylim(-.05,.25)
 g1
-ggsave(paste0(save_path,"/hc_fixarg.png"), g1, width = 8, height = 8, type = "cairo-png", dpi = 400)
+#ggsave(paste0(save_path,"/hc_fixarg.png"), g1, width = 8, height = 8, type = "cairo-png", dpi = 400)
 
 
 # a plot for four mu estimates
@@ -325,6 +346,7 @@ ggplot(df_long, aes(x = Index, y = Value)) +
 # plot(df$f22, ylim = c(0,1))
 # abline(h = 0.10, col = "red", lwd = 2)
 # # Now df is a data frame where each column is the estimates from each element in the summary_list
+
 
 
 
