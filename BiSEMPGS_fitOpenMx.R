@@ -346,7 +346,7 @@ fitBiSEMPGS_m2_fixH2 <- function(data_path){
 }
 
 
-fitBiSEMPGS_m2_tweaklb <- function(data_path, lb =.0001){
+fitBiSEMPGS_m2_tweaklb <- function(data_path, lb = -10){
         # load the packages
     library(OpenMx)
     library(data.table)

@@ -16,7 +16,7 @@ save_path <- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Analysis/",
 data_pattern <- c( "_48000.txt", "_32000.txt", "_64000.txt")
 save_pattern <- c("_48000", "_32000", "_64000")
 model_type <- "m2"
-mxSetup <- "_1e4lb_freeArg_forceJ"
+mxSetup <- "_-10lb_freeArg_forceJ"
 n_models <- "All"
 for (j in 1){
     # a list to save all the summary data
