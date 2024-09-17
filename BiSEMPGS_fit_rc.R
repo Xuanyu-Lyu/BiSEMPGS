@@ -16,7 +16,7 @@ save_path <- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Analysis/",
 data_pattern <- c( "_48000.txt", "_32000.txt", "_64000.txt")
 save_pattern <- c("_48000", "_32000", "_64000")
 model_type <- "m2"
-mxSetup <- "_.05lb_freeArg_forceJ_1e4lb"
+mxSetup <- "_1e4lb_freeArg_forceJ"
 n_models <- "All"
 for (j in 1){
     # a list to save all the summary data
@@ -27,7 +27,7 @@ for (j in 1){
     #l_files <- l_files[1:n_models]
 
     # fit the model for each data file
-    for (i in 1:100){
+    for (i in 1:length(l_files)){
         # fit the model
         #fit <- fitBiSEMPGS_m2(paste0(data_path[j], "/", l_files[i]))
         
