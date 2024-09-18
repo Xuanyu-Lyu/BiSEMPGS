@@ -60,6 +60,7 @@ summary_list <- readRDS("Data/Full_Model/Local_Analysis/m2-.05lb_freeArg_forceJ_
 
 summary_list <- readRDS("Data/Full_Model/Local_Analysis/m2-.05lb_fixArg_VFnolb_64000_nModelAll_summary_list.rds")  # try large scale/ seems to be the best, if excluding outlier VFs
 
+summary_list <- readRDS("Data/Full_Model/Local_Analysis/m2-.05lb_freeArg_VF1e-4_64000_nModelAll_summary_list.rds") #  very bad a ve vf
 
 # extract all the status code of openmx and put them into a vector
 status_codes <- sapply(summary_list, function(x) x$statusCode)
