@@ -16,8 +16,8 @@ fitBiSEMPGS_m2 <- function(data_path){
 
     # some optimizer options - adapted from Yongkong's script
     
-    mxOption(NULL,"Feasibility tolerance","1e-6")
-    mxOption(NULL,"Number of Threads","4")
+    mxOption(NULL,"Feasibility tolerance","1e-7")
+    mxOption(NULL,"Number of Threads","8")
     #mxOption(NULL,"Analytic Gradients","No")
 
     options()$mxOptions$'Feasibility tolerance'
@@ -26,11 +26,6 @@ fitBiSEMPGS_m2 <- function(data_path){
     options()$mxOptions$'Optimality tolerance'  #1e-7
     #mxOption(NULL,"Analytic Gradients","No")
 
-    options()$mxOptions$'Feasibility tolerance'
-    #options()$mxOptions$'Analytic Gradients'
-    options()$mxOptions$'Gradient step size'  #1e-7
-    options()$mxOptions$'Optimality tolerance'  #1e-7
-    # Load the simulated data for this demonstration:
         Example_Data  <- fread(data_path, header = T)
 
         #cov(Example_Data, use="pairwise.complete.obs")
@@ -38,7 +33,7 @@ fitBiSEMPGS_m2 <- function(data_path){
     # Create variables and define the algebra for each variables
 
         VY    <- mxMatrix(type="Symm", nrow=2, ncol=2, free=c(T,T,T,T), values=c(2,.4,.4,1.5), label=c("VY11", "VY12", "VY12","VY22"), name="VY", lbound = -.05) # Phenotypic variance
-        VF    <- mxMatrix(type="Symm", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.15,0.06,0.06,.04), label=c("VF11", "VF12", "VF12","VF22"), name="VF", lbound = -.05) # Variance due to VT
+        VF    <- mxMatrix(type="Symm", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.15,0.06,0.06,.04), label=c("VF11", "VF12", "VF12","VF22"), name="VF", lbound = 1e-4) # Variance due to VT
         VE    <- mxMatrix(type="Symm", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.5,.06,0.06,.84), label=c("VE11", "VE12", "VE12","VE22"), name="VE", lbound = -.05) # Residual variance
 
         VY_Algebra <- mxAlgebra(2 * delta %*% t(Omega) + 2 * a %*% t(Gamma) + w %*% t(delta) + v %*% t(a) + VF + VE, name="VY_Algebra")
@@ -68,7 +63,7 @@ fitBiSEMPGS_m2 <- function(data_path){
         j_constraint <- mxConstraint(j == j_Algebra, name = "j_constraint")
 
     # Assortative mating effects:
-        mu    <- mxMatrix(type="Full", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.15,0.15,0.1,.3), label=c("mu11", "mu21", "mu12","mu22"), name="mu", lbound = -.05) # AM co-path coefficient
+        mu    <- mxMatrix(type="Full", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.15,0.15,0.1,.3), label=c("mu11", "mu21", "mu12","mu22"), name="mu", lbound = -.1) # AM co-path coefficient
         gt     <- mxMatrix(type="Full", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.2,0.05,0.01,.1), label=c("gt11", "gt21", "gt12","gt22"),  name="gt", lbound = -.05)  # Increase in cross-mate PGS (co)variances from AM
         ht     <- mxMatrix(type="Full", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.05,0.015,0.01,.02), label=c("ht11", "ht21", "ht12","ht22"),  name="ht", lbound = -.05)  # Increase in cross-mate latent PGS (co)variances from AM
         gc     <- mxMatrix(type="Symm", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.14,0.1,0.1,.1), label=c("gc11", "gc12", "gc12","gc22"),   name="gc", lbound = -.05)  # Increase in within-mate PGS (co)variances from AM
@@ -151,7 +146,7 @@ fitBiSEMPGS_m2 <- function(data_path){
                     VY, VF, VE, delta, a, k, j, Omega, Gamma, mu, gt, ht, gc, hc, itlo, itol, ic, f, w, v, 
                     VY_Algebra, VF_Algebra, Omega_Algebra, Gamma_Algebra, adelta_Constraint_Algebra, j_Algebra, gt_Algebra, ht_Algebra, gc_Algebra, hc_Algebra, gchc_constraint_Algebra, itlo_Algebra, itol_Algebra, ic_Algebra, w_Algebra, v_Algebra, wv_constraint_algebra,
                     VY_Constraint, 
-                    VF_Constraint, 
+                    #VF_Constraint, 
                     #Omega_Constraint, 
                     Gamma_Constraint, 
                     #adelta_Constraint,
@@ -173,8 +168,8 @@ fitBiSEMPGS_m2 <- function(data_path){
         options(warning.length = 8000)
         Model1 <- mxModel("BiSEM_PGS", Params, Example_Data_Mx)
 
-        fitModel1 <- mxTryHard(Model1, extraTries = 5, intervals=T, silent=F)
-
+        #fitModel1 <- mxTryHardWideSearch(Model1, extraTries = 5, intervals=T, silent=F,showInits = T, exhaustive = T, loc=.1, scale = .05)
+        fitModel1 <- mxTryHardWideSearch(Model1, extraTries = 8, intervals=T, silent=F,showInits = T, exhaustive = T, loc=.1, scale = .05)
         return(summary(fitModel1))
 
 }
@@ -210,7 +205,7 @@ fitBiSEMPGS_m2_fixH2 <- function(data_path){
     # Create variables and define the algebra for each variables
 
         VY    <- mxMatrix(type="Symm", nrow=2, ncol=2, free=c(T,T,T,T), values=c(2,.4,.4,1.5), label=c("VY11", "VY12", "VY12","VY22"), name="VY", lbound = -.05) # Phenotypic variance
-        VF    <- mxMatrix(type="Symm", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.5,0.3,0.3,.2), label=c("VF11", "VF12", "VF12","VF22"), name="VF", lbound = -.05) # Variance due to VT
+        VF    <- mxMatrix(type="Symm", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.5,0.3,0.3,.2), label=c("VF11", "VF12", "VF12","VF22"), name="VF") # Variance due to VT
         VE    <- mxMatrix(type="Symm", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.7,.1,0.1,.5), label=c("VE11", "VE12", "VE12","VE22"), name="VE", lbound = -.05) # Residual variance
 
         VY_Algebra <- mxAlgebra(2 * delta %*% t(Omega) + 2 * a %*% t(Gamma) + w %*% t(delta) + v %*% t(a) + VF + VE, name="VY_Algebra")
@@ -235,7 +230,7 @@ fitBiSEMPGS_m2_fixH2 <- function(data_path){
         #adelta_Constraint_Algebra <- mxAlgebra(delta, name = "adelta_Constraint_Algebra")
         #adelta_Constraint <- mxConstraint(a == delta, name = "adelta_Constraint")
     # Assortative mating effects:
-        mu    <- mxMatrix(type="Full", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.15,0.15,0.1,.3), label=c("mu11", "mu21", "mu12","mu22"), name="mu", lbound = -.05) # AM co-path coefficient
+        mu    <- mxMatrix(type="Full", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.15,0.15,0.1,.3), label=c("mu11", "mu21", "mu12","mu22"), name="mu", lbound = -.1) # AM co-path coefficient
         gt     <- mxMatrix(type="Full", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.2,0.15,0.1,.1), label=c("gt11", "gt21", "gt12","gt22"),  name="gt", lbound = -.05)  # Increase in cross-mate PGS (co)variances from AM
         ht     <- mxMatrix(type="Full", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.05,0.015,0.01,.02), label=c("ht11", "ht21", "ht12","ht22"),  name="ht", lbound = -.05)  # Increase in cross-mate latent PGS (co)variances from AM
         gc     <- mxMatrix(type="Symm", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.14,0.1,0.1,.1), label=c("gc11", "gc12", "gc12","gc22"),   name="gc", lbound = -.05)  # Increase in within-mate PGS (co)variances from AM
@@ -265,7 +260,7 @@ fitBiSEMPGS_m2_fixH2 <- function(data_path){
         ic_constraint <- mxConstraint(ic == ic_Algebra, name='ic_constraint')
 
     # Vertical transmission effects
-        f     <- mxMatrix(type="Full", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.16,0.04,0.11,.09), label=c("f11", "f21","f12","f22"),  name="f", lbound = -.001) # Vertical Transmission effect
+        f     <- mxMatrix(type="Full", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.16,0.04,0.11,.09), label=c("f11", "f21","f12","f22"),  name="f", lbound = -.05) # Vertical Transmission effect
         w     <- mxMatrix(type="Full", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.3,0.15,0.1,.51), label=c("w11", "w21", "w12","w22"),  name="w", lbound = -.05) # Genetic nurture
         v     <- mxMatrix(type="Full", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.2,0.1,0.07,.08), label=c("v11", "v21", "v12","v22"),  name="v", lbound = -.05) # Latent nurture
         w_Algebra     <- mxAlgebra(2 * f %*% Omega + f %*% VY %*% mu %*% Omega + f %*% VY %*% t(mu) %*% Omega, name="w_Algebra")    
@@ -339,8 +334,8 @@ fitBiSEMPGS_m2_fixH2 <- function(data_path){
         options(warning.length = 8000)
         Model1 <- mxModel("BiSEM_PGS", Params, Example_Data_Mx)
 
-        fitModel1 <- mxTryHard(Model1, extraTries = 5, intervals=T, silent=F)
-
+        #fitModel1 <- mxTryHard(Model1, extraTries = 5, intervals=T, silent=F)
+        fitModel1 <- mxTryHardWideSearch(Model1, extraTries = 8, intervals=T, silent=F,showInits = T, exhaustive = T, loc=.1, scale = .05)
         return(summary(fitModel1))
 
 }
@@ -360,7 +355,7 @@ fitBiSEMPGS_m2_tweaklb <- function(data_path, lb = -10){
 
     # some optimizer options - adapted from Yongkong's script
     
-    mxOption(NULL,"Feasibility tolerance","1e-6")
+    mxOption(NULL,"Feasibility tolerance","1e-7")
     mxOption(NULL,"Number of Threads","4")
     #mxOption(NULL,"Analytic Gradients","No")
 
@@ -369,11 +364,6 @@ fitBiSEMPGS_m2_tweaklb <- function(data_path, lb = -10){
     options()$mxOptions$'Gradient step size'  #1e-7
     options()$mxOptions$'Optimality tolerance'  #1e-7
     #mxOption(NULL,"Analytic Gradients","No")
-
-    options()$mxOptions$'Feasibility tolerance'
-    #options()$mxOptions$'Analytic Gradients'
-    options()$mxOptions$'Gradient step size'  #1e-7
-    options()$mxOptions$'Optimality tolerance'  #1e-7
     # Load the simulated data for this demonstration:
         Example_Data  <- fread(data_path, header = T)
 
@@ -412,11 +402,11 @@ fitBiSEMPGS_m2_tweaklb <- function(data_path, lb = -10){
         j_constraint <- mxConstraint(j == j_Algebra, name = "j_constraint")
 
     # Assortative mating effects:
-        mu    <- mxMatrix(type="Full", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.15,0.15,0.1,.3), label=c("mu11", "mu21", "mu12","mu22"), name="mu") # AM co-path coefficient
-        gt     <- mxMatrix(type="Full", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.2,0.05,0.01,.1), label=c("gt11", "gt21", "gt12","gt22"),  name="gt")  # Increase in cross-mate PGS (co)variances from AM
-        ht     <- mxMatrix(type="Full", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.05,0.015,0.01,.02), label=c("ht11", "ht21", "ht12","ht22"),  name="ht")  # Increase in cross-mate latent PGS (co)variances from AM
-        gc     <- mxMatrix(type="Symm", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.14,0.1,0.1,.1), label=c("gc11", "gc12", "gc12","gc22"),   name="gc")  # Increase in within-mate PGS (co)variances from AM
-        hc     <- mxMatrix(type="Symm", nrow=2, ncol=2, free=c(T,T,T,T), values=c(0.04,0.01,0.01,.015), label=c("hc11", "hc12", "hc12","hc22"),  name="hc")  # Increase in within-mate latent PGS (co)variances from AM
+        mu    <- mxMatrix(type="Full", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.15,0.15,0.1,.3), label=c("mu11", "mu21", "mu12","mu22"), name="mu", lbound = lb) # AM co-path coefficient
+        gt     <- mxMatrix(type="Full", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.2,0.05,0.01,.1), label=c("gt11", "gt21", "gt12","gt22"),  name="gt", lbound = lb)  # Increase in cross-mate PGS (co)variances from AM
+        ht     <- mxMatrix(type="Full", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.05,0.015,0.01,.02), label=c("ht11", "ht21", "ht12","ht22"),  name="ht", lbound = lb)  # Increase in cross-mate latent PGS (co)variances from AM
+        gc     <- mxMatrix(type="Symm", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.14,0.1,0.1,.1), label=c("gc11", "gc12", "gc12","gc22"),   name="gc", lbound = lb)  # Increase in within-mate PGS (co)variances from AM
+        hc     <- mxMatrix(type="Symm", nrow=2, ncol=2, free=c(T,T,T,T), values=c(0.04,0.01,0.01,.015), label=c("hc11", "hc12", "hc12","hc22"),  name="hc", lbound = lb)  # Increase in within-mate latent PGS (co)variances from AM
         gt_Algebra <- mxAlgebra(t(Omega) %*% mu %*% Omega, name="gt_Algebra") # E.g., cov(TPO, TMO)
         ht_Algebra <- mxAlgebra(t(Gamma) %*% mu %*% Gamma, name="ht_Algebra") # E.g., cov(TPL, TML)
         gc_Algebra <- mxAlgebra(0.5 * (gt + t(gt)), name="gc_Algebra") # gc should be symmetric
@@ -517,8 +507,8 @@ fitBiSEMPGS_m2_tweaklb <- function(data_path, lb = -10){
         options(warning.length = 8000)
         Model1 <- mxModel("BiSEM_PGS", Params, Example_Data_Mx)
 
-        fitModel1 <- mxTryHard(Model1, extraTries = 5, intervals=T, silent=F)
-
+        #fitModel1 <- mxTryHard(Model1, extraTries = 5, intervals=T, silent=F)
+        fitModel1 <- mxTryHardWideSearch(Model1, extraTries = 8, intervals=T, silent=F,showInits = T, exhaustive = T, loc=.05, scale = .01)
         return(summary(fitModel1))
 
 }

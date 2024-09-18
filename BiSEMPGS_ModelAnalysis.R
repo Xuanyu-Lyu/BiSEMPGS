@@ -80,10 +80,10 @@ summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_freeArg_closerh_hcCon_forc
 summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_freeArg_closerh_hcCon_forceJ_tweakConst2_48000_nModel100_summary_list.rds") # does not work, a and delta are too off.
 
 # constraint on hc but not gc, 48k samples, lb = -10, free a, rg, constraint on j
-summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_freeArg_forceJ_-10lb_48000_nModel100_summary_list.rds") # does not work, a and delta are too off.
+summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_freeArg_forceJ_-10lb_48000_nModel100_summary_list.rds") 
 
-# constraint on hc but not gc, 48k samples, lb = -10, free a, rg, constraint on j
-summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_freeArg_forceJ_1e4lb_48000_nModel100_summary_list.rds") # does not work, a and delta are too off.
+# constraint on hc but not gc, 48k samples, lb = 1e4, free a, rg, constraint on j
+summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_freeArg_forceJ_1e4lb_48000_nModel100_summary_list.rds") 
 
 # extract all the status code of openmx and put them into a vector
 status_codes <- sapply(summary_list, function(x) x$statusCode)
