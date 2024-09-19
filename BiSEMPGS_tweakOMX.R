@@ -13,7 +13,7 @@ save_path <- paste0("Data/", conditionNames[1], "/Local_Analysis")
 data_pattern <- c("_64000.txt")
 save_pattern <- c( "_64000")
 model_type <- "m2"
-mxSetup <- "-.05lb_freeArg_VF1e-4"
+mxSetup <- "-.05lb_freeArg_VFnolb_a.2"
 n_models <- "All"
 for (j in 1){
     # a list to save all the summary data
@@ -28,7 +28,7 @@ for (j in 1){
         # fit the model
         #fit <- fitBiSEMPGS_m2(paste0(data_path[j], "/", l_files[i]))
         
-        # fit the model with fixed a
+        # fit the model 
         fit <- fitBiSEMPGS_m2(paste0(data_path[j], "/", l_files[i]))
         # save the summary
         summary_list[[l_files[i]]] <- fit
@@ -48,6 +48,18 @@ for (j in 1){
 # analyse the results
 summary_list <- readRDS("Data/Full_Model/Local_Analysis/m2-.05lb_freeArg_forceJ_64000_nModelAll_summary_list.rds") # try large scale/ bad vf 
 
+summary_list <- readRDS("Data/Full_Model/Local_Analysis/m2-.05lb_freeArg_VF-.5_64000_nModelAll_summary_list.rds") #  a little overestimated VF and underestimated a
+
+summary_list <- readRDS("Data/Full_Model/Local_Analysis/m2-.05lb_freeArg_VF-1_64000_nModelAll_summary_list.rds") #  a little overestimated VF and underestimated a
+
+summary_list <- readRDS("Data/Full_Model/Local_Analysis/m2-.05lb_freeArg_VF1e-4_64000_nModelAll_summary_list.rds")
+
+summary_list <- readRDS("Data/Full_Model/Local_Analysis/m2-.05lb_freeArg_VF-1_a.2_64000_nModelAll_summary_list.rds") 
+
+summary_list <- readRDS("Data/Full_Model/Local_Analysis/m2-.05lb_freeArg_VF1e4_a.2_64000_nModelAll_summary_list.rds") 
+
+summary_list <- readRDS("Data/Full_Model/Local_Analysis/m2-.05lb_freeArg_VFnolb_a.2_64000_nModelAll_summary_list.rds") 
+
 summary_list <- readRDS("Data/Full_Model/Local_Analysis/m2-10lb_freeArg_forceJ_64000_nModelAll_summary_list.rds") # bad a
 
 summary_list <- readRDS("Data/Full_Model/Local_Analysis/m2-.05lb_freeArg_forceJ_VFfree_64000_nModelAll_summary_list.rds") # bad vf11 and ve11
@@ -60,7 +72,7 @@ summary_list <- readRDS("Data/Full_Model/Local_Analysis/m2-.05lb_freeArg_forceJ_
 
 summary_list <- readRDS("Data/Full_Model/Local_Analysis/m2-.05lb_fixArg_VFnolb_64000_nModelAll_summary_list.rds")  # try large scale/ seems to be the best, if excluding outlier VFs
 
-summary_list <- readRDS("Data/Full_Model/Local_Analysis/m2-.05lb_freeArg_VF1e-4_64000_nModelAll_summary_list.rds") #  very bad a ve vf
+
 
 # extract all the status code of openmx and put them into a vector
 status_codes <- sapply(summary_list, function(x) x$statusCode)
@@ -119,6 +131,4 @@ nrow(df)
 df <- df[abs(df$VF11 - mean(df$VF11)) < 3*sd(df$VF11),]
 nrow(df)
 
-
-library(psych)
-describe(df)
+psych::describe(df)

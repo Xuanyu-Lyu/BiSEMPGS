@@ -33,7 +33,7 @@ fitBiSEMPGS_m2 <- function(data_path){
     # Create variables and define the algebra for each variables
 
         VY    <- mxMatrix(type="Symm", nrow=2, ncol=2, free=c(T,T,T,T), values=c(2,.4,.4,1.5), label=c("VY11", "VY12", "VY12","VY22"), name="VY", lbound = -.05) # Phenotypic variance
-        VF    <- mxMatrix(type="Symm", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.15,0.06,0.06,.04), label=c("VF11", "VF12", "VF12","VF22"), name="VF", lbound = -.1) # Variance due to VT
+        VF    <- mxMatrix(type="Symm", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.20,0.06,0.06,.04), label=c("VF11", "VF12", "VF12","VF22"), name="VF", lbound = -1) # Variance due to VT
         VE    <- mxMatrix(type="Symm", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.5,.06,0.06,.84), label=c("VE11", "VE12", "VE12","VE22"), name="VE", lbound = -.05) # Residual variance
 
         VY_Algebra <- mxAlgebra(2 * delta %*% t(Omega) + 2 * a %*% t(Gamma) + w %*% t(delta) + v %*% t(a) + VF + VE, name="VY_Algebra")
@@ -43,7 +43,7 @@ fitBiSEMPGS_m2 <- function(data_path){
         VF_Constraint    <- mxConstraint(VF == VF_Algebra,       name='VF_Constraint')
     # Genetic effects:
         delta <- mxMatrix(type="Diag", nrow=2, ncol=2, free=c(T,T), values=c(.4,.3), label=c("delta11", "delta22"),name="delta", lbound = -.05) # Effect of PGS on phen
-        a     <- mxMatrix(type="Diag", nrow=2, ncol=2, free=c(T,T), values=c(.4,.34), label=c("a11", "a22"),    name="a", lbound = -.05)     # Effect of latent PGS on phen
+        a     <- mxMatrix(type="Diag", nrow=2, ncol=2, free=c(T,T), values=c(.4,.34), label=c("a11", "a22"),    name="a", lbound = c(.4,.2))     # Effect of latent PGS on phen
         k     <- mxMatrix(type="Symm", nrow=2, ncol=2, free=matrix(c(F,T,T,F),nrow = 2,ncol = 2), values=c(.5,0.02,0.02,.5), label=c("k11", "k12", "k12","k22"),    name="k", lbound = -.05)     # PGS variance (if no AM)
         j     <- mxMatrix(type="Symm", nrow=2, ncol=2, free=matrix(c(F,T,T,F),nrow = 2,ncol = 2), values=c(.5,0.03,0.03,.5), label=c("j11", "j12", "j12","j22"),    name="j", lbound = -.05)     # Latent PGS variance (if no AM)
         Omega <- mxMatrix(type="Full", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.6,0.15,0.1,.5), label=c("Omega11", "Omega21", "Omega12","Omega22"),name="Omega", lbound = -.05) # Within-person PGS-Phen covariance
@@ -168,8 +168,7 @@ fitBiSEMPGS_m2 <- function(data_path){
         options(warning.length = 8000)
         Model1 <- mxModel("BiSEM_PGS", Params, Example_Data_Mx)
 
-        #fitModel1 <- mxTryHardWideSearch(Model1, extraTries = 5, intervals=T, silent=F,showInits = T, exhaustive = T, loc=.1, scale = .05)
-        fitModel1 <- mxTryHardWideSearch(Model1, extraTries = 8, intervals=T, silent=F,showInits = T, exhaustive = T, loc=.1, scale = .05)
+        fitModel1 <- mxTryHardWideSearch(Model1, extraTries = 8, intervals=T, silent=F, showInits = T, exhaustive = T, jitterDistrib = "rnorm", loc=.5, scale = .1)
         return(summary(fitModel1))
 
 }
@@ -335,7 +334,7 @@ fitBiSEMPGS_m2_fixH2 <- function(data_path){
         Model1 <- mxModel("BiSEM_PGS", Params, Example_Data_Mx)
 
         #fitModel1 <- mxTryHard(Model1, extraTries = 5, intervals=T, silent=F)
-        fitModel1 <- mxTryHardWideSearch(Model1, extraTries = 8, intervals=T, silent=F,showInits = T, exhaustive = T, loc=.1, scale = .05)
+        fitModel1 <- mxTryHardWideSearch(Model1, extraTries = 8, intervals=T, silent=F,showInits = T, exhaustive = T,  loc=.2, scale = .05)
         return(summary(fitModel1))
 
 }

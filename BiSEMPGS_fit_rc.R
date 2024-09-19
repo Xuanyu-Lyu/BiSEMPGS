@@ -16,9 +16,9 @@ save_path <- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Analysis/",
 data_pattern <- c( "_48000.txt", "_32000.txt", "_64000.txt")
 save_pattern <- c("_48000", "_32000", "_64000")
 model_type <- "m2"
-mxSetup <- "_-.05lb_fixArg_VFnolb"
+mxSetup <- "_-.05lb_fixArg_VF-1_a.2"
 n_models <- "All"
-for (j in 1){
+for (j in 1:3){
     # a list to save all the summary data
     summary_list <- list()
 
@@ -32,7 +32,7 @@ for (j in 1){
         #fit <- fitBiSEMPGS_m2(paste0(data_path[j], "/", l_files[i]))
         
         # fit the model with fixed a
-        fit <- fitBiSEMPGS_m2_fixH2(paste0(data_path[j], "/", l_files[i]))
+        fit <- fitBiSEMPGS_m2(paste0(data_path[j], "/", l_files[i]))
         # save the summary
         summary_list[[l_files[i]]] <- fit
         # save the fit

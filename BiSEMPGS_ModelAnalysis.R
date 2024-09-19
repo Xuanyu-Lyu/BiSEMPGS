@@ -85,6 +85,16 @@ summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_freeArg_forceJ_-10lb_48000
 # constraint on hc but not gc, 48k samples, lb = 1e4, free a, rg, constraint on j
 summary_list <- readRDS("Analysis/Full_Model/m2_.05lb_freeArg_forceJ_1e4lb_48000_nModel100_summary_list.rds") 
 
+
+
+# new setup for mxTryHard function, 48k samples, lb = -.05, free a, rg, constraint on j, VF lb=.-1
+summary_list <- readRDS("Analysis/Full_Model/m2_-.05lb_freeArg_VF-.1_forceJ_48000_nModelAll_summary_list.rds") 
+
+# 25 model demonstration, new setup for mxTryHard function, 64k samples, lb = -.05, free a, rg, constraint on j, VF lb=.-.05
+summary_list <- readRDS("Data/Full_Model/Local_Analysis/m2-.05lb_freeArg_VF-1_64000_nModelAll_summary_list.rds")
+
+summary_list <- readRDS("Data/Full_Model/Local_Analysis/m2-.05lb_freeArg_VF-1_a.2_64000_nModelAll_summary_list.rds") #  bad a 
+
 # extract all the status code of openmx and put them into a vector
 status_codes <- sapply(summary_list, function(x) x$statusCode)
 summary(status_codes)
@@ -140,6 +150,9 @@ nrow(df)
 
 #remove the outliers that are three sd away from the mean of VY11 VY12 and VY22
 df <- df[abs(df$VY11 - mean(df$VY11)) < 3*sd(df$VY11),]
+
+# remove lower than 0 a
+#df <- df[df$VF11 > 0 & df$VF22 > 0,]
 nrow(df)
 
 
@@ -147,7 +160,7 @@ library(psych)
 describe(df)
 library(ggplot2)
 library(tidyr)
-save_path <- "/Users/xuly4739/Library/CloudStorage/OneDrive-UCB-O365/Documents/coding/R-projects/BiSEMPGS/Analysis/Full_Model/DistributionFigures"
+#save_path <- "/Users/xuly4739/Library/CloudStorage/OneDrive-UCB-O365/Documents/coding/R-projects/BiSEMPGS/Analysis/Full_Model/DistributionFigures"
 # a plot for three VY estimates
 true_values <- c(VY11 = 1.7478366, VY12 = 0.3401594,  VY22 = 1.1359723)
 df_long <- tidyr::pivot_longer(df, c("VY11", "VY12", "VY22"), names_to = "Variable", values_to = "Value")
