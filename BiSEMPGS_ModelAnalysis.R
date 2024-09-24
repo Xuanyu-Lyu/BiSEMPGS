@@ -95,6 +95,11 @@ summary_list <- readRDS("Data/Full_Model/Local_Analysis/m2-.05lb_freeArg_VF-1_64
 
 summary_list <- readRDS("Data/Full_Model/Local_Analysis/m2-.05lb_freeArg_VF-1_a.2_64000_nModelAll_summary_list.rds") #  bad a 
 
+# all model, new setup for mxTryHard function, 48k samples, lb = -.05, free a, rg, constraint on j, VF lb=.-1, alb = .2
+summary_list <- readRDS("Analysis/Full_Model/m2_-.05lb_fixArg_VF-1_a.2_48000_nModelAll_summary_list.rds")
+
+
+
 # extract all the status code of openmx and put them into a vector
 status_codes <- sapply(summary_list, function(x) x$statusCode)
 summary(status_codes)
