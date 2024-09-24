@@ -144,7 +144,7 @@ fitBiSEMPGS_m2 <- function(data_path){
         #FitFunctionML <- mxFitFunctionWLS(type = "ULS", allContinuousMethod='marginals')
     # Specify what parameters we're going to be including in our model:
         Params <- list(
-                    VY, VF, VE, delta, a, k, j, Omega, Gamma, mu, gt, ht, gc, hc, itlo, itol, ic, f, w, v, 
+                    VY, VF, VE, delta, a, k, j, Omega, Gamma, mu, gt, ht, gc, hc, itlo, itol, ic, f, w, v,
                     VY_Algebra, VF_Algebra, Omega_Algebra, Gamma_Algebra, adelta_Constraint_Algebra, j_Algebra, gt_Algebra, ht_Algebra, gc_Algebra, hc_Algebra, gchc_constraint_Algebra, itlo_Algebra, itol_Algebra, ic_Algebra, w_Algebra, v_Algebra, wv_constraint_algebra,
                     VY_Constraint, 
                     VF_Constraint, 
@@ -163,7 +163,7 @@ fitBiSEMPGS_m2 <- function(data_path){
                     v_constraint, 
                     w_constraint,
                     #wv_constraint,
-                    thetaNT, thetaT, Yp_PGSm, Ym_PGSp, Yp_Ym, Ym_Yp, Yo_Yp, Yo_Ym, 
+                    thetaNT, thetaT, Yp_PGSm, Ym_PGSp, Yp_Ym, Ym_Yp, Yo_Yp, Yo_Ym, Yo_Ypm,
                     CovMatrix, Means, ModelExpectations, FitFunctionML)
     # Create the model:
         options(warning.length = 8000)
