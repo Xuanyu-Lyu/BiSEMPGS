@@ -18,6 +18,8 @@ fitBiSEMPGS_m2 <- function(data_path){
     
     mxOption(NULL,"Feasibility tolerance","1e-7")
     mxOption(NULL,"Number of Threads","4")
+    mxOption(NULL,"Number of Threads", value = parallel::detectCores())
+
     #mxOption(NULL,"Analytic Gradients","No")
 
     options()$mxOptions$'Feasibility tolerance'
@@ -112,13 +114,13 @@ fitBiSEMPGS_m2 <- function(data_path){
         Ym_Yp   <- mxAlgebra(VY %*% t(mu) %*% VY, name="Ym_Yp")
         Yo_Yp   <- mxAlgebra(delta %*% t(Omega) + a %*% t(Gamma) + delta %*% t(Omega) %*% t(mu) %*% VY + a %*% t(Gamma) %*% t(mu) %*% VY + f %*% VY + f %*% VY %*% t(mu) %*% VY, name = "Yo_Yp")
         Yo_Ym   <- mxAlgebra(delta %*% t(Omega) + a %*% t(Gamma) + delta %*% t(Omega) %*% mu %*% VY + a %*% t(Gamma) %*% mu %*% VY + f %*% VY + f %*% VY %*% mu %*% VY, name = "Yo_Ym")
-        Yo_Ypm  <- mxAlgebra(.5*(Yo_Yp + Yo_Ym), name = "Yo_Ypm")
+
     # Expected covariances matrix
         CovMatrix <- mxAlgebra(rbind(
             #     Yp1 Yp2|   Ym1 Ym2|   Yo1 Yo2|    Tp1 Tp2|   NTp1 NTp2|    Tm1 Tm2| NTm1 NTm2
-            cbind(VY,        Yp_Ym,     t(Yo_Ypm),   Omega,     Omega,        Yp_PGSm, Yp_PGSm), #Yp1 Yp2
-            cbind(Ym_Yp,     VY,        t(Yo_Ypm),   Ym_PGSp,   Ym_PGSp,      Omega,   Omega),   #Ym1 Ym2
-            cbind(Yo_Ypm,     Yo_Ypm,     VY,         thetaT,    thetaNT,      thetaT,  thetaNT), #Yo1 Yo2
+            cbind(VY,        Yp_Ym,     t(Yo_Yp),   Omega,     Omega,        Yp_PGSm, Yp_PGSm), #Yp1 Yp2
+            cbind(Ym_Yp,     VY,        t(Yo_Ym),   Ym_PGSp,   Ym_PGSp,      Omega,   Omega),   #Ym1 Ym2
+            cbind(Yo_Yp,     Yo_Ym,     VY,         thetaT,    thetaNT,      thetaT,  thetaNT), #Yo1 Yo2
             cbind(t(Omega),  t(Ym_PGSp),t(thetaT),  k+gc,      gc,           gt,      gt),      #Tp1 Tp2
             cbind(t(Omega),  t(Ym_PGSp),t(thetaNT), gc,        k+gc,         gt,      gt),      #NTp1 NTp2
             cbind(t(Yp_PGSm),t(Omega),  t(thetaT),  t(gt),     t(gt),        k+gc,    gc),      #Tm1 Tm2
@@ -163,13 +165,13 @@ fitBiSEMPGS_m2 <- function(data_path){
                     v_constraint, 
                     w_constraint,
                     #wv_constraint,
-                    thetaNT, thetaT, Yp_PGSm, Ym_PGSp, Yp_Ym, Ym_Yp, Yo_Yp, Yo_Ym, Yo_Ypm,
+                    thetaNT, thetaT, Yp_PGSm, Ym_PGSp, Yp_Ym, Ym_Yp, Yo_Yp, Yo_Ym, 
                     CovMatrix, Means, ModelExpectations, FitFunctionML)
     # Create the model:
         options(warning.length = 8000)
         Model1 <- mxModel("BiSEM_PGS", Params, Example_Data_Mx)
 
-        fitModel1 <- mxTryHardWideSearch(Model1, extraTries = 8, intervals=T, silent=F, showInits = T, exhaustive = T, jitterDistrib = "rnorm", loc=.5, scale = .1)
+        fitModel1 <- mxTryHardWideSearch(Model1, extraTries = 30, OKstatuscodes = c(0,1), intervals=T, silent=F, showInits = F, exhaustive = F, jitterDistrib = "rnorm", loc=.5, scale = .1)
         return(summary(fitModel1))
 
 }

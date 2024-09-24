@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --qos=preemptable
-#SBATCH --time=12:00:00
+#SBATCH --time=20:00:00
 #SBATCH --ntasks=16
 #SBATCH --mem=40gb
 #SBATCH -J BiSEMPGS_fit
@@ -15,4 +15,4 @@ conda activate /projects/lessem/software/anaconda/envs/R-4.4.0
 # Index to run different parts of the script, e.g., processing different chromosomes; Here is the different simulation conditions I want to run
 #SIM=${SLURM_ARRAY_TASK_ID}
 
-Rscript BiSEMPGS_fit_rc.R 
+Rscript BiSEMPGS_findBestJitter.R 
