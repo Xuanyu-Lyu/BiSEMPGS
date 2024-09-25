@@ -30,7 +30,7 @@ startingParamList1 <- list(vg1 = rep(.49,11),
 						   Nfam = c(5e4, rep(5e4,10)),
 						   rg = rep(.1,11),
 						   re = rep(.1,11),
-						   prop.h2.latent1 = c(0.5,0.7,0.9,0,rep(0.5,6),.5),
+						   prop.h2.latent1 = c(0.6,0.7,0.9,0,rep(0.5,6),.5),
 						   prop.h2.latent2 = c(0.7,0.7,0.9,0,rep(0.7,6),.5))
 
 for (condition in 2:3){

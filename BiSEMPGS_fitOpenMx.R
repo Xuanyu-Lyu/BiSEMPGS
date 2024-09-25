@@ -16,8 +16,8 @@ fitBiSEMPGS_m2 <- function(data_path){
 
     # some optimizer options - adapted from Yongkong's script
     
-    mxOption(NULL,"Feasibility tolerance","1e-7")
-    mxOption(NULL,"Number of Threads","4")
+    mxOption(NULL,"Feasibility tolerance","1e-4")
+    #mxOption(NULL,"Number of Threads","4")
     mxOption(NULL,"Number of Threads", value = parallel::detectCores())
 
     #mxOption(NULL,"Analytic Gradients","No")
@@ -35,14 +35,16 @@ fitBiSEMPGS_m2 <- function(data_path){
     # Create variables and define the algebra for each variables
 
         VY    <- mxMatrix(type="Symm", nrow=2, ncol=2, free=c(T,T,T,T), values=c(2,.4,.4,1.5), label=c("VY11", "VY12", "VY12","VY22"), name="VY", lbound = -.05) # Phenotypic variance
-        VF    <- mxMatrix(type="Symm", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.20,0.06,0.06,.04), label=c("VF11", "VF12", "VF12","VF22"), name="VF", lbound = -.1) # Variance due to VT
+        #VF    <- mxMatrix(type="Symm", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.20,0.06,0.06,.04), label=c("VF11", "VF12", "VF12","VF22"), name="VF", lbound = -.1) # Variance due to VT
         VE    <- mxMatrix(type="Symm", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.5,.06,0.06,.84), label=c("VE11", "VE12", "VE12","VE22"), name="VE", lbound = -.05) # Residual variance
 
-        VY_Algebra <- mxAlgebra(2 * delta %*% t(Omega) + 2 * a %*% t(Gamma) + w %*% t(delta) + v %*% t(a) + VF + VE, name="VY_Algebra")
+        VY_Algebra <- mxAlgebra(2 * delta %*% t(Omega) + 2 * a %*% t(Gamma) + w %*% t(delta) + v %*% t(a) + 2 * f %*% VY %*% t(f) + f %*% VY %*% mu %*% VY %*% t(f) + f %*% VY %*% t(mu) %*% VY %*% t(f) + VE, name="VY_Algebra")
         VF_Algebra <- mxAlgebra(2 * f %*% VY %*% t(f) + f %*% VY %*% mu %*% VY %*% t(f) + f %*% VY %*% t(mu) %*% VY %*% t(f), name="VF_Algebra")
+        VY_Algebra <- mxAlgebra(2 * delta %*% t(Omega) + 2 * a %*% t(Gamma) + w %*% t(delta) + v %*% t(a) + VF_Algebra + VE, name="VY_Algebra")
 
         VY_Constraint    <- mxConstraint(VY == VY_Algebra,       name='VY_Constraint')
-        VF_Constraint    <- mxConstraint(VF == VF_Algebra,       name='VF_Constraint')
+        #VF_Constraint    <- mxConstraint(VF == VF_Algebra,       name='VF_Constraint')
+
     # Genetic effects:
         delta <- mxMatrix(type="Diag", nrow=2, ncol=2, free=c(T,T), values=c(.4,.3), label=c("delta11", "delta22"),name="delta", lbound = -.05) # Effect of PGS on phen
         a     <- mxMatrix(type="Diag", nrow=2, ncol=2, free=c(T,T), values=c(.4,.34), label=c("a11", "a22"),    name="a", lbound = c(.2,.1))     # Effect of latent PGS on phen
@@ -146,10 +148,14 @@ fitBiSEMPGS_m2 <- function(data_path){
         #FitFunctionML <- mxFitFunctionWLS(type = "ULS", allContinuousMethod='marginals')
     # Specify what parameters we're going to be including in our model:
         Params <- list(
-                    VY, VF, VE, delta, a, k, j, Omega, Gamma, mu, gt, ht, gc, hc, itlo, itol, ic, f, w, v,
-                    VY_Algebra, VF_Algebra, Omega_Algebra, Gamma_Algebra, adelta_Constraint_Algebra, j_Algebra, gt_Algebra, ht_Algebra, gc_Algebra, hc_Algebra, gchc_constraint_Algebra, itlo_Algebra, itol_Algebra, ic_Algebra, w_Algebra, v_Algebra, wv_constraint_algebra,
+                    VY, 
+                    #VF, 
+                    VE, delta, a, k, j, Omega, Gamma, mu, gt, ht, gc, hc, itlo, itol, ic, f, w, v,
+                    VY_Algebra, 
+                    VF_Algebra,  Omega_Algebra, Gamma_Algebra, adelta_Constraint_Algebra, j_Algebra, gt_Algebra, ht_Algebra, gc_Algebra, hc_Algebra, gchc_constraint_Algebra, itlo_Algebra, itol_Algebra, ic_Algebra, w_Algebra, v_Algebra, wv_constraint_algebra,
                     VY_Constraint, 
-                    VF_Constraint, 
+                    #VF_Constraint, 
+                    #VE_Constraint,
                     #Omega_Constraint, 
                     Gamma_Constraint, 
                     #adelta_Constraint,
@@ -171,7 +177,7 @@ fitBiSEMPGS_m2 <- function(data_path){
         options(warning.length = 8000)
         Model1 <- mxModel("BiSEM_PGS", Params, Example_Data_Mx)
 
-        fitModel1 <- mxTryHardWideSearch(Model1, extraTries = 30, OKstatuscodes = c(0,1), intervals=T, silent=F, showInits = F, exhaustive = F, jitterDistrib = "rnorm", loc=.5, scale = .1)
+        fitModel1 <- mxTryHardWideSearch(Model1, extraTries = 5, OKstatuscodes = c(0,1), intervals=T, silent=F, showInits = F, exhaustive = T, jitterDistrib = "rnorm", loc=.5, scale = .1)
         return(summary(fitModel1))
 
 }

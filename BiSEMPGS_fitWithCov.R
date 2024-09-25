@@ -224,15 +224,18 @@ CMatrix <- rbind(
     cbind(t(Yp_PGSm),t(Omega),  t(thetaT),  t(gt),     t(gt),        k+gc,    gc),      #Tm1 Tm2
     cbind(t(Yp_PGSm),t(Omega),  t(thetaNT), t(gt),     t(gt),        gc,      k+gc))  #NTm1 NTm2
 
-write.csv(CMatrix, "ExpectedCMatrix.csv")
+#write.csv(CMatrix, "ExpectedCMatrix.csv")
 # compare with simulated covariance matrix
 #CMatrix_obs <- read.csv("/Users/xuly4739/Library/CloudStorage/OneDrive-UCB-O365/Documents/coding/R-projects/BiSEMPGS/Data/Full_Model/loop123.rds_64000.txt", sep="\t", header=TRUE) |> cov()
+#CMatrix <- cov(read.csv("testDataFull.txt", sep="\t", header=TRUE))
+# change the column names to what we defined in the OpenMx script
+#colnames(data_df) <- c("Yp1", "Yp2", "Ym1", "Ym2", "Yo1", "Yo2", "Tp1", "Tp2", "NTp1", "NTp2", "Tm1", "Tm2", "NTm1", "NTm2")
+#CMatrix <- read.csv("testDataFull.txt", sep="\t", header=TRUE)
+
 
 colnames(CMatrix) <- c("Yp1", "Yp2", "Ym1", "Ym2", "Yo1", "Yo2", "Tp1", "Tp2", "NTp1", "NTp2", "Tm1", "Tm2", "NTm1", "NTm2")
 rownames(CMatrix) <- c("Yp1", "Yp2", "Ym1", "Ym2", "Yo1", "Yo2", "Tp1", "Tp2", "NTp1", "NTp2", "Tm1", "Tm2", "NTm1", "NTm2")
-CMatrix
-nrow(CMatrix)
-ncol(CMatrix)
+
 Mean <- rep(0, 14)
 names(Mean) <- colnames(CMatrix)
 
@@ -250,7 +253,7 @@ fitBiSEMPGS_m2_cov <- function(cov, Mean){
 
     # some optimizer options - adapted from Yongkong's script
     
-    mxOption(NULL,"Feasibility tolerance","1e-7")
+    mxOption(NULL,"Feasibility tolerance","1e-4")
     mxOption(NULL,"Number of Threads", value = parallel::detectCores())
     #mxOption(NULL,"Analytic Gradients","No")
 
@@ -267,14 +270,16 @@ fitBiSEMPGS_m2_cov <- function(cov, Mean){
     # Create variables and define the algebra for each variables
 
         VY    <- mxMatrix(type="Symm", nrow=2, ncol=2, free=c(T,T,T,T), values=c(2,.4,.4,1.5), label=c("VY11", "VY12", "VY12","VY22"), name="VY", lbound = -.05) # Phenotypic variance
-        VF    <- mxMatrix(type="Symm", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.20,0.06,0.06,.04), label=c("VF11", "VF12", "VF12","VF22"), name="VF", lbound = -.1) # Variance due to VT
+        #VF    <- mxMatrix(type="Symm", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.20,0.06,0.06,.04), label=c("VF11", "VF12", "VF12","VF22"), name="VF", lbound = -.1) # Variance due to VT
         VE    <- mxMatrix(type="Symm", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.5,.06,0.06,.84), label=c("VE11", "VE12", "VE12","VE22"), name="VE", lbound = -.05) # Residual variance
 
-        VY_Algebra <- mxAlgebra(2 * delta %*% t(Omega) + 2 * a %*% t(Gamma) + w %*% t(delta) + v %*% t(a) + VF + VE, name="VY_Algebra")
+        VY_Algebra <- mxAlgebra(2 * delta %*% t(Omega) + 2 * a %*% t(Gamma) + w %*% t(delta) + v %*% t(a) + 2 * f %*% VY %*% t(f) + f %*% VY %*% mu %*% VY %*% t(f) + f %*% VY %*% t(mu) %*% VY %*% t(f) + VE, name="VY_Algebra")
         VF_Algebra <- mxAlgebra(2 * f %*% VY %*% t(f) + f %*% VY %*% mu %*% VY %*% t(f) + f %*% VY %*% t(mu) %*% VY %*% t(f), name="VF_Algebra")
+        VY_Algebra <- mxAlgebra(2 * delta %*% t(Omega) + 2 * a %*% t(Gamma) + w %*% t(delta) + v %*% t(a) + VF_Algebra + VE, name="VY_Algebra")
 
         VY_Constraint    <- mxConstraint(VY == VY_Algebra,       name='VY_Constraint')
-        VF_Constraint    <- mxConstraint(VF == VF_Algebra,       name='VF_Constraint')
+        #VF_Constraint    <- mxConstraint(VF == VF_Algebra,       name='VF_Constraint')
+
     # Genetic effects:
         delta <- mxMatrix(type="Diag", nrow=2, ncol=2, free=c(T,T), values=c(.4,.3), label=c("delta11", "delta22"),name="delta", lbound = -.05) # Effect of PGS on phen
         a     <- mxMatrix(type="Diag", nrow=2, ncol=2, free=c(T,T), values=c(.4,.34), label=c("a11", "a22"),    name="a", lbound = c(.1,.1))     # Effect of latent PGS on phen
@@ -377,10 +382,14 @@ fitBiSEMPGS_m2_cov <- function(cov, Mean){
         #FitFunctionML <- mxFitFunctionWLS(type = "ULS", allContinuousMethod='marginals')
     # Specify what parameters we're going to be including in our model:
         Params <- list(
-                    VY, VF, VE, delta, a, k, j, Omega, Gamma, mu, gt, ht, gc, hc, itlo, itol, ic, f, w, v,
-                    VY_Algebra, VF_Algebra, Omega_Algebra, Gamma_Algebra, adelta_Constraint_Algebra, j_Algebra, gt_Algebra, ht_Algebra, gc_Algebra, hc_Algebra, gchc_constraint_Algebra, itlo_Algebra, itol_Algebra, ic_Algebra, w_Algebra, v_Algebra, wv_constraint_algebra,
+                    VY, 
+                    #VF, 
+                    VE, delta, a, k, j, Omega, Gamma, mu, gt, ht, gc, hc, itlo, itol, ic, f, w, v,
+                    VY_Algebra, 
+                    VF_Algebra,  Omega_Algebra, Gamma_Algebra, adelta_Constraint_Algebra, j_Algebra, gt_Algebra, ht_Algebra, gc_Algebra, hc_Algebra, gchc_constraint_Algebra, itlo_Algebra, itol_Algebra, ic_Algebra, w_Algebra, v_Algebra, wv_constraint_algebra,
                     VY_Constraint, 
-                    VF_Constraint, 
+                    #VF_Constraint, 
+                    #VE_Constraint,
                     #Omega_Constraint, 
                     Gamma_Constraint, 
                     #adelta_Constraint,
@@ -402,19 +411,23 @@ fitBiSEMPGS_m2_cov <- function(cov, Mean){
         options(warning.length = 8000)
         Model1 <- mxModel("BiSEM_PGS", Params, Example_Data_Mx)
 
-        fitModel1 <- mxTryHardWideSearch(Model1, extraTries = 30, OKstatuscodes = c(0,1), intervals=T, silent=F, showInits = F, exhaustive = F, jitterDistrib = "rnorm", loc=.5, scale = .1)
-        return(summary(fitModel1))
+        fitModel1 <- mxRun(Model1)
+        #fitModel1 <- mxTryHardWideSearch(Model1, extraTries = 30, OKstatuscodes = c(0,1), intervals=T, silent=F, showInits = F, exhaustive = F, jitterDistrib = "rnorm", loc=.5, scale = .1)
+        return(fitModel1)
 
 }
 
 # run the model
 l_modelSum <- list()
-while(length(l_modelSum) < 20){
-    modelSum <- fitBiSEMPGS_m2_cov(cov=CMatrix, Mean=Mean)
+while(length(l_modelSum) < 5){
+    model <- fitBiSEMPGS_m2_cov(cov=CMatrix, Mean=Mean)
+    modelSum <- summary(model)
     l_modelSum <- c(l_modelSum, list(modelSum))
 }
 
 summary_list <- l_modelSum
+#summary_list[[4]] |> summary() |> print()
+#summary_list[[4]]$algebras["VF_Algebra"]
 # extract all the status code of openmx and put them into a vector
 status_codes <- sapply(summary_list, function(x) x$statusCode)
 summary(status_codes)
@@ -435,7 +448,7 @@ for(i in 1:length(summary_list)) {
 }
 df$status_codes <- status_codes
 #aggregate(df$f11, by = list(df$status_codes), FUN = mean)
-df <- df[-1,]
+#df <- df[-1,]
 # get only the results with green status code
 df <- df[df$status_codes %in% c("OK", "OK/green"),]
 nrow(df)
@@ -449,7 +462,7 @@ nrow(df)
 #df <- df[!apply(df[,1:64] <= -0.048, 1, any), ]
 
 #remove the outliers that are three sd away from the mean of VF11 VF12 and VF22
-df <- df[abs(df$VF11 - mean(df$VF11)) < 3*sd(df$VF11),]
-nrow(df)
+# df <- df[abs(df$VF11 - mean(df$VF11)) < 3*sd(df$VF11),]
+# nrow(df)
 
-psych::describe(df)
+psych::describe(df) |> print()

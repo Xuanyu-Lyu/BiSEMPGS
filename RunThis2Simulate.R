@@ -5,12 +5,12 @@ source("Simulate.Multivariate.NOLD.AM.FUNCTIONS_May2021-mck7.R")
 #setwd("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS")
 
 # create a list of starting parameters for different conditions
-conditionNames <- c("f_trans_full", "am_trans_full", "delta_trans_full", "f_half_full", "am_half_full", "delta_half_full", "normal_full")
+conditionNames <- c("f_trans_full", "am_trans_full", "delta_trans_full", "f_half_full", "am_half_full", "delta_half_full", "full_test")
 startingParamList <- list(vg1 = c(.36,.36,.09,.36,.36,.18,.36),
 						  vg2 = c(.09,.09,.36,.09,.09,.045,.09),
 						  am11 = c(.4,.3,.4,.4,.2,.4,.4),
 						  am12 = c(.2,.2,.2,.2,.1,.2,.2),
-						  am21 = c(.2,.2,.2,.2,.1,.2,.2),
+						  am21 = c(.2,.2,.2,.2,.1,.2,.1),
 						  am22 = c(.3,.4,.3,.3,.15,.3,.3),
 						  f11 = c(.1,.15,.15,.15/2,.15,.15,.15),
 						  f12 = c(.1,.1,.1,.05,.1,.1,.1),
@@ -19,7 +19,7 @@ startingParamList <- list(vg1 = c(.36,.36,.09,.36,.36,.18,.36),
 
 for (condition in 7){
 	# WILDCARD parameters
-	pop.size <- 1e5 #maybe something like 2e4, or 20000, when running for real
+	pop.size <- 1e4 #maybe something like 2e4, or 20000, when running for real
 	num.cvs <- 200 #maybe 25
 	seed <- 62*condition
 	num.gen <-  15 #8 should be sufficient to get to AM equilibrium
@@ -35,8 +35,8 @@ for (condition in 7){
 	vg2 <- startingParamList["vg2"][[1]][[condition]] #trait 2 vg
 	rg <- 0 #genetic CORRELATION @t0 bw trait 1 and trait 2 for both obs. PGS and latent PGS (assumed to be the same). NOTE: this is NOT the full rg at t0. It is the rg bw PGSs, and the rg bw LGSs. The full rg may be a bit different (Simpson's paradox)
 	(k2.matrix <- matrix(c(1,rg,rg,1),nrow=2,byrow=T)) #k2 matrix is 2 * k matrix - i.e., genotypic (instead of haplotypic) var/covar at t0
-	prop.h2.latent1 <- 0 #  trait 1, e.g., height
-	prop.h2.latent2 <- 0 # trait 2, e.g., IQ
+	prop.h2.latent1 <- .6 #  trait 1, e.g., height
+	prop.h2.latent2 <- .7 # trait 2, e.g., IQ
 
 	#AM - these are NOT the mu copaths. They are the CORRELATIONS between male & female traits
 	am11 <-  startingParamList["am11"][[1]][[condition]] #height.m-height.f am across 2 its
@@ -119,10 +119,10 @@ for (condition in 7){
 	# write a loop to run the simulation 100 times and save all the summary data in a list
 	#l.summaryLast <- list()
 	#l.all <- list()
-	for (i in 1){
-		AM.DATA <- AM.SIMULATE(CV.INFO=cv.info, NUM.GENERATIONS=20, POP.SIZE=pop.size, AVOID.INB=avoid.inb, SAVE.EACH.GEN=save.history, SAVE.COVS=save.covariances, SEED=seed*i, 
+	for (i in 1:20){
+		AM.DATA <- AM.SIMULATE(CV.INFO=cv.info, NUM.GENERATIONS=15, POP.SIZE=pop.size, AVOID.INB=avoid.inb, SAVE.EACH.GEN=save.history, SAVE.COVS=save.covariances, SEED=seed*i, 
 							cove.mat=cove.mat, fmat=f.mat, amat=a.mat, dmat=delta.mat, cor.list=am.list, covy=COVY, k2.matrix=k2.matrix)
-		SUMMARY.last <- AM.DATA$SUMMARY.RES[[20]]
+		SUMMARY.last <- AM.DATA$SUMMARY.RES[[15]]
 		#l.summaryLast[[i]] <- SUMMARY.last
 		#l.all[[i]] <- AM.DATA
 		# test if a folder exist, if not, create one

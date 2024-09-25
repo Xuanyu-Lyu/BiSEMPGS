@@ -25,7 +25,7 @@ startingParamList1 <- list(vg1 = rep(.49,10),
 						   rg = rep(.1,10),
 						   re = rep(.1,10),
 						   prop.h2.latent1 = c(0.5,0,0.5,0,rep(0.5,6)),
-						   prop.h2.latent2 = c(0.7,0.7,0,0,rep(0.7,6)))
+						   prop.h2.latent2 = c(0.5,0.7,0,0,rep(0.7,6)))
 
     condition =1
     pathName = "testdata"

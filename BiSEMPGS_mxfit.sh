@@ -3,7 +3,7 @@
 #SBATCH --time=12:00:00
 #SBATCH --ntasks=16
 #SBATCH --mem=40gb
-#SBATCH -J BiSEMPGS_fit
+#SBATCH -J BiSEMPGS_fit_lowtol
 #SBATCH --chdir /projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS
 #SBATCH --exclude bmem-rico1
 #SBATCH -o %x.out%A
