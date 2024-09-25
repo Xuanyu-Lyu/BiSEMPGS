@@ -18,7 +18,7 @@ save_pattern <- c("_48000", "_32000", "_64000")
 model_type <- "m2"
 mxSetup <- "VF-.1_a.1"
 n_models <- "All"
-for (j in c(1,3)){
+for (j in c(1)){
     # a list to save all the summary data
     summary_list <- list()
 
@@ -27,7 +27,7 @@ for (j in c(1,3)){
     #l_files <- l_files[1:n_models]
 
     # fit the model for each data file
-    for (i in 1:length(l_files)){
+    for (i in 1:100){
         # fit the model
         #fit <- fitBiSEMPGS_m2(paste0(data_path[j], "/", l_files[i]))
         

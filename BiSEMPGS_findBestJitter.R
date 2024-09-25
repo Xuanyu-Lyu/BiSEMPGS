@@ -1,6 +1,8 @@
 # This is a script to find the best possible distribution for the mxTryHard function in OpenMx for BoSEMPGS model. 
 
 CMatrix <- read.csv("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/ExpectedCMatrix.csv", header = TRUE, row.names = 1)
+CMatrix <- read.csv("ExpectedCMatrix.csv", header = TRUE, row.names = 1) |> as.matrix()
+
 Mean <- rep(0, 14)
 names(Mean) <- colnames(CMatrix)
 
@@ -177,16 +179,21 @@ fitBiSEMPGS_m2_cov <- function(cov, Mean, jitterMean = .5, jitterVar = .1){
 
 }
 
-v_jitterMean <- c(seq(0,5, by = .1))
+v_jitterMean <- c(seq(0,3, by = .1))
 v_jitterVar <- c(seq(0,1, by = .05))
+
+# v_jitterMean <- c(seq(0,1, by = .5))
+# v_jitterVar <- c(seq(0,1, by = .5))
 
 # a loop to run through all the possible combinations of jitterMean and jitterVar and save the results in a list
 summary_list <- list()
 for (i in 1:length(v_jitterMean)){
     for (j in 1:length(v_jitterVar)){
-        summary_list[[paste0("jitterMean_", v_jitterMean[i], "_jitterVar_", v_jitterVar[j])]] <- fitBiSEMPGS_m2_cov(CMatrix, Mean, jitterMean = v_jitterMean[i], jitterVar = v_jitterVar[j])
+        summary_list[[paste0("jitterMean_", v_jitterMean[i])]][[paste0("_jitterVar_", v_jitterVar[j])]] <- fitBiSEMPGS_m2_cov(CMatrix, Mean, jitterMean = v_jitterMean[i], jitterVar = v_jitterVar[j])
     }
 }
+
+
 conditionNames <- c("Full_Model", "MeasurePgs30", "MeasurePgs10", "MeasurePgsFully", 
 "f11-decrease", "f12-decrease", "f11.12.21.22-decrease", "am11-decrease", "am12-decrease", "am11.12.21.22-decrease", "Full_Model_.5latent")
 save_path <- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Analysis/", conditionNames[1])
@@ -194,10 +201,10 @@ data_pattern <- c( "_48000.txt", "_32000.txt", "_64000.txt")
 save_pattern <- c("_48000", "_32000", "_64000")
 model_type <- "m2cov"
 mxSetup <- "testJitter_VF-.1_a.1"
-n_models <- "50by20"
+n_models <- "30by20"
 
 if (!dir.exists(save_path)){
     dir.create(save_path)}
 
 # save the summary list
-saveRDS(summary_list, paste0(save_path, "/", model_type,mxSetup, save_pattern[j], "_nModel", n_models, "_summary_list.rds"))
+saveRDS(summary_list, paste0(save_path, "/", model_type,mxSetup, save_pattern[1], "_nModel", n_models, "_summary_list.rds"))
