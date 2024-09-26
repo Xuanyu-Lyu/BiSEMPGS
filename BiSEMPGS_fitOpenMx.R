@@ -177,7 +177,7 @@ fitBiSEMPGS_m2 <- function(data_path){
         options(warning.length = 8000)
         Model1 <- mxModel("BiSEM_PGS", Params, Example_Data_Mx)
 
-        fitModel1 <- mxTryHardWideSearch(Model1, extraTries = 5, OKstatuscodes = c(0,1), intervals=T, silent=F, showInits = F, exhaustive = T, jitterDistrib = "rnorm", loc=.5, scale = .1)
+        fitModel1 <- mxTryHardWideSearch(Model1, extraTries = 20, OKstatuscodes = c(0,1), intervals=T, silent=F, showInits = F, exhaustive = T, jitterDistrib = "rnorm", loc=.5, scale = .1)
         return(summary(fitModel1))
 
 }
