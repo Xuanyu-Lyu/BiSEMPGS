@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --qos=preemptable
-#SBATCH --time=12:00:00
+#SBATCH --time=20:00:00
 #SBATCH --ntasks=16
 #SBATCH --mem=40gb
 #SBATCH -J BiSEMPGS_fit_lowtol
