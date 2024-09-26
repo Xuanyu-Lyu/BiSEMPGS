@@ -1,0 +1,177 @@
+To take full advantage of multiple cores, use:
+  mxOption(key='Number of Threads', value=parallel::detectCores()) #now
+  Sys.setenv(OMP_NUM_THREADS=parallel::detectCores()) #before library(OpenMx)
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  1063397.7679748
+ OpenMx status code 10 not in list of acceptable status codes, (0,1)
+
+Beginning fit attempt 1 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 2 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 3 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 4 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 5 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 6 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 7 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 8 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 9 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 10 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 11 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 12 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 13 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 14 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 15 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 16 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 17 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 18 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 19 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 20 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 21 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 22 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 23 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 24 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 25 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 26 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 27 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 28 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 29 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 30 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Retry limit reached
+Computing Hessian and/or standard errors and/or confidence intervals from imperfect solution
+
+Running BiSEM_PGS with 78 parameters
+
+ Retry limit reached; Best fit=1063397.8 (started at 1063397.8)  (31 attempt(s): 1 valid, 30 errors)
+
+ Start values from best fit:
+2,0.4,1.5,0.2,0.06,0.04,0.5,0.06,0.84,0.4,0.3,0.4,0.34,0.02,0.03,0.6,0.15,0.1,0.5,0.5,0.1,0.15,0.3,0.15,0.15,0.1,0.3,0.2,0.05,0.01,0.1,0.05,0.015,0.01,0.02,0.14,0.1,0.1,0.04,0.01,0.015,0.05,0.05,0.04,0.03,0.05,0.03,0.036,0.03,0.07,0.05,0.05,0.16,0.04,0.11,0.09,0.3,0.15,0.1,0.51,0.2,0.1,0.07,0.08,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+slurmstepd: error: *** JOB 18022637 ON bhpc-c7-u19-23 CANCELLED AT 2024-09-25T23:10:58 ***

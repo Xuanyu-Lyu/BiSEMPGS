@@ -24,7 +24,7 @@ fitBiSEMPGS_m2_cov <- function(cov, Mean, jitterMean = .5, jitterVar = .1){
 
     # some optimizer options - adapted from Yongkong's script
     
-    mxOption(NULL,"Feasibility tolerance","1e-7")
+    mxOption(NULL,"Feasibility tolerance","1e-5")
     mxOption(NULL,"Number of Threads", value = parallel::detectCores())
     #mxOption(NULL,"Analytic Gradients","No")
 
