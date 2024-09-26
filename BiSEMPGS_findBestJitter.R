@@ -1,7 +1,7 @@
 # This is a script to find the best possible distribution for the mxTryHard function in OpenMx for BoSEMPGS model. 
 
-CMatrix <- read.csv("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/ExpectedCMatrix.csv", header = TRUE, row.names = 1)
-CMatrix <- read.csv("ExpectedCMatrix.csv", header = TRUE, row.names = 1) |> as.matrix()
+CMatrix <- read.csv("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/ExpectedCMatrix.csv", header = TRUE, row.names = 1) |> as.matrix()
+#CMatrix <- read.csv("ExpectedCMatrix.csv", header = TRUE, row.names = 1) |> as.matrix()
 
 Mean <- rep(0, 14)
 names(Mean) <- colnames(CMatrix)
