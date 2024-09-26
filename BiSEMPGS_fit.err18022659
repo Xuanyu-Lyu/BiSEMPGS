@@ -1,0 +1,4358 @@
+To take full advantage of multiple cores, use:
+  mxOption(key='Number of Threads', value=parallel::detectCores()) #now
+  Sys.setenv(OMP_NUM_THREADS=parallel::detectCores()) #before library(OpenMx)
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  1063397.7679748
+ OpenMx status code 10 not in list of acceptable status codes, (0,1)
+
+Beginning fit attempt 1 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 2 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 3 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 4 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 5 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 6 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 7 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 8 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 9 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 10 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 11 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 12 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 13 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 14 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 15 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 16 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 17 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 18 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 19 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 20 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 21 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 22 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 23 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 24 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 25 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 26 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 27 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 28 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 29 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 30 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Retry limit reached
+Computing Hessian and/or standard errors and/or confidence intervals from imperfect solution
+
+Running BiSEM_PGS with 78 parameters
+
+ Retry limit reached; Best fit=1063397.8 (started at 1063397.8)  (31 attempt(s): 1 valid, 30 errors)
+
+ Start values from best fit:
+2,0.4,1.5,0.2,0.06,0.04,0.5,0.06,0.84,0.4,0.3,0.4,0.34,0.02,0.03,0.6,0.15,0.1,0.5,0.5,0.1,0.15,0.3,0.15,0.15,0.1,0.3,0.2,0.05,0.01,0.1,0.05,0.015,0.01,0.02,0.14,0.1,0.1,0.04,0.01,0.015,0.05,0.05,0.04,0.03,0.05,0.03,0.036,0.03,0.07,0.05,0.05,0.16,0.04,0.11,0.09,0.3,0.15,0.1,0.51,0.2,0.1,0.07,0.08,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  1063397.7679748
+ OpenMx status code 10 not in list of acceptable status codes, (0,1)
+
+Beginning fit attempt 1 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 2 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 3 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 4 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 5 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 6 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 7 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  397967.295314432
+
+Solution found
+
+Final run, for Hessian and/or standard errors and/or confidence intervals
+
+Running BiSEM_PGS with 78 parameters
+
+ Solution found!  Final fit=397967.3 (started at 1063397.8)  (8 attempt(s): 2 valid, 6 errors)
+
+ Start values from best fit:
+1.74783331768818,0.340159650490977,1.13595007190236,0.0330824750838524,0.00757173210954039,0.0120802276366421,0.261174165897858,0.0539728424303851,0.711574752817972,0.494975233750624,0.219089151581733,0.802388238541675,0.515984291090107,0.0500009194938417,0.0500009194938417,0.433740778473161,0.0634748938775327,0.0846892984798827,0.144064138834787,0.639055790567174,0.103202404428623,0.143645095758183,0.315575222636762,0.222611511423574,-0.0458793135789904,0.0294819538084528,0.249043173812545,0.0424320624279327,0.00774621543681721,0.0120501574417735,0.00656530219021426,0.0924838808775901,0.0197305552409355,0.033811480541174,0.0286516828460054,0.0424270920316733,0.00989728623099745,0.00656013385894227,0.0924838808775901,0.0267710178910548,0.0286516828460054,0.118300397611268,0.0951740568428905,-0.0498642330601708,0.0287510078937456,0.062794550432576,0.0117845110208719,0.0224754662376312,0.0138688806836967,0.0905474740219219,0.0198924502603057,0.0213099442887211,-0.021811940977435,0.0414818129701515,0.110514353944613,0.0229643800776476,-0.00209932657614775,0.0553111231489518,0.036440842834185,0.0193099730829829,-0.000383598968810658,0.0821188519048892,0.0817418116518773,0.0373557706786007,1.35495052201934e-09,5.7744655702879e-09,7.68041884471051e-09,5.9095249362845e-09,7.1359188228468e-09,-1.4158257791706e-08,2.67111654938287e-09,-3.10707713596299e-09,3.56827951281169e-09,2.39814027929834e-09,-5.94535689402445e-10,7.60044705538634e-10,2.90321838351061e-09,-1.08081243156456e-09
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  397967.616182391
+
+Solution found
+
+Final run, for Hessian and/or standard errors and/or confidence intervals
+
+Running BiSEM_PGS with 78 parameters
+
+ Solution found!  Final fit=397967.62 (started at 1063397.8)  (1 attempt(s): 1 valid, 0 errors)
+
+ Start values from best fit:
+1.74789024464218,0.340169159211436,1.13594605223946,0.569293606734189,0.0850995903035012,0.0482629938089259,0.114238321286998,0.0652146112449842,0.829858401533977,0.494871805727141,0.220173339502142,0.494369439518374,0.351376643172989,0.0498700887916631,0.0498700887916631,0.43376977635354,0.063538452124007,0.0845996645498652,0.14404086707348,0.436170481523613,0.0735539688300118,0.102330178753392,0.225889162101039,0.222587339299817,-0.0458333391428781,0.0295238375663057,0.249062539419271,0.0424404541919223,0.00770584713465519,0.0120138619800228,0.00652858413177582,0.0431702913042626,0.00977945135639661,0.0166369087573559,0.0146624605780585,0.0424242065553954,0.0100324476974905,0.00660215654148199,0.0431702913042626,0.0132081800568762,0.0146624605780585,0.042632855971464,0.00915588770493885,0.0124218787407479,0.00959006733269614,0.0429487450687666,0.00815638121098792,0.0160497122032631,0.00991940981957453,0.0427908005201153,0.0114459649649845,0.00975473857613533,0.150274114826286,0.0494233415478652,0.0999355907310041,0.0939394178745811,0.204092519909007,0.080579434953104,0.0762774080458952,0.0482959059995757,0.207899389779702,0.0834169996678373,0.106575838129103,0.0712025628420795,2.44234322054439e-07,1.74627012084363e-07,3.68193231043634e-07,4.88926686697951e-07,2.50929207539035e-07,-2.3919986520335e-07,5.16542379269344e-08,6.09111047948013e-08,1.07525284650424e-07,6.43004178638839e-08,-5.21674880590283e-09,1.66450926784333e-07,-1.68654499761296e-08,1.60708725013124e-07
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  397976.918093613
+
+Solution found
+
+Final run, for Hessian and/or standard errors and/or confidence intervals
+
+Running BiSEM_PGS with 78 parameters
+
+ Solution found!  Final fit=397976.92 (started at 1063397.8)  (1 attempt(s): 1 valid, 0 errors)
+
+ Start values from best fit:
+1.74816879402414,0.339887204698068,1.13594782265722,0.189061778416858,0.0789072939300565,0.0398372574378011,0.496465521355075,0.0653679811373957,0.807739408828706,0.494410879808508,0.222012274039681,0.492831748123148,0.385748026027713,0.048771235914368,0.048771235914368,0.433907087067315,0.0637211058483882,0.0843387803468188,0.143950482136026,0.435558618843841,0.0747850052383489,0.106095522033056,0.244573901820776,0.222473782176427,-0.0455858080779931,0.0297514785845891,0.249108895453769,0.0424779127476255,0.00743270625711496,0.0117564619607843,0.00646222538196113,0.0430832326125059,0.0102169847379657,0.0176446322298584,0.0169941461107858,0.042434274058401,0.0110935931910086,0.0067604300516374,0.0430832326125059,0.0139308084839121,0.0169941461107858,0.0425793410469687,0.00948741877708283,0.0124320625512068,0.0102750262121341,0.0429330847846934,0.00818367263881123,0.0169730690947019,0.0106784244624624,0.042756212915831,0.0117690557654507,0.0104767253372982,0.151019111332736,0.049125507735839,0.0995152938696287,0.0807671682447441,0.205028472903858,0.0773887419736481,0.0682549755795462,0.0431665757620201,0.208797802811669,0.0799965676851931,0.113381841504867,0.0678740978822998,5.61186815544045e-09,2.62976422669723e-09,2.45511663390633e-10,1.19068979088919e-09,3.5417857745839e-09,4.93278188598917e-09,-1.9831638525799e-09,2.65580720509712e-09,-8.56997501641716e-10,9.79448385646326e-10,-2.24092577515478e-09,8.68703193932116e-10,-1.44610652315732e-11,-2.78401971705335e-09
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  58449277.394564
+ OpenMx status code 6 not in list of acceptable status codes, (0,1)
+
+Beginning fit attempt 1 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  4371172.17122075
+ OpenMx status code 10 not in list of acceptable status codes, (0,1)
+
+Beginning fit attempt 2 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 3 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 4 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 5 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 6 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 7 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 8 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 9 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 10 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 11 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 12 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 13 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 14 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 15 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 16 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 17 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 18 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 19 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 20 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 21 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 22 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 23 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 24 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 25 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 26 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 27 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 28 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 29 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 30 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Retry limit reached
+Computing Hessian and/or standard errors and/or confidence intervals from imperfect solution
+
+Running BiSEM_PGS with 78 parameters
+
+ Retry limit reached; Best fit=4371172.2 (started at 1063397.8)  (31 attempt(s): 2 valid, 29 errors)
+
+ Start values from best fit:
+0.619558671245118,-0.05,0.650309884565758,-0.1,-0.0650113641524031,0.0415248735881793,0.165877120312064,0.159360908455729,0.157111156561338,-0.05,-0.0180032653640316,0.1,0.213158666126598,0.0852070611133156,0.0378424916294158,-0.05,-0.05,0.107233461250851,-0.05,0.0245697116555352,0.01483660038818,-0.05,-0.0474070509086103,-0.1,-0.0369851670723573,0.0244976934915936,-0.1,0.00325951568245927,-0.05,-0.05,0.200046438855134,-0.042155722427998,0.398676901775004,-0.05,-0.0125557263281639,0.24273720161343,0.127342121133731,0.307867666278605,-0.042217558843615,-0.05,0.0322303510451805,-0.05,-0.0307834686645146,0.0436743844735019,0.21541647372134,-0.0119231566063425,0.0954629620111803,0.0858572924066796,0.260703641006321,0.274057799364237,-0.0119131242001022,-0.05,0.200280483925215,0.150618100978071,-0.05,-0.05,0.0794109610885426,-0.05,0.181681941085693,0.216457549824096,-0.05,-0.05,-0.05,-0.05,-0.431682017412151,-2.26147887911818,5.62925610942119,0.189774387308505,2.03411653030456,1.56314696621224,0.25799721396279,0.355549530612249,0.181163313532437,0.249258502674782,-0.875405412042336,3.03914820839655,0.668215135627583,-0.044999688475396
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  397967.616182104
+
+Solution found
+
+Final run, for Hessian and/or standard errors and/or confidence intervals
+
+Running BiSEM_PGS with 78 parameters
+
+ Solution found!  Final fit=397967.62 (started at 1063397.8)  (1 attempt(s): 1 valid, 0 errors)
+
+ Start values from best fit:
+1.74789204828745,0.340170142035861,1.13594674740441,0.139544702080342,0.0851006243096263,0.0482639328025427,0.543989744703464,0.0652147909281398,0.829860255181313,0.494871708971857,0.220173018315622,0.494368066870173,0.35137394901555,0.0498700049075376,0.0498700049075376,0.433770517666325,0.0635388613326091,0.0846001503341542,0.144041115535782,0.436169688751756,0.0735538378317601,0.102329838217742,0.225887796435007,0.222587065169961,-0.0458333899234962,0.0295240764674161,0.249062709157752,0.0424405818296305,0.00770597500921397,0.0120139688978467,0.00652864624428268,0.0431700892561589,0.00977938960324128,0.0166368178801202,0.0146623050718187,0.0424244001461382,0.0100326946106715,0.00660221063894576,0.0431700892561589,0.0132081037416808,0.0146623050718187,0.042632814639542,0.00915588004069418,0.0124219159019158,0.00959004223911227,0.0429486951238151,0.00815640427113794,0.0160496974928908,0.00991938733514833,0.0427907548816785,0.0114459744266597,0.0097547147871303,0.150274838053473,0.0494234732803819,0.0999355791667283,0.0939405830919084,0.204093851952348,0.0805800870690462,0.0762778989307244,0.0482965366593567,0.207899920360109,0.0834173213090986,0.106575586037114,0.0712029357283947,7.85665397764638e-09,1.29210821517227e-07,-1.35611295788169e-07,2.15674284601363e-08,3.34750178821625e-08,2.2302370111502e-07,4.57041490479698e-08,1.13162401675403e-07,4.12121273897599e-08,-4.79531378756626e-08,-4.97205164551946e-08,-1.13527026481851e-07,-1.63436804277295e-08,2.06233116859275e-08
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  397967.616181958
+
+Solution found
+
+Final run, for Hessian and/or standard errors and/or confidence intervals
+
+Running BiSEM_PGS with 78 parameters
+
+ Solution found!  Final fit=397967.62 (started at 1063397.8)  (1 attempt(s): 1 valid, 0 errors)
+
+ Start values from best fit:
+1.7478931969656,0.340170677234291,1.135946777403,-0.0997478336984382,0.0851011244733151,0.0482637580641706,0.783286725551758,0.0652147192671218,0.829859444523046,0.494870574529631,0.220173240264044,0.494365332772028,0.351375063672135,0.0498700850135779,0.0498700850135779,0.433770784967629,0.0635389885401079,0.0846001297456629,0.144041086853377,0.436168440284436,0.0735539579175279,0.102329926034899,0.225888412331485,0.222587108581422,-0.0458334407174884,0.0295239548509149,0.249062818639869,0.0424406319634382,0.00770598722845073,0.0120139772569313,0.00652862396478494,0.0431698552027836,0.00977938673465689,0.0166368061459856,0.014662379077954,0.042424449476414,0.0100325848477267,0.00660219306588281,0.0431698552027836,0.0132080964403213,0.014662379077954,0.0426327240211078,0.00915589477872976,0.0124218829061295,0.00959006319210468,0.0429486114121496,0.00815639042993404,0.0160497290330011,0.00991941082265232,0.0427906677166287,0.0114459742869486,0.0097547370073785,0.150276537848056,0.0494237117223098,0.0999352758203465,0.0939400266640391,0.204096038152286,0.0805803417389837,0.0762782115200437,0.0482963816560172,0.20790145919493,0.0834173353433265,0.106576166269833,0.0712028552430795,-1.20657529478036e-08,1.727039674953e-08,-2.90663210984805e-08,-8.81105079909191e-09,-1.14907975260339e-08,-9.86926357872616e-09,-2.44051215252238e-09,1.24225726155083e-09,-3.44366019581285e-09,1.35117146563966e-09,-7.39924357760919e-09,2.05068493895075e-09,-2.57681406206395e-09,2.68946510913406e-09
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  1063397.7679748
+ OpenMx status code 10 not in list of acceptable status codes, (0,1)
+
+Beginning fit attempt 1 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 2 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 3 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 4 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 5 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 6 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 7 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 8 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 9 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 10 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 11 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 12 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 13 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 14 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 15 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 16 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 17 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 18 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 19 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 20 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 21 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 22 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 23 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 24 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 25 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 26 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 27 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 28 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 29 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 30 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Retry limit reached
+Computing Hessian and/or standard errors and/or confidence intervals from imperfect solution
+
+Running BiSEM_PGS with 78 parameters
+
+ Retry limit reached; Best fit=1063397.8 (started at 1063397.8)  (31 attempt(s): 1 valid, 30 errors)
+
+ Start values from best fit:
+2,0.4,1.5,0.2,0.06,0.04,0.5,0.06,0.84,0.4,0.3,0.4,0.34,0.02,0.03,0.6,0.15,0.1,0.5,0.5,0.1,0.15,0.3,0.15,0.15,0.1,0.3,0.2,0.05,0.01,0.1,0.05,0.015,0.01,0.02,0.14,0.1,0.1,0.04,0.01,0.015,0.05,0.05,0.04,0.03,0.05,0.03,0.036,0.03,0.07,0.05,0.05,0.16,0.04,0.11,0.09,0.3,0.15,0.1,0.51,0.2,0.1,0.07,0.08,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  397967.616182104
+
+Solution found
+
+Final run, for Hessian and/or standard errors and/or confidence intervals
+
+Running BiSEM_PGS with 78 parameters
+
+ Solution found!  Final fit=397967.62 (started at 1063397.8)  (1 attempt(s): 1 valid, 0 errors)
+
+ Start values from best fit:
+1.74789204828745,0.340170142035861,1.13594674740441,0.139544702080342,0.0851006243096263,0.0482639328025427,0.543989744703464,0.0652147909281398,0.829860255181313,0.494871708971857,0.220173018315622,0.494368066870173,0.35137394901555,0.0498700049075376,0.0498700049075376,0.433770517666325,0.0635388613326091,0.0846001503341542,0.144041115535782,0.436169688751756,0.0735538378317601,0.102329838217742,0.225887796435007,0.222587065169961,-0.0458333899234962,0.0295240764674161,0.249062709157752,0.0424405818296305,0.00770597500921397,0.0120139688978467,0.00652864624428268,0.0431700892561589,0.00977938960324128,0.0166368178801202,0.0146623050718187,0.0424244001461382,0.0100326946106715,0.00660221063894576,0.0431700892561589,0.0132081037416808,0.0146623050718187,0.042632814639542,0.00915588004069418,0.0124219159019158,0.00959004223911227,0.0429486951238151,0.00815640427113794,0.0160496974928908,0.00991938733514833,0.0427907548816785,0.0114459744266597,0.0097547147871303,0.150274838053473,0.0494234732803819,0.0999355791667283,0.0939405830919084,0.204093851952348,0.0805800870690462,0.0762778989307244,0.0482965366593567,0.207899920360109,0.0834173213090986,0.106575586037114,0.0712029357283947,7.85665397764638e-09,1.29210821517227e-07,-1.35611295788169e-07,2.15674284601363e-08,3.34750178821625e-08,2.2302370111502e-07,4.57041490479698e-08,1.13162401675403e-07,4.12121273897599e-08,-4.79531378756626e-08,-4.97205164551946e-08,-1.13527026481851e-07,-1.63436804277295e-08,2.06233116859275e-08
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  397967.616181958
+
+Solution found
+
+Final run, for Hessian and/or standard errors and/or confidence intervals
+
+Running BiSEM_PGS with 78 parameters
+
+ Solution found!  Final fit=397967.62 (started at 1063397.8)  (1 attempt(s): 1 valid, 0 errors)
+
+ Start values from best fit:
+1.7478931969656,0.340170677234291,1.135946777403,-0.0997478336984382,0.0851011244733151,0.0482637580641706,0.783286725551758,0.0652147192671218,0.829859444523046,0.494870574529631,0.220173240264044,0.494365332772028,0.351375063672135,0.0498700850135779,0.0498700850135779,0.433770784967629,0.0635389885401079,0.0846001297456629,0.144041086853377,0.436168440284436,0.0735539579175279,0.102329926034899,0.225888412331485,0.222587108581422,-0.0458334407174884,0.0295239548509149,0.249062818639869,0.0424406319634382,0.00770598722845073,0.0120139772569313,0.00652862396478494,0.0431698552027836,0.00977938673465689,0.0166368061459856,0.014662379077954,0.042424449476414,0.0100325848477267,0.00660219306588281,0.0431698552027836,0.0132080964403213,0.014662379077954,0.0426327240211078,0.00915589477872976,0.0124218829061295,0.00959006319210468,0.0429486114121496,0.00815639042993404,0.0160497290330011,0.00991941082265232,0.0427906677166287,0.0114459742869486,0.0097547370073785,0.150276537848056,0.0494237117223098,0.0999352758203465,0.0939400266640391,0.204096038152286,0.0805803417389837,0.0762782115200437,0.0482963816560172,0.20790145919493,0.0834173353433265,0.106576166269833,0.0712028552430795,-1.20657529478036e-08,1.727039674953e-08,-2.90663210984805e-08,-8.81105079909191e-09,-1.14907975260339e-08,-9.86926357872616e-09,-2.44051215252238e-09,1.24225726155083e-09,-3.44366019581285e-09,1.35117146563966e-09,-7.39924357760919e-09,2.05068493895075e-09,-2.57681406206395e-09,2.68946510913406e-09
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  1063397.7679748
+ OpenMx status code 10 not in list of acceptable status codes, (0,1)
+
+Beginning fit attempt 1 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 2 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 3 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 4 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 5 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 6 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 7 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 8 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 9 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 10 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 11 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 12 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 13 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 14 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 15 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 16 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 17 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 18 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 19 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 20 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 21 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 22 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 23 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 24 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 25 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 26 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 27 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 28 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 29 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 30 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Retry limit reached
+Computing Hessian and/or standard errors and/or confidence intervals from imperfect solution
+
+Running BiSEM_PGS with 78 parameters
+
+ Retry limit reached; Best fit=1063397.8 (started at 1063397.8)  (31 attempt(s): 1 valid, 30 errors)
+
+ Start values from best fit:
+2,0.4,1.5,0.2,0.06,0.04,0.5,0.06,0.84,0.4,0.3,0.4,0.34,0.02,0.03,0.6,0.15,0.1,0.5,0.5,0.1,0.15,0.3,0.15,0.15,0.1,0.3,0.2,0.05,0.01,0.1,0.05,0.015,0.01,0.02,0.14,0.1,0.1,0.04,0.01,0.015,0.05,0.05,0.04,0.03,0.05,0.03,0.036,0.03,0.07,0.05,0.05,0.16,0.04,0.11,0.09,0.3,0.15,0.1,0.51,0.2,0.1,0.07,0.08,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  397967.616182104
+
+Solution found
+
+Final run, for Hessian and/or standard errors and/or confidence intervals
+
+Running BiSEM_PGS with 78 parameters
+
+ Solution found!  Final fit=397967.62 (started at 1063397.8)  (1 attempt(s): 1 valid, 0 errors)
+
+ Start values from best fit:
+1.74789204828745,0.340170142035861,1.13594674740441,0.139544702080342,0.0851006243096263,0.0482639328025427,0.543989744703464,0.0652147909281398,0.829860255181313,0.494871708971857,0.220173018315622,0.494368066870173,0.35137394901555,0.0498700049075376,0.0498700049075376,0.433770517666325,0.0635388613326091,0.0846001503341542,0.144041115535782,0.436169688751756,0.0735538378317601,0.102329838217742,0.225887796435007,0.222587065169961,-0.0458333899234962,0.0295240764674161,0.249062709157752,0.0424405818296305,0.00770597500921397,0.0120139688978467,0.00652864624428268,0.0431700892561589,0.00977938960324128,0.0166368178801202,0.0146623050718187,0.0424244001461382,0.0100326946106715,0.00660221063894576,0.0431700892561589,0.0132081037416808,0.0146623050718187,0.042632814639542,0.00915588004069418,0.0124219159019158,0.00959004223911227,0.0429486951238151,0.00815640427113794,0.0160496974928908,0.00991938733514833,0.0427907548816785,0.0114459744266597,0.0097547147871303,0.150274838053473,0.0494234732803819,0.0999355791667283,0.0939405830919084,0.204093851952348,0.0805800870690462,0.0762778989307244,0.0482965366593567,0.207899920360109,0.0834173213090986,0.106575586037114,0.0712029357283947,7.85665397764638e-09,1.29210821517227e-07,-1.35611295788169e-07,2.15674284601363e-08,3.34750178821625e-08,2.2302370111502e-07,4.57041490479698e-08,1.13162401675403e-07,4.12121273897599e-08,-4.79531378756626e-08,-4.97205164551946e-08,-1.13527026481851e-07,-1.63436804277295e-08,2.06233116859275e-08
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  397967.616181958
+
+Solution found
+
+Final run, for Hessian and/or standard errors and/or confidence intervals
+
+Running BiSEM_PGS with 78 parameters
+
+ Solution found!  Final fit=397967.62 (started at 1063397.8)  (1 attempt(s): 1 valid, 0 errors)
+
+ Start values from best fit:
+1.7478931969656,0.340170677234291,1.135946777403,-0.0997478336984382,0.0851011244733151,0.0482637580641706,0.783286725551758,0.0652147192671218,0.829859444523046,0.494870574529631,0.220173240264044,0.494365332772028,0.351375063672135,0.0498700850135779,0.0498700850135779,0.433770784967629,0.0635389885401079,0.0846001297456629,0.144041086853377,0.436168440284436,0.0735539579175279,0.102329926034899,0.225888412331485,0.222587108581422,-0.0458334407174884,0.0295239548509149,0.249062818639869,0.0424406319634382,0.00770598722845073,0.0120139772569313,0.00652862396478494,0.0431698552027836,0.00977938673465689,0.0166368061459856,0.014662379077954,0.042424449476414,0.0100325848477267,0.00660219306588281,0.0431698552027836,0.0132080964403213,0.014662379077954,0.0426327240211078,0.00915589477872976,0.0124218829061295,0.00959006319210468,0.0429486114121496,0.00815639042993404,0.0160497290330011,0.00991941082265232,0.0427906677166287,0.0114459742869486,0.0097547370073785,0.150276537848056,0.0494237117223098,0.0999352758203465,0.0939400266640391,0.204096038152286,0.0805803417389837,0.0762782115200437,0.0482963816560172,0.20790145919493,0.0834173353433265,0.106576166269833,0.0712028552430795,-1.20657529478036e-08,1.727039674953e-08,-2.90663210984805e-08,-8.81105079909191e-09,-1.14907975260339e-08,-9.86926357872616e-09,-2.44051215252238e-09,1.24225726155083e-09,-3.44366019581285e-09,1.35117146563966e-09,-7.39924357760919e-09,2.05068493895075e-09,-2.57681406206395e-09,2.68946510913406e-09
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  1063397.7679748
+ OpenMx status code 10 not in list of acceptable status codes, (0,1)
+
+Beginning fit attempt 1 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 2 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 3 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 4 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 5 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 6 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 7 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 8 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 9 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 10 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 11 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 12 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 13 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 14 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 15 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 16 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 17 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 18 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 19 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 20 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 21 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 22 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 23 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 24 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 25 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 26 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 27 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 28 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 29 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 30 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Retry limit reached
+Computing Hessian and/or standard errors and/or confidence intervals from imperfect solution
+
+Running BiSEM_PGS with 78 parameters
+
+ Retry limit reached; Best fit=1063397.8 (started at 1063397.8)  (31 attempt(s): 1 valid, 30 errors)
+
+ Start values from best fit:
+2,0.4,1.5,0.2,0.06,0.04,0.5,0.06,0.84,0.4,0.3,0.4,0.34,0.02,0.03,0.6,0.15,0.1,0.5,0.5,0.1,0.15,0.3,0.15,0.15,0.1,0.3,0.2,0.05,0.01,0.1,0.05,0.015,0.01,0.02,0.14,0.1,0.1,0.04,0.01,0.015,0.05,0.05,0.04,0.03,0.05,0.03,0.036,0.03,0.07,0.05,0.05,0.16,0.04,0.11,0.09,0.3,0.15,0.1,0.51,0.2,0.1,0.07,0.08,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  397967.616182104
+
+Solution found
+
+Final run, for Hessian and/or standard errors and/or confidence intervals
+
+Running BiSEM_PGS with 78 parameters
+
+ Solution found!  Final fit=397967.62 (started at 1063397.8)  (1 attempt(s): 1 valid, 0 errors)
+
+ Start values from best fit:
+1.74789204828745,0.340170142035861,1.13594674740441,0.139544702080342,0.0851006243096263,0.0482639328025427,0.543989744703464,0.0652147909281398,0.829860255181313,0.494871708971857,0.220173018315622,0.494368066870173,0.35137394901555,0.0498700049075376,0.0498700049075376,0.433770517666325,0.0635388613326091,0.0846001503341542,0.144041115535782,0.436169688751756,0.0735538378317601,0.102329838217742,0.225887796435007,0.222587065169961,-0.0458333899234962,0.0295240764674161,0.249062709157752,0.0424405818296305,0.00770597500921397,0.0120139688978467,0.00652864624428268,0.0431700892561589,0.00977938960324128,0.0166368178801202,0.0146623050718187,0.0424244001461382,0.0100326946106715,0.00660221063894576,0.0431700892561589,0.0132081037416808,0.0146623050718187,0.042632814639542,0.00915588004069418,0.0124219159019158,0.00959004223911227,0.0429486951238151,0.00815640427113794,0.0160496974928908,0.00991938733514833,0.0427907548816785,0.0114459744266597,0.0097547147871303,0.150274838053473,0.0494234732803819,0.0999355791667283,0.0939405830919084,0.204093851952348,0.0805800870690462,0.0762778989307244,0.0482965366593567,0.207899920360109,0.0834173213090986,0.106575586037114,0.0712029357283947,7.85665397764638e-09,1.29210821517227e-07,-1.35611295788169e-07,2.15674284601363e-08,3.34750178821625e-08,2.2302370111502e-07,4.57041490479698e-08,1.13162401675403e-07,4.12121273897599e-08,-4.79531378756626e-08,-4.97205164551946e-08,-1.13527026481851e-07,-1.63436804277295e-08,2.06233116859275e-08
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  397967.616181958
+
+Solution found
+
+Final run, for Hessian and/or standard errors and/or confidence intervals
+
+Running BiSEM_PGS with 78 parameters
+
+ Solution found!  Final fit=397967.62 (started at 1063397.8)  (1 attempt(s): 1 valid, 0 errors)
+
+ Start values from best fit:
+1.7478931969656,0.340170677234291,1.135946777403,-0.0997478336984382,0.0851011244733151,0.0482637580641706,0.783286725551758,0.0652147192671218,0.829859444523046,0.494870574529631,0.220173240264044,0.494365332772028,0.351375063672135,0.0498700850135779,0.0498700850135779,0.433770784967629,0.0635389885401079,0.0846001297456629,0.144041086853377,0.436168440284436,0.0735539579175279,0.102329926034899,0.225888412331485,0.222587108581422,-0.0458334407174884,0.0295239548509149,0.249062818639869,0.0424406319634382,0.00770598722845073,0.0120139772569313,0.00652862396478494,0.0431698552027836,0.00977938673465689,0.0166368061459856,0.014662379077954,0.042424449476414,0.0100325848477267,0.00660219306588281,0.0431698552027836,0.0132080964403213,0.014662379077954,0.0426327240211078,0.00915589477872976,0.0124218829061295,0.00959006319210468,0.0429486114121496,0.00815639042993404,0.0160497290330011,0.00991941082265232,0.0427906677166287,0.0114459742869486,0.0097547370073785,0.150276537848056,0.0494237117223098,0.0999352758203465,0.0939400266640391,0.204096038152286,0.0805803417389837,0.0762782115200437,0.0482963816560172,0.20790145919493,0.0834173353433265,0.106576166269833,0.0712028552430795,-1.20657529478036e-08,1.727039674953e-08,-2.90663210984805e-08,-8.81105079909191e-09,-1.14907975260339e-08,-9.86926357872616e-09,-2.44051215252238e-09,1.24225726155083e-09,-3.44366019581285e-09,1.35117146563966e-09,-7.39924357760919e-09,2.05068493895075e-09,-2.57681406206395e-09,2.68946510913406e-09
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  1063397.7679748
+ OpenMx status code 10 not in list of acceptable status codes, (0,1)
+
+Beginning fit attempt 1 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 2 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 3 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 4 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 5 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 6 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 7 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 8 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 9 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 10 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 11 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 12 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 13 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 14 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 15 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 16 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 17 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 18 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 19 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 20 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 21 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 22 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 23 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 24 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 25 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 26 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 27 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 28 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 29 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 30 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Retry limit reached
+Computing Hessian and/or standard errors and/or confidence intervals from imperfect solution
+
+Running BiSEM_PGS with 78 parameters
+
+ Retry limit reached; Best fit=1063397.8 (started at 1063397.8)  (31 attempt(s): 1 valid, 30 errors)
+
+ Start values from best fit:
+2,0.4,1.5,0.2,0.06,0.04,0.5,0.06,0.84,0.4,0.3,0.4,0.34,0.02,0.03,0.6,0.15,0.1,0.5,0.5,0.1,0.15,0.3,0.15,0.15,0.1,0.3,0.2,0.05,0.01,0.1,0.05,0.015,0.01,0.02,0.14,0.1,0.1,0.04,0.01,0.015,0.05,0.05,0.04,0.03,0.05,0.03,0.036,0.03,0.07,0.05,0.05,0.16,0.04,0.11,0.09,0.3,0.15,0.1,0.51,0.2,0.1,0.07,0.08,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  397967.616182104
+
+Solution found
+
+Final run, for Hessian and/or standard errors and/or confidence intervals
+
+Running BiSEM_PGS with 78 parameters
+
+ Solution found!  Final fit=397967.62 (started at 1063397.8)  (1 attempt(s): 1 valid, 0 errors)
+
+ Start values from best fit:
+1.74789204828745,0.340170142035861,1.13594674740441,0.139544702080342,0.0851006243096263,0.0482639328025427,0.543989744703464,0.0652147909281398,0.829860255181313,0.494871708971857,0.220173018315622,0.494368066870173,0.35137394901555,0.0498700049075376,0.0498700049075376,0.433770517666325,0.0635388613326091,0.0846001503341542,0.144041115535782,0.436169688751756,0.0735538378317601,0.102329838217742,0.225887796435007,0.222587065169961,-0.0458333899234962,0.0295240764674161,0.249062709157752,0.0424405818296305,0.00770597500921397,0.0120139688978467,0.00652864624428268,0.0431700892561589,0.00977938960324128,0.0166368178801202,0.0146623050718187,0.0424244001461382,0.0100326946106715,0.00660221063894576,0.0431700892561589,0.0132081037416808,0.0146623050718187,0.042632814639542,0.00915588004069418,0.0124219159019158,0.00959004223911227,0.0429486951238151,0.00815640427113794,0.0160496974928908,0.00991938733514833,0.0427907548816785,0.0114459744266597,0.0097547147871303,0.150274838053473,0.0494234732803819,0.0999355791667283,0.0939405830919084,0.204093851952348,0.0805800870690462,0.0762778989307244,0.0482965366593567,0.207899920360109,0.0834173213090986,0.106575586037114,0.0712029357283947,7.85665397764638e-09,1.29210821517227e-07,-1.35611295788169e-07,2.15674284601363e-08,3.34750178821625e-08,2.2302370111502e-07,4.57041490479698e-08,1.13162401675403e-07,4.12121273897599e-08,-4.79531378756626e-08,-4.97205164551946e-08,-1.13527026481851e-07,-1.63436804277295e-08,2.06233116859275e-08
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  397967.616181958
+
+Solution found
+
+Final run, for Hessian and/or standard errors and/or confidence intervals
+
+Running BiSEM_PGS with 78 parameters
+
+ Solution found!  Final fit=397967.62 (started at 1063397.8)  (1 attempt(s): 1 valid, 0 errors)
+
+ Start values from best fit:
+1.7478931969656,0.340170677234291,1.135946777403,-0.0997478336984382,0.0851011244733151,0.0482637580641706,0.783286725551758,0.0652147192671218,0.829859444523046,0.494870574529631,0.220173240264044,0.494365332772028,0.351375063672135,0.0498700850135779,0.0498700850135779,0.433770784967629,0.0635389885401079,0.0846001297456629,0.144041086853377,0.436168440284436,0.0735539579175279,0.102329926034899,0.225888412331485,0.222587108581422,-0.0458334407174884,0.0295239548509149,0.249062818639869,0.0424406319634382,0.00770598722845073,0.0120139772569313,0.00652862396478494,0.0431698552027836,0.00977938673465689,0.0166368061459856,0.014662379077954,0.042424449476414,0.0100325848477267,0.00660219306588281,0.0431698552027836,0.0132080964403213,0.014662379077954,0.0426327240211078,0.00915589477872976,0.0124218829061295,0.00959006319210468,0.0429486114121496,0.00815639042993404,0.0160497290330011,0.00991941082265232,0.0427906677166287,0.0114459742869486,0.0097547370073785,0.150276537848056,0.0494237117223098,0.0999352758203465,0.0939400266640391,0.204096038152286,0.0805803417389837,0.0762782115200437,0.0482963816560172,0.20790145919493,0.0834173353433265,0.106576166269833,0.0712028552430795,-1.20657529478036e-08,1.727039674953e-08,-2.90663210984805e-08,-8.81105079909191e-09,-1.14907975260339e-08,-9.86926357872616e-09,-2.44051215252238e-09,1.24225726155083e-09,-3.44366019581285e-09,1.35117146563966e-09,-7.39924357760919e-09,2.05068493895075e-09,-2.57681406206395e-09,2.68946510913406e-09
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  1063397.7679748
+ OpenMx status code 10 not in list of acceptable status codes, (0,1)
+
+Beginning fit attempt 1 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 2 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 3 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 4 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 5 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 6 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 7 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 8 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 9 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 10 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 11 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 12 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 13 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 14 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 15 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 16 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 17 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 18 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 19 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 20 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 21 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 22 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 23 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 24 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 25 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 26 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 27 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 28 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 29 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 30 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Retry limit reached
+Computing Hessian and/or standard errors and/or confidence intervals from imperfect solution
+
+Running BiSEM_PGS with 78 parameters
+
+ Retry limit reached; Best fit=1063397.8 (started at 1063397.8)  (31 attempt(s): 1 valid, 30 errors)
+
+ Start values from best fit:
+2,0.4,1.5,0.2,0.06,0.04,0.5,0.06,0.84,0.4,0.3,0.4,0.34,0.02,0.03,0.6,0.15,0.1,0.5,0.5,0.1,0.15,0.3,0.15,0.15,0.1,0.3,0.2,0.05,0.01,0.1,0.05,0.015,0.01,0.02,0.14,0.1,0.1,0.04,0.01,0.015,0.05,0.05,0.04,0.03,0.05,0.03,0.036,0.03,0.07,0.05,0.05,0.16,0.04,0.11,0.09,0.3,0.15,0.1,0.51,0.2,0.1,0.07,0.08,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  397967.616182291
+
+Solution found
+
+Final run, for Hessian and/or standard errors and/or confidence intervals
+
+Running BiSEM_PGS with 78 parameters
+
+ Solution found!  Final fit=397967.62 (started at 1063397.8)  (1 attempt(s): 1 valid, 0 errors)
+
+ Start values from best fit:
+1.74789031249226,0.340169142002036,1.13594610237137,0.262813175391394,0.0851002421600643,0.0482633381326784,0.420722279778042,0.0652147597336256,0.829859209235191,0.494871315019911,0.220173272697359,0.494367218253281,0.351375410567547,0.0498700500496917,0.0498700500496917,0.433769814632059,0.063538424372041,0.0845995892807951,0.144040878933485,0.436168837918093,0.0735536785403486,0.102329758839947,0.225888456859221,0.222586928960777,-0.0458334877057667,0.0295239212449642,0.249062797243429,0.0424403604129855,0.00770585562412004,0.0120138427917714,0.00652858529074401,0.04316988681297,0.00977934518814006,0.0166367771306276,0.0146623721777493,0.0424241280568642,0.0100324226065955,0.00660206728708307,0.04316988681297,0.0132080611593839,0.0146623721777493,0.0426326192435612,0.00915581953857657,0.0124218167513588,0.00959003807242546,0.0429485088195415,0.00815632125876575,0.0160496451062925,0.00991938026351647,0.0427905640315514,0.0114459006637484,0.00975470916797097,0.150275431028287,0.0494234361935965,0.0999354106238258,0.0939398439658791,0.204093979337495,0.0805796007452113,0.076277634394873,0.0482960832368498,0.207900059387811,0.0834168611753371,0.106575760377688,0.0712026100094557,2.28444182798494e-08,1.59825338559979e-08,1.75122564021589e-08,1.44750457379599e-08,2.44448943988915e-08,2.9255195300802e-08,1.2670715424474e-08,-1.35760228522178e-08,1.62572020477418e-08,-5.40490842206232e-10,4.27919436633326e-09,-6.92834453377942e-09,1.20705434197211e-08,5.16757363996847e-09
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  37862988.8818284
+ OpenMx status code 3 not in list of acceptable status codes, (0,1)
+
+Beginning fit attempt 1 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  3164089.30485361
+ OpenMx status code 10 not in list of acceptable status codes, (0,1)
+
+Beginning fit attempt 2 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  397967.295325516
+
+Solution found
+
+Final run, for Hessian and/or standard errors and/or confidence intervals
+
+Running BiSEM_PGS with 78 parameters
+
+ Solution found!  Final fit=397967.3 (started at 1063397.8)  (3 attempt(s): 3 valid, 0 errors)
+
+ Start values from best fit:
+1.74782593429936,0.340156889974068,1.13594808975657,0.168946322511414,0.087216146700256,0.0526600643821103,0.506849625033372,0.0648103608580324,0.840315520356436,0.494972803526625,0.21908038085163,0.499267628515308,0.289006527321636,0.0500019225099908,0.0500019225099908,0.433737815697206,0.0634735004581508,0.0846884698967479,0.14406367346743,0.440433098484828,0.0745825273463927,0.116645474008485,0.250153678029044,0.222612712622528,-0.0458788811620954,0.0294824767446164,0.249044248985308,0.0424318498364564,0.00774638475854519,0.0120502001879755,0.00656547820285618,0.0440294293368793,0.0112848041521892,0.0292103487270288,0.0181348779028806,0.0424258394692718,0.00989591242790196,0.00655968685086513,0.0440294293368793,0.020247576439609,0.102292440944115,0.0441933641393351,0.0104575006403627,0.0125601466914568,0.0106976411107007,0.043376393957307,0.00825444107462531,0.0180763239187995,0.0110277808881206,0.0437848790483211,0.0123371030813111,0.0108627109994106,0.147832301316353,0.0495591666002337,0.0998317279700548,0.100246090027581,0.201075799273997,0.0821075029815802,0.0756545359715377,0.0507438241061221,0.206979396039496,0.0860452946970404,0.11850030559956,0.0835288686071747,-6.17238261576333e-09,1.74929345271271e-07,-3.18991546269815e-07,2.69869837901943e-07,-3.73734438042824e-07,-2.59596934670569e-07,-1.15813723026446e-07,-3.19793080567734e-08,-1.94123960488481e-08,5.37088531142015e-08,-1.3758627585275e-07,-7.12409217363695e-08,-2.54560731780257e-08,2.80966302175826e-08
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  1063397.7679748
+ OpenMx status code 10 not in list of acceptable status codes, (0,1)
+
+Beginning fit attempt 1 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  446891.929067361
+ OpenMx status code 6 not in list of acceptable status codes, (0,1)
+
+Beginning fit attempt 2 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  397967.295315695
+
+Solution found
+
+Final run, for Hessian and/or standard errors and/or confidence intervals
+
+Running BiSEM_PGS with 78 parameters
+
+ Solution found!  Final fit=397967.3 (started at 1063397.8)  (3 attempt(s): 3 valid, 0 errors)
+
+ Start values from best fit:
+1.74783269680702,0.340158299756509,1.13594904378003,0.142633651039245,0.0845004422867328,0.0544615412283712,0.477751835523543,0.0710114266373967,0.837981904303015,0.494974772301455,0.219085486443627,0.538085744148821,0.185409172100342,0.050000489778625,0.050000489778625,0.433740449163882,0.0634739650770278,0.0846890629127033,0.144063616157237,0.470143147244949,0.0696315958035908,0.144950791006775,0.393422029019223,0.222612579683919,-0.0458785584102905,0.0294818956576112,0.249043799900421,0.0424322254396903,0.00774614143729076,0.0120500290587381,0.00656521337873641,0.0498758059344624,0.0138046269510711,0.026983024146032,0.622191462381291,0.0424268896748297,0.00989741400402026,0.00655962743224684,0.0498758059344624,0.0203938255485515,0.622191462381291,0.0459900699072612,0.00237952274808941,0.0155549997211072,0.0159350285679057,0.0566541019680219,0.00842826851107886,0.0248237861611104,0.0168722419080764,0.0513220859376418,0.0127966442853465,0.016403635237991,0.127775346506491,0.0538308923831367,0.10563426842899,0.0983965208444132,0.178054947063788,0.0868762586240163,0.0727439357978591,0.0511305784228344,0.193238162872271,0.094383047649813,0.166861909278708,0.125619561870643,-3.70290294879465e-07,3.11984565890119e-08,-3.94338103826747e-07,6.88006572158151e-10,-3.81413450502352e-07,-1.25469407767575e-07,-1.43661030859638e-07,4.09744295053105e-08,-4.01439876759649e-08,2.58020307478085e-08,-1.30031366778342e-07,5.16724635471667e-08,-1.09235491460352e-07,-1.70649923333005e-08
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  1063397.7679748
+ OpenMx status code 10 not in list of acceptable status codes, (0,1)
+
+Beginning fit attempt 1 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 2 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt worse than current best:  3308419.73490541 vs 1063397.7679748
+
+Beginning fit attempt 3 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 4 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 5 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 6 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 7 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 8 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 9 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 10 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 11 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 12 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 13 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 14 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 15 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 16 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 17 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 18 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 19 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 20 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 21 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 22 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 23 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 24 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 25 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 26 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 27 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 28 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 29 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 30 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Retry limit reached
+Computing Hessian and/or standard errors and/or confidence intervals from imperfect solution
+
+Running BiSEM_PGS with 78 parameters
+
+ Retry limit reached; Best fit=1063397.8 (started at 1063397.8)  (31 attempt(s): 2 valid, 29 errors)
+
+ Start values from best fit:
+2,0.4,1.5,0.2,0.06,0.04,0.5,0.06,0.84,0.4,0.3,0.4,0.34,0.02,0.03,0.6,0.15,0.1,0.5,0.5,0.1,0.15,0.3,0.15,0.15,0.1,0.3,0.2,0.05,0.01,0.1,0.05,0.015,0.01,0.02,0.14,0.1,0.1,0.04,0.01,0.015,0.05,0.05,0.04,0.03,0.05,0.03,0.036,0.03,0.07,0.05,0.05,0.16,0.04,0.11,0.09,0.3,0.15,0.1,0.51,0.2,0.1,0.07,0.08,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 1 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 2 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 3 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 4 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 5 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 6 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 7 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 8 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 9 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 10 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 11 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 12 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 13 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 14 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 15 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 16 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 17 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 18 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 19 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 20 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 21 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 22 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 23 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 24 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 25 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 26 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 27 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 28 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 29 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 30 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Retry limit reached
+
+ All fit attempts resulted in errors - check starting values or model specification
+
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  397967.616182104
+
+Solution found
+
+Final run, for Hessian and/or standard errors and/or confidence intervals
+
+Running BiSEM_PGS with 78 parameters
+
+ Solution found!  Final fit=397967.62 (started at 1063397.8)  (1 attempt(s): 1 valid, 0 errors)
+
+ Start values from best fit:
+1.74789204828745,0.340170142035861,1.13594674740441,0.139544702080342,0.0851006243096263,0.0482639328025427,0.543989744703464,0.0652147909281398,0.829860255181313,0.494871708971857,0.220173018315622,0.494368066870173,0.35137394901555,0.0498700049075376,0.0498700049075376,0.433770517666325,0.0635388613326091,0.0846001503341542,0.144041115535782,0.436169688751756,0.0735538378317601,0.102329838217742,0.225887796435007,0.222587065169961,-0.0458333899234962,0.0295240764674161,0.249062709157752,0.0424405818296305,0.00770597500921397,0.0120139688978467,0.00652864624428268,0.0431700892561589,0.00977938960324128,0.0166368178801202,0.0146623050718187,0.0424244001461382,0.0100326946106715,0.00660221063894576,0.0431700892561589,0.0132081037416808,0.0146623050718187,0.042632814639542,0.00915588004069418,0.0124219159019158,0.00959004223911227,0.0429486951238151,0.00815640427113794,0.0160496974928908,0.00991938733514833,0.0427907548816785,0.0114459744266597,0.0097547147871303,0.150274838053473,0.0494234732803819,0.0999355791667283,0.0939405830919084,0.204093851952348,0.0805800870690462,0.0762778989307244,0.0482965366593567,0.207899920360109,0.0834173213090986,0.106575586037114,0.0712029357283947,7.85665397764638e-09,1.29210821517227e-07,-1.35611295788169e-07,2.15674284601363e-08,3.34750178821625e-08,2.2302370111502e-07,4.57041490479698e-08,1.13162401675403e-07,4.12121273897599e-08,-4.79531378756626e-08,-4.97205164551946e-08,-1.13527026481851e-07,-1.63436804277295e-08,2.06233116859275e-08
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  397967.616181958
+
+Solution found
+
+Final run, for Hessian and/or standard errors and/or confidence intervals
+
+Running BiSEM_PGS with 78 parameters
+
+ Solution found!  Final fit=397967.62 (started at 1063397.8)  (1 attempt(s): 1 valid, 0 errors)
+
+ Start values from best fit:
+1.7478931969656,0.340170677234291,1.135946777403,-0.0997478336984382,0.0851011244733151,0.0482637580641706,0.783286725551758,0.0652147192671218,0.829859444523046,0.494870574529631,0.220173240264044,0.494365332772028,0.351375063672135,0.0498700850135779,0.0498700850135779,0.433770784967629,0.0635389885401079,0.0846001297456629,0.144041086853377,0.436168440284436,0.0735539579175279,0.102329926034899,0.225888412331485,0.222587108581422,-0.0458334407174884,0.0295239548509149,0.249062818639869,0.0424406319634382,0.00770598722845073,0.0120139772569313,0.00652862396478494,0.0431698552027836,0.00977938673465689,0.0166368061459856,0.014662379077954,0.042424449476414,0.0100325848477267,0.00660219306588281,0.0431698552027836,0.0132080964403213,0.014662379077954,0.0426327240211078,0.00915589477872976,0.0124218829061295,0.00959006319210468,0.0429486114121496,0.00815639042993404,0.0160497290330011,0.00991941082265232,0.0427906677166287,0.0114459742869486,0.0097547370073785,0.150276537848056,0.0494237117223098,0.0999352758203465,0.0939400266640391,0.204096038152286,0.0805803417389837,0.0762782115200437,0.0482963816560172,0.20790145919493,0.0834173353433265,0.106576166269833,0.0712028552430795,-1.20657529478036e-08,1.727039674953e-08,-2.90663210984805e-08,-8.81105079909191e-09,-1.14907975260339e-08,-9.86926357872616e-09,-2.44051215252238e-09,1.24225726155083e-09,-3.44366019581285e-09,1.35117146563966e-09,-7.39924357760919e-09,2.05068493895075e-09,-2.57681406206395e-09,2.68946510913406e-09
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  1063397.7679748
+ OpenMx status code 10 not in list of acceptable status codes, (0,1)
+
+Beginning fit attempt 1 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 2 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 3 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 4 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 5 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 6 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 7 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 8 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 9 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 10 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 11 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 12 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 13 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 14 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 15 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 16 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 17 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 18 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 19 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 20 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 21 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 22 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 23 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 24 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 25 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 26 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 27 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 28 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 29 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 30 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Retry limit reached
+Computing Hessian and/or standard errors and/or confidence intervals from imperfect solution
+
+Running BiSEM_PGS with 78 parameters
+
+ Retry limit reached; Best fit=1063397.8 (started at 1063397.8)  (31 attempt(s): 1 valid, 30 errors)
+
+ Start values from best fit:
+2,0.4,1.5,0.2,0.06,0.04,0.5,0.06,0.84,0.4,0.3,0.4,0.34,0.02,0.03,0.6,0.15,0.1,0.5,0.5,0.1,0.15,0.3,0.15,0.15,0.1,0.3,0.2,0.05,0.01,0.1,0.05,0.015,0.01,0.02,0.14,0.1,0.1,0.04,0.01,0.015,0.05,0.05,0.04,0.03,0.05,0.03,0.036,0.03,0.07,0.05,0.05,0.16,0.04,0.11,0.09,0.3,0.15,0.1,0.51,0.2,0.1,0.07,0.08,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  397967.616182127
+
+Solution found
+
+Final run, for Hessian and/or standard errors and/or confidence intervals
+
+Running BiSEM_PGS with 78 parameters
+
+ Solution found!  Final fit=397967.62 (started at 1063397.8)  (1 attempt(s): 1 valid, 0 errors)
+
+ Start values from best fit:
+1.74789147254833,0.340169968161402,1.135946622332,0.08070666274372,0.0851000675673668,0.0482632782146306,0.602827102279299,0.0652147281127485,0.829858784565948,0.494871567153098,0.220173344201708,0.494368540505274,0.351376303680074,0.0498699904806011,0.0498699904806011,0.433770316231811,0.0635387727051273,0.0845999636928427,0.144040996738227,0.436169895686868,0.0735539642248906,0.102330090518642,0.225889057025623,0.222586998170971,-0.0458334324019503,0.0295240398210407,0.249062750213377,0.0424404895758581,0.0077059547499084,0.0120139475301712,0.00652859603999906,0.0431701178579935,0.00977941583310079,0.0166368872242129,0.0146624549392553,0.0424243747434122,0.0100326027973545,0.00660218643706838,0.0431701178579935,0.0132081515286568,0.0146624549392553,0.042632797997643,0.00915588521916396,0.012421898921936,0.00959007844160142,0.0429486834435883,0.00815638839082339,0.0160497404574157,0.00991942660014051,0.0427907407206157,0.0114459782473348,0.00975475252087097,0.150274666021338,0.0494234861982965,0.0999355181680867,0.0939396111051066,0.204093474489255,0.0805798163408812,0.0762777064636721,0.0482961081902853,0.207899774552794,0.0834171395267299,0.106575937072021,0.0712027075561353,6.24940709744816e-08,-2.16263880149547e-08,6.38466267411025e-08,1.09116323522068e-08,1.35260169446158e-07,-1.04786747229728e-07,7.17936873869222e-08,-3.47248491154257e-08,2.59517548597285e-08,-1.756268890786e-08,-8.01125567268756e-09,3.94965062327162e-08,1.22458304274398e-08,-4.07799253235248e-08
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  1063397.7679748
+ OpenMx status code 10 not in list of acceptable status codes, (0,1)
+
+Beginning fit attempt 1 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 2 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 3 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 4 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 5 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 6 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 7 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 8 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 9 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 10 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 11 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 12 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 13 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 14 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 15 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 16 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 17 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 18 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 19 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 20 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 21 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 22 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 23 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 24 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 25 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 26 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 27 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 28 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 29 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 30 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Retry limit reached
+Computing Hessian and/or standard errors and/or confidence intervals from imperfect solution
+
+Running BiSEM_PGS with 78 parameters
+
+ Retry limit reached; Best fit=1063397.8 (started at 1063397.8)  (31 attempt(s): 1 valid, 30 errors)
+
+ Start values from best fit:
+2,0.4,1.5,0.2,0.06,0.04,0.5,0.06,0.84,0.4,0.3,0.4,0.34,0.02,0.03,0.6,0.15,0.1,0.5,0.5,0.1,0.15,0.3,0.15,0.15,0.1,0.3,0.2,0.05,0.01,0.1,0.05,0.015,0.01,0.02,0.14,0.1,0.1,0.04,0.01,0.015,0.05,0.05,0.04,0.03,0.05,0.03,0.036,0.03,0.07,0.05,0.05,0.16,0.04,0.11,0.09,0.3,0.15,0.1,0.51,0.2,0.1,0.07,0.08,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  1063397.7679748
+ OpenMx status code 10 not in list of acceptable status codes, (0,1)
+
+Beginning fit attempt 1 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 2 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 3 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 4 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 5 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 6 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 7 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 8 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 9 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 10 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 11 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 12 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 13 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 14 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 15 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 16 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 17 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 18 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 19 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 20 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 21 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 22 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 23 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 24 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 25 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 26 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 27 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 28 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 29 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 30 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Retry limit reached
+Computing Hessian and/or standard errors and/or confidence intervals from imperfect solution
+
+Running BiSEM_PGS with 78 parameters
+
+ Retry limit reached; Best fit=1063397.8 (started at 1063397.8)  (31 attempt(s): 1 valid, 30 errors)
+
+ Start values from best fit:
+2,0.4,1.5,0.2,0.06,0.04,0.5,0.06,0.84,0.4,0.3,0.4,0.34,0.02,0.03,0.6,0.15,0.1,0.5,0.5,0.1,0.15,0.3,0.15,0.15,0.1,0.3,0.2,0.05,0.01,0.1,0.05,0.015,0.01,0.02,0.14,0.1,0.1,0.04,0.01,0.015,0.05,0.05,0.04,0.03,0.05,0.03,0.036,0.03,0.07,0.05,0.05,0.16,0.04,0.11,0.09,0.3,0.15,0.1,0.51,0.2,0.1,0.07,0.08,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  397967.616182104
+
+Solution found
+
+Final run, for Hessian and/or standard errors and/or confidence intervals
+
+Running BiSEM_PGS with 78 parameters
+
+ Solution found!  Final fit=397967.62 (started at 1063397.8)  (1 attempt(s): 1 valid, 0 errors)
+
+ Start values from best fit:
+1.74789204828745,0.340170142035861,1.13594674740441,0.139544702080342,0.0851006243096263,0.0482639328025427,0.543989744703464,0.0652147909281398,0.829860255181313,0.494871708971857,0.220173018315622,0.494368066870173,0.35137394901555,0.0498700049075376,0.0498700049075376,0.433770517666325,0.0635388613326091,0.0846001503341542,0.144041115535782,0.436169688751756,0.0735538378317601,0.102329838217742,0.225887796435007,0.222587065169961,-0.0458333899234962,0.0295240764674161,0.249062709157752,0.0424405818296305,0.00770597500921397,0.0120139688978467,0.00652864624428268,0.0431700892561589,0.00977938960324128,0.0166368178801202,0.0146623050718187,0.0424244001461382,0.0100326946106715,0.00660221063894576,0.0431700892561589,0.0132081037416808,0.0146623050718187,0.042632814639542,0.00915588004069418,0.0124219159019158,0.00959004223911227,0.0429486951238151,0.00815640427113794,0.0160496974928908,0.00991938733514833,0.0427907548816785,0.0114459744266597,0.0097547147871303,0.150274838053473,0.0494234732803819,0.0999355791667283,0.0939405830919084,0.204093851952348,0.0805800870690462,0.0762778989307244,0.0482965366593567,0.207899920360109,0.0834173213090986,0.106575586037114,0.0712029357283947,7.85665397764638e-09,1.29210821517227e-07,-1.35611295788169e-07,2.15674284601363e-08,3.34750178821625e-08,2.2302370111502e-07,4.57041490479698e-08,1.13162401675403e-07,4.12121273897599e-08,-4.79531378756626e-08,-4.97205164551946e-08,-1.13527026481851e-07,-1.63436804277295e-08,2.06233116859275e-08
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  397967.616181958
+
+Solution found
+
+Final run, for Hessian and/or standard errors and/or confidence intervals
+
+Running BiSEM_PGS with 78 parameters
+
+ Solution found!  Final fit=397967.62 (started at 1063397.8)  (1 attempt(s): 1 valid, 0 errors)
+
+ Start values from best fit:
+1.7478931969656,0.340170677234291,1.135946777403,-0.0997478336984382,0.0851011244733151,0.0482637580641706,0.783286725551758,0.0652147192671218,0.829859444523046,0.494870574529631,0.220173240264044,0.494365332772028,0.351375063672135,0.0498700850135779,0.0498700850135779,0.433770784967629,0.0635389885401079,0.0846001297456629,0.144041086853377,0.436168440284436,0.0735539579175279,0.102329926034899,0.225888412331485,0.222587108581422,-0.0458334407174884,0.0295239548509149,0.249062818639869,0.0424406319634382,0.00770598722845073,0.0120139772569313,0.00652862396478494,0.0431698552027836,0.00977938673465689,0.0166368061459856,0.014662379077954,0.042424449476414,0.0100325848477267,0.00660219306588281,0.0431698552027836,0.0132080964403213,0.014662379077954,0.0426327240211078,0.00915589477872976,0.0124218829061295,0.00959006319210468,0.0429486114121496,0.00815639042993404,0.0160497290330011,0.00991941082265232,0.0427906677166287,0.0114459742869486,0.0097547370073785,0.150276537848056,0.0494237117223098,0.0999352758203465,0.0939400266640391,0.204096038152286,0.0805803417389837,0.0762782115200437,0.0482963816560172,0.20790145919493,0.0834173353433265,0.106576166269833,0.0712028552430795,-1.20657529478036e-08,1.727039674953e-08,-2.90663210984805e-08,-8.81105079909191e-09,-1.14907975260339e-08,-9.86926357872616e-09,-2.44051215252238e-09,1.24225726155083e-09,-3.44366019581285e-09,1.35117146563966e-09,-7.39924357760919e-09,2.05068493895075e-09,-2.57681406206395e-09,2.68946510913406e-09
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  1063397.7679748
+ OpenMx status code 10 not in list of acceptable status codes, (0,1)
+
+Beginning fit attempt 1 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 2 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 3 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 4 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 5 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 6 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 7 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 8 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 9 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 10 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 11 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 12 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 13 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 14 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 15 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 16 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 17 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 18 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 19 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 20 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 21 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 22 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 23 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 24 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 25 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 26 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 27 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 28 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 29 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 30 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Retry limit reached
+Computing Hessian and/or standard errors and/or confidence intervals from imperfect solution
+
+Running BiSEM_PGS with 78 parameters
+
+ Retry limit reached; Best fit=1063397.8 (started at 1063397.8)  (31 attempt(s): 1 valid, 30 errors)
+
+ Start values from best fit:
+2,0.4,1.5,0.2,0.06,0.04,0.5,0.06,0.84,0.4,0.3,0.4,0.34,0.02,0.03,0.6,0.15,0.1,0.5,0.5,0.1,0.15,0.3,0.15,0.15,0.1,0.3,0.2,0.05,0.01,0.1,0.05,0.015,0.01,0.02,0.14,0.1,0.1,0.04,0.01,0.015,0.05,0.05,0.04,0.03,0.05,0.03,0.036,0.03,0.07,0.05,0.05,0.16,0.04,0.11,0.09,0.3,0.15,0.1,0.51,0.2,0.1,0.07,0.08,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  1063397.7679748
+ OpenMx status code 10 not in list of acceptable status codes, (0,1)
+
+Beginning fit attempt 1 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 2 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 3 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 4 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 5 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 6 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 7 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 8 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 9 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 10 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 11 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 12 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 13 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 14 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 15 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 16 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 17 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 18 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 19 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 20 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 21 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 22 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 23 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 24 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 25 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 26 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 27 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 28 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 29 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 30 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Retry limit reached
+Computing Hessian and/or standard errors and/or confidence intervals from imperfect solution
+
+Running BiSEM_PGS with 78 parameters
+
+ Retry limit reached; Best fit=1063397.8 (started at 1063397.8)  (31 attempt(s): 1 valid, 30 errors)
+
+ Start values from best fit:
+2,0.4,1.5,0.2,0.06,0.04,0.5,0.06,0.84,0.4,0.3,0.4,0.34,0.02,0.03,0.6,0.15,0.1,0.5,0.5,0.1,0.15,0.3,0.15,0.15,0.1,0.3,0.2,0.05,0.01,0.1,0.05,0.015,0.01,0.02,0.14,0.1,0.1,0.04,0.01,0.015,0.05,0.05,0.04,0.03,0.05,0.03,0.036,0.03,0.07,0.05,0.05,0.16,0.04,0.11,0.09,0.3,0.15,0.1,0.51,0.2,0.1,0.07,0.08,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  397967.616182104
+
+Solution found
+
+Final run, for Hessian and/or standard errors and/or confidence intervals
+
+Running BiSEM_PGS with 78 parameters
+
+ Solution found!  Final fit=397967.62 (started at 1063397.8)  (1 attempt(s): 1 valid, 0 errors)
+
+ Start values from best fit:
+1.74789204828745,0.340170142035861,1.13594674740441,0.139544702080342,0.0851006243096263,0.0482639328025427,0.543989744703464,0.0652147909281398,0.829860255181313,0.494871708971857,0.220173018315622,0.494368066870173,0.35137394901555,0.0498700049075376,0.0498700049075376,0.433770517666325,0.0635388613326091,0.0846001503341542,0.144041115535782,0.436169688751756,0.0735538378317601,0.102329838217742,0.225887796435007,0.222587065169961,-0.0458333899234962,0.0295240764674161,0.249062709157752,0.0424405818296305,0.00770597500921397,0.0120139688978467,0.00652864624428268,0.0431700892561589,0.00977938960324128,0.0166368178801202,0.0146623050718187,0.0424244001461382,0.0100326946106715,0.00660221063894576,0.0431700892561589,0.0132081037416808,0.0146623050718187,0.042632814639542,0.00915588004069418,0.0124219159019158,0.00959004223911227,0.0429486951238151,0.00815640427113794,0.0160496974928908,0.00991938733514833,0.0427907548816785,0.0114459744266597,0.0097547147871303,0.150274838053473,0.0494234732803819,0.0999355791667283,0.0939405830919084,0.204093851952348,0.0805800870690462,0.0762778989307244,0.0482965366593567,0.207899920360109,0.0834173213090986,0.106575586037114,0.0712029357283947,7.85665397764638e-09,1.29210821517227e-07,-1.35611295788169e-07,2.15674284601363e-08,3.34750178821625e-08,2.2302370111502e-07,4.57041490479698e-08,1.13162401675403e-07,4.12121273897599e-08,-4.79531378756626e-08,-4.97205164551946e-08,-1.13527026481851e-07,-1.63436804277295e-08,2.06233116859275e-08
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  397967.616181958
+
+Solution found
+
+Final run, for Hessian and/or standard errors and/or confidence intervals
+
+Running BiSEM_PGS with 78 parameters
+
+ Solution found!  Final fit=397967.62 (started at 1063397.8)  (1 attempt(s): 1 valid, 0 errors)
+
+ Start values from best fit:
+1.7478931969656,0.340170677234291,1.135946777403,-0.0997478336984382,0.0851011244733151,0.0482637580641706,0.783286725551758,0.0652147192671218,0.829859444523046,0.494870574529631,0.220173240264044,0.494365332772028,0.351375063672135,0.0498700850135779,0.0498700850135779,0.433770784967629,0.0635389885401079,0.0846001297456629,0.144041086853377,0.436168440284436,0.0735539579175279,0.102329926034899,0.225888412331485,0.222587108581422,-0.0458334407174884,0.0295239548509149,0.249062818639869,0.0424406319634382,0.00770598722845073,0.0120139772569313,0.00652862396478494,0.0431698552027836,0.00977938673465689,0.0166368061459856,0.014662379077954,0.042424449476414,0.0100325848477267,0.00660219306588281,0.0431698552027836,0.0132080964403213,0.014662379077954,0.0426327240211078,0.00915589477872976,0.0124218829061295,0.00959006319210468,0.0429486114121496,0.00815639042993404,0.0160497290330011,0.00991941082265232,0.0427906677166287,0.0114459742869486,0.0097547370073785,0.150276537848056,0.0494237117223098,0.0999352758203465,0.0939400266640391,0.204096038152286,0.0805803417389837,0.0762782115200437,0.0482963816560172,0.20790145919493,0.0834173353433265,0.106576166269833,0.0712028552430795,-1.20657529478036e-08,1.727039674953e-08,-2.90663210984805e-08,-8.81105079909191e-09,-1.14907975260339e-08,-9.86926357872616e-09,-2.44051215252238e-09,1.24225726155083e-09,-3.44366019581285e-09,1.35117146563966e-09,-7.39924357760919e-09,2.05068493895075e-09,-2.57681406206395e-09,2.68946510913406e-09
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  1063397.7679748
+ OpenMx status code 10 not in list of acceptable status codes, (0,1)
+
+Beginning fit attempt 1 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 2 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 3 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 4 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 5 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 6 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 7 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 8 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 9 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 10 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 11 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 12 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 13 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 14 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 15 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 16 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 17 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 18 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 19 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 20 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 21 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 22 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 23 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 24 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 25 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 26 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 27 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 28 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 29 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 30 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Retry limit reached
+Computing Hessian and/or standard errors and/or confidence intervals from imperfect solution
+
+Running BiSEM_PGS with 78 parameters
+
+ Retry limit reached; Best fit=1063397.8 (started at 1063397.8)  (31 attempt(s): 1 valid, 30 errors)
+
+ Start values from best fit:
+2,0.4,1.5,0.2,0.06,0.04,0.5,0.06,0.84,0.4,0.3,0.4,0.34,0.02,0.03,0.6,0.15,0.1,0.5,0.5,0.1,0.15,0.3,0.15,0.15,0.1,0.3,0.2,0.05,0.01,0.1,0.05,0.015,0.01,0.02,0.14,0.1,0.1,0.04,0.01,0.015,0.05,0.05,0.04,0.03,0.05,0.03,0.036,0.03,0.07,0.05,0.05,0.16,0.04,0.11,0.09,0.3,0.15,0.1,0.51,0.2,0.1,0.07,0.08,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  397967.616182104
+
+Solution found
+
+Final run, for Hessian and/or standard errors and/or confidence intervals
+
+Running BiSEM_PGS with 78 parameters
+
+ Solution found!  Final fit=397967.62 (started at 1063397.8)  (1 attempt(s): 1 valid, 0 errors)
+
+ Start values from best fit:
+1.74789204828745,0.340170142035861,1.13594674740441,0.139544702080342,0.0851006243096263,0.0482639328025427,0.543989744703464,0.0652147909281398,0.829860255181313,0.494871708971857,0.220173018315622,0.494368066870173,0.35137394901555,0.0498700049075376,0.0498700049075376,0.433770517666325,0.0635388613326091,0.0846001503341542,0.144041115535782,0.436169688751756,0.0735538378317601,0.102329838217742,0.225887796435007,0.222587065169961,-0.0458333899234962,0.0295240764674161,0.249062709157752,0.0424405818296305,0.00770597500921397,0.0120139688978467,0.00652864624428268,0.0431700892561589,0.00977938960324128,0.0166368178801202,0.0146623050718187,0.0424244001461382,0.0100326946106715,0.00660221063894576,0.0431700892561589,0.0132081037416808,0.0146623050718187,0.042632814639542,0.00915588004069418,0.0124219159019158,0.00959004223911227,0.0429486951238151,0.00815640427113794,0.0160496974928908,0.00991938733514833,0.0427907548816785,0.0114459744266597,0.0097547147871303,0.150274838053473,0.0494234732803819,0.0999355791667283,0.0939405830919084,0.204093851952348,0.0805800870690462,0.0762778989307244,0.0482965366593567,0.207899920360109,0.0834173213090986,0.106575586037114,0.0712029357283947,7.85665397764638e-09,1.29210821517227e-07,-1.35611295788169e-07,2.15674284601363e-08,3.34750178821625e-08,2.2302370111502e-07,4.57041490479698e-08,1.13162401675403e-07,4.12121273897599e-08,-4.79531378756626e-08,-4.97205164551946e-08,-1.13527026481851e-07,-1.63436804277295e-08,2.06233116859275e-08
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  397967.616181958
+
+Solution found
+
+Final run, for Hessian and/or standard errors and/or confidence intervals
+
+Running BiSEM_PGS with 78 parameters
+
+ Solution found!  Final fit=397967.62 (started at 1063397.8)  (1 attempt(s): 1 valid, 0 errors)
+
+ Start values from best fit:
+1.7478931969656,0.340170677234291,1.135946777403,-0.0997478336984382,0.0851011244733151,0.0482637580641706,0.783286725551758,0.0652147192671218,0.829859444523046,0.494870574529631,0.220173240264044,0.494365332772028,0.351375063672135,0.0498700850135779,0.0498700850135779,0.433770784967629,0.0635389885401079,0.0846001297456629,0.144041086853377,0.436168440284436,0.0735539579175279,0.102329926034899,0.225888412331485,0.222587108581422,-0.0458334407174884,0.0295239548509149,0.249062818639869,0.0424406319634382,0.00770598722845073,0.0120139772569313,0.00652862396478494,0.0431698552027836,0.00977938673465689,0.0166368061459856,0.014662379077954,0.042424449476414,0.0100325848477267,0.00660219306588281,0.0431698552027836,0.0132080964403213,0.014662379077954,0.0426327240211078,0.00915589477872976,0.0124218829061295,0.00959006319210468,0.0429486114121496,0.00815639042993404,0.0160497290330011,0.00991941082265232,0.0427906677166287,0.0114459742869486,0.0097547370073785,0.150276537848056,0.0494237117223098,0.0999352758203465,0.0939400266640391,0.204096038152286,0.0805803417389837,0.0762782115200437,0.0482963816560172,0.20790145919493,0.0834173353433265,0.106576166269833,0.0712028552430795,-1.20657529478036e-08,1.727039674953e-08,-2.90663210984805e-08,-8.81105079909191e-09,-1.14907975260339e-08,-9.86926357872616e-09,-2.44051215252238e-09,1.24225726155083e-09,-3.44366019581285e-09,1.35117146563966e-09,-7.39924357760919e-09,2.05068493895075e-09,-2.57681406206395e-09,2.68946510913406e-09
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  1063397.7679748
+ OpenMx status code 10 not in list of acceptable status codes, (0,1)
+
+Beginning fit attempt 1 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 2 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 3 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 4 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 5 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 6 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 7 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 8 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 9 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 10 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 11 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 12 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 13 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 14 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 15 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 16 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 17 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 18 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 19 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 20 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 21 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 22 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 23 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 24 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 25 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 26 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 27 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 28 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 29 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 30 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Retry limit reached
+Computing Hessian and/or standard errors and/or confidence intervals from imperfect solution
+
+Running BiSEM_PGS with 78 parameters
+
+ Retry limit reached; Best fit=1063397.8 (started at 1063397.8)  (31 attempt(s): 1 valid, 30 errors)
+
+ Start values from best fit:
+2,0.4,1.5,0.2,0.06,0.04,0.5,0.06,0.84,0.4,0.3,0.4,0.34,0.02,0.03,0.6,0.15,0.1,0.5,0.5,0.1,0.15,0.3,0.15,0.15,0.1,0.3,0.2,0.05,0.01,0.1,0.05,0.015,0.01,0.02,0.14,0.1,0.1,0.04,0.01,0.015,0.05,0.05,0.04,0.03,0.05,0.03,0.036,0.03,0.07,0.05,0.05,0.16,0.04,0.11,0.09,0.3,0.15,0.1,0.51,0.2,0.1,0.07,0.08,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  397967.616182104
+
+Solution found
+
+Final run, for Hessian and/or standard errors and/or confidence intervals
+
+Running BiSEM_PGS with 78 parameters
+
+ Solution found!  Final fit=397967.62 (started at 1063397.8)  (1 attempt(s): 1 valid, 0 errors)
+
+ Start values from best fit:
+1.74789204828745,0.340170142035861,1.13594674740441,0.139544702080342,0.0851006243096263,0.0482639328025427,0.543989744703464,0.0652147909281398,0.829860255181313,0.494871708971857,0.220173018315622,0.494368066870173,0.35137394901555,0.0498700049075376,0.0498700049075376,0.433770517666325,0.0635388613326091,0.0846001503341542,0.144041115535782,0.436169688751756,0.0735538378317601,0.102329838217742,0.225887796435007,0.222587065169961,-0.0458333899234962,0.0295240764674161,0.249062709157752,0.0424405818296305,0.00770597500921397,0.0120139688978467,0.00652864624428268,0.0431700892561589,0.00977938960324128,0.0166368178801202,0.0146623050718187,0.0424244001461382,0.0100326946106715,0.00660221063894576,0.0431700892561589,0.0132081037416808,0.0146623050718187,0.042632814639542,0.00915588004069418,0.0124219159019158,0.00959004223911227,0.0429486951238151,0.00815640427113794,0.0160496974928908,0.00991938733514833,0.0427907548816785,0.0114459744266597,0.0097547147871303,0.150274838053473,0.0494234732803819,0.0999355791667283,0.0939405830919084,0.204093851952348,0.0805800870690462,0.0762778989307244,0.0482965366593567,0.207899920360109,0.0834173213090986,0.106575586037114,0.0712029357283947,7.85665397764638e-09,1.29210821517227e-07,-1.35611295788169e-07,2.15674284601363e-08,3.34750178821625e-08,2.2302370111502e-07,4.57041490479698e-08,1.13162401675403e-07,4.12121273897599e-08,-4.79531378756626e-08,-4.97205164551946e-08,-1.13527026481851e-07,-1.63436804277295e-08,2.06233116859275e-08
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  397967.616181958
+
+Solution found
+
+Final run, for Hessian and/or standard errors and/or confidence intervals
+
+Running BiSEM_PGS with 78 parameters
+
+ Solution found!  Final fit=397967.62 (started at 1063397.8)  (1 attempt(s): 1 valid, 0 errors)
+
+ Start values from best fit:
+1.7478931969656,0.340170677234291,1.135946777403,-0.0997478336984382,0.0851011244733151,0.0482637580641706,0.783286725551758,0.0652147192671218,0.829859444523046,0.494870574529631,0.220173240264044,0.494365332772028,0.351375063672135,0.0498700850135779,0.0498700850135779,0.433770784967629,0.0635389885401079,0.0846001297456629,0.144041086853377,0.436168440284436,0.0735539579175279,0.102329926034899,0.225888412331485,0.222587108581422,-0.0458334407174884,0.0295239548509149,0.249062818639869,0.0424406319634382,0.00770598722845073,0.0120139772569313,0.00652862396478494,0.0431698552027836,0.00977938673465689,0.0166368061459856,0.014662379077954,0.042424449476414,0.0100325848477267,0.00660219306588281,0.0431698552027836,0.0132080964403213,0.014662379077954,0.0426327240211078,0.00915589477872976,0.0124218829061295,0.00959006319210468,0.0429486114121496,0.00815639042993404,0.0160497290330011,0.00991941082265232,0.0427906677166287,0.0114459742869486,0.0097547370073785,0.150276537848056,0.0494237117223098,0.0999352758203465,0.0939400266640391,0.204096038152286,0.0805803417389837,0.0762782115200437,0.0482963816560172,0.20790145919493,0.0834173353433265,0.106576166269833,0.0712028552430795,-1.20657529478036e-08,1.727039674953e-08,-2.90663210984805e-08,-8.81105079909191e-09,-1.14907975260339e-08,-9.86926357872616e-09,-2.44051215252238e-09,1.24225726155083e-09,-3.44366019581285e-09,1.35117146563966e-09,-7.39924357760919e-09,2.05068493895075e-09,-2.57681406206395e-09,2.68946510913406e-09
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  1063397.7679748
+ OpenMx status code 10 not in list of acceptable status codes, (0,1)
+
+Beginning fit attempt 1 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt worse than current best:  2364414.35947598 vs 1063397.7679748
+
+Beginning fit attempt 2 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt worse than current best:  12206007249.5957 vs 1063397.7679748
+
+Beginning fit attempt 3 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt worse than current best:  3153304758.27302 vs 1063397.7679748
+
+Beginning fit attempt 4 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 5 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 6 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 7 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 8 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 9 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 10 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt worse than current best:  81981409.6181598 vs 1063397.7679748
+
+Beginning fit attempt 11 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 12 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 13 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 14 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 15 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 16 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 17 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 18 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 19 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 20 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 21 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 22 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt worse than current best:  168922668.713324 vs 1063397.7679748
+
+Beginning fit attempt 23 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  709980.068290971
+ OpenMx status code 3 not in list of acceptable status codes, (0,1)
+
+Beginning fit attempt 24 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 25 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  397967.295314499
+
+Solution found
+
+Final run, for Hessian and/or standard errors and/or confidence intervals
+
+Running BiSEM_PGS with 78 parameters
+
+ Solution found!  Final fit=397967.3 (started at 1063397.8)  (26 attempt(s): 8 valid, 18 errors)
+
+ Start values from best fit:
+1.74783350248283,0.340159496910497,1.1359499222767,0.170878010497649,0.0858454970915716,0.0517592001869378,0.510236549826564,0.0616472333555038,0.841394305312732,0.494976169621926,0.219089839098084,0.494744738370804,0.332467162287739,0.0500009533918105,0.0500009533918105,0.43374077000358,0.0634749387690034,0.0846889514985954,0.144064055958574,0.43773024664088,0.0786139209487513,0.111947681364045,0.21668401853382,0.222611501917984,-0.045879118702609,0.0294821720637773,0.249043113828413,0.0424320187964461,0.00774616216569073,0.0120501040974457,0.00656523940258386,0.043628969978636,0.0110587680076086,0.0321196012196792,0.0140851484891723,0.042427109850381,0.00989718639616931,0.00656009982396385,0.043628969978636,0.0215891846136439,0.0140851484891723,0.0427628422208029,0.0128333683538471,0.012354016115932,0.00951830594167824,0.0432386102582148,0.0083760274426703,0.0166793868967015,0.00968584202682137,0.0430007262395088,0.0125606997022877,0.0096020739842498,0.150156584658968,0.0473822471360288,0.0976772956228159,0.101123015211363,0.203419038811078,0.079663914831862,0.0754287816819983,0.0505219582215451,0.209237602501191,0.0842620252244912,0.106826415442508,0.073754610009288,-3.095849327745e-08,-8.42792161643191e-10,3.02506183148684e-08,-4.64769854412856e-08,-2.89294452217003e-08,2.96529327078506e-08,-3.05626479588575e-09,-1.27994794267623e-09,1.16941608764456e-08,-2.84203084389572e-08,1.17887257350494e-08,-3.69296739800406e-09,-2.8426382524389e-09,-2.00105834803776e-09
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  1063397.7679748
+ OpenMx status code 10 not in list of acceptable status codes, (0,1)
+
+Beginning fit attempt 1 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 2 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  398193.942334526
+
+Solution found
+
+Final run, for Hessian and/or standard errors and/or confidence intervals
+
+Running BiSEM_PGS with 78 parameters
+
+ Solution found!  Final fit=398193.94 (started at 1063397.8)  (3 attempt(s): 2 valid, 1 errors)
+
+ Start values from best fit:
+1.74887520903473,0.34300535261054,1.1396687519577,0.182304550001552,0.116034326786862,0.0958510240480763,0.511587664033433,0.0773691763163567,0.948902364121502,0.495209290099076,0.277060747919398,0.491678082531758,0.0999999999997781,0.0515652757376476,0.0515652757376476,0.434069660147155,0.067468999982032,0.0818880467952046,0.145544683656554,0.429548938434698,0.0573282934462336,0.0652132703726189,0.0583536665230753,0.222216068545975,-0.0458987246852017,0.0294698235525731,0.248847876636816,0.0425747355578717,0.00768921849221983,0.0121404223119193,0.005548230578992,0.0414148758674492,0.00601694465757081,0.0076243440064674,0.00172987932662115,0.0423114933092074,0.00832987180045229,0.0100126181937775,0.0414148758674492,0.00682064433201911,-0.0500011920725025,0.0421075315432299,0.00623709202907786,0.0757464061879887,0.00336054248591937,0.0417987643529405,-0.0480144241800625,0.00781453178087863,0.00300533224912508,0.0419531479480852,0.0104459014544707,0.00318293736752223,0.150812833000445,0.0494364322410022,0.108125964879868,0.15066802849997,0.207847134234587,0.0947341363689988,0.0788412083616358,-0.00260896401542541,0.202866292867864,0.0900386769327785,0.0456136338636221,0.0331803418448589,-1.79127295253056e-07,-1.26899530279277e-07,-2.59556856386797e-07,-1.40946204189689e-07,-1.01472432017618e-07,-1.79919228493646e-07,1.62488612066553e-08,-5.81458497156785e-08,4.60230477573005e-09,-5.51648797033343e-08,-3.90857197179158e-08,1.32484162644185e-09,-9.111685772048e-08,2.33884620018317e-08
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  1063397.7679748
+ OpenMx status code 10 not in list of acceptable status codes, (0,1)
+
+Beginning fit attempt 1 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 2 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 3 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 4 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 5 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 6 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 7 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 8 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  397967.310283783
+ OpenMx status code 6 not in list of acceptable status codes, (0,1)
+
+Beginning fit attempt 9 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 10 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 11 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 12 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 13 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 14 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 15 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 16 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 17 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt worse than current best:  1653141.75054261 vs 397967.310283783
+
+Beginning fit attempt 18 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 19 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 20 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 21 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 22 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 23 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 24 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 25 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 26 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 27 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 28 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 29 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 30 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Retry limit reached
+Computing Hessian and/or standard errors and/or confidence intervals from imperfect solution
+
+Running BiSEM_PGS with 78 parameters
+
+ Retry limit reached; Best fit=397967.31 (started at 1063397.8)  (31 attempt(s): 3 valid, 28 errors)
+
+
+ Uncertain solution found - consider parameter validity, try again, increase extraTries, change inits, change model, or check data!
+
+ Start values from best fit:
+1.74785298223422,0.34020870483147,1.13595259755529,0.34325156802624,0.116635427431388,0.0523110950504975,0.633005091089821,0.0681588014256411,0.836202752999142,0.494974051375626,0.219410863275319,0.304996801028708,0.391228466214342,0.0500318814408855,0.0500318814408855,0.433748868902613,0.0635410525747408,0.0846513564599627,0.144066855804116,0.230083038406462,0.0525809837782277,0.0786337413653668,0.190694662458164,0.22260471928104,-0.0458767160416322,0.0294854142175745,0.249053270121001,0.0424339830352564,0.00775078931094796,0.0120557282648537,0.00655588988098256,0.0122745648016038,0.00463370740510331,0.00762867140228666,0.0101873221485236,0.0424265756182603,0.00987046896290683,0.00656910453525024,0.0122745648016038,0.00613118940369498,-0.05,-0.05,0.00696290349603994,0.00699542281299899,0.00791740188733655,0.0230494302899661,0.00483280939482543,0.0128198314769531,0.00828019864662714,-0.0134752848550169,0.00790274179520437,0.00809880026698184,0.2349269595333,0.0517149345845117,0.0924357206473449,0.0975295279244628,0.304990122071024,0.084141310117618,0.0906895848983918,0.0502569868815439,0.166874129143752,0.0494836021763848,0.103621774041296,0.0612986929125584,1.15533351961901e-06,1.56864627955225e-06,-9.01929989780864e-07,4.37014159455832e-07,-7.32184338679361e-07,-1.95301560468399e-07,-1.18906155879174e-07,8.38812670038756e-07,-6.03214617627276e-07,-4.53748073198385e-07,-8.5778773536741e-07,-7.1858239681164e-07,-7.73485612887484e-07,5.1282642763091e-07
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  397967.616182104
+
+Solution found
+
+Final run, for Hessian and/or standard errors and/or confidence intervals
+
+Running BiSEM_PGS with 78 parameters
+
+ Solution found!  Final fit=397967.62 (started at 1063397.8)  (1 attempt(s): 1 valid, 0 errors)
+
+ Start values from best fit:
+1.74789204828745,0.340170142035861,1.13594674740441,0.139544702080342,0.0851006243096263,0.0482639328025427,0.543989744703464,0.0652147909281398,0.829860255181313,0.494871708971857,0.220173018315622,0.494368066870173,0.35137394901555,0.0498700049075376,0.0498700049075376,0.433770517666325,0.0635388613326091,0.0846001503341542,0.144041115535782,0.436169688751756,0.0735538378317601,0.102329838217742,0.225887796435007,0.222587065169961,-0.0458333899234962,0.0295240764674161,0.249062709157752,0.0424405818296305,0.00770597500921397,0.0120139688978467,0.00652864624428268,0.0431700892561589,0.00977938960324128,0.0166368178801202,0.0146623050718187,0.0424244001461382,0.0100326946106715,0.00660221063894576,0.0431700892561589,0.0132081037416808,0.0146623050718187,0.042632814639542,0.00915588004069418,0.0124219159019158,0.00959004223911227,0.0429486951238151,0.00815640427113794,0.0160496974928908,0.00991938733514833,0.0427907548816785,0.0114459744266597,0.0097547147871303,0.150274838053473,0.0494234732803819,0.0999355791667283,0.0939405830919084,0.204093851952348,0.0805800870690462,0.0762778989307244,0.0482965366593567,0.207899920360109,0.0834173213090986,0.106575586037114,0.0712029357283947,7.85665397764638e-09,1.29210821517227e-07,-1.35611295788169e-07,2.15674284601363e-08,3.34750178821625e-08,2.2302370111502e-07,4.57041490479698e-08,1.13162401675403e-07,4.12121273897599e-08,-4.79531378756626e-08,-4.97205164551946e-08,-1.13527026481851e-07,-1.63436804277295e-08,2.06233116859275e-08
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  397967.616181958
+
+Solution found
+
+Final run, for Hessian and/or standard errors and/or confidence intervals
+
+Running BiSEM_PGS with 78 parameters
+
+ Solution found!  Final fit=397967.62 (started at 1063397.8)  (1 attempt(s): 1 valid, 0 errors)
+
+ Start values from best fit:
+1.7478931969656,0.340170677234291,1.135946777403,-0.0997478336984382,0.0851011244733151,0.0482637580641706,0.783286725551758,0.0652147192671218,0.829859444523046,0.494870574529631,0.220173240264044,0.494365332772028,0.351375063672135,0.0498700850135779,0.0498700850135779,0.433770784967629,0.0635389885401079,0.0846001297456629,0.144041086853377,0.436168440284436,0.0735539579175279,0.102329926034899,0.225888412331485,0.222587108581422,-0.0458334407174884,0.0295239548509149,0.249062818639869,0.0424406319634382,0.00770598722845073,0.0120139772569313,0.00652862396478494,0.0431698552027836,0.00977938673465689,0.0166368061459856,0.014662379077954,0.042424449476414,0.0100325848477267,0.00660219306588281,0.0431698552027836,0.0132080964403213,0.014662379077954,0.0426327240211078,0.00915589477872976,0.0124218829061295,0.00959006319210468,0.0429486114121496,0.00815639042993404,0.0160497290330011,0.00991941082265232,0.0427906677166287,0.0114459742869486,0.0097547370073785,0.150276537848056,0.0494237117223098,0.0999352758203465,0.0939400266640391,0.204096038152286,0.0805803417389837,0.0762782115200437,0.0482963816560172,0.20790145919493,0.0834173353433265,0.106576166269833,0.0712028552430795,-1.20657529478036e-08,1.727039674953e-08,-2.90663210984805e-08,-8.81105079909191e-09,-1.14907975260339e-08,-9.86926357872616e-09,-2.44051215252238e-09,1.24225726155083e-09,-3.44366019581285e-09,1.35117146563966e-09,-7.39924357760919e-09,2.05068493895075e-09,-2.57681406206395e-09,2.68946510913406e-09
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  1063397.7679748
+ OpenMx status code 10 not in list of acceptable status codes, (0,1)
+
+Beginning fit attempt 1 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 2 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 3 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 4 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 5 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 6 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 7 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 8 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 9 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 10 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 11 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 12 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 13 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 14 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 15 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 16 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 17 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 18 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 19 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 20 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 21 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 22 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 23 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 24 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 25 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 26 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 27 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 28 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 29 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 30 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  397967.579744203
+
+Retry limit reached
+
+Solution found
+
+Final run, for Hessian and/or standard errors and/or confidence intervals
+
+Running BiSEM_PGS with 78 parameters
+
+ Solution found!  Final fit=397967.58 (started at 1063397.8)  (31 attempt(s): 2 valid, 29 errors)
+
+ Start values from best fit:
+1.74794698791557,0.340333300225574,1.13596885114473,0.172986122652945,0.0840640531947477,0.0470475527083283,0.510260378508648,0.0649673612378997,0.827453979097625,0.494916092633228,0.220478004009245,0.494489261282874,0.355419654101216,0.0500344099570074,0.0500344099570074,0.433795019562787,0.0637975081673648,0.0844741713465145,0.144065251189799,0.43631132147524,0.0738835583200783,0.103623798905968,0.228193132075758,0.222562565706513,-0.0458491953710534,0.0295110359437617,0.249096569514503,0.0424446649147638,0.00773509006139228,0.0120421612000662,0.00651792708331425,0.0432017773445531,0.00992329447767146,0.0168494387133439,0.0149744995534763,0.0424255850459634,0.00988047579636381,0.00660318953211646,0.0432017773445531,0.0133863665955077,0.0149744995534763,0.0426504588199928,0.00928743216170199,0.0124232216216769,0.00969393382891744,0.0429680829428379,0.0185025773058841,0.00740914265957978,0.010021587840052,0.0428092708814153,0.0119055934372107,0.00985776083448474,0.150189841534711,0.0490161655739489,0.0998885106495836,0.0925111295410801,0.204059827347345,0.0798382767331406,0.0761923916928777,0.0476379589770111,0.207934133514372,0.0826698942311307,0.107717903721442,0.0709840065166202,7.33277926698318e-08,1.43017114049885e-07,-4.41286022127202e-07,-2.41529266405839e-07,-2.3670095777926e-07,3.63058675047858e-08,5.23202022877382e-09,2.06446307736584e-08,6.62871408391936e-08,-2.41576216226377e-08,-9.13823386860308e-08,-2.63579046207998e-08,-7.08931003100764e-08,-3.03124455825387e-08
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  5600668278231.27
+ OpenMx status code 6 not in list of acceptable status codes, (0,1)
+
+Beginning fit attempt 1 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 2 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 3 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 4 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 5 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 6 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 7 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 8 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 9 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 10 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 11 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 12 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 13 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 14 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 15 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 16 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 17 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 18 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 19 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 20 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 21 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 22 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 23 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 24 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 25 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 26 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 27 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 28 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 29 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 30 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Retry limit reached
+Computing Hessian and/or standard errors and/or confidence intervals from imperfect solution
+
+Running BiSEM_PGS with 78 parameters
+
+ Retry limit reached; Best fit=5600668300000 (started at 1063397.8)  (31 attempt(s): 1 valid, 30 errors)
+
+
+ Uncertain solution found - consider parameter validity, try again, increase extraTries, change inits, change model, or check data!
+
+ Start values from best fit:
+2.23384820403953,0.549799942030765,1.71909821611059,0.249471021272545,0.0953082280240106,0.0789368038439504,0.549471657913677,0.0609284482606127,0.88657154217824,0.423320186039666,0.312886189965141,0.398103450974428,0.338505010955627,0.0133944876431287,0.0205182800510107,0.593188539571407,0.143739892205087,0.128702242829346,0.564164416006311,0.57005690316274,0.161087965047911,0.226983247977636,0.376547538683792,0.141386111135126,0.153150583993565,0.105732825631137,0.300454607563321,1.26625429688179,0.407442879462346,0.45209776264448,0.91242813712034,0.0777166699550363,0.0415696412368665,0.106385872408585,0.0614671680891583,1.11020086747318,0.280850782544003,1.46139210049893,0.063036434758705,0.0383199311480386,0.0361006116469978,0.0446664501351416,0.0481704991855439,0.0776328886418181,0.0537418170205409,0.130732638660557,0.0537909657228714,0.0640587846244418,0.0663398099951522,0.0566024278939895,-0.0456465812367705,0.0913392289146318,0.154375897840891,0.0410100531761619,0.0982969602851463,0.101623594521498,0.322693557359357,0.163418738821074,0.153097407598982,0.503845342095795,0.295375951797082,0.158928641948141,0.173308847940875,0.151641177421589,-1153.34243389425,-971.876852199662,1719.35049088813,-3043.6578655248,-852.183869371635,-2134.36485695262,-2891.68630634553,-1574.29293176711,5319.57739979117,1921.13585421787,1956.45792233427,-1314.10181576983,1603.25812334948,269.350714033154
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  397967.616182104
+
+Solution found
+
+Final run, for Hessian and/or standard errors and/or confidence intervals
+
+Running BiSEM_PGS with 78 parameters
+
+ Solution found!  Final fit=397967.62 (started at 1063397.8)  (1 attempt(s): 1 valid, 0 errors)
+
+ Start values from best fit:
+1.74789204828745,0.340170142035861,1.13594674740441,0.139544702080342,0.0851006243096263,0.0482639328025427,0.543989744703464,0.0652147909281398,0.829860255181313,0.494871708971857,0.220173018315622,0.494368066870173,0.35137394901555,0.0498700049075376,0.0498700049075376,0.433770517666325,0.0635388613326091,0.0846001503341542,0.144041115535782,0.436169688751756,0.0735538378317601,0.102329838217742,0.225887796435007,0.222587065169961,-0.0458333899234962,0.0295240764674161,0.249062709157752,0.0424405818296305,0.00770597500921397,0.0120139688978467,0.00652864624428268,0.0431700892561589,0.00977938960324128,0.0166368178801202,0.0146623050718187,0.0424244001461382,0.0100326946106715,0.00660221063894576,0.0431700892561589,0.0132081037416808,0.0146623050718187,0.042632814639542,0.00915588004069418,0.0124219159019158,0.00959004223911227,0.0429486951238151,0.00815640427113794,0.0160496974928908,0.00991938733514833,0.0427907548816785,0.0114459744266597,0.0097547147871303,0.150274838053473,0.0494234732803819,0.0999355791667283,0.0939405830919084,0.204093851952348,0.0805800870690462,0.0762778989307244,0.0482965366593567,0.207899920360109,0.0834173213090986,0.106575586037114,0.0712029357283947,7.85665397764638e-09,1.29210821517227e-07,-1.35611295788169e-07,2.15674284601363e-08,3.34750178821625e-08,2.2302370111502e-07,4.57041490479698e-08,1.13162401675403e-07,4.12121273897599e-08,-4.79531378756626e-08,-4.97205164551946e-08,-1.13527026481851e-07,-1.63436804277295e-08,2.06233116859275e-08
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  397967.616181958
+
+Solution found
+
+Final run, for Hessian and/or standard errors and/or confidence intervals
+
+Running BiSEM_PGS with 78 parameters
+
+ Solution found!  Final fit=397967.62 (started at 1063397.8)  (1 attempt(s): 1 valid, 0 errors)
+
+ Start values from best fit:
+1.7478931969656,0.340170677234291,1.135946777403,-0.0997478336984382,0.0851011244733151,0.0482637580641706,0.783286725551758,0.0652147192671218,0.829859444523046,0.494870574529631,0.220173240264044,0.494365332772028,0.351375063672135,0.0498700850135779,0.0498700850135779,0.433770784967629,0.0635389885401079,0.0846001297456629,0.144041086853377,0.436168440284436,0.0735539579175279,0.102329926034899,0.225888412331485,0.222587108581422,-0.0458334407174884,0.0295239548509149,0.249062818639869,0.0424406319634382,0.00770598722845073,0.0120139772569313,0.00652862396478494,0.0431698552027836,0.00977938673465689,0.0166368061459856,0.014662379077954,0.042424449476414,0.0100325848477267,0.00660219306588281,0.0431698552027836,0.0132080964403213,0.014662379077954,0.0426327240211078,0.00915589477872976,0.0124218829061295,0.00959006319210468,0.0429486114121496,0.00815639042993404,0.0160497290330011,0.00991941082265232,0.0427906677166287,0.0114459742869486,0.0097547370073785,0.150276537848056,0.0494237117223098,0.0999352758203465,0.0939400266640391,0.204096038152286,0.0805803417389837,0.0762782115200437,0.0482963816560172,0.20790145919493,0.0834173353433265,0.106576166269833,0.0712028552430795,-1.20657529478036e-08,1.727039674953e-08,-2.90663210984805e-08,-8.81105079909191e-09,-1.14907975260339e-08,-9.86926357872616e-09,-2.44051215252238e-09,1.24225726155083e-09,-3.44366019581285e-09,1.35117146563966e-09,-7.39924357760919e-09,2.05068493895075e-09,-2.57681406206395e-09,2.68946510913406e-09
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  1063397.7679748
+ OpenMx status code 10 not in list of acceptable status codes, (0,1)
+
+Beginning fit attempt 1 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 2 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 3 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 4 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 5 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 6 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 7 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 8 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 9 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 10 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 11 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 12 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 13 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 14 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 15 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 16 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 17 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 18 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 19 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 20 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 21 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 22 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 23 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 24 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 25 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 26 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 27 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 28 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 29 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 30 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Retry limit reached
+Computing Hessian and/or standard errors and/or confidence intervals from imperfect solution
+
+Running BiSEM_PGS with 78 parameters
+
+ Retry limit reached; Best fit=1063397.8 (started at 1063397.8)  (31 attempt(s): 1 valid, 30 errors)
+
+ Start values from best fit:
+2,0.4,1.5,0.2,0.06,0.04,0.5,0.06,0.84,0.4,0.3,0.4,0.34,0.02,0.03,0.6,0.15,0.1,0.5,0.5,0.1,0.15,0.3,0.15,0.15,0.1,0.3,0.2,0.05,0.01,0.1,0.05,0.015,0.01,0.02,0.14,0.1,0.1,0.04,0.01,0.015,0.05,0.05,0.04,0.03,0.05,0.03,0.036,0.03,0.07,0.05,0.05,0.16,0.04,0.11,0.09,0.3,0.15,0.1,0.51,0.2,0.1,0.07,0.08,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  397967.616182104
+
+Solution found
+
+Final run, for Hessian and/or standard errors and/or confidence intervals
+
+Running BiSEM_PGS with 78 parameters
+
+ Solution found!  Final fit=397967.62 (started at 1063397.8)  (1 attempt(s): 1 valid, 0 errors)
+
+ Start values from best fit:
+1.74789204828745,0.340170142035861,1.13594674740441,0.139544702080342,0.0851006243096263,0.0482639328025427,0.543989744703464,0.0652147909281398,0.829860255181313,0.494871708971857,0.220173018315622,0.494368066870173,0.35137394901555,0.0498700049075376,0.0498700049075376,0.433770517666325,0.0635388613326091,0.0846001503341542,0.144041115535782,0.436169688751756,0.0735538378317601,0.102329838217742,0.225887796435007,0.222587065169961,-0.0458333899234962,0.0295240764674161,0.249062709157752,0.0424405818296305,0.00770597500921397,0.0120139688978467,0.00652864624428268,0.0431700892561589,0.00977938960324128,0.0166368178801202,0.0146623050718187,0.0424244001461382,0.0100326946106715,0.00660221063894576,0.0431700892561589,0.0132081037416808,0.0146623050718187,0.042632814639542,0.00915588004069418,0.0124219159019158,0.00959004223911227,0.0429486951238151,0.00815640427113794,0.0160496974928908,0.00991938733514833,0.0427907548816785,0.0114459744266597,0.0097547147871303,0.150274838053473,0.0494234732803819,0.0999355791667283,0.0939405830919084,0.204093851952348,0.0805800870690462,0.0762778989307244,0.0482965366593567,0.207899920360109,0.0834173213090986,0.106575586037114,0.0712029357283947,7.85665397764638e-09,1.29210821517227e-07,-1.35611295788169e-07,2.15674284601363e-08,3.34750178821625e-08,2.2302370111502e-07,4.57041490479698e-08,1.13162401675403e-07,4.12121273897599e-08,-4.79531378756626e-08,-4.97205164551946e-08,-1.13527026481851e-07,-1.63436804277295e-08,2.06233116859275e-08
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  397967.616181958
+
+Solution found
+
+Final run, for Hessian and/or standard errors and/or confidence intervals
+
+Running BiSEM_PGS with 78 parameters
+
+ Solution found!  Final fit=397967.62 (started at 1063397.8)  (1 attempt(s): 1 valid, 0 errors)
+
+ Start values from best fit:
+1.7478931969656,0.340170677234291,1.135946777403,-0.0997478336984382,0.0851011244733151,0.0482637580641706,0.783286725551758,0.0652147192671218,0.829859444523046,0.494870574529631,0.220173240264044,0.494365332772028,0.351375063672135,0.0498700850135779,0.0498700850135779,0.433770784967629,0.0635389885401079,0.0846001297456629,0.144041086853377,0.436168440284436,0.0735539579175279,0.102329926034899,0.225888412331485,0.222587108581422,-0.0458334407174884,0.0295239548509149,0.249062818639869,0.0424406319634382,0.00770598722845073,0.0120139772569313,0.00652862396478494,0.0431698552027836,0.00977938673465689,0.0166368061459856,0.014662379077954,0.042424449476414,0.0100325848477267,0.00660219306588281,0.0431698552027836,0.0132080964403213,0.014662379077954,0.0426327240211078,0.00915589477872976,0.0124218829061295,0.00959006319210468,0.0429486114121496,0.00815639042993404,0.0160497290330011,0.00991941082265232,0.0427906677166287,0.0114459742869486,0.0097547370073785,0.150276537848056,0.0494237117223098,0.0999352758203465,0.0939400266640391,0.204096038152286,0.0805803417389837,0.0762782115200437,0.0482963816560172,0.20790145919493,0.0834173353433265,0.106576166269833,0.0712028552430795,-1.20657529478036e-08,1.727039674953e-08,-2.90663210984805e-08,-8.81105079909191e-09,-1.14907975260339e-08,-9.86926357872616e-09,-2.44051215252238e-09,1.24225726155083e-09,-3.44366019581285e-09,1.35117146563966e-09,-7.39924357760919e-09,2.05068493895075e-09,-2.57681406206395e-09,2.68946510913406e-09
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 78 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 78 parameters
+
+ Lowest minimum so far:  1063397.7679748
+ OpenMx status code 10 not in list of acceptable status codes, (0,1)
+
+Beginning fit attempt 1 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 2 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 3 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 4 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 5 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 6 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 7 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 8 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 9 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 10 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 11 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 12 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 13 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 14 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 15 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 16 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 17 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 18 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 19 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 20 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 21 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 22 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 23 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 24 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 25 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 26 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 27 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 28 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 29 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Beginning fit attempt 30 of at maximum 30 extra tries
+Running BiSEM_PGS with 78 parameters
+
+ Fit attempt generated errors
+
+Retry limit reached
+Computing Hessian and/or standard errors and/or confidence intervals from imperfect solution
+

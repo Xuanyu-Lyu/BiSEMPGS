@@ -16,7 +16,7 @@ fitBiSEMPGS_m2 <- function(data_path){
 
     # some optimizer options - adapted from Yongkong's script
     
-    mxOption(NULL,"Feasibility tolerance","1e-4")
+    mxOption(NULL,"Feasibility tolerance","1e-5")
     #mxOption(NULL,"Number of Threads","4")
     mxOption(NULL,"Number of Threads", value = parallel::detectCores())
 
@@ -177,7 +177,7 @@ fitBiSEMPGS_m2 <- function(data_path){
         options(warning.length = 8000)
         Model1 <- mxModel("BiSEM_PGS", Params, Example_Data_Mx)
 
-        fitModel1 <- mxTryHardWideSearch(Model1, extraTries = 20, OKstatuscodes = c(0,1), intervals=T, silent=F, showInits = F, exhaustive = T, jitterDistrib = "rnorm", loc=.5, scale = .1)
+        fitModel1 <- mxTryHardWideSearch(Model1, extraTries = 30, OKstatuscodes = c(0,1), intervals=T, silent=F, showInits = F, exhaustive = F, jitterDistrib = "rnorm", loc=.5, scale = .1)
         return(summary(fitModel1))
 
 }

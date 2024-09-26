@@ -1,0 +1,19 @@
+
+ArgumentError: activate does not accept more than one argument:
+['-J', 'BiSEMPGS_fit_1e-5tol']
+
+
+To take full advantage of multiple cores, use:
+  mxOption(key='Number of Threads', value=parallel::detectCores()) #now
+  Sys.setenv(OMP_NUM_THREADS=parallel::detectCores()) #before library(OpenMx)
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Running BiSEM_PGS with 75 parameters
+
+Beginning initial fit attempt
+Running BiSEM_PGS with 75 parameters
+
+ Lowest minimum so far:  2290391.05287679
+ OpenMx status code 10 not in list of acceptable status codes, (0,1)
+
+Beginning fit attempt 1 of at maximum 30 extra tries
+Running BiSEM_PGS with 75 parameters

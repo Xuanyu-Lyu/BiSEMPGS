@@ -5,3 +5,7 @@
 Model loop109.rds_48000.txt has been fitted
 Avoidable 2.909 seconds. This file is very unusual: it ends abruptly without a final newline, and also its size is a multiple of 4096 bytes. Please properly end the last row with a newline using for example 'echo >> file' to avoid this  time to copy.
 Model loop111.rds_48000.txt has been fitted
+Model loop114.rds_48000.txt has been fitted
+Model loop117.rds_48000.txt has been fitted
+Model loop12.rds_48000.txt has been fitted
+Model loop122.rds_48000.txt has been fitted
