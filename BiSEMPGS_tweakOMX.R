@@ -9,11 +9,14 @@ conditionNames <- c("Full_Model", "MeasurePgs30", "MeasurePgs10", "MeasurePgsFul
 data_path <- c(paste0("Data/", conditionNames[1]))
 # the path to the dir to save the results
 save_path <- paste0("Data/", conditionNames[1], "/Local_Analysis")
+library(OpenMx)
+library(umx)
+umx_set_optimizer()
 
-data_pattern <- c("_64000.txt")
-save_pattern <- c( "_64000")
+data_pattern <- c("_48000.txt")
+save_pattern <- c( "_48000")
 model_type <- "m2"
-mxSetup <- "-.05lb_freeArg_VFnolb_a.2"
+mxSetup <- "newsetup"
 n_models <- "All"
 for (j in 1){
     # a list to save all the summary data
