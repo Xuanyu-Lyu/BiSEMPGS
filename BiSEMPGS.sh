@@ -6,7 +6,7 @@
 #SBATCH --array=1-50%25
 #SBATCH -J BiSEMPGS
 #SBATCH --chdir /projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS
-#SBATCH --exclude bmem-rico1,bnode010[1-5]
+#SBATCH --exclude bmem-rico1
 #SBATCH -o %x.out%A
 #SBATCH -e %x.err%A
 
