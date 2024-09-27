@@ -75,7 +75,7 @@ summary_list <- readRDS("Data/Full_Model/Local_Analysis/m2-.05lb_freeArg_forceJ_
 
 summary_list <- readRDS("Data/Full_Model/Local_Analysis/m2-.05lb_fixArg_VFnolb_64000_nModelAll_summary_list.rds")  # try large scale/ seems to be the best, if excluding outlier VFs
 
-
+summary_list <- readRDS("/Users/xuly4739/Library/CloudStorage/OneDrive-UCB-O365/Documents/coding/R-projects/BiSEMPGS/Data/Full_Model/Local_Analysis/m2newsetup_48000_nModelAll_summary_list.rds")
 
 # extract all the status code of openmx and put them into a vector
 status_codes <- sapply(summary_list, function(x) x$statusCode)
@@ -117,7 +117,7 @@ for(i in 1:length(summary_list)) {
 
 df$status_codes <- status_codes
 #aggregate(df$f11, by = list(df$status_codes), FUN = mean)
-df <- df[-1,]
+#df <- df[-1,]
 # get only the results with green status code
 df <- df[df$status_codes %in% c("OK", "OK/green"),]
 nrow(df)
@@ -131,7 +131,7 @@ nrow(df)
 #df <- df[!apply(df[,1:64] <= -0.048, 1, any), ]
 
 #remove the outliers that are three sd away from the mean of VF11 VF12 and VF22
-df <- df[abs(df$VF11 - mean(df$VF11)) < 3*sd(df$VF11),]
-nrow(df)
+#df <- df[abs(df$VF11 - mean(df$VF11)) < 3*sd(df$VF11),]
+#nrow(df)
 
 psych::describe(df)

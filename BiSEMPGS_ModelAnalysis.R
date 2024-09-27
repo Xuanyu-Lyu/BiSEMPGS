@@ -98,6 +98,9 @@ summary_list <- readRDS("Data/Full_Model/Local_Analysis/m2-.05lb_freeArg_VF-1_a.
 # all model, new setup for mxTryHard function, 48k samples, lb = -.05, free a, rg, constraint on j, VF lb=.-1, alb = .2
 summary_list <- readRDS("Analysis/Full_Model/m2_-.05lb_fixArg_VF-1_a.2_48000_nModelAll_summary_list.rds")
 
+# all model, new setup for mxTryHard function, 48k samples, lb = -.05, free a, rg, constraint on j, alb = .2, closer h
+summary_list <- readRDS("Analysis/Full_Model/m21e-5Tol_30trial_exaF_48000_nModelAll_summary_list.rds")
+
 
 
 # extract all the status code of openmx and put them into a vector
@@ -142,7 +145,7 @@ df$status_codes <- status_codes
 #aggregate(df$f11, by = list(df$status_codes), FUN = mean)
 df <- df[-1,]
 # get only the results with green status code
-df <- df[df$status_codes %in% c("OK", "OK/green"),]
+df <- df[df$status_codes %in% c("OK"),]
 nrow(df)
 # get only the results with positive f11 and f22 estimates
 #df <- df[df$f11 > 0 & df$f22 > 0,]
@@ -369,6 +372,7 @@ ggplot(df_long, aes(x = Index, y = Value)) +
 # plot(df$f22, ylim = c(0,1))
 # abline(h = 0.10, col = "red", lwd = 2)
 # # Now df is a data frame where each column is the estimates from each element in the summary_list
+
 
 
 
