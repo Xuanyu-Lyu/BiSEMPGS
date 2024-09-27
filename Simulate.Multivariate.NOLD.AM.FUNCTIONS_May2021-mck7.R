@@ -22,10 +22,10 @@
 require(MASS)
 #require(fields)
 require(matrixcalc)
-scripts_path <- "/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Summary/R-dist"
+# scripts_path <- "/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Summary/R-dist"
 
-r_files <- list.files(scripts_path, pattern = "\\.[rR]$", full.names = TRUE)
-lapply(r_files, source)
+# r_files <- list.files(scripts_path, pattern = "\\.[rR]$", full.names = TRUE)
+# lapply(r_files, source)
 #Global options for this script - important to run this or script breaks
 #op <-  options(stringsAsFactors=FALSE)
 
@@ -186,10 +186,22 @@ XsimM <- Xsim[,1:2]
 XsimF <- Xsim[,3:4]
 MATCOR ; round(cor(Xsim),4) #CHECK - should be the same
 
+rdist.vec = function(x1, x2) {
+  #make sure inputs are matrices
+  if (!is.matrix(x1)) {
+    x1 <- as.matrix(x1)
+  }
+  if(!is.matrix(x2)) {
+    x2 <- as.matrix(x2)
+  }
+  
+  #return distances
+  sqrt(rowSums((x1 - x2)^2))
+}
 #get distances between all Xm pairs and XsimM pairs & similarly for females
 #NOTE: if there are more males than females, remove a number of males at random s.t. the two are equal, and vice-versa.
-DM <- rdist(scale(males.PHENDATA[,c("Y1","Y2")]),XsimM) #this means that XsimM goes along y-dimension; Xm along x-dimension
-DF <- rdist(scale(females.PHENDATA[,c("Y1","Y2")]),XsimF) 
+DM <- rdist.vec(scale(males.PHENDATA[,c("Y1","Y2")]),XsimM) #this means that XsimM goes along y-dimension; Xm along x-dimension
+DF <- rdist.vec(scale(females.PHENDATA[,c("Y1","Y2")]),XsimF) 
 
 #remove.dups 
 TOT <- remove.dups(DM,DF,max.ord=100) 
