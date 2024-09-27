@@ -20,9 +20,11 @@
 
 #Load packages & functions needed
 require(MASS)
-require(fields)
+#require(fields)
 require(matrixcalc)
-
+scripts_path <- "/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Summary/R-dist"
+r_files <- list.files(scripts_path, pattern = "\\.R$", full.names = TRUE)
+lapply(r_files, source)
 #Global options for this script - important to run this or script breaks
 #op <-  options(stringsAsFactors=FALSE)
 
