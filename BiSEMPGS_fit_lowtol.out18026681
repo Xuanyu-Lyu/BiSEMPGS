@@ -3,7 +3,6 @@
 Model loop103.rds_48000.txt has been fitted
 Model loop106.rds_48000.txt has been fitted
 Model loop109.rds_48000.txt has been fitted
-Avoidable 0.705 seconds. This file is very unusual: it ends abruptly without a final newline, and also its size is a multiple of 4096 bytes. Please properly end the last row with a newline using for example 'echo >> file' to avoid this  time to copy.
 Model loop111.rds_48000.txt has been fitted
 Model loop114.rds_48000.txt has been fitted
 Model loop117.rds_48000.txt has been fitted
@@ -284,3 +283,48 @@ Avoidable 0.705 seconds. This file is very unusual: it ends abruptly without a f
 Model loop87.rds_48000.txt has been fitted
 Model loop872.rds_48000.txt has been fitted
 Model loop875.rds_48000.txt has been fitted
+Model loop878.rds_48000.txt has been fitted
+Model loop880.rds_48000.txt has been fitted
+Model loop883.rds_48000.txt has been fitted
+Model loop886.rds_48000.txt has been fitted
+Model loop889.rds_48000.txt has been fitted
+Model loop891.rds_48000.txt has been fitted
+Model loop894.rds_48000.txt has been fitted
+Model loop897.rds_48000.txt has been fitted
+Model loop9.rds_48000.txt has been fitted
+Model loop901.rds_48000.txt has been fitted
+Model loop904.rds_48000.txt has been fitted
+Model loop907.rds_48000.txt has been fitted
+Model loop91.rds_48000.txt has been fitted
+Model loop912.rds_48000.txt has been fitted
+Model loop915.rds_48000.txt has been fitted
+Model loop918.rds_48000.txt has been fitted
+Model loop920.rds_48000.txt has been fitted
+Model loop923.rds_48000.txt has been fitted
+Model loop926.rds_48000.txt has been fitted
+Model loop929.rds_48000.txt has been fitted
+Model loop931.rds_48000.txt has been fitted
+Model loop934.rds_48000.txt has been fitted
+Model loop937.rds_48000.txt has been fitted
+Model loop94.rds_48000.txt has been fitted
+Model loop942.rds_48000.txt has been fitted
+Model loop945.rds_48000.txt has been fitted
+Model loop948.rds_48000.txt has been fitted
+Model loop950.rds_48000.txt has been fitted
+Model loop953.rds_48000.txt has been fitted
+Model loop956.rds_48000.txt has been fitted
+Model loop959.rds_48000.txt has been fitted
+Model loop961.rds_48000.txt has been fitted
+Model loop964.rds_48000.txt has been fitted
+Model loop967.rds_48000.txt has been fitted
+Model loop97.rds_48000.txt has been fitted
+Model loop972.rds_48000.txt has been fitted
+Model loop975.rds_48000.txt has been fitted
+Model loop978.rds_48000.txt has been fitted
+Model loop980.rds_48000.txt has been fitted
+Model loop983.rds_48000.txt has been fitted
+Model loop986.rds_48000.txt has been fitted
+Model loop989.rds_48000.txt has been fitted
+Model loop991.rds_48000.txt has been fitted
+Model loop994.rds_48000.txt has been fitted
+Model loop997.rds_48000.txt has been fitted
