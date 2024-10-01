@@ -1,0 +1,15 @@
+Error in file(file, ifelse(append, "a", "w")) : 
+  cannot open the connection
+Calls: data_prep -> write.table -> file
+In addition: Warning messages:
+1: In dir.create(save_path) :
+  cannot create dir '/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/Full_Model_test/nfam16000', reason 'No such file or directory'
+2: In file(file, ifelse(append, "a", "w")) :
+  cannot open file '/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/Full_Model_test/nfam16000/loop1.rds_16000.txt': No such file or directory
+Execution halted
+Error in file(file, "rt") : cannot open the connection
+Calls: merge_txt -> read.table -> file
+In addition: Warning message:
+In file(file, "rt") :
+  cannot open file '/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/Full_Model_test/NA': No such file or directory
+Execution halted
