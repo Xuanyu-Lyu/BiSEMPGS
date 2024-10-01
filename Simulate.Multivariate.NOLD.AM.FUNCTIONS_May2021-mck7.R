@@ -1,5 +1,4 @@
 
-
 #The purpose of this script is to simulate SNP data under assortative mating WITHOUT any LD
 #This script started with Simulate.AM5.R, but has been modified to be simpler, faster, and not require LD
 #Start date: May 1, 2017
