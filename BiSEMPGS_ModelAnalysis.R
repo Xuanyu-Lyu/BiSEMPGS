@@ -143,7 +143,7 @@ for(i in 1:length(summary_list)) {
 
 df$status_codes <- status_codes
 #aggregate(df$f11, by = list(df$status_codes), FUN = mean)
-df <- df[-1,]
+#df <- df[-1,]
 # get only the results with green status code
 df <- df[df$status_codes %in% c("OK"),]
 nrow(df)
@@ -157,7 +157,7 @@ nrow(df)
 #df <- df[!apply(df[,1:64] <= -0.048, 1, any), ]
 
 #remove the outliers that are three sd away from the mean of VY11 VY12 and VY22
-df <- df[abs(df$VY11 - mean(df$VY11)) < 3*sd(df$VY11),]
+df <- df[abs(df$VY11 - mean(df$VY11)) < 2*sd(df$VY11),]
 
 # remove lower than 0 a
 #df <- df[df$VF11 > 0 & df$VF22 > 0,]

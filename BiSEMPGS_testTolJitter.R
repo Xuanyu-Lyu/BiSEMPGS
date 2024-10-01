@@ -12,29 +12,30 @@ library(crayon)
 data_path <- c("Data/Full_Model")
 data_pattern <- c( "_48000.txt", "_32000.txt", "_64000.txt")
 save_pattern <- c("_48000", "_32000", "_64000")
-save_path <- "Analysis/FindBestTol_Full_Model"
+save_path <- "Analysis/FindBestTol_Full_Model/smallTol"
 
 # get all the names of the text files that end with 64000.txt
 l_files <- list.files(data_path[1], pattern = data_pattern[3])
 
 # feasibility tolerance vector and Optimality tolerance vectors
-feaTol <- 10^seq(-3, -7, by = -1)
-optTol <- 10^seq(-3, -7, by = -1)
+feaTol <- 10^seq(-3, -6, by = -1)
+optTol <- 10^seq(-4, -7, by = -1)
 
-feaTol <- 1e-4
-optTol <- 1e-6
+feaTol <- 10^seq(-6, -8, by = -1)
+optTol <- 10^seq(-7, -10, by = -1)
+
 
 
 # run the simulation and save the list
 for(i in 1:length(feaTol)){
     for(j in 1:length(optTol)){
         summary_list <- list()
-        for (k in 1:10){
+        for (k in 1:100){
             fit <- fitBiSEMPGS_m2_tol(paste0(data_path[1], "/", l_files[k]), feaTol = feaTol[i], optTol = optTol[j], exhaustive = TRUE, extraTries = 10)
             summary_list[[l_files[k]]] <- fit
             cat(magenta("\nModel", l_files[k], "has been fitted with feaTol = ", feaTol[i], "and optTol = ", optTol[j], "\n"))
         }
-        saveRDS(summary_list, paste0(save_path, "/m2_checka2_", "feaTol=", feaTol[i], "_optTol=", optTol[j], "_64000_summary_list.rds"))
+        saveRDS(summary_list, paste0(save_path, "/m2_checka_", "feaTol=", feaTol[i], "_optTol=", optTol[j], "_64000_summary_list.rds"))
         cat(green("\nSummary list has been saved with feaTol = ", feaTol[i], "and optTol = ", optTol[j], "\n"))
     }
 }
