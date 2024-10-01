@@ -11,7 +11,7 @@
 #SBATCH -e %x.err%A
 
 source /curc/sw/anaconda3/latest
-conda activate /projects/lessem/software/anaconda/envs/R-4.4.0
+conda activate /projects/lessem/software/anaconda/envs/R-latest
 
 # Index to run different parts of the script, e.g., processing different chromosomes; Here is the different simulation conditions I want to run
 SIM=${SLURM_ARRAY_TASK_ID}
