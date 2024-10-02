@@ -4,7 +4,7 @@
 library(psych)
 
 # specify the folder
-folder <- "Analysis/FindBestTol_Full_Model/testa"
+folder <- "Analysis/FindBestTol_Full_Model/smallTol"
 
 # get all the files in the folder
 l_files <- list.files(folder)
