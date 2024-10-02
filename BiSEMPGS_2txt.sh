@@ -16,4 +16,4 @@ conda activate /projects/lessem/software/anaconda/envs/R-latest
 #SIM=${SLURM_ARRAY_TASK_ID}
 
 #Rscript BiSEMPGS_dataprep_rc.R
-Rscript BiSEMPGS_mergetxt.R
+Rscript BiSEMPGS_createMoreTxt.R
