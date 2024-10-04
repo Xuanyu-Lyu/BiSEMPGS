@@ -1,6 +1,0 @@
-Loading required package: MASS
-Loading required package: matrixcalc
-Error in rdist(scale(males.PHENDATA[, c("Y1", "Y2")]), XsimM) : 
-  could not find function "rdist"
-Calls: AM.SIMULATE -> assort.mate
-Execution halted

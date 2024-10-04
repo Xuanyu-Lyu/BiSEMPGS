@@ -158,7 +158,7 @@ nrow(df)
 
 #remove the outliers that are three sd away from the mean of VY11 VY12 and VY22
 df <- df[abs(df$VY11 - mean(df$VY11)) < 2*sd(df$VY11),]
-
+#df <- df[!(df$a11 == .3 | df$a22 == .2),]
 # remove lower than 0 a
 #df <- df[df$VF11 > 0 & df$VF22 > 0,]
 nrow(df)
@@ -372,6 +372,9 @@ ggplot(df_long, aes(x = Index, y = Value)) +
 # plot(df$f22, ylim = c(0,1))
 # abline(h = 0.10, col = "red", lwd = 2)
 # # Now df is a data frame where each column is the estimates from each element in the summary_list
+
+
+
 
 
 

@@ -9,17 +9,17 @@ library(crayon)
 
 # the path to the dir with all txt files
 # now we are using the 64k data for this test
-data_path <- c("Data/Full_Model")
+data_path <- c("Data/Full_Model_test/nfam64000")
 data_pattern <- c( "_48000.txt", "_32000.txt", "_64000.txt")
 save_pattern <- c("_48000", "_32000", "_64000")
-save_path <- "Analysis/FindBestTol_Full_Model/smallTol"
+save_path <- "Analysis/Full_Model_test/checkBehavior"
 
 # get all the names of the text files that end with 64000.txt
 l_files <- list.files(data_path[1], pattern = data_pattern[3])
 
 # feasibility tolerance vector and Optimality tolerance vectors
-feaTol <- 10^seq(-3, -6, by = -1)
-optTol <- 10^seq(-4, -7, by = -1)
+#feaTol <- 10^seq(-3, -6, by = -1)
+#optTol <- 10^seq(-4, -7, by = -1)
 
 feaTol <- 10^seq(-6, -8, by = -1)
 optTol <- 10^seq(-7, -10, by = -1)

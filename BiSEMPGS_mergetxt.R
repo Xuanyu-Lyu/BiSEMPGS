@@ -31,4 +31,3 @@ merge_txt <- function(data_path, save_path, merge_count = 2){
 merge_txt(data_path = data_path, save_path = save_path, 2)
 merge_txt(data_path = data_path, save_path = save_path2, 3)
 merge_txt(data_path = data_path, save_path = save_path3, 4)
-
