@@ -33,6 +33,9 @@ startingParamList1 <- list(vg1 = rep(.49,11),
 						   prop.h2.latent1 = c(0.5,0.7,0.9,0,rep(0.5,6),.3),
 						   prop.h2.latent2 = c(0.7,0.7,0.9,0,rep(0.7,6),.7))
 
+# condition 11 a11 = 0.3834058 a22 = 0.334664
+sqrt(.16*.7)
+
 for (condition in 11){
 	# WILDCARD parameters
 	pop.size <-  startingParamList1["Nfam"][[1]][[condition]] #maybe something like 2e4, or 20000, when running for real

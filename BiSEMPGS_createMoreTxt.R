@@ -8,6 +8,7 @@ data_path <- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/", con
 save_path <- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/", conditionNames[11], "/nfam32000")
 save_path2<- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/", conditionNames[11], "/nfam48000")
 save_path3<- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/", conditionNames[11], "/nfam64000")
+save_path4<- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/", conditionNames[11], "/nfam96000")
 # a function to merge the txt files
 merge_txt <- function(data_path, save_path, merge_count = 2){
     l_files <- list.files(data_path, pattern = "16000.txt")
@@ -31,4 +32,4 @@ merge_txt <- function(data_path, save_path, merge_count = 2){
 merge_txt(data_path = data_path, save_path = save_path, 2)
 merge_txt(data_path = data_path, save_path = save_path2, 3)
 merge_txt(data_path = data_path, save_path = save_path3, 4)
-
+merge_txt(data_path = data_path, save_path = save_path4, 6)

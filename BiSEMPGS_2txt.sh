@@ -15,5 +15,5 @@ conda activate /projects/lessem/software/anaconda/envs/R-latest
 # Index to run different parts of the script, e.g., processing different chromosomes; Here is the different simulation conditions I want to run
 #SIM=${SLURM_ARRAY_TASK_ID}
 
-#Rscript BiSEMPGS_dataprep_rc.R
+Rscript BiSEMPGS_dataprep_rc.R
 Rscript BiSEMPGS_createMoreTxt.R

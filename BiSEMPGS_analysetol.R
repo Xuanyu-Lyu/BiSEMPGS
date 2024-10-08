@@ -4,7 +4,7 @@
 library(psych)
 
 # specify the folder
-folder <- "Analysis/FindBestTol_Full_Model/smallTol"
+folder <- "Analysis/Full_Model_test/checkBehavior"
 
 # get all the files in the folder
 l_files <- list.files(folder)
@@ -45,7 +45,7 @@ describe(l_df[[1]])
 # get the summary of the dataframe and save the medians in a data frame
 est_sum_df <- data.frame(matrix(ncol = length(l_df), nrow = 77))
 for (i in 1:length(l_df)){
-    est_sum_df[,i] <- c(describe(l_df[[i]])$median,describe(l_df[[i]])[1,2])
+    est_sum_df[,i] <- c(describe(l_df[[i]])$mean, describe(l_df[[i]])[1,2])
 
 }
 rownames(est_sum_df) <- c(colnames(l_df[[1]]),"n")
