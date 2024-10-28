@@ -18,6 +18,23 @@ startingParamList1 <- list(vg1 = rep(.49,10),
 						   prop.h2.latent1 = c(0.5,0,0.5,0,rep(0.5,6)),
 						   prop.h2.latent2 = c(0.7,0.7,0,0,rep(0.7,6)))
 
+startingParamList1 <- list(vg1 = .64,
+						   vg2 = .49,
+						   am11 = 0,
+						   am12 = 0,
+						   am21 = 0,
+						   am22 = 0,
+						   f11 = 0,
+						   f12 = .1,
+						   f21 = .1,
+						   f22 = 0,
+						   Nfam = 5e4,
+						   rg = 0,
+						   re = 0,
+						   prop.h2.latent1 = 0,
+						   prop.h2.latent2 = 0)
+
+
     condition =1
     pathName = "testdata"
     # WILDCARD parameters
@@ -233,8 +250,17 @@ CMatrix <- rbind(
 #CMatrix <- read.csv("testDataFull.txt", sep="\t", header=TRUE)
 
 
+
 colnames(CMatrix) <- c("Yp1", "Yp2", "Ym1", "Ym2", "Yo1", "Yo2", "Tp1", "Tp2", "NTp1", "NTp2", "Tm1", "Tm2", "NTm1", "NTm2")
 rownames(CMatrix) <- c("Yp1", "Yp2", "Ym1", "Ym2", "Yo1", "Yo2", "Tp1", "Tp2", "NTp1", "NTp2", "Tm1", "Tm2", "NTm1", "NTm2")
+
+# only get parts of the covariance matrix
+CMatrix_uni <- CMatrix[c("Yp1", "Ym1", "Yo1", "Tp1", "NTp1", "Tm1", "NTm1"), c("Yp1", "Ym1", "Yo1", "Tp1", "NTp1", "Tm1", "NTm1")]
+
+# switch the order and the rows of the covariance matrix to the order of the OpenMx script
+CMatrix_uni <- CMatrix_uni[c("NTm1","Tm1","NTp1","Tp1","Ym1","Yp1","Yo1"), c("NTm1","Tm1","NTp1","Tp1","Ym1","Yp1","Yo1")]
+
+write.csv(CMatrix_uni, "ExpectedCMatrix_uni.csv")
 
 Mean <- rep(0, 14)
 names(Mean) <- colnames(CMatrix)
