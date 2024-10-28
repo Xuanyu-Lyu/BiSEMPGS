@@ -35,8 +35,8 @@ save_dir_data <- "/scratch/alpine/xuly4739/BiSEMPGS"
 # # condition 11 a11 = 0.3834058 a22 = 0.334664
 # sqrt(.16*.7)
 # new starting parameter list for the paper
-startingParamList1 <- list(vg1 = rep(.64,4)
-						   vg2 = rep(.36,4)
+startingParamList1 <- list(vg1 = rep(.64,4),
+						   vg2 = rep(.36,4),
 						   am11 = rep(0.4,4),
 						   am12 = rep(0.2,4),
 						   am21 = rep(0.1,4),
