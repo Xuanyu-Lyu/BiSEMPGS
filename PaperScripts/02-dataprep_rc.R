@@ -52,3 +52,4 @@ for (i in 1:length(conditionNames)){
 # data_path <- paste0("/scratch/alpine/xuly4739/BiSEMPGS/Data/", conditionNames[11])
 # save_path <- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/", conditionNames[11], "/nfam16000")
 # data_prep(data_path, save_path, 1.6e4)
+
