@@ -1,5 +1,5 @@
 
-save_dir_data <- "/scratch/alpine/xuly4739/BiSEMPGS"
+save_dir_data <- "/scratch/alpine/xuly4739/BiSEMPGS/Data"
 save_path_expected <- "/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/Paper/Expected"
 if (!dir.exists(save_path_expected)){
 dir.create(save_path_expected)
