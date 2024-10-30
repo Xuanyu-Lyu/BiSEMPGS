@@ -365,9 +365,15 @@ if (model == 1){
         cor.fin.gen
         rmate.t0 
 }
+print("true a:")
+print(a.mat)
+print("true delta:")
+print(delta.mat)
 }
+
+
 ```
 
-```{r empMathLastGen}
-
+```{r runIterativeMath}
+iterativeMath(1)
 ```

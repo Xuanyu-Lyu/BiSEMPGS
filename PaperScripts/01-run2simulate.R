@@ -158,6 +158,11 @@ for (condition in 1:4){
 	#l.all <- list()
 	for (i in 1:10){
 	loop_index <- (array_idx-1)*10 + i 
+	# if the file is already there, skip
+	if (file.exists(paste0(save_dir_data,"/Data/",conditionNames[condition],"/loop",loop_index,".rds"))){
+		cat(conditionNames[condition],"/Simulation",loop_index,"already exists\n")
+		next
+	}
 	AM.DATA <- AM.SIMULATE(CV.INFO=cv.info, NUM.GENERATIONS=num.gen, POP.SIZE=pop.size, AVOID.INB=avoid.inb, SAVE.EACH.GEN=save.history, SAVE.COVS=save.covariances, SEED=seed*loop_index, 
 						cove.mat=cove.mat, fmat=f.mat, amat=a.mat, dmat=delta.mat, cor.list=am.list, covy=COVY, k2.matrix=k2.matrix)
 	SUMMARY.last <- AM.DATA$SUMMARY.RES[[num.gen]]

@@ -28,25 +28,29 @@ merge_txt <- function(data_path, save_path, merge_count = 2){
     }
 } 
 
+# # run the function
+# for (i in 1:length(data_path)){
+#     data_path <- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/Paper/", conditionNames[i], "/nfam16000")
+#     save_path <- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/Paper/", conditionNames[i], "/nfam32000")
+#     save_path2<- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/Paper/", conditionNames[i], "/nfam48000")
+#     save_path3<- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/Paper/", conditionNames[i], "/nfam64000")
+#     save_path4<- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/Paper/", conditionNames[i], "/nfam80000")
+#     merge_txt(data_path = data_path, save_path = save_path, 2)
+#     merge_txt(data_path = data_path, save_path = save_path2, 3)
+#     merge_txt(data_path = data_path, save_path = save_path3, 4)
+#     merge_txt(data_path = data_path, save_path = save_path4, 5)
+# }
+
 # run the function
-for (i in 1:length(data_path)){
-    data_path <- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/Paper/", conditionNames[i], "/nfam16000")
-    save_path <- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/Paper/", conditionNames[i], "/nfam32000")
-    save_path2<- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/Paper/", conditionNames[i], "/nfam48000")
-    save_path3<- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/Paper/", conditionNames[i], "/nfam64000")
-    save_path4<- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/Paper/", conditionNames[i], "/nfam80000")
+for (i in 1:length(conditionNames)){
+    data_path <- paste0("Data/Paper/", conditionNames[i], "/nfam16000")
+    save_path <- paste0("Data/Paper/", conditionNames[i], "/nfam32000")
+    save_path2<- paste0("Data/Paper/", conditionNames[i], "/nfam48000")
+    save_path3<- paste0("Data/Paper/", conditionNames[i], "/nfam64000")
+    save_path4<- paste0("Data/Paper/", conditionNames[i], "/nfam80000")
     merge_txt(data_path = data_path, save_path = save_path, 2)
     merge_txt(data_path = data_path, save_path = save_path2, 3)
     merge_txt(data_path = data_path, save_path = save_path3, 4)
     merge_txt(data_path = data_path, save_path = save_path4, 5)
 }
 
-# data_path <- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/", conditionNames[11], "/nfam16000")
-# save_path <- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/", conditionNames[11], "/nfam32000")
-# save_path2<- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/", conditionNames[11], "/nfam48000")
-# save_path3<- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/", conditionNames[11], "/nfam64000")
-# save_path4<- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/", conditionNames[11], "/nfam96000")
-# merge_txt(data_path = data_path, save_path = save_path, 2)
-# merge_txt(data_path = data_path, save_path = save_path2, 3)
-# merge_txt(data_path = data_path, save_path = save_path3, 4)
-# merge_txt(data_path = data_path, save_path = save_path4, 6)
