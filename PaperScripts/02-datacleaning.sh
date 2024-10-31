@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --qos=preemptable
-#SBATCH --time=162:00:00
+#SBATCH --time=12:00:00
 #SBATCH --ntasks=4
 #SBATCH --mem=40gb
 #SBATCH -J BiSEMPGS_dataprep
