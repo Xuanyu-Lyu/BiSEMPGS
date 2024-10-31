@@ -6,7 +6,7 @@ folder_pattern <- c("nfam16000", "nfam32000", "nfam48000", "nfam64000", "nfam800
 data_pattern <- c("_16000.txt", "_32000.txt", "_48000.txt",  "_64000.txt", "_80000.txt")
 save_pattern <- c("_16000", "_32000", "_48000", "_64000", "_80000")
 
-for (i in 1:length(conditionNames)){
+for (i in 2:length(conditionNames)){
     for (j in 1:length(data_pattern)){
         data_path <- paste0("Data/Paper/", conditionNames[i], "/", folder_pattern[j])
         l_files <- list.files(data_path, pattern = data_pattern[j])

@@ -15,6 +15,13 @@ data_prep <- function(data_path, save_path, target_n){
     for (i in 1:length(l_files)){
         # load the data
         data <- readRDS(paste0(data_path, "/", l_files[i]))
+
+        # check if the data has been converted to txt
+        if (file.exists(paste0(save_path, "/", l_files[i],"_",target_n, ".txt"))){
+            cat("Data file", l_files[i], "has been converted to txt\n")
+            next
+        }
+
         data_df <- data$PHEN
 
         data_df <- data_df[,c("ID", "Father.ID", "Mother.ID",
