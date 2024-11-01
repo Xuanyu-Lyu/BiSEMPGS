@@ -1,17 +1,10 @@
 
-save_dir_data <- "/scratch/alpine/xuly4739/BiSEMPGS/Data"
-save_path_expected <- "/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/Paper/Expected"
+save_dir_data <- "Data/testdata"
+save_path_expected <- "Data/testdata"
 if (!dir.exists(save_path_expected)){
 dir.create(save_path_expected)
 }   
 
-# x <- readRDS("Data/testdata/loop1.rds")
-
-# names(x)
-# x[[1]][[length(x[[1]])]]
-# x[[4]] 
-# x$COVARIANCES
-# cor(as.data.frame(x[[4]])[,c("Y1P", "Y2P", "Y1M", "Y2M")])[1:2,3:4]
 
 getObsExp <- function(simulatedRDS, delta, a, f, k){
     gens = 2
@@ -141,8 +134,6 @@ getObsExp <- function(simulatedRDS, delta, a, f, k){
             # cor.fin.gen
             # rmate.t0 
 }
-# test the function
-#getObsExp(x)
 
 startingParamList1 <- list(vg1 = rep(.64,4),
 						   vg2 = rep(.36,4),
@@ -164,7 +155,7 @@ conditionNames <- c("Model_latent30", "Model_latent50", "Model_latent70", "Model
 
 
 
-for (condition in 1:4){
+for (condition in 1:1){
 	# WILDCARD parameters
 	pop.size <-  startingParamList1["Nfam"][[1]][[condition]] #maybe something like 2e4, or 20000, when running for real
 	num.cvs <- 200 #maybe 25
@@ -255,3 +246,10 @@ for (condition in 1:4){
 
 }
     #
+x <- readRDS("Data/testdata/Model_latent30_finalGen.rds")
+x
+# x <- readRDS("Data/testdata/Model_latent30/loop1.rds")
+# cor(as.data.frame(x[[4]]))[1:2,3:4]
+# as.data.frame(x[[4]])
+# head(x[[4]])
+# cor(as.data.frame(x[[4]]))[c("Y1P", "Y2P"), c("Y1M", "Y2M")]
