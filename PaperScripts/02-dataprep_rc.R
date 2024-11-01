@@ -15,10 +15,10 @@ data_prep <- function(data_path, save_path, target_n){
     for (i in 1:length(l_files)){
         
         # check if the data has been converted to txt
-        # if (file.exists(paste0(save_path, "/", l_files[i],"_",target_n, ".txt"))){
-        #     cat("Data file", l_files[i], "has been converted to txt\n")
-        #     next
-        # }
+        if (file.exists(paste0(save_path, "/", l_files[i],"_",target_n, ".txt"))){
+            cat("Data file", l_files[i], "has been converted to txt\n")
+            next
+        }
         # load the data
         data <- readRDS(paste0(data_path, "/", l_files[i]))
 
