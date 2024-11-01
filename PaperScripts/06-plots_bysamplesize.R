@@ -66,12 +66,14 @@ df_se5 <- getSe(summary_list5)
 
 # plot the estimates of f11 as a function of the sample size
 getDfPlot <- function(param){
-    df_plot <- rbind(cbind(df1[[param]], df_se1[[param]], rep(16000, nrow(df1))),
-                     cbind(df2[[param]], df_se2[[param]], rep(32000, nrow(df2))),
-                     cbind(df3[[param]], df_se3[[param]], rep(48000, nrow(df3))),
-                     cbind(df4[[param]], df_se4[[param]], rep(64000, nrow(df4))),
-                     cbind(df5[[param]], df_se5[[param]], rep(80000, nrow(df5))))
+    df_plot <- rbind(cbind(df1[[param]], df_se1[[param]], rep("16k", nrow(df1))),
+                     cbind(df2[[param]], df_se2[[param]], rep("32k", nrow(df2))),
+                     cbind(df3[[param]], df_se3[[param]], rep("48k", nrow(df3))),
+                     cbind(df4[[param]], df_se4[[param]], rep("64k", nrow(df4))),
+                     cbind(df5[[param]], df_se5[[param]], rep("80k", nrow(df5))))
     df_plot <- as.data.frame(df_plot)
+    df_plot[,3] <- as.factor(df_plot[,3])
+    df_plot[,1:2] <- apply(df_plot[,1:2], 2, as.numeric)
     colnames(df_plot) <- c(param,paste0("se_", param), "sample_size")
     df_plot$sample_size <- as.factor(df_plot$sample_size)
     return(df_plot)
@@ -94,28 +96,31 @@ getDfSumm <- function(df_plot, func = "mean"){
 
 # Define a function to create a prettier plot
 create_pretty_plot <- function(df_summ, param_name, color1 = "blue") {
+    se_y <- max(df_summ$se, na.rm=TRUE)*4
+    lim_y <- c(mean(df_summ$mean - se_y), mean(df_summ$mean + se_y))
   ggplot(df_summ, aes(x = sample_size, y = mean)) +
     geom_point(size = 3, color = color1) +
     geom_errorbar(aes(ymin = mean - se, ymax = mean + se), width = 0.2, color = color1) +
     geom_line(aes(group = 1), color = color1, size = 1) +
+    coord_cartesian(ylim = lim_y) +
     labs(title = paste("Estimates of", param_name),
          x = "Sample size",
          y = paste(param_name)) +
-    theme_minimal() +
-    theme(
-      plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
-      axis.title.x = element_text(size = 14),
-      axis.title.y = element_text(size = 14),
-      axis.text = element_text(size = 12),
-      panel.grid.major = element_line(color = "grey80"),
-      panel.grid.minor = element_blank(),
-      panel.border = element_rect(color = "black", fill = NA, size = 1)
-    ) +
+      theme_minimal() +
+        theme(panel.grid.major = element_blank(),
+                panel.grid.minor = element_blank(),
+                panel.border = element_blank(),
+                axis.line = element_line(color = "black", size = 1),
+                axis.title.x = element_text(size = 10),
+                axis.title.y = element_text(size = 10),
+                axis.text.x = element_text(size = 10),
+                axis.text.y = element_text(size = 10))+
     scale_color_manual(values = c(color1))
 }
 
 # Get the data for the plot
-df_plot <- getDfPlot("delta11")
+df_plot <- getDfPlot("a11")
+#df_summ <- aggregate(df_plot[,1], by = list(df_plot$sample_size), FUN = mean)
 df_summ <- getDfSumm(df_plot)
 # Create the plot
 pretty_plot <- create_pretty_plot(df_summ, "delta11")
@@ -136,19 +141,25 @@ create_combined_plot <- function(params, ncol = 2) {
     plots[[param]] <- plot
   }
   
-  combined_plot <- wrap_plots(plots, ncol = ncol)
+  combined_plot <- wrap_plots(plots, ncol = ncol, widths = rep(1, length(params)))
   return(combined_plot)
 }
 
 # Define the parameters you want to plot
-params <- c("delta11", "f11", "a11", "mu11")
+params <- c("f11", "mu11", "a11")
+params <- c("f11", "mu11", "a11", "w11","VY11","gc11")
+
 
 # Create the combined plot
-combined_plot <- create_combined_plot(params)
+combined_plot <- create_combined_plot(params, ncol = 3)
 
 # Display the combined plot
 print(combined_plot)
+ggsave("Analysis/Paper/p1.png", combined_plot, width = 10, height = 6, type = "cairo-png", dpi = 600)
 
-params2 <- c("w12","v12","VY12","gc12","hc12","ic12")
-combined_plot2 <- create_combined_plot(params2)
+params2 <- c("f12", "mu12", "k12", "w12","VY12","gc12")
+
+combined_plot2 <- create_combined_plot(params2, ncol = 3)
 print(combined_plot2)
+ggsave("Analysis/Paper/p2.png", combined_plot2, width = 10, height = 6, type = "cairo-png", dpi = 600)
+

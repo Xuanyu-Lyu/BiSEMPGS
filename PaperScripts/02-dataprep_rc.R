@@ -13,14 +13,14 @@ data_prep <- function(data_path, save_path, target_n){
     l_files <- list.files(data_path, pattern = ".rds")
     # read all the .rds file one by one and save them as .txt files
     for (i in 1:length(l_files)){
+        
+        # check if the data has been converted to txt
+        # if (file.exists(paste0(save_path, "/", l_files[i],"_",target_n, ".txt"))){
+        #     cat("Data file", l_files[i], "has been converted to txt\n")
+        #     next
+        # }
         # load the data
         data <- readRDS(paste0(data_path, "/", l_files[i]))
-
-        # check if the data has been converted to txt
-        if (file.exists(paste0(save_path, "/", l_files[i],"_",target_n, ".txt"))){
-            cat("Data file", l_files[i], "has been converted to txt\n")
-            next
-        }
 
         data_df <- data$PHEN
 
@@ -50,7 +50,7 @@ data_prep <- function(data_path, save_path, target_n){
 }
 
 # run the function
-for (i in 1:length(conditionNames)){
+for (i in 3:length(conditionNames)){
     data_path <- paste0("/scratch/alpine/xuly4739/BiSEMPGS/Data/", conditionNames[i])
     save_path <- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/Paper/", conditionNames[i], "/nfam16000")
     data_prep(data_path, save_path, 1.6e4)

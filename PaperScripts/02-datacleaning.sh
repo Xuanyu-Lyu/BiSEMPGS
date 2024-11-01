@@ -16,4 +16,4 @@ conda activate /projects/lessem/software/anaconda/envs/R-latest
 #SIM=${SLURM_ARRAY_TASK_ID}
 
 Rscript PaperScripts/02-dataprep_rc.R
-Rscript PaperScripts/03-createMoreTxt.R
+#Rscript PaperScripts/03-createMoreTxt.R
