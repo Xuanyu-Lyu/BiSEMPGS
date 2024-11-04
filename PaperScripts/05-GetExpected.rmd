@@ -309,7 +309,8 @@ if (model == 1){
         mate.cov[[it]] <- exp.covY.full[[it]][3:4,1:2] ## this is the mate.cov fixing mate.cor
         mate.cor[[it]] <- exp.corY.full[[1]][3:4,1:2]
         (exp.mu[[it]] <- solve(exp.VY[[it]]) %*% mate.cov[[it]] %*% solve(t(exp.VY[[it]]))) 
-        cat("mu",it,"\n",exp.mu[[it]],"\n")
+        cat("mu")
+        print(exp.mu[[it]])
         (exp.gt[[it]] <- t(exp.Omega[[it]])%*%exp.mu[[it]]%*%exp.Omega[[it]])
         cat("gt",it,"\n",exp.gt[[it]],"\n")
         (exp.gc[[it]] <- .5*(exp.gt[[it]] + t(exp.gt[[it]])))
@@ -369,6 +370,10 @@ print("true a:")
 print(a.mat)
 print("true delta:")
 print(delta.mat)
+print("r2pgs1:")
+print(delta.mat[1,1]^2)
+print("r2pgs2:")
+print(delta.mat[2,2]^2)
 }
 
 
@@ -376,4 +381,16 @@ print(delta.mat)
 
 ```{r runIterativeMath}
 iterativeMath(1)
+```
+
+```{r runIterativeMath2}
+iterativeMath(2)
+```
+
+```{r runIterativeMath3}
+iterativeMath(3)
+```
+
+```{r runIterativeMath4}
+iterativeMath(4)
 ```

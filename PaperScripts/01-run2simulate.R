@@ -54,7 +54,7 @@ startingParamList1 <- list(vg1 = rep(.64,4),
 conditionNames <- c("Model_latent30", "Model_latent50", "Model_latent70", "Model_latent90")
 
 
-for (condition in 1:4){
+for (condition in 1:2){
 	# WILDCARD parameters
 	pop.size <-  startingParamList1["Nfam"][[1]][[condition]] #maybe something like 2e4, or 20000, when running for real
 	num.cvs <- 200 #maybe 25

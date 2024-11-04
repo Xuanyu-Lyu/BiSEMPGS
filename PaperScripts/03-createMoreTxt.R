@@ -14,6 +14,11 @@ merge_txt <- function(data_path, save_path, merge_count = 2){
     l_files <- list.files(data_path, pattern = "16000.txt")
     finalFileCount <- floor(length(l_files) / merge_count)
     for (i in 1:finalFileCount){
+        # check if the data has been created
+        if (file.exists(paste0(save_path, "/", sub("16000.txt$", "", l_files[(i-1)*merge_count + 1]), merge_count*16000, ".txt"))){
+            cat("Data file", paste0(save_path, "/", sub("16000.txt$", "", l_files[(i-1)*merge_count + 1]), merge_count*16000, ".txt"), "has been created\n")
+            next
+        }
         # read the first file
         data_df <- read.table(paste0(data_path, "/", l_files[(i-1)*merge_count + 1]), header = TRUE)
         for (j in 2:merge_count){
