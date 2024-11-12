@@ -50,7 +50,7 @@ data_prep <- function(data_path, save_path, target_n){
 }
 
 # run the function
-for (i in 3:length(conditionNames)){
+for (i in 1:2){
     data_path <- paste0("/scratch/alpine/xuly4739/BiSEMPGS/Data/", conditionNames[i])
     save_path <- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/Paper/", conditionNames[i], "/nfam16000")
     data_prep(data_path, save_path, 1.6e4)
