@@ -2,9 +2,9 @@
 #SBATCH --qos=preemptable
 #SBATCH --time=24:00:00
 #SBATCH --ntasks=1
-#SBATCH --mem=80gb
-#SBATCH --array=51-100%25
-#SBATCH -J BiSEMPGS
+#SBATCH --mem=120gb
+#SBATCH --array=1-2%1
+#SBATCH -J BiSEMPGS_simulation_new
 #SBATCH --chdir /projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS
 #SBATCH --exclude bmem-rico1
 #SBATCH -o %x.out%A
