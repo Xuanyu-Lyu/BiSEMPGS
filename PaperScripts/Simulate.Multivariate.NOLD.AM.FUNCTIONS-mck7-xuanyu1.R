@@ -165,7 +165,7 @@ remove.dups <- function(DISTm,max.ord=100){
     #Dist.Ord.Mat.orig.M <- Dist.Ord.Mat.orig.M[,order(rand.index)]
 
     
-    return(closest=new.closest.M)
+    return(new.closest.M)
 }
 
 
@@ -228,14 +228,14 @@ cat("DM\n")
 TOT <- remove.dups(DM, max.ord=100)
 # delete DM from memory 
 rm(DM)
-Xm.ord2 <- males.PHENDATA[TOT$closest,]
+Xm.ord2 <- males.PHENDATA[TOT,]
 
 DF <- rdist(scale(females.PHENDATA[,c("Y1","Y2")]),XsimF) 
 cat("DF\n")
 TOT <- remove.dups(DF, max.ord=100)
 # delete DF from memory
 rm(DF)
-Xf.ord2 <- females.PHENDATA[TOT$closest,]
+Xf.ord2 <- females.PHENDATA[TOT,]
 
 #remove.dups 
 # TOT <- remove.dups(DM,DF,max.ord=100) 
