@@ -170,8 +170,10 @@ if(num.males.mate<num.females.mate) {females.PHENDATA <- females.PHENDATA[- samp
 ## Xuanyu 02/15/24: The correlation matrix are not always positive definite. Adapt some code to use SVD to make it positive definite
 
 #print(MATCOR)
+
 #cat(is.positive.definite(MATCOR),"\n")
 if (!is.positive.definite(MATCOR)) {
+    cat("Matrix is not positive definite. Using SVD to make it positive definite.\n")
     s <- svd(MATCOR)
     V <- s$v
     D <- sqrt(zapsmall(diag(s$d)))
@@ -244,6 +246,7 @@ num.offspring <- num.offspring+subtractor}
 #Also put the spousal info into PHENDATA
 males.PHENDATA <- cbind(males.PHENDATA,males.Spouse.ID,num.offspring)
 females.PHENDATA <- cbind(females.PHENDATA,females.Spouse.ID,num.offspring)
+
 
 #make a list of what is returned from the function
 list(males.PHENDATA=males.PHENDATA,females.PHENDATA=females.PHENDATA)
@@ -608,14 +611,15 @@ PHENO.MATE.CUR
 MATES <- assort.mate(PHENDATA=PHEN, MATCOR=PHENO.MATE.CUR, POPSIZE=POP.SIZE, avoid.inbreeding=AVOID.INB)
 #cor(cbind(MATES$males.PHENDATA[,c('Y1','Y2')],MATES$females.PHENDATA[,c('Y1','Y2')])) #CHECK
 ###################
-
+cat("Generation",CUR.GEN,"assortative mating done\n")
 
 ###################
 #A5 Have mates reproduce and create new genotypes and phenotypes of offspring for this generation
 #Reproduce
 #MATES=MATES,XO=XO,XL=XL,PHEN=PHEN,CV.INFO=CV.INFO,CUR.GEN=CUR.GEN,cove.mat=cove.mat; fmat=f.mat; amat=a.mat; dmat=delta.mat; cor.list=am.list; covy.mat=COVY; k2.matrix=k2.matrix)
 OFFSPRING <- reproduce(MATES=MATES,XO=XO,XL=XL,PHEN=PHEN,CV.INFO=CV.INFO,CUR.GEN=CUR.GEN,cove.mat=cove.mat, fmat=f.mat, amat=a.mat, dmat=delta.mat, cor.list=am.list, covy.mat=COVY, k2.matrix=k2.matrix)
-                       
+
+cat("Generation",CUR.GEN,"reproduction done\n")
 XO <- OFFSPRING$XO
 XL <- OFFSPRING$XL
 PHEN <- OFFSPRING$PHEN
@@ -734,6 +738,8 @@ HISTORY$PHEN[[CUR.GEN+1]] <- PHEN
 HISTORY$XO[[CUR.GEN+1]] <- XO
 HISTORY$XL[[CUR.GEN+1]] <- XL
 }
+
+cat("Generation",CUR.GEN,"done\n")
 
 if (SAVE.COVS){
     COVS[[CUR.GEN+1]] <- round(covs,3)}
