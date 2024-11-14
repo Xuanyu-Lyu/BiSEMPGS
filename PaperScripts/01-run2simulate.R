@@ -84,7 +84,7 @@ for (condition in 1:2){
 	num.gen <-  15 #8 should be sufficient to get to AM equilibrium
 	avoid.inb <- TRUE #avoid inbreeding?
 	save.covariances <- TRUE #save the covariance matrices?
-	save.history <- TRUE #save the data for each generation?
+	save.history <- FALSE #save the data for each generation?
 	min.maf <- .1 #.2 for real
 	max.maf <- .5 #.5
 

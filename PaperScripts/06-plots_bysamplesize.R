@@ -33,7 +33,10 @@ getDf <- function(summary_list) {
     df$status_codes <- status_codes
     df <- df[df$status_codes %in% c("OK", "OK/green"),]
     # exclude a that hit the lower bound
-    #df <- df[df$a11!=0.3 & df$a22!=0.3,]
+    df <- df[df$a11!=0.2 & df$a22!=0.2,]
+
+    # general lower bound variables
+    varname_vector <- c()
     return(df)
 }
 
