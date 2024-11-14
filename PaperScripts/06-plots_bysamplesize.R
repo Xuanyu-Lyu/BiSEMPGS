@@ -9,6 +9,8 @@ summary_list3 <- readRDS("Analysis/Paper/Model_latent30/m2_paper_48000_summary_l
 summary_list4 <- readRDS("Analysis/Paper/Model_latent30/m2_paper_64000_summary_list.rds")
 summary_list5 <- readRDS("Analysis/Paper/Model_latent30/m2_paper_80000_summary_list.rds")
 
+summary_list1$loop100.rds_16000.txt
+
 summary_list1_fixedA <- readRDS("Analysis/Paper/Model_latent30/m2_paper_16000_summary_list_fixedA.rds")
 summary_list2_fixedA <- readRDS("Analysis/Paper/Model_latent30/m2_paper_32000_summary_list_fixedA.rds")
 summary_list3_fixedA <- readRDS("Analysis/Paper/Model_latent30/m2_paper_48000_summary_list_fixedA.rds")

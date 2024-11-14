@@ -440,7 +440,7 @@ list(PHEN=PHEN,XO=XO,XL=XL)
 
 AM.SIMULATE <- function(CV.INFO, NUM.GENERATIONS, POP.SIZE, AVOID.INB, SAVE.EACH.GEN, SAVE.COVS, SEED, cove.mat, fmat, amat, dmat, cor.list, covy.mat, k2.matrix){
     
-    
+cat("Starting simulation\n")
 
 ###################
 #A1 IMPLIED VARIABLES
@@ -488,7 +488,7 @@ XL <- matrix(rbinom(NUM.GENTPS,size=2,prob=CV.INFO$maf),nrow=POP.SIZE,ncol=NUM.C
 #obs.vr <- diag(var(XO))
 #plot(exp.vr,obs.vr)
 #summary(lm(obs.vr~exp.vr))
-
+cat("Check1 \n")
 #Create Phenotypes of GEN0; VA will be 1 at T0; other components will be relative to VA @t0
 AO <- XO %*% as.matrix(CV.INFO[,c("alpha1","alpha2")])  #this is the observed (PGS) breeding values for traits 1 and 2; they should  have var=1 and cov = rg at t0
 
@@ -516,7 +516,7 @@ Y <- (AOy + ALy + Fy + Ey)
 (var.ao <- var(AOy)); delta.mat %*% k2.matrix %*% t(delta.mat) 
 (var.al <- var(ALy)); a.mat %*% k2.matrix %*% t(a.mat)  
 (var.y <- var(Y)); covy.mat #should be close but not exact bc var.ao and var.al are approximates
-
+cat("Check2 \n")
 #Create relative information for GEN0
 TOT.ID.VEC <- matrix(sample(10000000:99999999,size=POP.SIZE*7,replace=FALSE),nrow=POP.SIZE,ncol=7)
 
@@ -524,7 +524,7 @@ TOT.ID.VEC <- matrix(sample(10000000:99999999,size=POP.SIZE*7,replace=FALSE),nro
 if (is.even(POP.SIZE)) {SEXVEC <- c(rep(0,POP.SIZE/2),rep(1,POP.SIZE/2))}
 if (is.odd(POP.SIZE)) {SEXVEC <- c(rep(0,floor(POP.SIZE/2)),rep(1,floor(POP.SIZE/2)),0)}
 MALE <- sample(SEXVEC,size=POP.SIZE,replace=FALSE)
-
+cat("Check3 \n")
 #Create Phenotype Matrix
 na.mat <- matrix(NA,nrow=length(MALE),ncol=28)
 PHEN <- cbind(TOT.ID.VEC,MALE,AO,AL,F,E,AOy,ALy,Fy,Ey,Y,na.mat)
@@ -548,7 +548,7 @@ COVS <- list()
 if (SAVE.COVS){
 COVS[[1]] <- NULL}
 
-
+cat("check4 \n")
 #Save basic information
 SUMMARY.RES <- vector(mode="list",length=NUM.GENERATIONS+1)
 SUMMARY.RES[[1]] <-      list(GEN=0,
@@ -603,7 +603,7 @@ PHENO.MATE.CUR[3:4,1:2] <- t(MATE.CUR)
 PHENO.MATE.CUR
 ##########################
 
-
+cat("Beginning generation",CUR.GEN,"\n")
 ###################
 #A4 Assortatively mate the people
 #MATES FOR EACH GROUP THIS GENERATION
