@@ -185,9 +185,15 @@ for (condition in 1:2){
 		cat(conditionNames[condition],"/Simulation",loop_index,"already exists\n")
 		next
 	}
+	#print the system time
+	print(Sys.time())
+	time <- Sys.time()
 	AM.DATA <- AM.SIMULATE(CV.INFO=cv.info, NUM.GENERATIONS=num.gen, POP.SIZE=pop.size, AVOID.INB=avoid.inb, SAVE.EACH.GEN=save.history, SAVE.COVS=save.covariances, SEED=seed*loop_index, 
 						cove.mat=cove.mat, fmat=f.mat, amat=a.mat, dmat=delta.mat, cor.list=am.list, covy=COVY, k2.matrix=k2.matrix)
 	SUMMARY.last <- AM.DATA$SUMMARY.RES[[num.gen]]
+	# print the time it takes to run the simulation
+	cat("Time to run simulation: ", Sys.time()-time, "\n")
+
 	#l.summaryLast[[i]] <- SUMMARY.last
 	#l.all[[i]] <- AM.DATA
 	# test if a folder exist, if not, create one
