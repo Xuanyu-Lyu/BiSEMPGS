@@ -1,7 +1,9 @@
 # this script is used to simulate the data for the BiSEMPGS model to test the math
 
 # load the Gene Evolve simulation functions
-source("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Simulate.Multivariate.NOLD.AM.FUNCTIONS_May2021-mck7.R")
+#source("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Simulate.Multivariate.NOLD.AM.FUNCTIONS_May2021-mck7.R")
+source("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Simulate.Multivariate.NOLD.AM.FUNCTIONS-mck7-xuanyu1.R")
+
 #library(expm)
 #setwd("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS")
 

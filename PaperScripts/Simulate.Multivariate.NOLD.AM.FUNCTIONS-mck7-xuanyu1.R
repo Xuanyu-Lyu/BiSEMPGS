@@ -85,56 +85,56 @@ cor2cov <- function(X,var1,var2) {
 #In the old remove.dups function, there were order effects (individuals near end of phenotype matrix are more likely not to mate). Note that this order effect shouldn't matter (because the order of the phenotype matrix should be random anyway), but I've made sure it can't matter in the above function just in case someone ever has an ordered phenotype matrix.
 #Finally, I've rewritten this so it takes in both the male and female distance matrix, and in doing so, ensures that we have on average as many complete mate pairs as we had before we reordered the matrix
 #DISTm=DM; DISTf=DF; max.ord=100
-remove.dups <- function(DISTm,DISTf,max.ord=100){
-    if(sum(dim(DISTm)==dim(DISTf)) != 2) stop("the dimensions of the two distance matrices must be identical")
-    N.obs <- dim(DISTm)[1]
-    rand.index <- sample(ncol(DISTm),ncol(DISTm),replace=FALSE) 
-    DIST.ran.ord.M <- DISTm[,rand.index] #mixes the columns randomly
-    Dist.Ord.Mat.M <- Dist.Ord.Mat.orig.M <-  apply(DIST.ran.ord.M,2,order)
-    DIST.ran.ord.F <- DISTf[,rand.index] #mixes the columns randomly
-    Dist.Ord.Mat.F <- Dist.Ord.Mat.orig.F <-  apply(DIST.ran.ord.F,2,order)
-    actual.rank.F <- new.closest.F <- actual.rank.M <- new.closest.M <- vector(mode="numeric",length=N.obs)
+# remove.dups <- function(DISTm,DISTf,max.ord=100){
+#     if(sum(dim(DISTm)==dim(DISTf)) != 2) stop("the dimensions of the two distance matrices must be identical")
+#     N.obs <- dim(DISTm)[1]
+#     rand.index <- sample(ncol(DISTm),ncol(DISTm),replace=FALSE) 
+#     DIST.ran.ord.M <- DISTm[,rand.index] #mixes the columns randomly
+#     Dist.Ord.Mat.M <- Dist.Ord.Mat.orig.M <-  apply(DIST.ran.ord.M,2,order)
+#     DIST.ran.ord.F <- DISTf[,rand.index] #mixes the columns randomly
+#     Dist.Ord.Mat.F <- Dist.Ord.Mat.orig.F <-  apply(DIST.ran.ord.F,2,order)
+#     actual.rank.F <- new.closest.F <- actual.rank.M <- new.closest.M <- vector(mode="numeric",length=N.obs)
     
-    for (i in 1:N.obs){ #Note that multi-processor foreach loop will not work here
-        #Males first
-        my.min.M <- Dist.Ord.Mat.M[1,i]
-        k.M <- 0
-        while(my.min.M %in% new.closest.M){
-            k.M <- k.M+1
-            Dist.Ord.Mat.M[1:max.ord,i] <- Dist.Ord.Mat.M[2:(max.ord+1),i]
-            my.min.M <- Dist.Ord.Mat.M[1,i]
-            if (k.M > max.ord) my.min.M <- 1e9 + i #ensures it's a unique value that we can select upon at end
-        } #end while loop
-        new.closest.M[i] <- my.min.M
-        actual.rank.M[i] <- k.M+1
+#     for (i in 1:N.obs){ #Note that multi-processor foreach loop will not work here
+#         #Males first
+#         my.min.M <- Dist.Ord.Mat.M[1,i]
+#         k.M <- 0
+#         while(my.min.M %in% new.closest.M){
+#             k.M <- k.M+1
+#             Dist.Ord.Mat.M[1:max.ord,i] <- Dist.Ord.Mat.M[2:(max.ord+1),i]
+#             my.min.M <- Dist.Ord.Mat.M[1,i]
+#             if (k.M > max.ord) my.min.M <- 1e9 + i #ensures it's a unique value that we can select upon at end
+#         } #end while loop
+#         new.closest.M[i] <- my.min.M
+#         actual.rank.M[i] <- k.M+1
         
-        #Females second
-        my.min.F <- Dist.Ord.Mat.F[1,i]
-        k.F <- 0
-        while(my.min.F %in% new.closest.F){
-            k.F <- k.F+1
-            Dist.Ord.Mat.F[1:max.ord,i] <- Dist.Ord.Mat.F[2:(max.ord+1),i]
-            my.min.F <- Dist.Ord.Mat.F[1,i]
-            if (k.F > max.ord) my.min.F <- 1e9 + i #ensures it's a unique value that we can select upon at end
-        } #end while loop
-        new.closest.F[i] <- my.min.F
-        actual.rank.F[i] <- k.F+1
-    } #end for loop
+#         #Females second
+#         my.min.F <- Dist.Ord.Mat.F[1,i]
+#         k.F <- 0
+#         while(my.min.F %in% new.closest.F){
+#             k.F <- k.F+1
+#             Dist.Ord.Mat.F[1:max.ord,i] <- Dist.Ord.Mat.F[2:(max.ord+1),i]
+#             my.min.F <- Dist.Ord.Mat.F[1,i]
+#             if (k.F > max.ord) my.min.F <- 1e9 + i #ensures it's a unique value that we can select upon at end
+#         } #end while loop
+#         new.closest.F[i] <- my.min.F
+#         actual.rank.F[i] <- k.F+1
+#     } #end for loop
     
-    new.closest.M <- new.closest.M[order(rand.index)] #gets them back to original order
-    actual.rank.M <- actual.rank.M[order(rand.index)] #gets them back to original order
-    new.closest.M[new.closest.M > 1e9] <- NA
-    actual.rank.M[is.na(new.closest.M)] <- NA
-    Dist.Ord.Mat.orig.M <- Dist.Ord.Mat.orig.M[,order(rand.index)]
+#     new.closest.M <- new.closest.M[order(rand.index)] #gets them back to original order
+#     actual.rank.M <- actual.rank.M[order(rand.index)] #gets them back to original order
+#     new.closest.M[new.closest.M > 1e9] <- NA
+#     actual.rank.M[is.na(new.closest.M)] <- NA
+#     Dist.Ord.Mat.orig.M <- Dist.Ord.Mat.orig.M[,order(rand.index)]
     
-    new.closest.F <- new.closest.F[order(rand.index)] #gets them back to original order
-    actual.rank.F <- actual.rank.F[order(rand.index)] #gets them back to original order
-    new.closest.F[new.closest.F > 1e9] <- NA
-    actual.rank.F[is.na(new.closest.F)] <- NA
-    Dist.Ord.Mat.orig.F <- Dist.Ord.Mat.orig.F[,order(rand.index)]
+#     new.closest.F <- new.closest.F[order(rand.index)] #gets them back to original order
+#     actual.rank.F <- actual.rank.F[order(rand.index)] #gets them back to original order
+#     new.closest.F[new.closest.F > 1e9] <- NA
+#     actual.rank.F[is.na(new.closest.F)] <- NA
+#     Dist.Ord.Mat.orig.F <- Dist.Ord.Mat.orig.F[,order(rand.index)]
     
-    return(list(closestM=new.closest.M,rankM=actual.rank.M,original.closestM=Dist.Ord.Mat.orig.M[1,],closestF=new.closest.F,rankF=actual.rank.F,original.closestF=Dist.Ord.Mat.orig.F[1,]))
-}
+#     return(list(closestM=new.closest.M,rankM=actual.rank.M,original.closestM=Dist.Ord.Mat.orig.M[1,],closestF=new.closest.F,rankF=actual.rank.F,original.closestF=Dist.Ord.Mat.orig.F[1,]))
+# }
 
 # Xuanyu 11/13/24 - modify the function see if it uses less ram
 remove.dups <- function(DISTm,max.ord=100){
@@ -224,17 +224,29 @@ MATCOR ; round(cor(Xsim),4) #CHECK - should be the same
 #get distances between all Xm pairs and XsimM pairs & similarly for females
 #NOTE: if there are more males than females, remove a number of males at random s.t. the two are equal, and vice-versa.
 DM <- rdist(scale(males.PHENDATA[,c("Y1","Y2")]),XsimM) #this means that XsimM goes along y-dimension; Xm along x-dimension
+cat("DM\n")
+TOT <- remove.dups(DM, max.ord=100)
+# delete DM from memory 
+rm(DM)
+Xm.ord2 <- males.PHENDATA[TOT$closest,]
+
 DF <- rdist(scale(females.PHENDATA[,c("Y1","Y2")]),XsimF) 
+cat("DF\n")
+TOT <- remove.dups(DF, max.ord=100)
+# delete DF from memory
+rm(DF)
+Xf.ord2 <- females.PHENDATA[TOT$closest,]
 
 #remove.dups 
-TOT <- remove.dups(DM,DF,max.ord=100) 
-Xm.ord2 <- males.PHENDATA[TOT$closestM,]
-Xf.ord2 <- females.PHENDATA[TOT$closestF,]
+# TOT <- remove.dups(DM,DF,max.ord=100) 
+# Xm.ord2 <- males.PHENDATA[TOT$closestM,]
+# Xf.ord2 <- females.PHENDATA[TOT$closestF,]
 has.nas <- is.na(Xm.ord2[,"ID"]) | is.na(Xf.ord2[,"ID"])
 
 #Recreate [fe]males.PHENDATA 
 males.PHENDATA <- Xm.ord2[!has.nas,]
 females.PHENDATA <- Xf.ord2[!has.nas,]
+cat("phenotype data got \n")
 cov(cbind(males.PHENDATA[,c("Y1","Y2")],females.PHENDATA[,c("Y1","Y2")])) #Check
 
 ###AVOID INBREEDING
