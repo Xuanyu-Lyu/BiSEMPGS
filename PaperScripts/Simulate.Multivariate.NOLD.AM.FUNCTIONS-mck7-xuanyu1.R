@@ -225,17 +225,61 @@ MATCOR ; round(cor(Xsim),4) #CHECK - should be the same
 #NOTE: if there are more males than females, remove a number of males at random s.t. the two are equal, and vice-versa.
 DM <- rdist(scale(males.PHENDATA[,c("Y1","Y2")]),XsimM) #this means that XsimM goes along y-dimension; Xm along x-dimension
 cat("DM\n")
-TOT <- remove.dups(DM, max.ord=100)
+
+N.obs <- dim(DM)[1]
+rand.index <- sample(ncol(DM),ncol(DM),replace=FALSE) 
+#DIST.ran.ord.M <- DISTm[,rand.index] #mixes the columns randomly
+DM <-  apply(DM[,rand.index],2,order)
+new.closest.M <- vector(mode="numeric",length=N.obs)
+max.ord = 100
+for (i in 1:N.obs){ #Note that multi-processor foreach loop will not work here
+    #Males first
+    my.min.M <- DM[1,i]
+    k.M <- 0
+    while(my.min.M %in% new.closest.M){
+        k.M <- k.M+1
+        DM[1:max.ord,i] <- DM[2:(max.ord+1),i]
+        my.min.M <- DM[1,i]
+        if (k.M > max.ord) my.min.M <- 1e9 + i #ensures it's a unique value that we can select upon at end
+    } 
+    new.closest.M[i] <- my.min.M
+
+} #end for loop
+
+new.closest.M <- new.closest.M[order(rand.index)] #gets them back to original order
+new.closest.M[new.closest.M > 1e9] <- NA
+
 # delete DM from memory 
 rm(DM)
-Xm.ord2 <- males.PHENDATA[TOT,]
+Xm.ord2 <- males.PHENDATA[new.closest.M,]
 
 DF <- rdist(scale(females.PHENDATA[,c("Y1","Y2")]),XsimF) 
 cat("DF\n")
-TOT <- remove.dups(DF, max.ord=100)
+N.obs <- dim(DF)[1]
+rand.index <- sample(ncol(DF),ncol(DF),replace=FALSE) 
+#DIST.ran.ord.M <- DISTm[,rand.index] #mixes the columns randomly
+DF <-  apply(DF[,rand.index],2,order)
+new.closest.F <- vector(mode="numeric",length=N.obs)
+max.ord = 100
+for (i in 1:N.obs){ #Note that multi-processor foreach loop will not work here
+    #Males first
+    my.min.F <- DF[1,i]
+    k.F <- 0
+    while(my.min.F %in% new.closest.F){
+        k.F <- k.F+1
+        DF[1:max.ord,i] <- DF[2:(max.ord+1),i]
+        my.min.F <- DF[1,i]
+        if (k.F > max.ord) my.min.F <- 1e9 + i #ensures it's a unique value that we can select upon at end
+    } 
+    new.closest.F[i] <- my.min.F
+
+} #end for loop
+
+new.closest.F <- new.closest.F[order(rand.index)] #gets them back to original order
+new.closest.F[new.closest.F > 1e9] <- NA
 # delete DF from memory
 rm(DF)
-Xf.ord2 <- females.PHENDATA[TOT,]
+Xf.ord2 <- females.PHENDATA[new.closest.F,]
 
 #remove.dups 
 # TOT <- remove.dups(DM,DF,max.ord=100) 
