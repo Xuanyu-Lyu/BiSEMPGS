@@ -4,7 +4,7 @@
 #SBATCH --time=24:00:00
 #SBATCH --ntasks=1
 #SBATCH --mem=300gb
-#SBATCH --array=1-1%1
+#SBATCH --array=1-100%20
 #SBATCH -J BiSEMPGS_simulation_new
 #SBATCH --chdir /projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS
 #SBATCH -o %x.out%A
