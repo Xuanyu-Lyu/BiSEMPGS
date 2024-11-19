@@ -39,8 +39,8 @@ true_a <- list(c(0.438178, 0.464758),
             c(0.5656854,0.464758),
             c(0.669328,0.464758),
             c(0.7589466,0.464758))
-for (i in 1:length(conditionNames)){
-    for (j in 1:length(data_pattern)){
+for (i in 1:2){
+    for (j in 1:1){
         data_path <- paste0("Data/Paper/", conditionNames[i], "/", folder_pattern[j])
         l_files <- list.files(data_path, pattern = data_pattern[j])
         # check if the data has been fitted
@@ -50,10 +50,10 @@ for (i in 1:length(conditionNames)){
         # }
         summary_list <- list()
         for (k in 1:length(l_files)){
-            fit <- fitBiSEMPGS_m2_tol_fixH2(paste0(data_path, "/", l_files[k]), 
-                                      avalue = true_a[[i]],
-                                      feaTol = 1e06, 
-                                      optTol = 1e08,
+            fit <- fitBiSEMPGS_m2_tol(paste0(data_path, "/", l_files[k]), 
+                                      #avalue = true_a[[i]],
+                                      feaTol = 1e05, 
+                                      optTol = 1e09,
                                       jitterMean = 0.5,
                                       jitterVar = .1,
                                       exhaustive = FALSE,
@@ -61,7 +61,7 @@ for (i in 1:length(conditionNames)){
             summary_list[[l_files[k]]] <- fit
             cat(magenta("\n", conditionNames[i], "\tn=", folder_pattern[j], "\tModel", l_files[k], "has been fitted\n"))
         }
-        save_path <- paste0("Analysis/Paper/", conditionNames[i], "/m2_paper", save_pattern[j], "_summary_list_fixedA.rds")
+        save_path <- paste0("Analysis/Paper/test/", conditionNames[i], "/m2_paper", save_pattern[j], "_summary_list_fixedA.rds")
         saveRDS(summary_list, save_path)
         cat(green("\nSummary list for", conditionNames[i], "\t n=", folder_pattern[j], "has been saved\n"))
 
