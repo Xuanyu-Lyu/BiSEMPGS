@@ -87,23 +87,23 @@ getObsExp <- function(simulatedRDS, delta, a, f, k){
             cat("VY","\n")
             print(exp.VY[[it]])
 
-            exp.VY.diagonal[[it]] <- exp.VY[[it]]
-            exp.VY.diagonal[[it]][1,2] <- 0
-            exp.VY.diagonal[[it]][2,1] <- 0
+            # exp.VY.diagonal[[it]] <- exp.VY[[it]]
+            # exp.VY.diagonal[[it]][1,2] <- 0
+            # exp.VY.diagonal[[it]][2,1] <- 0
 
-            exp.covY.full.diagonal[[it]] <- cbind(rbind(exp.VY.diagonal[[it]],matrix(0,2,2)),rbind(matrix(0,2,2),exp.VY.diagonal[[it]]))
+            # exp.covY.full.diagonal[[it]] <- cbind(rbind(exp.VY.diagonal[[it]],matrix(0,2,2)),rbind(matrix(0,2,2),exp.VY.diagonal[[it]]))
 
-            exp.corVY[[it]] <- cov2cor(exp.VY[[it]])
-            exp.corY.full[[it]] <- exp.corY.full[[1]]
-            exp.corY.full[[it]][1,2] <- exp.corVY[[it]][1,2]
-            exp.corY.full[[it]][2,1] <- exp.corVY[[it]][2,1]
-            exp.corY.full[[it]][3,4] <- exp.corVY[[it]][1,2]
-            exp.corY.full[[it]][4,3] <- exp.corVY[[it]][2,1]
-            #exp.covY.full[[it]] <- cor2cov(exp.corY.full[[it]],exp.VY[[it]][1,1],exp.VY[[it]][2,2],exp.VY[[it]][1,1],exp.VY[[it]][2,2]) 
-            exp.covY.full[[it]] <- sqrt(exp.covY.full.diagonal[[it]]) %*% exp.corY.full[[it]] %*% sqrt(exp.covY.full.diagonal[[it]])
-            mate.cov[[it]] <- exp.covY.full[[it]][3:4,1:2] ## this is the mate.cov fixing mate.cor
-            mate.cor[[it]] <- exp.corY.full[[1]][3:4,1:2]
-            (exp.mu[[it]] <- solve(exp.VY[[it]]) %*% mate.cov[[it]] %*% solve(t(exp.VY[[it]]))) 
+            # exp.corVY[[it]] <- cov2cor(exp.VY[[it]])
+            # exp.corY.full[[it]] <- exp.corY.full[[1]]
+            # exp.corY.full[[it]][1,2] <- exp.corVY[[it]][1,2]
+            # exp.corY.full[[it]][2,1] <- exp.corVY[[it]][2,1]
+            # exp.corY.full[[it]][3,4] <- exp.corVY[[it]][1,2]
+            # exp.corY.full[[it]][4,3] <- exp.corVY[[it]][2,1]
+            # #exp.covY.full[[it]] <- cor2cov(exp.corY.full[[it]],exp.VY[[it]][1,1],exp.VY[[it]][2,2],exp.VY[[it]][1,1],exp.VY[[it]][2,2]) 
+            # exp.covY.full[[it]] <- sqrt(exp.covY.full.diagonal[[it]]) %*% exp.corY.full[[it]] %*% sqrt(exp.covY.full.diagonal[[it]])
+            # mate.cov[[it]] <- exp.covY.full[[it]][3:4,1:2] ## this is the mate.cov fixing mate.cor
+            # mate.cor[[it]] <- exp.corY.full[[1]][3:4,1:2]
+            (exp.mu[[it]] <- solve(exp.VY[[it]]) %*% mate.cov[[it-1]] %*% solve(t(exp.VY[[it]]))) 
             cat("mu",it,"\n",exp.mu[[it]],"\n")
             
 
