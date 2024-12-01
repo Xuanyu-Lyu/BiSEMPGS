@@ -78,7 +78,7 @@ conditionNames <- c("Model_r2_16", "Model_r2_8", "Model_r2_4", "Model_r2_2", "Mo
 
 
 
-for (condition in 1:3){
+for (condition in 1:5){
 	# WILDCARD parameters
 	pop.size <-  startingParamList1["Nfam"][[1]][[condition]] #maybe something like 2e4, or 20000, when running for real
 	num.cvs <- 50 #maybe 25
