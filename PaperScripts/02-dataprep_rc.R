@@ -46,7 +46,7 @@ data_prep <- function(data_path, save_path, target_n){
 	    }
         write.table(data_df, file = paste0(save_path, "/", l_files[i],"_",target_n, ".txt"), sep = "\t", row.names = FALSE)
         cat("Data file", l_files[i], "has been saved as a txt file\n")
-        return(data_df)
+        #return(data_df)
     }
 }
 
