@@ -3,8 +3,8 @@
 # the path to the data
 # conditionNames <- c("Full_Model", "MeasurePgs30", "MeasurePgs10", "MeasurePgsFully", 
 # "f11-decrease", "f12-decrease", "f11.12.21.22-decrease", "am11-decrease", "am12-decrease", "am11.12.21.22-decrease", "Full_Model_test")
-conditionNames <- c("Model_latent30", "Model_latent50", "Model_latent70", "Model_latent90")
-
+#conditionNames <- c("Model_latent30", "Model_latent50", "Model_latent70", "Model_latent90")
+conditionNames <- c("Model_r2_16", "Model_r2_8", "Model_r2_4", "Model_r2_2", "Model_r2_1")
 
 # a data prep function
 
@@ -46,15 +46,19 @@ data_prep <- function(data_path, save_path, target_n){
 	    }
         write.table(data_df, file = paste0(save_path, "/", l_files[i],"_",target_n, ".txt"), sep = "\t", row.names = FALSE)
         cat("Data file", l_files[i], "has been saved as a txt file\n")
+        return(data_df)
     }
 }
 
 # run the function
-for (i in 1:2){
+for (i in 1:5){
     data_path <- paste0("/scratch/alpine/xuly4739/BiSEMPGS/Data/", conditionNames[i])
-    save_path <- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/Paper/", conditionNames[i], "/nfam16000")
-    data_prep(data_path, save_path, 1.6e4)
-}
+    v_sample <- c(.4e3,.8e3 ,1.6e4, 3.2e4, 4.8e4, 6.4e4)
+    for(j in 1:length(v_sample)){
+        save_path <- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/Paper/", conditionNames[i], "/nfam", v_sample[j])
+         }
+    }
+
 
 # data_path <- paste0("/scratch/alpine/xuly4739/BiSEMPGS/Data/", conditionNames[11])
 # save_path <- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/", conditionNames[11], "/nfam16000")

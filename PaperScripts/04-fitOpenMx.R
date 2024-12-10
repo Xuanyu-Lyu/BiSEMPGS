@@ -1,6 +1,7 @@
 source("PaperScripts/04-OpenMxFunctions.R")
 library(crayon)
-conditionNames <- c("Model_latent30", "Model_latent50", "Model_latent70", "Model_latent90")
+#conditionNames <- c("Model_latent30", "Model_latent50", "Model_latent70", "Model_latent90")
+conditionNames <- c("Model_r2_16", "Model_r2_8", "Model_r2_4", "Model_r2_2", "Model_r2_1")
 
 folder_pattern <- c("nfam16000", "nfam32000", "nfam48000", "nfam64000", "nfam80000")
 data_pattern <- c("_16000.txt", "_32000.txt", "_48000.txt",  "_64000.txt", "_80000.txt")
