@@ -56,6 +56,7 @@ for (i in 1:5){
     v_sample <- c(.4e3,.8e3 ,1.6e4, 3.2e4, 4.8e4, 6.4e4)
     for(j in 1:length(v_sample)){
         save_path <- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/Paper/", conditionNames[i], "/nfam", v_sample[j])
+        data_prep(data_path, save_path, v_sample[j])
          }
     }
 
