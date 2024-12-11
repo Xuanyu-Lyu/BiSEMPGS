@@ -144,32 +144,34 @@ getObsExp <- function(simulatedRDS, delta, a, f, k){
 # test the function
 #getObsExp(x)
 
-startingParamList1 <- list(vg1 = rep(.64,4),
-						   vg2 = rep(.36,4),
-						   am11 = rep(0.4,4),
-						   am12 = rep(0.2,4),
-						   am21 = rep(0.1,4),
-						   am22 = rep(0.3,4),
-						   f11 = rep(0.15,4),
-						   f12 = rep(0.1,4),
-						   f21 = rep(0.05,4),
-						   f22 = rep(0.1,4),
-						   Nfam = rep(5e4, 4),
-						   rg = rep(.1,4),
-						   re = rep(.1,4),
-						   prop.h2.latent1 = c(.3,.5,.7,.9),
-						   prop.h2.latent2 = c(.6,.6,.6,.6))
+startingParamList1 <- list(vg1 = rep(.64,5),
+						   vg2 = rep(.36,5),
+						   am11 = rep(0.4,5),
+						   am12 = rep(0.2,5),
+						   am21 = rep(0.1,5),
+						   am22 = rep(0.3,5),
+						   f11 = rep(0.15,5),
+						   f12 = rep(0.1,5),
+						   f21 = rep(0.05,5),
+						   f22 = rep(0.1,5),
+						   Nfam = rep(1.6e5, 5),
+						   rg = rep(.1,5),
+						   re = rep(.1,5),
+						   prop.h2.latent1 = c(.48/.64,.56/.64,.60/.64,.62/.64,.63/.64),
+						   prop.h2.latent2 = c(.8,.8,.8,.8,.8))
 
-conditionNames <- c("Model_latent30", "Model_latent50", "Model_latent70", "Model_latent90")
+# run the simulation using r2pgs as anchors: 1%, 2%, 4%, 8%, 16% given n = 32K
+# run the simulation using n as anchors: 4K, 8K, 16K, 32K, 64K given r^2=4%
+conditionNames <- c("Model_r2_16", "Model_r2_8", "Model_r2_4", "Model_r2_2", "Model_r2_1")
 
 
 
-for (condition in 3:4){
+for (condition in 1:5){
 	# WILDCARD parameters
 	pop.size <-  startingParamList1["Nfam"][[1]][[condition]] #maybe something like 2e4, or 20000, when running for real
-	num.cvs <- 200 #maybe 25
+	num.cvs <- 50 #maybe 25
 	seed <- 62*condition
-	num.gen <-  20 #8 should be sufficient to get to AM equilibrium
+	num.gen <-  15 #8 should be sufficient to get to AM equilibrium
 	avoid.inb <- TRUE #avoid inbreeding?
 	save.covariances <- TRUE #save the covariance matrices?
 	save.history <- TRUE #save the data for each generation?

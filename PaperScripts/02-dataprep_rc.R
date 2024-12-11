@@ -1,4 +1,5 @@
 # a script to convert the .rds simulated data into .txt files for the BiSEMPGS model
+# 12/10/24 update: dont need to run 03-createMoreTxt.R as we simulated the data with the target_n 
 
 # the path to the data
 # conditionNames <- c("Full_Model", "MeasurePgs30", "MeasurePgs10", "MeasurePgsFully", 

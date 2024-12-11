@@ -2,10 +2,14 @@ source("PaperScripts/04-OpenMxFunctions.R")
 library(crayon)
 #conditionNames <- c("Model_latent30", "Model_latent50", "Model_latent70", "Model_latent90")
 conditionNames <- c("Model_r2_16", "Model_r2_8", "Model_r2_4", "Model_r2_2", "Model_r2_1")
+v_sample <- c(.4e4,.8e4 ,1.6e4, 3.2e4, 4.8e4, 6.4e4)
+folder_pattern <- paste0("nfam", v_sample)
+data_pattern <- paste0("_", v_sample, ".txt")
+save_pattern <- paste0("_", v_sample)
 
-folder_pattern <- c("nfam16000", "nfam32000", "nfam48000", "nfam64000", "nfam80000")
-data_pattern <- c("_16000.txt", "_32000.txt", "_48000.txt",  "_64000.txt", "_80000.txt")
-save_pattern <- c("_16000", "_32000", "_48000", "_64000", "_80000")
+# folder_pattern <- c("nfam16000", "nfam32000", "nfam48000", "nfam64000", "nfam80000")
+# data_pattern <- c("_16000.txt", "_32000.txt", "_48000.txt",  "_64000.txt", "_80000.txt")
+# save_pattern <- c("_16000", "_32000", "_48000", "_64000", "_80000")
 
 # for (i in 1:length(conditionNames)){
 #     for (j in 1:length(data_pattern)){
@@ -36,10 +40,16 @@ save_pattern <- c("_16000", "_32000", "_48000", "_64000", "_80000")
 # }
 
 
-true_a <- list(c(0.438178, 0.464758),
-            c(0.5656854,0.464758),
-            c(0.669328,0.464758),
-            c(0.7589466,0.464758))
+# true_a <- list(c(0.438178, 0.464758),
+#             c(0.5656854,0.464758),
+#             c(0.669328,0.464758),
+#             c(0.7589466,0.464758))
+
+true_a <- list(c(0.6928203, 0.5366563),
+            c(0.7483315,0.5366563),
+            c(0.7745967,0.5366563),
+            c(0.7874008,0.5366563),
+            c(0.7937254,0.5366563))
 for (i in 1:2){
     for (j in 1:1){
         data_path <- paste0("Data/Paper/", conditionNames[i], "/", folder_pattern[j])
