@@ -166,7 +166,7 @@ conditionNames <- c("Model_r2_16", "Model_r2_8", "Model_r2_4", "Model_r2_2", "Mo
 
 
 
-for (condition in 1:4){
+for (condition in 1:5){
 	# WILDCARD parameters
 	pop.size <-  startingParamList1["Nfam"][[1]][[condition]] #maybe something like 2e4, or 20000, when running for real
 	num.cvs <- 50 #maybe 25
@@ -244,7 +244,7 @@ for (condition in 1:4){
     data_path <- paste0(save_dir_data, "/", conditionNames[condition])
     l_files <- list.files(data_path, pattern = ".rds")
     l_finalGen <- list()
-    for (loop in 1: length(l_files)){
+    for (loop in 1: 50){
         cat("loop", loop, "\n")
         # get the number of .rds files in the folder
         # read all the .rds file one by one and save them as .txt files
