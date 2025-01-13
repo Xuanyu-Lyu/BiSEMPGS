@@ -6,20 +6,47 @@
 # load the necessary libraries
 library(ggplot2)
 library(patchwork)
-summary_list1 <- readRDS("Analysis/Paper/Model_latent30/m2_paper_32000_summary_list.rds")
-summary_list2 <- readRDS("Analysis/Paper/Model_latent50/m2_paper_32000_summary_list.rds")
-summary_list3 <- readRDS("Analysis/Paper/Model_latent70/m2_paper_32000_summary_list.rds")
-summary_list4 <- readRDS("Analysis/Paper/Model_latent90/m2_paper_32000_summary_list.rds")
+# load the necessary libraries
+library(ggplot2)
+library(patchwork)
+#conditionNames <- c("Model_r2_16", "Model_r2_8", "Model_r2_4", "Model_r2_2", "Model_r2_1")
+conditionNames <- c("Model_r2_1", "Model_r2_2", "Model_r2_4", "Model_r2_8", "Model_r2_16")
 
-summary_list1[[1]]$parameters
+sample_sizes <- c(4000, 8000, 16000, 32000, 48000, 64000)
+# sort the conditionNames alphabetically
+
+SS = 6
+# the true value file
+#file_tv <- read.table(paste0("Data/Paper/Expected/",conditionNames[condition],"_finalGen.txt"))
+
+# read each rds into a list
+for(i in 1: length(conditionNames)){
+  var_name <- paste0("summary_list", i)
+  assign(var_name, readRDS(paste0("Analysis/Paper/", conditionNames[i], "/m2_paper_", sample_sizes[SS],"_summary_list.rds")))
+  #print(paste0("Analysis/Paper/", conditionNames[i], "/m2_paper_", sample_sizes[SS],"_summary_list_fixedA.rds"))
+  assign(paste0("summary_list", i, "_fixedA"), readRDS(paste0("Analysis/Paper/", conditionNames[i], "/m2_paper_", sample_sizes[SS],"_summary_list_fixedA.rds")))
+}
+test  <- readRDS("Analysis/Paper/Model_r2_1/m2_paper_16000_summary_list_fixedA.rds")
+
+# testModel <- readRDS("Analysis/Paper/Model_latent90/m2_paper_64000_summary_list.rds")
+# testModel[[1]]
+
+# testModel_fixed <- readRDS("Analysis/Paper/Model_latent90/m2_paper_64000_summary_list_fixedA.rds")
+# testModel_fixed[[1]]
+# summary_list1 <- readRDS("Analysis/Paper/Model_latent30/m2_paper_32000_summary_list.rds")
+# summary_list2 <- readRDS("Analysis/Paper/Model_latent50/m2_paper_32000_summary_list.rds")
+# summary_list3 <- readRDS("Analysis/Paper/Model_latent70/m2_paper_32000_summary_list.rds")
+# summary_list4 <- readRDS("Analysis/Paper/Model_latent90/m2_paper_32000_summary_list.rds")
+
+# summary_list1[[1]]$parameters
 
 
-summary_list1_fixedA <- readRDS("Analysis/Paper/Model_latent30/m2_paper_32000_summary_list_fixedA.rds")
-summary_list2_fixedA <- readRDS("Analysis/Paper/Model_latent50/m2_paper_32000_summary_list_fixedA.rds")
-summary_list3_fixedA <- readRDS("Analysis/Paper/Model_latent70/m2_paper_32000_summary_list_fixedA.rds")
-summary_list4_fixedA <- readRDS("Analysis/Paper/Model_latent90/m2_paper_32000_summary_list_fixedA.rds")
+# summary_list1_fixedA <- readRDS("Analysis/Paper/Model_latent30/m2_paper_32000_summary_list_fixedA.rds")
+# summary_list2_fixedA <- readRDS("Analysis/Paper/Model_latent50/m2_paper_32000_summary_list_fixedA.rds")
+# summary_list3_fixedA <- readRDS("Analysis/Paper/Model_latent70/m2_paper_32000_summary_list_fixedA.rds")
+# summary_list4_fixedA <- readRDS("Analysis/Paper/Model_latent90/m2_paper_32000_summary_list_fixedA.rds")
 
-getDf <- function(summary_list) {
+getDf <- function(summary_list, fixed = FALSE) {
     status_codes <- sapply(summary_list, function(x) x$statusCode)
     df <- data.frame(matrix(ncol = nrow(summary_list[[2]]$parameters), nrow = length(summary_list)))
     colnames(df) <- summary_list[[2]]$parameters$name
@@ -37,7 +64,10 @@ getDf <- function(summary_list) {
     df$status_codes <- status_codes
     df <- df[df$status_codes %in% c("OK", "OK/green"),]
     # exclude a that hit the lower bound
-    #df <- df[df$a11!=0.3 & df$a22!=0.3,]
+    if(!fixed){
+        df <- df[df$a11!=0.3 & df$a22!=0.3,]
+        df <- df[df$a11>0.33 & df$a22>0.33,]
+    }
     return(df)
 }
 
@@ -67,32 +97,33 @@ df1 <- getDf(summary_list1)
 df2 <- getDf(summary_list2)
 df3 <- getDf(summary_list3)
 df4 <- getDf(summary_list4)
-#df5 <- getDf(summary_list5)
+df5 <- getDf(summary_list5)
 
 df_se1 <- getSe(summary_list1)
 df_se2 <- getSe(summary_list2)
 df_se3 <- getSe(summary_list3)
 df_se4 <- getSe(summary_list4)
-#df_se5 <- getSe(summary_list5)
+df_se5 <- getSe(summary_list5)
 
-df1_fixedA <- getDf(summary_list1_fixedA)
-df2_fixedA <- getDf(summary_list2_fixedA)
-df3_fixedA <- getDf(summary_list3_fixedA)
-df4_fixedA <- getDf(summary_list4_fixedA)
-#df5_fixedA <- getDf(summary_list5_fixedA)
+df1_fixedA <- getDf(summary_list1_fixedA, fixed = TRUE)
+df2_fixedA <- getDf(summary_list2_fixedA, fixed = TRUE)
+df3_fixedA <- getDf(summary_list3_fixedA, fixed = TRUE)
+df4_fixedA <- getDf(summary_list4_fixedA, fixed = TRUE)
+df5_fixedA <- getDf(summary_list5_fixedA, fixed = TRUE)
 
 df_se1_fixedA <- getSe(summary_list1_fixedA)
 df_se2_fixedA <- getSe(summary_list2_fixedA)
 df_se3_fixedA <- getSe(summary_list3_fixedA)
 df_se4_fixedA <- getSe(summary_list4_fixedA)
-#df_se5_fixedA <- getSe(summary_list5_fixedA)
+df_se5_fixedA <- getSe(summary_list5_fixedA)
 
 # plot the estimates of f11 as a function of the sample size
 getDfPlot <- function(param){
-    df_plot <- rbind(cbind(df1[[param]], df_se1[[param]], rep(".448", nrow(df1))),
-                     cbind(df2[[param]], df_se2[[param]], rep(".320", nrow(df2))),
-                     cbind(df3[[param]], df_se3[[param]], rep(".192", nrow(df3))),
-                     cbind(df4[[param]], df_se4[[param]], rep(".064", nrow(df4))))
+    df_plot <- rbind(cbind(df1[[param]], df_se1[[param]], rep(".01", nrow(df1))),
+                     cbind(df2[[param]], df_se2[[param]], rep(".02", nrow(df2))),
+                     cbind(df3[[param]], df_se3[[param]], rep(".04", nrow(df3))),
+                     cbind(df4[[param]], df_se4[[param]], rep(".08", nrow(df4))),
+                     cbind(df5[[param]], df_se5[[param]], rep(".16", nrow(df5))))
 
     df_plot <- as.data.frame(df_plot)
     df_plot[,3] <- as.factor(df_plot[,3])
@@ -103,10 +134,11 @@ getDfPlot <- function(param){
 }
 
 getDfPlot_fixedA <- function(param){
-    df_plot <- rbind(cbind(df1_fixedA[[param]], df_se1_fixedA[[param]], rep(".448", nrow(df1))),
-                     cbind(df2_fixedA[[param]], df_se2_fixedA[[param]], rep(".320", nrow(df2))),
-                     cbind(df3_fixedA[[param]], df_se3_fixedA[[param]], rep(".192", nrow(df3))),
-                     cbind(df4_fixedA[[param]], df_se4_fixedA[[param]], rep(".064", nrow(df4))))
+    df_plot <- rbind(cbind(df1_fixedA[[param]], df_se1_fixedA[[param]], rep(".01", nrow(df1_fixedA))),
+                     cbind(df2_fixedA[[param]], df_se2_fixedA[[param]], rep(".02", nrow(df2_fixedA))),
+                     cbind(df3_fixedA[[param]], df_se3_fixedA[[param]], rep(".04", nrow(df3_fixedA))),
+                     cbind(df4_fixedA[[param]], df_se4_fixedA[[param]], rep(".08", nrow(df4_fixedA))),
+                     cbind(df5_fixedA[[param]], df_se5_fixedA[[param]], rep(".16", nrow(df5_fixedA))))
 
     df_plot <- as.data.frame(df_plot)
     df_plot[,3] <- as.factor(df_plot[,3])
@@ -127,7 +159,9 @@ getDfSumm <- function(df_plot, func = "median"){
 
     }
     #df_summ <- aggregate(df_plot[,1], by = list(df_plot$sample_size), FUN = mean)
-    df_summ$se <- aggregate(df_plot[,2], by = list(df_plot$r2pgs), FUN = function(x) mean(x, na.rm = TRUE))[,2]
+    #df_summ$se <- aggregate(df_plot[,2], by = list(df_plot$r2pgs), FUN = function(x) sd(x, na.rm = TRUE))[,2]
+    df_summ$se <- aggregate(df_plot[,2], by = list(df_plot$r2pgs), FUN = function(x) {sd(x, na.rm = TRUE)/sqrt(length(x))})[,2]
+    #print(df_summ)
     return(df_summ)
 }
 
@@ -255,7 +289,7 @@ create_combined_plot <- function(params, ncol = 2) {
 
 # Define the parameters you want to plot
 params <- c("f11", "mu11")
-params <- c("f11", "mu11", "delta11", "w11","VY11","gc11")
+params <- c("f11", "mu11",  "delta11", "w11", "VY11","gc11")
 
 
 # # Create the combined plot
@@ -265,7 +299,7 @@ params <- c("f11", "mu11", "delta11", "w11","VY11","gc11")
 # print(combined_plot)
 # ggsave("Analysis/Paper/p1.png", combined_plot, width = 10, height = 6, type = "cairo-png", dpi = 600)
 
-params2 <- c("f12", "mu12", "v12" ,"w12","VY12","gc12")
+params2 <- c("f12", "mu12",  "w12", "v12", "VY12","gc12")
 
 # combined_plot2 <- create_combined_plot(params2, ncol = 3)
 # print(combined_plot2)
@@ -288,10 +322,10 @@ create_combined_plot_se <- function(params, ncol = 2) {
   return(combined_plot)
 }
 
-combined_plot_se <- create_combined_plot_se(params, ncol = 3)
+combined_plot_se1 <- create_combined_plot_se(params, ncol = 3)
 print(combined_plot_se)
-ggsave("Analysis/Paper/p3.png", combined_plot_se, width = 10, height = 6, type = "cairo-png", dpi = 600)
+ggsave(paste0("Analysis/Paper/p_11_", sample_sizes[SS], "_se_r2pgs.png") , combined_plot_se1, width = 10, height = 6, type = "cairo-png", dpi = 600)
 
 combined_plot_se2 <- create_combined_plot_se(params2, ncol = 3)
 print(combined_plot_se2)
-ggsave("Analysis/Paper/p4.png", combined_plot_se2, width = 10, height = 6, type = "cairo-png", dpi = 600)
+ggsave(paste0("Analysis/Paper/p_12_", sample_sizes[SS], "_se_r2pgs.png") , combined_plot_se2, width = 10, height = 6, type = "cairo-png", dpi = 600)

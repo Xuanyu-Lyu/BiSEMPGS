@@ -85,23 +85,23 @@ v_means_r2_2 <- break_into_named_vector(means_r2_2)
 v_means_r2_1 <- break_into_named_vector(means_r2_1)
 
 v_means_r2_16 <- c(v_means_r2_16, 
-                      "a11" = 0.6928203,   "a22" = 0.5366563, "delta11" = 0.4, "delta22" = 0.2683282, "r2pgs11" = .16, "r2pgs22" = .072 
+                      "a11" = 0.6928203,   "a22" = 0.5366563, "delta11" = 0.4, "delta22" = 0.2683282, "r2pgs11" = .16, "r2pgs22" = .072,
                       "f11" = 0.15, "f12" = 0.1, "f21" = 0.05, "f22" = 0.1, "k12" = .05)
     
 v_means_r2_8 <- c(v_means_r2_8, 
-                      "a11" = 0.7483315,   "a22" = 0.5366563, "delta11" = 0.2828427, "delta22" = 0.2683282, "r2pgs11" = 0.08, "r2pgs22" = .072 
+                      "a11" = 0.7483315,   "a22" = 0.5366563, "delta11" = 0.2828427, "delta22" = 0.2683282, "r2pgs11" = 0.08, "r2pgs22" = .072, 
                       "f11" = 0.15, "f12" = 0.1, "f21" = 0.05, "f22" = 0.1, "k12" = .05)
 
 v_means_r2_4 <- c(v_means_r2_4, 
-                      "a11" = 0.7745967,   "a22" = 0.5366563, "delta11" = 0.2, "delta22" = 0.2683282, "r2pgs11" = 0.04, "r2pgs22" = .072 
+                      "a11" = 0.7745967,   "a22" = 0.5366563, "delta11" = 0.2, "delta22" = 0.2683282, "r2pgs11" = 0.04, "r2pgs22" = .072, 
                       "f11" = 0.15, "f12" = 0.1, "f21" = 0.05, "f22" = 0.1, "k12" = .05)
 
 v_means_r2_2 <- c(v_means_r2_2, 
-                      "a11" = 0.7874008,   "a22" = 0.5366563, "delta11" = 0.1414214, "delta22" = 0.2683282, "r2pgs11" = 0.02, "r2pgs22" = .072 
+                      "a11" = 0.7874008,   "a22" = 0.5366563, "delta11" = 0.1414214, "delta22" = 0.2683282, "r2pgs11" = 0.02, "r2pgs22" = .072, 
                       "f11" = 0.15, "f12" = 0.1, "f21" = 0.05, "f22" = 0.1, "k12" = .05)
 
 v_means_r2_1 <- c(v_means_r2_1, 
-                      "a11" = 0.7937254,   "a22" = 0.5366563, "delta11" = 0.1, "delta22" = 0.2683282, "r2pgs11" = 0.01, "r2pgs22" = .072 
+                      "a11" = 0.7937254,   "a22" = 0.5366563, "delta11" = 0.1, "delta22" = 0.2683282, "r2pgs11" = 0.01, "r2pgs22" = .072, 
                       "f11" = 0.15, "f12" = 0.1, "f21" = 0.05, "f22" = 0.1, "k12" = .05)
 # save the named list into a txt with two columns
 # write.table(as.data.frame(v_means_latent30), file = "Data/Paper/Expected/Model_latent30_finalGen.txt", sep = "\t", row.names = TRUE, col.names = FALSE, quote = FALSE)
