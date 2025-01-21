@@ -11,6 +11,7 @@ exp_r2_4 <- readRDS("Data/Paper/Expected/Model_r2_4_finalGen.rds")
 exp_r2_2 <- readRDS("Data/Paper/Expected/Model_r2_2_finalGen.rds")
 exp_r2_1 <- readRDS("Data/Paper/Expected/Model_r2_1_finalGen.rds")
 
+
 calculate_means <- function(simulations) {
   # Get the names of the parameters
   param_names <- names(simulations[[1]])

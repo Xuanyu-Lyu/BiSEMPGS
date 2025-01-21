@@ -11,20 +11,20 @@ save_pattern <- paste0("_", v_sample)
 # data_pattern <- c("_16000.txt", "_32000.txt", "_48000.txt",  "_64000.txt", "_80000.txt")
 # save_pattern <- c("_16000", "_32000", "_48000", "_64000", "_80000")
 
-for (i in 3:5){
+for (i in 1:5){
     for (j in 1:length(data_pattern)){
         data_path <- paste0("Data/Paper/", conditionNames[i], "/", folder_pattern[j])
         l_files <- list.files(data_path, pattern = data_pattern[j])
         #check if the data has been fitted
-        if (file.exists(paste0("Analysis/Paper/", conditionNames[i], "/m2_paper", save_pattern[j], "_summary_list.rds"))){
+        if (file.exists(paste0("Analysis/Paper/", conditionNames[i], "/m2_paper_version2", save_pattern[j], "_summary_list.rds"))){
             cat("Summary list for", conditionNames[i], "\t n=", folder_pattern[j], "has been fitted\n")
             next
         }
         summary_list <- list()
-        for (k in 499:length(l_files)){
+        for (k in 1:length(l_files)){
             fit <- fitBiSEMPGS_m2_tol(paste0(data_path, "/", l_files[k]), 
-                                      feaTol = 1e-6, 
-                                      optTol = 1e-8,
+                                      feaTol = 1e-5, 
+                                      optTol = 1e-9,
                                       jitterMean = 0.5,
                                       jitterVar = .1,
                                       exhaustive = FALSE,
@@ -32,8 +32,8 @@ for (i in 3:5){
             summary_list[[l_files[k]]] <- fit
             cat(magenta("\n", conditionNames[i], "\tn=", folder_pattern[j], "\tModel", l_files[k], "has been fitted\n"))
         }
-        save_path <- paste0("Analysis/Paper/", conditionNames[i], "/m2_paper", save_pattern[j], "_summary_list.rds")
-        #saveRDS(summary_list, save_path)
+        save_path <- paste0("Analysis/Paper/", conditionNames[i], "/m2_paper_version2", save_pattern[j], "_summary_list.rds")
+        saveRDS(summary_list, save_path)
         cat(green("\nSummary list for", conditionNames[i], "\t n=", folder_pattern[j], "has been saved\n"))
 
     }
@@ -57,7 +57,7 @@ if(TRUE){
         data_path <- paste0("Data/Paper/", conditionNames[i], "/", folder_pattern[j])
         l_files <- list.files(data_path, pattern = data_pattern[j])
         # check if the data has been fitted
-        # if (file.exists(paste0("Analysis/Paper/", conditionNames[i], "/m2_paper", save_pattern[j], "_summary_list_fixedA.rds"))){
+        # if (file.exists(paste0("Analysis/Paper/", conditionNames[i], "/m2_paper_version2", save_pattern[j], "_summary_list_fixedA.rds"))){
         #     cat("Summary list for", conditionNames[i], "\t n=", folder_pattern[j], "has been fitted\n")
         #     next
         # }
@@ -65,8 +65,8 @@ if(TRUE){
         for (k in 1:length(l_files)){
             fit <- fitBiSEMPGS_m2_tol_fixH2(paste0(data_path, "/", l_files[k]), 
                                       avalue = true_a[[i]],
-                                      feaTol = 1e-6, 
-                                      optTol = 1e-8,
+                                      feaTol = 1e-5, 
+                                      optTol = 1e-9,
                                       jitterMean = 0.5,
                                       jitterVar = .1,
                                       exhaustive = FALSE,
@@ -74,7 +74,7 @@ if(TRUE){
             summary_list[[l_files[k]]] <- fit
             cat(magenta("\n", conditionNames[i], "\tn=", folder_pattern[j], "\tModel", l_files[k], "has been fitted\n"))
         }
-        save_path <- paste0("Analysis/Paper/", conditionNames[i], "/m2_paper", save_pattern[j], "_summary_list_fixedA.rds")
+        save_path <- paste0("Analysis/Paper/", conditionNames[i], "/m2_paper_version2", save_pattern[j], "_summary_list_fixedA.rds")
         saveRDS(summary_list, save_path)
         cat(green("\nSummary list for", conditionNames[i], "\t n=", folder_pattern[j], "has been saved\n"))
 

@@ -15,16 +15,16 @@ conditionNames <- c("Model_r2_1", "Model_r2_2", "Model_r2_4", "Model_r2_8", "Mod
 sample_sizes <- c(4000, 8000, 16000, 32000, 48000, 64000)
 # sort the conditionNames alphabetically
 
-SS = 6
+SS = 5
 # the true value file
 #file_tv <- read.table(paste0("Data/Paper/Expected/",conditionNames[condition],"_finalGen.txt"))
 
 # read each rds into a list
 for(i in 1: length(conditionNames)){
   var_name <- paste0("summary_list", i)
-  assign(var_name, readRDS(paste0("Analysis/Paper/", conditionNames[i], "/m2_paper_", sample_sizes[SS],"_summary_list.rds")))
+  assign(var_name, readRDS(paste0("Analysis/Paper/", conditionNames[i], "/m2_paper_version2_", sample_sizes[SS],"_summary_list.rds")))
   #print(paste0("Analysis/Paper/", conditionNames[i], "/m2_paper_", sample_sizes[SS],"_summary_list_fixedA.rds"))
-  assign(paste0("summary_list", i, "_fixedA"), readRDS(paste0("Analysis/Paper/", conditionNames[i], "/m2_paper_", sample_sizes[SS],"_summary_list_fixedA.rds")))
+  assign(paste0("summary_list", i, "_fixedA"), readRDS(paste0("Analysis/Paper/", conditionNames[i], "/m2_paper_version2_", sample_sizes[SS],"_summary_list_fixedA.rds")))
 }
 test  <- readRDS("Analysis/Paper/Model_r2_1/m2_paper_16000_summary_list_fixedA.rds")
 
@@ -65,8 +65,10 @@ getDf <- function(summary_list, fixed = FALSE) {
     df <- df[df$status_codes %in% c("OK", "OK/green"),]
     # exclude a that hit the lower bound
     if(!fixed){
-        df <- df[df$a11!=0.3 & df$a22!=0.3,]
-        df <- df[df$a11>0.33 & df$a22>0.33,]
+        #df <- df[df$a11!=0.3 & df$a22!=0.3,]
+        #df <- df[df$a11>0.4 & df$a22>0.4,]
+        df <- df[df$VY11>1 & df$VY22>1,]
+        df <- df[df$VE11>0 & df$VE12>0 & df$VE22>0,]
     }
     return(df)
 }
@@ -160,7 +162,7 @@ getDfSumm <- function(df_plot, func = "median"){
     }
     #df_summ <- aggregate(df_plot[,1], by = list(df_plot$sample_size), FUN = mean)
     #df_summ$se <- aggregate(df_plot[,2], by = list(df_plot$r2pgs), FUN = function(x) sd(x, na.rm = TRUE))[,2]
-    df_summ$se <- aggregate(df_plot[,2], by = list(df_plot$r2pgs), FUN = function(x) {sd(x, na.rm = TRUE)/sqrt(length(x))})[,2]
+    df_summ$se <- aggregate(df_plot[,1], by = list(df_plot$r2pgs), FUN = function(x) {sd(x, na.rm = TRUE)/sqrt(length(x))})[,2]
     #print(df_summ)
     return(df_summ)
 }
@@ -323,9 +325,9 @@ create_combined_plot_se <- function(params, ncol = 2) {
 }
 
 combined_plot_se1 <- create_combined_plot_se(params, ncol = 3)
-print(combined_plot_se)
-ggsave(paste0("Analysis/Paper/p_11_", sample_sizes[SS], "_se_r2pgs.png") , combined_plot_se1, width = 10, height = 6, type = "cairo-png", dpi = 600)
+print(combined_plot_se1)
+ggsave(paste0("Analysis/Paper/p_11_", sample_sizes[SS], "_se_r2pgs_version2.png") , combined_plot_se1, width = 10, height = 6, type = "cairo-png", dpi = 600)
 
 combined_plot_se2 <- create_combined_plot_se(params2, ncol = 3)
 print(combined_plot_se2)
-ggsave(paste0("Analysis/Paper/p_12_", sample_sizes[SS], "_se_r2pgs.png") , combined_plot_se2, width = 10, height = 6, type = "cairo-png", dpi = 600)
+ggsave(paste0("Analysis/Paper/p_12_", sample_sizes[SS], "_se_r2pgs_version2.png") , combined_plot_se2, width = 10, height = 6, type = "cairo-png", dpi = 600)

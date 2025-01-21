@@ -6,7 +6,7 @@ library(patchwork)
 #conditionNames <- c("Model_r2_16", "Model_r2_8", "Model_r2_4", "Model_r2_2", "Model_r2_1")
 conditionNames <- c("Model_r2_1", "Model_r2_2", "Model_r2_4", "Model_r2_8", "Model_r2_16")
 
-condition = 5
+condition = 4
 
 sample_sizes <- c(4000, 8000, 16000, 32000, 48000, 64000)
 
@@ -17,8 +17,8 @@ file_tv <- read.table(paste0("Data/Paper/Expected/",conditionNames[condition],"_
 # read each rds into a list
 for(i in 1: length(sample_sizes)){
   var_name <- paste0("summary_list", i)
-  assign(var_name, readRDS(paste0("Analysis/Paper/", conditionNames[condition], "/m2_paper_", sample_sizes[i],"_summary_list.rds")))
-  assign(paste0("summary_list", i, "_fixedA"), readRDS(paste0("Analysis/Paper/", conditionNames[condition], "/m2_paper_", sample_sizes[i],"_summary_list_fixedA.rds")))
+  assign(var_name, readRDS(paste0("Analysis/Paper/", conditionNames[condition], "/m2_paper_version2_", sample_sizes[i],"_summary_list.rds")))
+  assign(paste0("summary_list", i, "_fixedA"), readRDS(paste0("Analysis/Paper/", conditionNames[condition], "/m2_paper_version2_", sample_sizes[i],"_summary_list_fixedA.rds")))
 }
 
 # summary_list1 <- readRDS(paste0("Analysis/Paper/test/Model_latent", model, "/m2_paper_16000_summary_list.rds"))
@@ -55,12 +55,14 @@ getDf <- function(summary_list, fixed = FALSE) {
     df <- df[df$status_codes %in% c("OK", "OK/green"),]
     # exclude a that hit the lower bound
     if(!fixed){
-        df <- df[df$a11!=0.3 & df$a22!=0.3,]
-        df <- df[df$a11>0.33 & df$a22>0.33,]
+        #df <- df[df$a11!=0.3 & df$a22!=0.3,]
+        #df <- df[df$a11>0.4 & df$a22>0.4,]
+        df <- df[df$VY11>1 & df$VY22>1,]
+        df <- df[df$VE11>0 & df$VE12>0 & df$VE22>0,]
     }
   
     # exclude the outliers that is three standard deviations away from the mean, only applied to numerical variables
-    #df <- df[apply(df[,1:(ncol(df)-15)], 2, function(x) all(abs(x - mean(x, na.rm = TRUE)) < 5*sd(x, na.rm = TRUE))),]
+    #df <- df[apply(df[,1:(ncol(df)-15)], 2, function(x) all(abs(x - mean(x, na.rm = TRUE)) < 8*sd(x, na.rm = TRUE))),]
 
     # general lower bound variables
     varname_vector <- c()
@@ -157,7 +159,7 @@ getDfPlot_fixedA <- function(param){
     return(df_plot)
 }
 
-getDfSumm <- function(df_plot, func = "mean"){
+getDfSumm <- function(df_plot, func = "median"){
     if (func == "median") {
         df_summ <- aggregate(df_plot[,1], by = list(df_plot$sample_size), FUN = function(x) median(x, na.rm = TRUE))
         colnames(df_summ) <- c("sample_size", "center")
@@ -173,7 +175,7 @@ getDfSumm <- function(df_plot, func = "mean"){
       #print(length(x))
       sd(x, na.rm = TRUE)/sqrt(length(x)) * qt(0.975, length(x)-1)}
     df_summ$CI <- aggregate(df_plot[,1], by = list(df_plot$sample_size), FUN = getCI)[,2]
-    df_summ$se <- aggregate(df_plot[,2], by = list(df_plot$sample_size), FUN = function(x) {sd(x, na.rm = TRUE)/sqrt(length(x))})[,2]
+    df_summ$se <- aggregate(df_plot[,1], by = list(df_plot$sample_size), FUN = function(x) {sd(x, na.rm = TRUE)/sqrt(length(x))})[,2]
     #df_summ$se <- aggregate(df_plot[,2], by = list(df_plot$sample_size), FUN = function(x) mean(x, na.rm = TRUE))[,2]
     return(df_summ)
 }
@@ -183,13 +185,13 @@ create_pretty_plot <- function(df_summ, param_name, color1 = "blue", file_tv) {
     
     true_value <- true_value_df[true_value_df$V1 == param_name, 2]
     print(true_value)
-    se_y <- max(df_summ$CI, na.rm=TRUE)*6
+    se_y <- max(df_summ$CI, na.rm=TRUE)*8
     lim_y <- c(mean(df_summ$center - se_y), mean(df_summ$center + se_y))
     ggplot(df_summ, aes(x = sample_size, y = center)) +
     geom_point(size = 3, color = color1) +
     geom_errorbar(aes(ymin = center - CI, ymax = center + CI), width = 0.2, color = color1) +
     geom_line(aes(group = 1), color = color1, size = 1) +
-    geom_hline(aes(yintercept = true_value), color = "#b2182b", size = 1.25, linetype = "24") +
+    geom_hline(aes(yintercept = true_value), color = "#b2182b", size = 1.4, linetype = "24") +
     coord_cartesian(ylim = lim_y) +
     labs(title = paste("Estimates of", param_name),
          x = "Sample size",
@@ -220,14 +222,7 @@ create_pretty_plot_se <- function(df_summ_fixed, df_summ_nonfixed, param_name,
   # Combine the dataframes
   df_combined <- dplyr::bind_rows(df_summ_fixed, df_summ_nonfixed)
   
-  # Read the true value from the file
-  true_value_df <- file_tv
-  true_value <- true_value_df[true_value_df$V1 == param_name, 2]
-  
-  # Calculate y limits based on SE
-  se_y <- max(df_combined$se, na.rm = TRUE) * 4
-  lim_y <- c(mean(df_combined$center - se_y), mean(df_combined$center + se_y))
-  
+
   # Define color palette
   my_palette <- c("Fixed a" = color_fixed, "Estimated a" = color_nonfixed)
   
@@ -310,13 +305,13 @@ combined_plot <- create_combined_plot(params, ncol = 4)
 
 # Display the combined plot
 print(combined_plot)
-ggsave(paste0("Analysis/Paper/p_11_", 2^(condition-1), "_estimates.png") , combined_plot, width = 10, height = 6, type = "cairo-png", dpi = 600)
+ggsave(paste0("Analysis/Paper/p_11_", 2^(condition-1), "_estimates_version2.png") , combined_plot, width = 10, height = 6, type = "cairo-png", dpi = 600)
 
 params2 <- c("f12", "mu12",  "w12", "v12", "VY12","gc12")
 
 combined_plot2 <- create_combined_plot(params2, ncol = 3)
 print(combined_plot2)
-ggsave(paste0("Analysis/Paper/p_12_", 2^(condition-1), "_estimates.png") , combined_plot2, width = 10, height = 6, type = "cairo-png", dpi = 600)
+ggsave(paste0("Analysis/Paper/p_12_", 2^(condition-1), "_estimates_version2.png") , combined_plot2, width = 10, height = 6, type = "cairo-png", dpi = 600)
 
 
 
@@ -340,15 +335,15 @@ create_combined_plot_se <- function(params, ncol = 2) {
   combined_plot <- wrap_plots(plots, ncol = ncol, widths = rep(1, length(params)))
   return(combined_plot)
 }
-params3 <- c("f11", "mu11",  "delta11", "w11", "VY11","gc11")
+params3 <- c("f11", "mu11",  "delta11", "v11", "VY11","gc11")
 combined_plot_se1 <- create_combined_plot_se(params3, ncol = 3)
 
 #print(combined_plot_se)
-ggsave(paste0("Analysis/Paper/p_11_", 2^(condition-1), "_se_samplesize.png") , combined_plot_se1, width = 10, height = 6, type = "cairo-png", dpi = 600)
+ggsave(paste0("Analysis/Paper/p_11_", 2^(condition-1), "_se_samplesize_version2.png") , combined_plot_se1, width = 10, height = 6, type = "cairo-png", dpi = 600)
 
 params4 <- c("f12", "mu12",  "w12", "v12", "VY12","gc12")
 combined_plot_se2 <- create_combined_plot_se(params4, ncol = 3)
-ggsave(paste0("Analysis/Paper/p_12_", 2^(condition-1), "_se_samplesize.png") , combined_plot_se2, width = 10, height = 6, type = "cairo-png", dpi = 600)
+ggsave(paste0("Analysis/Paper/p_12_", 2^(condition-1), "_se_samplesize_version2.png") , combined_plot_se2, width = 10, height = 6, type = "cairo-png", dpi = 600)
 
 # combined_plot_se2 <- create_combined_plot_se(params2, ncol = 3)
 # print(combined_plot_se2)
