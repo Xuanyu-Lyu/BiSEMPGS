@@ -580,7 +580,7 @@ fitBiSEMPGS_m2_tol <- function(data_path,feaTol = 1e-6, optTol = 1e-8, jitterMea
 
     # Genetic effects:
         delta <- mxMatrix(type="Diag", nrow=2, ncol=2, free=c(T,T), values=c(.4,.3), label=c("delta11", "delta22"),name="delta", lbound = -.05) # Effect of PGS on phen
-        a     <- mxMatrix(type="Diag", nrow=2, ncol=2, free=c(T,T), values=c(.6,.6), label=c("a11", "a22"),    name="a", lbound = c(.3,.3))     # Effect of latent PGS on phen
+        a     <- mxMatrix(type="Diag", nrow=2, ncol=2, free=c(T,T), values=c(.8,.55), label=c("a11", "a22"),    name="a", lbound = c(.2,.2))     # Effect of latent PGS on phen
         k     <- mxMatrix(type="Symm", nrow=2, ncol=2, free=matrix(c(F,T,T,F),nrow = 2,ncol = 2), values=c(.5,0.02,0.02,.5), label=c("k11", "k12", "k12","k22"),    name="k", lbound = -.05)     # PGS variance (if no AM)
         j     <- mxMatrix(type="Symm", nrow=2, ncol=2, free=matrix(c(F,T,T,F),nrow = 2,ncol = 2), values=c(.5,0.03,0.03,.5), label=c("j11", "j12", "j12","j22"),    name="j", lbound = -.05)     # Latent PGS variance (if no AM)
         Omega <- mxMatrix(type="Full", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.6,0.15,0.1,.5), label=c("Omega11", "Omega21", "Omega12","Omega22"),name="Omega", lbound = -.05) # Within-person PGS-Phen covariance
@@ -869,7 +869,7 @@ fitBiSEMPGS_m2_tol_fixH2 <- function(data_path, avalue,feaTol = 1e-6, optTol = 1
                     #VF, 
                     VE, delta, a, k, j, Omega, Gamma, mu, gt, ht, gc, hc, itlo, itol, ic, f, w, v,
                     VY_Algebra, 
-                    #VF_Algebra,  
+                    VF_Algebra,  
                     Omega_Algebra, Gamma_Algebra, adelta_Constraint_Algebra, j_Algebra, gt_Algebra, ht_Algebra, gc_Algebra, hc_Algebra, gchc_constraint_Algebra, itlo_Algebra, itol_Algebra, ic_Algebra, w_Algebra, v_Algebra, wv_constraint_algebra,
                     VY_Constraint, 
                     #VF_Constraint, 

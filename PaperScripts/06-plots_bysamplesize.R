@@ -6,7 +6,7 @@ library(patchwork)
 #conditionNames <- c("Model_r2_16", "Model_r2_8", "Model_r2_4", "Model_r2_2", "Model_r2_1")
 conditionNames <- c("Model_r2_1", "Model_r2_2", "Model_r2_4", "Model_r2_8", "Model_r2_16")
 
-condition = 4
+condition = 3
 
 sample_sizes <- c(4000, 8000, 16000, 32000, 48000, 64000)
 
@@ -57,8 +57,8 @@ getDf <- function(summary_list, fixed = FALSE) {
     if(!fixed){
         #df <- df[df$a11!=0.3 & df$a22!=0.3,]
         #df <- df[df$a11>0.4 & df$a22>0.4,]
-        df <- df[df$VY11>1 & df$VY22>1,]
-        df <- df[df$VE11>0 & df$VE12>0 & df$VE22>0,]
+        #df <- df[df$VY11>1 & df$VY22>1,]
+       # df <- df[df$VE11>0 & df$VE12>0 & df$VE22>0,]
     }
   
     # exclude the outliers that is three standard deviations away from the mean, only applied to numerical variables
@@ -68,6 +68,11 @@ getDf <- function(summary_list, fixed = FALSE) {
     varname_vector <- c()
     return(df)
 }
+
+sum_list <- readRDS("/Users/xuly4739/Library/CloudStorage/OneDrive-UCB-O365/Documents/coding/R-projects/BiSEMPGS/Analysis/Paper/Model_r2_8/m2_paper_version3_48000_summary_list.rds")
+test <- getDf(sum_list)
+names(test)
+psych::describe(test)
 
 getSe <- function(summary_list){
     status_codes <- sapply(summary_list, function(x) x$statusCode)
@@ -173,9 +178,14 @@ getDfSumm <- function(df_plot, func = "median"){
     #df_summ <- aggregate(df_plot[,1], by = list(df_plot$sample_size), FUN = mean)
     getCI <- function(x) {
       #print(length(x))
-      sd(x, na.rm = TRUE)/sqrt(length(x)) * qt(0.975, length(x)-1)}
+      #return(sd(x, na.rm = TRUE)/sqrt(length(x)) * qt(0.975, length(x)-1))
+      return(sd(x, na.rm = TRUE))
+      }
+      
     df_summ$CI <- aggregate(df_plot[,1], by = list(df_plot$sample_size), FUN = getCI)[,2]
-    df_summ$se <- aggregate(df_plot[,1], by = list(df_plot$sample_size), FUN = function(x) {sd(x, na.rm = TRUE)/sqrt(length(x))})[,2]
+    df_summ$SD <- aggregate(df_plot[,1], by = list(df_plot$sample_size), FUN = function(x) {mad(x, na.rm = TRUE)})[,2]
+    df_summ$SE <- aggregate(df_plot[,1], by = list(df_plot$sample_size), FUN = function(x) {sd(x, na.rm = TRUE)/sqrt(length(x))})[,2]
+
     #df_summ$se <- aggregate(df_plot[,2], by = list(df_plot$sample_size), FUN = function(x) mean(x, na.rm = TRUE))[,2]
     return(df_summ)
 }
@@ -185,16 +195,16 @@ create_pretty_plot <- function(df_summ, param_name, color1 = "blue", file_tv) {
     
     true_value <- true_value_df[true_value_df$V1 == param_name, 2]
     print(true_value)
-    se_y <- max(df_summ$CI, na.rm=TRUE)*8
+    se_y <- max(df_summ$SD, na.rm=TRUE)*3
     lim_y <- c(mean(df_summ$center - se_y), mean(df_summ$center + se_y))
     ggplot(df_summ, aes(x = sample_size, y = center)) +
     geom_point(size = 3, color = color1) +
-    geom_errorbar(aes(ymin = center - CI, ymax = center + CI), width = 0.2, color = color1) +
+    geom_errorbar(aes(ymin = center - SD, ymax = center + SD), width = 0.2, color = color1) +
     geom_line(aes(group = 1), color = color1, size = 1) +
     geom_hline(aes(yintercept = true_value), color = "#b2182b", size = 1.4, linetype = "24") +
     coord_cartesian(ylim = lim_y) +
-    labs(title = paste("Estimates of", param_name),
-         x = "Sample size",
+    labs(title = paste(param_name),
+         x = expression(N[trio]),
          y = paste(param_name)) +
       theme_minimal() +
         theme(panel.grid.major = element_blank(),
@@ -227,15 +237,15 @@ create_pretty_plot_se <- function(df_summ_fixed, df_summ_nonfixed, param_name,
   my_palette <- c("Fixed a" = color_fixed, "Estimated a" = color_nonfixed)
   
   # Create the plot
-  p <- ggplot(df_combined, aes(x = sample_size, y = se, color = A_status)) +
+  p <- ggplot(df_combined, aes(x = sample_size, y = SD, color = A_status)) +
     geom_point(size = 3) +
     #geom_errorbar(aes(ymin = center - se, ymax = center + se), width = 0.2) +
     geom_line(aes(group = A_status), size = 1) +
     #geom_hline(yintercept = true_value, linetype = "dashed", color = "#b2182b", size = 1.25) +
     #coord_cartesian(ylim = lim_y) +
-    labs(title = paste("SE of", param_name),
-         x = "Sample Size",
-         y = paste(param_name, "SE"),
+    labs(title = paste(param_name),
+         x = expression(N[trio]),
+         y = paste(param_name, "MAD"),
          color = "a Status") +
     scale_color_manual(values = my_palette) +
     guides(color = "none")+
@@ -274,19 +284,20 @@ create_pretty_plot_se <- function(df_summ_fixed, df_summ_nonfixed, param_name,
 # a color palette for the plots
 #my_palette <- c( "#E41A1C", "#332288", "#E69F00", "#DDCC77", "#377EB8",  "#4DAF4A", "#117A65", "#56B4E9", "#A6CE39", "#A9A9A9","#88CCEE", "#CC6677",  "#AA4499",   "#999933", "#882255", "#984EA3")
 my_palette <- c(
-  "#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd",
+  "#1f77b4", "#ff7f0e", "#2ca02c", "#9467bd",
   "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf",
   "#6b6ecf", "#b5cf6b", "#9c9ede", "#e7969c", "#cedb9c",
-  "#e7ba52", "#9edae5", "#dbdb8d", "#ad494a", "#393b79"
+  "#e7ba52", "#9edae5", "#dbdb8d", "#ad494a", "#393b79", "#d62728"
 )
 # Define a function to create plots for a selection of parameters and combine them
 create_combined_plot <- function(params, ncol = 2) {
   plots <- list()
-  
+  color_sample <- sample(my_palette, length(params))
   for (param in params) {
     df_plot <- getDfPlot(param)
     df_summ <- getDfSumm(df_plot)
-    plot <- create_pretty_plot(df_summ, param, color1 = sample(my_palette, 1), file_tv = file_tv)
+    #print(grep(param, params, fixed = TRUE))
+    plot <- create_pretty_plot(df_summ, param, color1 = my_palette[grep(paste0("\\b", param, "\\b"), params)], file_tv = file_tv)
     plots[[param]] <- plot
   }
   
@@ -305,13 +316,13 @@ combined_plot <- create_combined_plot(params, ncol = 4)
 
 # Display the combined plot
 print(combined_plot)
-ggsave(paste0("Analysis/Paper/p_11_", 2^(condition-1), "_estimates_version2.png") , combined_plot, width = 10, height = 6, type = "cairo-png", dpi = 600)
+ggsave(paste0("Analysis/Paper/p_11_", 2^(condition-1), "_estimates_version3.png") , combined_plot, width = 10, height = 6, type = "cairo-png", dpi = 600)
 
 params2 <- c("f12", "mu12",  "w12", "v12", "VY12","gc12")
 
 combined_plot2 <- create_combined_plot(params2, ncol = 3)
 print(combined_plot2)
-ggsave(paste0("Analysis/Paper/p_12_", 2^(condition-1), "_estimates_version2.png") , combined_plot2, width = 10, height = 6, type = "cairo-png", dpi = 600)
+ggsave(paste0("Analysis/Paper/p_12_", 2^(condition-1), "_estimates_version3.png") , combined_plot2, width = 10, height = 6, type = "cairo-png", dpi = 600)
 
 
 
@@ -320,15 +331,15 @@ create_combined_plot_se <- function(params, ncol = 2) {
   
   for (param in params) {
     df_plot <- getDfPlot(param)
-    cat("df_plot got\n")
+    #cat("df_plot got\n")
     df_summ <- getDfSumm(df_plot)
-    cat("df_summ got\n")
+    #cat("df_summ got\n")
     df_plot_fixedA <- getDfPlot_fixedA(param)
-    cat("df_plot_fixedA got\n")
+    #cat("df_plot_fixedA got\n")
     df_summ_fixedA <- getDfSumm(df_plot_fixedA)
-    cat("df_summ_fixedA got\n")
+    #cat("df_summ_fixedA got\n")
     plot <- create_pretty_plot_se(df_summ_fixedA, df_summ, param, file_tv = file_tv)
-    cat("plot got\n")
+    #cat("plot got\n")
     plots[[param]] <- plot
   }
   
@@ -339,11 +350,11 @@ params3 <- c("f11", "mu11",  "delta11", "v11", "VY11","gc11")
 combined_plot_se1 <- create_combined_plot_se(params3, ncol = 3)
 
 #print(combined_plot_se)
-ggsave(paste0("Analysis/Paper/p_11_", 2^(condition-1), "_se_samplesize_version2.png") , combined_plot_se1, width = 10, height = 6, type = "cairo-png", dpi = 600)
+ggsave(paste0("Analysis/Paper/p_11_", 2^(condition-1), "_se_samplesize_version3.png") , combined_plot_se1, width = 10, height = 6, type = "cairo-png", dpi = 600)
 
 params4 <- c("f12", "mu12",  "w12", "v12", "VY12","gc12")
 combined_plot_se2 <- create_combined_plot_se(params4, ncol = 3)
-ggsave(paste0("Analysis/Paper/p_12_", 2^(condition-1), "_se_samplesize_version2.png") , combined_plot_se2, width = 10, height = 6, type = "cairo-png", dpi = 600)
+ggsave(paste0("Analysis/Paper/p_12_", 2^(condition-1), "_se_samplesize_version3.png") , combined_plot_se2, width = 10, height = 6, type = "cairo-png", dpi = 600)
 
 # combined_plot_se2 <- create_combined_plot_se(params2, ncol = 3)
 # print(combined_plot_se2)

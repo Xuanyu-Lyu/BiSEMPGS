@@ -26,7 +26,7 @@ for(i in 1: length(conditionNames)){
   #print(paste0("Analysis/Paper/", conditionNames[i], "/m2_paper_", sample_sizes[SS],"_summary_list_fixedA.rds"))
   assign(paste0("summary_list", i, "_fixedA"), readRDS(paste0("Analysis/Paper/", conditionNames[i], "/m2_paper_version2_", sample_sizes[SS],"_summary_list_fixedA.rds")))
 }
-test  <- readRDS("Analysis/Paper/Model_r2_1/m2_paper_16000_summary_list_fixedA.rds")
+#test  <- readRDS("Analysis/Paper/Model_r2_1/m2_paper_16000_summary_list_fixedA.rds")
 
 # testModel <- readRDS("Analysis/Paper/Model_latent90/m2_paper_64000_summary_list.rds")
 # testModel[[1]]
@@ -67,8 +67,8 @@ getDf <- function(summary_list, fixed = FALSE) {
     if(!fixed){
         #df <- df[df$a11!=0.3 & df$a22!=0.3,]
         #df <- df[df$a11>0.4 & df$a22>0.4,]
-        df <- df[df$VY11>1 & df$VY22>1,]
-        df <- df[df$VE11>0 & df$VE12>0 & df$VE22>0,]
+        #df <- df[df$VY11>1 & df$VY22>1,]
+        #df <- df[df$VE11>0 & df$VE12>0 & df$VE22>0,]
     }
     return(df)
 }
@@ -162,13 +162,13 @@ getDfSumm <- function(df_plot, func = "median"){
     }
     #df_summ <- aggregate(df_plot[,1], by = list(df_plot$sample_size), FUN = mean)
     #df_summ$se <- aggregate(df_plot[,2], by = list(df_plot$r2pgs), FUN = function(x) sd(x, na.rm = TRUE))[,2]
-    df_summ$se <- aggregate(df_plot[,1], by = list(df_plot$r2pgs), FUN = function(x) {sd(x, na.rm = TRUE)/sqrt(length(x))})[,2]
+    df_summ$SD <- aggregate(df_plot[,1], by = list(df_plot$r2pgs), FUN = function(x) {mad(x, na.rm = TRUE)})[,2]
     #print(df_summ)
     return(df_summ)
 }
 
 # Define a function to create a prettier plot
-create_pretty_plot <- function(df_summ, param_name, color1 = "blue", file_tv = "Data/Paper/Expected/Model_latent30_finalGen.txt") {
+create_pretty_plot <- function(df_summ, param_name, color1 = "blue", file_tv = "Data/Paper/Expected/Model_r2_8_finalGen.txt") {
     true_value_df <- read.table(file_tv, header = FALSE)
     
     true_value <- true_value_df[true_value_df$V1 == param_name, 2]
@@ -201,7 +201,7 @@ create_pretty_plot <- function(df_summ, param_name, color1 = "blue", file_tv = "
 # Modified create_pretty_plot function
 create_pretty_plot_se <- function(df_summ_fixed, df_summ_nonfixed, param_name, 
                                color_fixed = "#1f77b4", color_nonfixed = "#ad494a", 
-                               file_tv = "Data/Paper/Expected/Model_latent30_finalGen.txt") {
+                               file_tv = "Data/Paper/Expected/Model_r2_8_finalGen.txt") {
   
   # Add a group identifier to each dataframe
   df_summ_fixed$A_status <- "Fixed a"
@@ -222,15 +222,15 @@ create_pretty_plot_se <- function(df_summ_fixed, df_summ_nonfixed, param_name,
   my_palette <- c("Fixed a" = color_fixed, "Estimated a" = color_nonfixed)
   
   # Create the plot
-  p <- ggplot(df_combined, aes(x = r2pgs, y = se, color = A_status)) +
+  p <- ggplot(df_combined, aes(x = r2pgs, y = SD, color = A_status)) +
     geom_point(size = 3) +
     #geom_errorbar(aes(ymin = center - se, ymax = center + se), width = 0.2) +
     geom_line(aes(group = A_status), size = 1) +
     #geom_hline(yintercept = true_value, linetype = "dashed", color = "#b2182b", size = 1.25) +
     #coord_cartesian(ylim = lim_y) +
-    labs(title = paste("SE of", param_name),
+    labs(title = paste(param_name),
          x = expression(r[pgs]^2),
-         y = paste(param_name, "SE"),
+         y = paste(param_name, "MAD"),
          color = "a Status") +
     scale_color_manual(values = my_palette) +
     guides(color = "none")+
@@ -326,8 +326,8 @@ create_combined_plot_se <- function(params, ncol = 2) {
 
 combined_plot_se1 <- create_combined_plot_se(params, ncol = 3)
 print(combined_plot_se1)
-ggsave(paste0("Analysis/Paper/p_11_", sample_sizes[SS], "_se_r2pgs_version2.png") , combined_plot_se1, width = 10, height = 6, type = "cairo-png", dpi = 600)
+ggsave(paste0("Analysis/Paper/p_11_", sample_sizes[SS], "_se_r2pgs_version3.png") , combined_plot_se1, width = 10, height = 6, type = "cairo-png", dpi = 600)
 
 combined_plot_se2 <- create_combined_plot_se(params2, ncol = 3)
 print(combined_plot_se2)
-ggsave(paste0("Analysis/Paper/p_12_", sample_sizes[SS], "_se_r2pgs_version2.png") , combined_plot_se2, width = 10, height = 6, type = "cairo-png", dpi = 600)
+ggsave(paste0("Analysis/Paper/p_12_", sample_sizes[SS], "_se_r2pgs_version3.png") , combined_plot_se2, width = 10, height = 6, type = "cairo-png", dpi = 600)
