@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --qos=preemptable
-#SBATCH --time=18:00:00
+#SBATCH --time=12:00:00
 #SBATCH --ntasks=1
 #SBATCH --mem=200gb
 #SBATCH --array=1-100%35

@@ -432,20 +432,20 @@ fitBiSEMPGS_m2_tol <- function(data_path,feaTol = 1e-6, optTol = 1e-8, jitterMea
 }
 
 
-for (iter in 1:5){
+for (iter in 1:50){
     set.seed(123+iter) 
-    samples <- mvrnorm(n = num_samples, mu = rep(0, nrow(CMatrix)), Sigma = CMatrix, empirical = TRUE)
+    samples <- mvrnorm(n = num_samples, mu = rep(0, nrow(CMatrix)), Sigma = CMatrix, empirical = FALSE)
     # Save each sample to a file as a tsv
     sample_file <- paste0("Data/Paper/MVN/samples_iter_empi_", iter, ".tsv")
     write.table(samples, file = sample_file, sep = "\t", row.names = FALSE, col.names = colnames(CMatrix), quote = FALSE)
 
 }
 summary_list <- list()
-for (i in 1:5){
+for (i in 1:50){
     sample_file <- paste0("Data/Paper/MVN/samples_iter_empi_", i, ".tsv")
     fit <- fitBiSEMPGS_m2_tol(sample_file, 
-                              feaTol = 1e-5, 
-                              optTol = 1e-8,
+                              feaTol = 1e-6, 
+                              optTol = 1e-9,
                               jitterMean = 0.5,
                               jitterVar = .1,
                               exhaustive = FALSE,
@@ -456,7 +456,7 @@ for (i in 1:5){
 }
 
 # save the list of summaries
-save_path <- "Analysis/Paper/MVN/paper_MVN_summary_list_empi.rds"
+save_path <- "Analysis/Paper/MVN/paper_MVN_summary_list.rds"
 saveRDS(summary_list, save_path)
 
 # extract all the status code of openmx and put them into a vector
