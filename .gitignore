@@ -52,3 +52,4 @@ rsconnect/
 # data file
 *.txt
 *.docx
+*.tsv

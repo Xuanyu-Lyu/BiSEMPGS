@@ -139,7 +139,7 @@ for (condition in 1:3){
 	for (i in 1:5){
 	loop_index <- (array_idx-1)*5 + i 
 	# if the file is already there, skip
-	if (file.exists(paste0(save_dir_data,"/Data/",conditionNames[condition],"/loop",loop_index,".rds"))){
+	if (file.exists(paste0(save_dir_data, conditionNames[condition],"/loop",loop_index,".rds"))){
 		cat(conditionNames[condition],"/Simulation",loop_index,"already exists\n")
 		next
 	}
@@ -155,15 +155,15 @@ for (condition in 1:3){
 	#l.summaryLast[[i]] <- SUMMARY.last
 	#l.all[[i]] <- AM.DATA
 	# test if a folder exist, if not, create one
-	if (!dir.exists(paste0(save_dir_summary, "/Summary/",conditionNames[condition]))){
-		dir.create(paste0(save_dir_summary, "/Summary/",conditionNames[condition]))
+	if (!dir.exists(paste0(save_dir_summary, conditionNames[condition]))){
+		dir.create(paste0(save_dir_summary, conditionNames[condition]))
 	}		
-	if (!dir.exists(paste0(save_dir_data,"/Data/",conditionNames[condition]))){
-		dir.create(paste0(save_dir_data, "/Data/",conditionNames[condition]))
+	if (!dir.exists(paste0(save_dir_data,conditionNames[condition]))){
+		dir.create(paste0(save_dir_data, conditionNames[condition]))
 	}
 	# save the data
-	saveRDS(SUMMARY.last, file=paste0(save_dir_summary,"/Summary/",conditionNames[condition],"/loop",loop_index,".rds"))
-	saveRDS(AM.DATA, file=paste0(save_dir_data,"/Data/",conditionNames[condition],"/loop",loop_index,".rds"))
+	saveRDS(SUMMARY.last, file=paste0(save_dir_summary, conditionNames[condition],"/loop",loop_index,".rds"))
+	saveRDS(AM.DATA, file=paste0(save_dir_data, conditionNames[condition],"/loop",loop_index,".rds"))
 	cat(conditionNames[condition],"/Simulation",loop_index,"done\n")
 	rm(list = setdiff(ls(), c(ObjectsKeep, "i", "ObjectsKeep")))
 }
