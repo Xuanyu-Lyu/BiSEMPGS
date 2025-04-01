@@ -66,7 +66,7 @@ for (i in 1:length(conditionNames)){
     df_list <- list()
     des_list <- list()
     for (j in 1:length(sample_sizes)){
-        data_path <- paste0("Analysis/Paper/", conditionNames[i], "/m2_paper_version2_", sample_sizes[j],"_summary_list.rds")
+        data_path <- paste0("Analysis/Paper/", conditionNames[i], "/m2_paper_version2_", sample_sizes[j],"_summary_list_fixedA.rds")
 
         df_estimates <- getDf(readRDS(data_path))
         df_estimates <- df_estimates[,colnames(df_estimates) %in% file_tv$V1]
@@ -90,3 +90,53 @@ for (i in 1:length(conditionNames)){
     names(all_des)[i] <- conditionNames[i]
     
 }
+
+# create a seperate df for each condition
+for (i in 1:length(conditionNames)){
+    for (j in 1:length(sample_sizes)){
+        all_des[[i]][[j]]$sample_sizes <- sample_sizes[j]
+        # move the sample_sizes column to the first column
+        all_des[[i]][[j]] <- all_des[[i]][[j]][,c(ncol(all_des[[i]][[j]]), 1:(ncol(all_des[[i]][[j]])-1))]
+        if(j == 1){
+            des <- all_des[[i]][[j]]
+        } else {
+           des <- rbind(des, all_des[[i]][[j]])
+        }
+    } 
+    # order the rows by param and sample sizes
+    des <- des[order(des$param, des$sample_sizes),]
+    des <- des[, c("param","sample_sizes", "median", "MAD", "trueValue", "p_value", "proportion_systematic")]
+    assign(paste0("des_", conditionNames[i]), des)
+
+}
+
+# get the latex code for each of the tables
+library(kableExtra)
+library(dplyr)
+
+getLatex <- function(df){
+ # Store the param column separately
+  param_col <- df$param
+  
+  # Remove the param column from the data frame
+  df <- df[, !names(df) %in% "param"]
+  # Round numeric columns to four digits
+  df <- df %>% mutate(across(where(is.numeric), round, 4))
+  
+  # Generate the LaTeX table without the param column
+  kable(df, format = "latex", booktabs = TRUE, row.names = FALSE, longtable = TRUE) %>%
+    kable_styling(latex_options = c("striped", "hold_position")) %>%
+    pack_rows(index = table(param_col))
+}
+
+for (i in 1:length(conditionNames)){
+    assign(paste0("latex_des_", conditionNames[i]), getLatex(get(paste0("des_", conditionNames[i]))))
+}
+
+# save the five latex code to a text file
+all_latex <- c("r2pgs = .16", latex_des_Model_r2_16,
+               "r2pgs = .08", latex_des_Model_r2_8,
+               "r2pgs = .04", latex_des_Model_r2_4,
+               "r2pgs = .02", latex_des_Model_r2_2,
+               "r2pgs = .01", latex_des_Model_r2_1)
+write(all_latex, "Analysis/Paper/Figure on manu/Appendix/latex_des_fixedA.txt")
