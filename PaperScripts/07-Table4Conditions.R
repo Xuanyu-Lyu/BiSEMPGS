@@ -93,7 +93,7 @@ for (i in 1:length(conditionNames)){
     df_list <- list()
     des_list <- list()
     for (j in 1:length(sample_sizes)){
-        data_path <- paste0("Analysis/Paper/", conditionNames[i], "/m2_paper_version2_", sample_sizes[j],"_summary_list.rds")
+        data_path <- paste0("Analysis/Paper/", conditionNames[i], "/m2_paper_version2_", sample_sizes[j],"_summary_list_fixedA.rds")
 
         df_estimates <- getDf(readRDS(data_path))
         df_estimates <- df_estimates[,colnames(df_estimates) %in% file_tv$V1]
@@ -166,4 +166,4 @@ all_latex <- c("r2pgs = .16", latex_des_Model_r2_16,
                "r2pgs = .04", latex_des_Model_r2_4,
                "r2pgs = .02", latex_des_Model_r2_2,
                "r2pgs = .01", latex_des_Model_r2_1)
-write(all_latex, "Analysis/Paper/Figure on manu/Appendix/latex_des.txt")
+write(all_latex, "Analysis/Paper/Figure on manu/Appendix/latex_des_fixedA.txt")
