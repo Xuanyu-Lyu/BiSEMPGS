@@ -8,7 +8,7 @@ save_dir_data <- "scratch/alpine/xuly4739/BiSEMPGS/Data/Paper/UniModelBias/"
 if (!dir.exists(save_dir_data)) {
     dir.create(save_dir_data, recursive = TRUE)
 }
-save_dir_summary <- "/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGSAnalysis/Paper/UniModelBias/"
+save_dir_summary <- "/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Analysis/Paper/UniModelBias/"
 if (!dir.exists(save_dir_summary)) {
     dir.create(save_dir_summary, recursive = TRUE)
 }
