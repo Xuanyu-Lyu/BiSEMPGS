@@ -3,6 +3,8 @@
 # step 1: Simulate three conditions: only cross-trait AM, only cross-trait VT and both cross-trait AM and VT
 source("PaperScripts/Simulate.Multivariate.NOLD.AM.FUNCTIONS-mck7-xuanyu1.R")
 
+args <- commandArgs(trailingOnly = TRUE)
+array_idx <- as.numeric(args[1])
 
 save_dir_data <- "scratch/alpine/xuly4739/BiSEMPGS/Data/Paper/UniModelBias/"
 if (!dir.exists(save_dir_data)) {
