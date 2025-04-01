@@ -136,7 +136,7 @@ for (condition in 1:3){
 	# write a loop to run the simulation 100 times and save all the summary data in a list
 	#l.summaryLast <- list()
 	#l.all <- list()
-	for (i in 1:200){
+	for (i in 1:5){
 	loop_index <- (array_idx-1)*5 + i 
 	# if the file is already there, skip
 	if (file.exists(paste0(save_dir_data,"/Data/",conditionNames[condition],"/loop",loop_index,".rds"))){
