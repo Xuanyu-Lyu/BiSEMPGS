@@ -36,6 +36,32 @@ getDf <- function(summary_list, fixed = FALSE) {
     varname_vector <- c()
     return(df)
 }
+# a functon to use permutation to get the p values
+permutationTest <- function(X, null_median, n_iter=10000) {
+  # Step 1: Compute the observed median
+  m_obs <- median(X)
+  # Step 2: Center the data so the median becomes the null median
+  X_centered <- X - m_obs + null_median
+  # Step 3: Generate the null distribution of the median using bootstrap resampling
+  boot_medians <- replicate(n_iter, {
+    sample_data <- sample(X_centered, size = length(X_centered), replace = TRUE)
+    median(sample_data)
+  })
+  # Step 4: Calculate the two-tailed p-value
+  p_lower <- mean(boot_medians <= m_obs)
+  p_upper <- mean(boot_medians >= m_obs)
+  p_value <- 2 * min(p_lower, p_upper)
+  #p_value <- min(p_value, 1)  # Ensure p-value does not exceed 1
+  # Return the results as a list
+#   return(list(
+#     observed_median = m_obs,
+#     p_value = p_value
+#     #,boot_medians = boot_medians
+#   ))
+    # Return the p value
+    return(p_value)
+}
+
 # a function to get descriptive statistics for one parameter and return a vector
 getDescriptive <- function(df, param, file_tv){
     med <- median(df[[param]], na.rm = TRUE)
@@ -43,7 +69,8 @@ getDescriptive <- function(df, param, file_tv){
     trueValue <- file_tv[file_tv$V1 == param,]$V2
     #cat(param, "\t", med, "\t", MAD, "\t", trueValue, "\n")
     # significance test if median is significantly different from the true value
-    p_value <- wilcox.test(df[[param]], mu = trueValue, alternative = "two.sided")$p.value
+    p_value <- permutationTest( df[[param]], null_median = trueValue, n_iter = 10000)
+    #p_value <- wilcox.test(df[[param]], mu = trueValue, alternative = "two.sided")$p.value
 
     # compute the total variance and the variance from randomness
     var_total <- var(df[[param]], na.rm = TRUE)
@@ -66,7 +93,7 @@ for (i in 1:length(conditionNames)){
     df_list <- list()
     des_list <- list()
     for (j in 1:length(sample_sizes)){
-        data_path <- paste0("Analysis/Paper/", conditionNames[i], "/m2_paper_version2_", sample_sizes[j],"_summary_list_fixedA.rds")
+        data_path <- paste0("Analysis/Paper/", conditionNames[i], "/m2_paper_version2_", sample_sizes[j],"_summary_list.rds")
 
         df_estimates <- getDf(readRDS(data_path))
         df_estimates <- df_estimates[,colnames(df_estimates) %in% file_tv$V1]
@@ -139,4 +166,4 @@ all_latex <- c("r2pgs = .16", latex_des_Model_r2_16,
                "r2pgs = .04", latex_des_Model_r2_4,
                "r2pgs = .02", latex_des_Model_r2_2,
                "r2pgs = .01", latex_des_Model_r2_1)
-write(all_latex, "Analysis/Paper/Figure on manu/Appendix/latex_des_fixedA.txt")
+write(all_latex, "Analysis/Paper/Figure on manu/Appendix/latex_des.txt")

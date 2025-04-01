@@ -65,7 +65,7 @@ getObsExp <- function(simulatedRDS, delta, a, f, k){
             
             (exp.itol[[it]] <- t(exp.Omega[[it-1]])%*%exp.mu[[it-1]]%*%exp.Gamma[[it-1]])
 
-            (exp.ic[[it]] <- .5*(exp.itol[[it]] + t(exp.itlo[[it]])))
+            (exp.ic[[it]] <- .25*(exp.itol[[it]] + t(exp.itol[[it]]) + exp.itlo[[it]] + t(exp.itlo[[it]])))
             cat("ic",it,"\n",exp.ic[[it]],"\n")
             
             (exp.w[[it]] <- 2*f.t0%*%exp.Omega[[it-1]] + f.t0%*%exp.VY[[it-1]]%*%exp.mu[[it-1]]%*%exp.Omega[[it-1]] + f.t0%*%exp.VY[[it-1]]%*%t(exp.mu[[it-1]])%*%exp.Omega[[it-1]])

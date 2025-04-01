@@ -334,7 +334,7 @@ if (model == 1){
         
         (exp.itol[[it]] <- t(exp.Omega[[it]])%*%exp.mu[[it]]%*%exp.Gamma[[it]])
 
-        (exp.ic[[it]] <- .5*(exp.itol[[it]] + t(exp.itlo[[it]])))
+        (exp.ic[[it]] <- .25*(exp.itol[[it]] + t(exp.itol[[it]]) + exp.itlo[[it]] + t(exp.itlo[[it]])))
         cat("ic",it,"\n",exp.ic[[it]],"\n")
         (exp.VGO[[it]] <- 2*delta.t0%*%k.t0%*%t(delta.t0) + 4*delta.t0%*%exp.gc[[it]]%*%t(delta.t0))
         (exp.VGL[[it]] <- 2*a.t0%*%j.t0%*%t(a.t0) + 4*a.t0%*%exp.hc[[it]]%*%t(a.t0))
