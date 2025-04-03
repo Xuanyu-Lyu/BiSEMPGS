@@ -36,6 +36,49 @@ getDf <- function(summary_list, fixed = FALSE) {
     varname_vector <- c()
     return(df)
 }
+
+# chat's version of the permutation test
+bootstrap_test_median <- function(data, m0, n_boot = 10000, seed = NULL) {
+  # data:   Numeric vector of observations
+  # m0:     Hypothesized median under H0
+  # n_boot: Number of bootstrap iterations
+  # seed:   Optional seed for reproducibility
+  
+  if (!is.null(seed)) {
+    set.seed(seed)
+  }
+  
+  data <- as.numeric(data)
+  n <- length(data)
+  
+  # 1. Observed median and observed test statistic
+  observed_median <- median(data, na.rm = TRUE)
+  observed_stat <- observed_median - m0  # difference from hypothesized median
+  observed_abs_stat <- abs(observed_stat)
+  
+  # 2. Center the data to reflect H0: shift so that its median = m0
+  #    (remove the observed median, then add the hypothesized median)
+  centered_data <- data - observed_median + m0
+  
+  # 3. Bootstrap replicates
+  count_extreme <- 0
+  for (i in seq_len(n_boot)) {
+    # Sample with replacement from the centered data
+    b_sample <- sample(centered_data, size = n, replace = TRUE)
+    b_median <- median(b_sample, na.rm = TRUE)
+    
+    # Test statistic for the bootstrap sample
+    b_stat <- b_median - m0
+    if (abs(b_stat) >= observed_abs_stat) {
+      count_extreme <- count_extreme + 1
+    }
+  }
+  
+  # 4. Two-sided p-value
+  p_value <- count_extreme / n_boot
+  
+  return(p_value)
+}
 # a functon to use permutation to get the p values
 permutationTest <- function(X, null_median, n_iter=10000) {
   # Step 1: Compute the observed median
@@ -161,9 +204,9 @@ for (i in 1:length(conditionNames)){
 }
 
 # save the five latex code to a text file
-all_latex <- c("r2pgs = .16", latex_des_Model_r2_16,
-               "r2pgs = .08", latex_des_Model_r2_8,
-               "r2pgs = .04", latex_des_Model_r2_4,
-               "r2pgs = .02", latex_des_Model_r2_2,
-               "r2pgs = .01", latex_des_Model_r2_1)
+all_latex <- c("\\subsection{Effect size $r^2_{pgs1}$ = .16 with Freely Estimated $a$}\n" , latex_des_Model_r2_16,
+               "\\subsection{Effect size $r^2_{pgs1}$ = .16 with Freely Estimated $a$}\n" ,  latex_des_Model_r2_8,
+               "\\subsection{Effect size $r^2_{pgs1}$ = .16 with Freely Estimated $a$}\n" ,  latex_des_Model_r2_4,
+               "\\subsection{Effect size $r^2_{pgs1}$ = .16 with Freely Estimated $a$}\n" ,  latex_des_Model_r2_2,
+               "\\subsection{Effect size $r^2_{pgs1}$ = .16 with Freely Estimated $a$}\n" ,  latex_des_Model_r2_1)
 write(all_latex, "Analysis/Paper/Figure on manu/Appendix/latex_des_fixedA.txt")

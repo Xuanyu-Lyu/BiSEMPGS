@@ -197,6 +197,7 @@ COVLO=exp.COVLO[[gens]]
 delta=delta.t0
 a=a.t0
 k=k2.matrix/2
+j=k2.matrix/2
 f=f.t0
 gt=exp.gt[[gens]]
 ht=exp.ht[[gens]]
@@ -432,33 +433,35 @@ fitBiSEMPGS_m2_tol <- function(data_path,feaTol = 1e-6, optTol = 1e-8, jitterMea
 num_samples <- 6.4e4  # number of samples to generate
 
 
-for (iter in 1:500){
-    set.seed(123+iter) 
-    samples <- mvrnorm(n = num_samples, mu = rep(0, nrow(CMatrix)), Sigma = CMatrix, empirical = FALSE)
-    # Save each sample to a file as a tsv
-    sample_file <- paste0("Data/Paper/MVN/samples_iter_empi_", iter, ".tsv")
-    write.table(samples, file = sample_file, sep = "\t", row.names = FALSE, col.names = colnames(CMatrix), quote = FALSE)
+# for (iter in 1:500){
+#     set.seed(123+iter) 
+#     samples <- mvrnorm(n = num_samples, mu = rep(0, nrow(CMatrix)), Sigma = CMatrix, empirical = FALSE)
+#     # Save each sample to a file as a tsv
+#     sample_file <- paste0("Data/Paper/MVN/samples_iter_empi_", iter, ".tsv")
+#     write.table(samples, file = sample_file, sep = "\t", row.names = FALSE, col.names = colnames(CMatrix), quote = FALSE)
 
-}
-summary_list <- list()
-for (i in 1:500){
-    sample_file <- paste0("Data/Paper/MVN/samples_iter_empi_", i, ".tsv")
-    fit <- fitBiSEMPGS_m2_tol(sample_file, 
-                              feaTol = 1e-6, 
-                              optTol = 1e-9,
-                              jitterMean = 0.5,
-                              jitterVar = .1,
-                              exhaustive = FALSE,
-                              extraTries = 5,
-                              Mean = Mean)
-    summary_list[[paste0("iter_", i)]] <- fit
-    cat("\nMVN samples iteration", i, "has been fitted\n")
-}
+# }
+# summary_list <- list()
+# for (i in 1:500){
+#     sample_file <- paste0("Data/Paper/MVN/samples_iter_empi_", i, ".tsv")
+#     fit <- fitBiSEMPGS_m2_tol(sample_file, 
+#                               feaTol = 1e-6, 
+#                               optTol = 1e-9,
+#                               jitterMean = 0.5,
+#                               jitterVar = .1,
+#                               exhaustive = FALSE,
+#                               extraTries = 5,
+#                               Mean = Mean)
+#     summary_list[[paste0("iter_", i)]] <- fit
+#     cat("\nMVN samples iteration", i, "has been fitted\n")
+# }
 
-# save the list of summaries
-save_path <- "Analysis/Paper/MVN/paper_MVN_summary_list_500.rds"
-saveRDS(summary_list, save_path)
+# # save the list of summaries
+# save_path <- "Analysis/Paper/MVN/paper_MVN_summary_list_500.rds"
+# saveRDS(summary_list, save_path)
 
+# load the summary list
+summary_list <- readRDS("Analysis/Paper/MVN/paper_MVN_summary_list_500.rds")
 # extract all the status code of openmx and put them into a vector
 status_codes <- sapply(summary_list, function(x) x$statusCode)
 summary(status_codes)
@@ -479,16 +482,225 @@ for(i in 1:length(summary_list)) {
 }
 df$status_codes <- status_codes
 psych::describe(df, trim = 0) |> print(digits = 4)
-a
-VY
-Omega
-mu
-gt
-f
-Gamma
 
-w
-v
-gt
-exp.itlo[[15]]
-exp.itol[[15]]
+
+# Code to create a true value named vector
+break_into_named_vector <- function(mean_params, param) {
+  named_vector <- c()
+  matrix <- mean_params
+  for (i in 1:nrow(matrix)) {
+    for (p in 1:ncol(matrix)) {
+      new_name <- paste0(param, i, p)
+      named_vector[new_name] <- matrix[i, p]
+    }
+  }
+  return(named_vector)
+}
+
+
+
+v_VY <- break_into_named_vector(VY, "VY")
+v_f <- break_into_named_vector(f, "f")
+v_VF <- break_into_named_vector(VF, "VF")
+v_delta <- break_into_named_vector(delta, "delta")
+v_a <- break_into_named_vector(a, "a")
+v_k <- break_into_named_vector(k, "k")
+v_j <- break_into_named_vector(k, "j")
+v_Omega <- break_into_named_vector(Omega, "Omega")
+v_Gamma <- break_into_named_vector(Gamma, "Gamma")
+v_mu <- break_into_named_vector(mu, "mu")
+v_gt <- break_into_named_vector(gt, "gt")
+v_ht <- break_into_named_vector(ht, "ht")
+v_gc <- break_into_named_vector(gc, "gc")
+v_hc <- break_into_named_vector(hc, "hc")
+v_itlo <- break_into_named_vector(itlo, "itlo")
+v_itol <- break_into_named_vector(itol, "itol")
+v_ic <- break_into_named_vector(ic, "ic")
+v_w <- break_into_named_vector(w, "w")
+v_v <- break_into_named_vector(v, "v")
+v_VGO <- break_into_named_vector(VGO, "VGO")
+v_VGL <- break_into_named_vector(VGL, "VGL")
+v_COVLO <- break_into_named_vector(COVLO, "COVLO")
+
+v_true_values <- c(v_VY, v_f, v_VF, v_delta, v_a, v_k, v_j, v_Omega, v_Gamma, v_mu, v_gt, v_ht, v_gc, v_hc, v_itlo, v_itol, v_ic, v_w, v_v, v_VGO, v_VGL, v_COVLO)
+
+v_true_values
+
+
+# chat's version of the permutation test
+bootstrap_test_median <- function(data, m0, n_boot = 10000, seed = NULL) {
+  # data:   Numeric vector of observations
+  # m0:     Hypothesized median under H0
+  # n_boot: Number of bootstrap iterations
+  # seed:   Optional seed for reproducibility
+  
+  if (!is.null(seed)) {
+    set.seed(seed)
+  }
+  
+  data <- as.numeric(data)
+  n <- length(data)
+  
+  # 1. Observed median and observed test statistic
+  observed_median <- median(data, na.rm = TRUE)
+  observed_stat <- observed_median - m0  # difference from hypothesized median
+  observed_abs_stat <- abs(observed_stat)
+  
+  # 2. Center the data to reflect H0: shift so that its median = m0
+  #    (remove the observed median, then add the hypothesized median)
+  centered_data <- data - observed_median + m0
+  
+  # 3. Bootstrap replicates
+  count_extreme <- 0
+  for (i in seq_len(n_boot)) {
+    # Sample with replacement from the centered data
+    b_sample <- sample(centered_data, size = n, replace = TRUE)
+    b_median <- median(b_sample, na.rm = TRUE)
+    
+    # Test statistic for the bootstrap sample
+    b_stat <- b_median - m0
+    if (abs(b_stat) >= observed_abs_stat) {
+      count_extreme <- count_extreme + 1
+    }
+  }
+  
+  # 4. Two-sided p-value
+  p_value <- count_extreme / n_boot
+  
+  return(p_value)
+}
+
+# do a permutation test to see if the means of the estimates are significantly different from the true values
+permutationTest <- function(X, null_median, n_iter=1e5) {
+  # Step 1: Compute the observed median
+  m_obs <- median(X)
+  # Step 2: Center the data so the median becomes the null median
+  X_centered <- X - m_obs + null_median
+  # Step 3: Generate the null distribution of the median using bootstrap resampling
+  boot_medians <- replicate(n_iter, {
+    sample_data <- sample(X_centered, size = length(X_centered), replace = TRUE)
+    median(sample_data)
+    #print(median(sample_data))
+  })
+  # Step 4: Calculate the two-tailed p-value
+  p_lower <- mean(boot_medians <= m_obs)
+  p_upper <- mean(boot_medians >= m_obs)
+  p_value <- 2 * min(p_lower, p_upper)
+  #p_value <- min(p_value, 1)  # Ensure p-value does not exceed 1
+  # Return the results as a list
+#   return(list(
+#     observed_median = m_obs,
+#     p_value = p_value
+#     #,boot_medians = boot_medians
+#   ))
+    # Return the p value
+    return(p_value)
+}
+
+# a function to get descriptive statistics for one parameter and return a vector
+getDescriptive <- function(df, param, file_tv){
+    med <- median(df[[param]], na.rm = TRUE)
+    MAD <- mad(df[[param]], na.rm = TRUE)
+    trueValue <- file_tv[names(file_tv) == param]
+    #cat(param, "\t", med, "\t", MAD, "\t", trueValue, "\n")
+    # significance test if median is significantly different from the true value
+    p_value <- bootstrap_test_median( df[[param]], m0 = trueValue, n_boot = 10000)
+    #p_value <- wilcox.test(df[[param]], mu = trueValue, alternative = "two.sided")$p.value
+
+    # compute the total variance and the variance from randomness
+    var_total <- var(df[[param]], na.rm = TRUE)
+    var_random <- sum((df[[param]] - trueValue)^2)/(length(df[[param]]) - 1)
+    var_systematic <- var_random - var_total
+    p_systematic <- var_systematic/var_random
+
+    final_v <- c(med, MAD, trueValue, p_value, p_systematic)
+    
+    names(final_v) <- c("median", "MAD", "trueValue", "p_value", "proportion_systematic")
+    return(final_v)
+
+}
+
+# filter the data frame to only include the parameters that are in the df
+v_true_values <- v_true_values[which(names(v_true_values) %in% colnames(df))]
+v_true_values |> length()
+ 
+ # for each parameter, get the descriptive statistics and put them into a data frame
+descriptive_df <- data.frame(matrix(ncol = 5, nrow = length(v_true_values)))
+colnames(descriptive_df) <- c("median", "MAD", "trueValue", "p_value", "proportion_systematic")
+
+# fill the data frame with the descriptive statistics
+for (i in 1:length(v_true_values)) {
+    param <- names(v_true_values)[i]
+    # get the true value from the vector
+    trueValue <- v_true_values[i]
+    # get the descriptive statistics for the parameter
+    descriptive_df[i,] <- getDescriptive(df, param, v_true_values)
+}
+rownames(descriptive_df) <- names(v_true_values)
+
+# make plots for each parameter
+library(ggplot2)
+library(patchwork)
+# create a histogram for each parameter and combine them using the wrap plot function, also add the true value line, the median line, and the p value
+
+# create a function to plot the histogram
+plot_histogram <- function(df, param, trueValue, median, MAD, p_value) {
+      # Calculate the maximum density value
+    #     max_density <- max(density(df[[param]], na.rm = TRUE)$y)
+  
+    #   # Set the y-axis upper limit with a 5% expansion
+    #     upper_limit <- max_density * 1.05
+    p <- ggplot(df, aes_string(x = param)) +
+        geom_histogram(aes(y = ..density..), bins = 30, fill = "#1f77b4", alpha = 0.9) +
+        geom_vline(xintercept = trueValue, color = "#d62728", linetype = "dashed", size = 1) +
+        geom_vline(xintercept = median, color = "#b5cf6b", linetype = "dashed", size = 1) +
+        #geom_vline(xintercept = median + MAD, color = "orange", linetype = "dashed", size = 1) +
+       # geom_vline(xintercept = median - MAD, color = "orange", linetype = "dashed", size = 1) +
+        scale_x_continuous(labels = function(x) sprintf("%.2f", x)) + 
+        scale_y_continuous(expand = expansion(mult = c(0, 0.1))) +
+        labs(title = paste(param),
+             x = param,
+             y = NULL) + 
+             theme_minimal() +
+        theme(
+        plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
+        axis.title.x = element_text(size = 14),
+        axis.title.y = element_text(size = 14),
+        axis.text = element_text(size = 12),
+        legend.title = element_text(size = 14),
+        legend.text = element_text(size = 12),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.border = element_rect(color = "black", fill = NA, size = 1)
+        ) +
+            annotate("text", x = Inf, y = Inf, label = paste("p = ", round(p_value, 3)), color = "black", 
+                    hjust = 1.1, vjust = 1.5)
+    return(p)
+}
+
+# create a function to combine plots for specific parameters
+combine_plots <- function(df, params, ncol=4) {
+    plots <- list()
+    for (param in params) {
+        trueValue <- descriptive_df[param,"trueValue"]
+        median <- descriptive_df[param,"median"]
+        MAD <- descriptive_df[param,"MAD"]
+        p_value <- descriptive_df[param,"p_value"]
+        plots[[param]] <- plot_histogram(df, param, trueValue, median, MAD, p_value)
+    }
+    combined_plot <- wrap_plots(plots, ncol = ncol)
+}
+
+params1 <-  c("f11", "mu11", "a11", "delta11", "w11", "v11", "VY11","gc11")
+
+plots1 <- combine_plots(df, params1, ncol = 4)
+plots1
+
+ggsave(paste0("Analysis/Paper/", "MVNfigure11.png") , plots1, width = 10, height = 6, type = "cairo-png", dpi = 600)
+
+params2 <- c("f12", "mu12",  "w12", "v12", "VY12","gc12")
+
+plots2 <- combine_plots(df, params2, ncol = 3)
+plots2
+
+ggsave(paste0("Analysis/Paper/", "MVNfigure12.png") , plots2, width = 10, height = 6, type = "cairo-png", dpi = 600)
