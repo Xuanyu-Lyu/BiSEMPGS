@@ -49,7 +49,7 @@ data_prep <- function(data_path, save_path, target_n){
 # run the function
 for (i in 1:3){
     data_path <- paste0("/scratch/alpine/xuly4739/BiSEMPGS/Data/Paper/UniModelBias/", conditionNames[i])
-    v_sample <- c(2.4e4)
+    v_sample <- c(3.2e4)
     for(j in 1:length(v_sample)){
         save_path <- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/Paper/UniModelBias/", conditionNames[i], "/nfam", v_sample[j])
         data_prep(data_path, save_path, v_sample[j])
