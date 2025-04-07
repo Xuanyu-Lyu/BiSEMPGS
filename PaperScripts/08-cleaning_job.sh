@@ -4,7 +4,7 @@
 #SBATCH --ntasks=4
 #SBATCH --mem=40gb
 #SBATCH -J BiSEMPGS_dataprep
-#SBATCH --array=1-100%35
+#SBATCH --array=1-100%5
 #SBATCH --chdir /projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS
 #SBATCH --exclude bmem-rico1
 #SBATCH -o %x.out%A
@@ -16,5 +16,5 @@ conda activate /projects/lessem/software/anaconda/envs/R-latest
 # Index to run different parts of the script, e.g., processing different chromosomes; Here is the different simulation conditions I want to run
 SIM=${SLURM_ARRAY_TASK_ID}
 
-Rscript PaperScripts/08-dataPrep.R
+Rscript PaperScripts/08-dataPrep.R ${SIM}
 #Rscript PaperScripts/03-createMoreTxt.R

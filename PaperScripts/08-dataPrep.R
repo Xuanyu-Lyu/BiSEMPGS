@@ -18,7 +18,6 @@ data_prep <- function(data_path, save_path, target_n){
         }
         # load the data
         data <- readRDS(paste0(data_path, "/", l_files[loop_index]))
-
         data_df <- data$PHEN
 
         data_df <- data_df[,c("ID", "Father.ID", "Mother.ID",
