@@ -12,10 +12,10 @@ data_prep <- function(data_path, save_path, target_n){
     for (k in 1:5){
         loop_index <- (array_idx-1)*5 + k
         # check if the data has been converted to txt
-        if (file.exists(paste0(save_path, "/", l_files[loop_index],"_",target_n, ".txt"))){
-            cat("Data file", l_files[loop_index], "has been converted to txt\n")
-            next
-        }
+        # if (file.exists(paste0(save_path, "/", l_files[loop_index],"_",target_n, ".txt"))){
+        #     cat("Data file", l_files[loop_index], "has been converted to txt\n")
+        #     next
+        # }
         # load the data
         data <- readRDS(paste0(data_path, "/", l_files[loop_index]))
         data_df <- data$PHEN
@@ -49,7 +49,7 @@ data_prep <- function(data_path, save_path, target_n){
 # run the function
 for (i in 1:3){
     data_path <- paste0("/scratch/alpine/xuly4739/BiSEMPGS/Data/Paper/UniModelBias/", conditionNames[i])
-    v_sample <- c(3.2e4)
+    v_sample <- c(2.4e4)
     for(j in 1:length(v_sample)){
         save_path <- paste0("/projects/xuly4739/R-Projects/BiSEMPGS/BiSEMPGS/Data/Paper/UniModelBias/", conditionNames[i], "/nfam", v_sample[j])
         data_prep(data_path, save_path, v_sample[j])
