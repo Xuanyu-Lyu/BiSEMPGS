@@ -19,7 +19,7 @@ fitCheckObs <- function(cov, max.cores = 2){
   options()$mxOptions$'Default optimizer'
 
   #Optimizer issues - make tolerance smaller to increase NPSOL precision - see ?mxOption
-  mxOption(NULL,"Feasibility tolerance","1e-5")
+  #mxOption(NULL,"Feasibility tolerance","1e-5")
   #mxOption(NULL,"Optimality tolerance","1e-7")
   #mxOption(NULL,"Analytic Gradients","No")
 
