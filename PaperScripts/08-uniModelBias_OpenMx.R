@@ -38,12 +38,12 @@ fitUniSEMPGS <- function(data, max.cores = 2){
 
 
   # Paths for AFE model
-  f <- mxMatrix(type="Lower",nrow=nv,ncol=nv,free=TRUE,values=0.18,label="F",name="f",lbound=-.05)
-  e <- mxMatrix(type="Lower",nrow=nv,ncol=nv,free=TRUE,values=.6,label="EnvPath",name="e",lbound=-.05)
+  f <- mxMatrix(type="Lower",nrow=nv,ncol=nv,free=TRUE,values=0.4,label="F",name="f",lbound=-.05)
+  e <- mxMatrix(type="Lower",nrow=nv,ncol=nv,free=TRUE,values=.3,label="EnvPath",name="e",lbound=-.05)
   g <- mxMatrix(type="Lower",nrow=nv,ncol=nv,free=TRUE,values=.01,label="hap_PRS_cov",name="g")
   h <- mxMatrix(type="Lower",nrow=nv,ncol=nv,free=TRUE,values=.01,label="latent_hap_PRS_cov",name="h")
-  delta <- mxMatrix(type="Lower",nrow=nv,ncol=nv,free=TRUE,values=sqrt(.64),label="obs_coef",name="delta",lbound=-.05)
-  a <- mxMatrix(type="Lower",nrow=nv,ncol=nv,free=TRUE,values=.4,label="latent_coef",name="a",lbound=-.05)
+  delta <- mxMatrix(type="Lower",nrow=nv,ncol=nv,free=TRUE,values=.3,label="obs_coef",name="delta",lbound=-.05)
+  a <- mxMatrix(type="Lower",nrow=nv,ncol=nv,free=TRUE,values=.7,label="latent_coef",name="a",lbound=-.05)
 
 
   #Constraints

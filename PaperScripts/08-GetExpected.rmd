@@ -1,7 +1,7 @@
 ---
-title: "Full Model with everything normal"
+title: "Get expectation for the UniSEMPGS bias analyses"
 author: "Xuanyu"
-date: "05/19/2024"
+date: "04/08/2025"
 output: html_document
 ---
 
@@ -10,25 +10,24 @@ output: html_document
 ```
 
 ```{r parameters, include=TRUE}
-startingParamList <- list(vg1 = rep(.64,5),
-						   vg2 = rep(.36,5),
-						   am11 = rep(0.4,5),
-						   am12 = rep(0.2,5),
-						   am21 = rep(0.1,5),
-						   am22 = rep(0.3,5),
-						   f11 = rep(0.15,5),
-						   f12 = rep(0.1,5),
-						   f21 = rep(0.05,5),
-						   f22 = rep(0.1,5),
-						   Nfam = rep(1.6e5, 5),
-						   rg = rep(.1,5),
-						   re = rep(.1,5),
-						   prop.h2.latent1 = c(.48/.64,.56/.64,.60/.64,.62/.64,.63/.64),
-						   prop.h2.latent2 = c(.8,.8,.8,.8,.8))
+# simulation conditions setup
+conditionNames <- c("onlyAM", "onlyVT", "bothAMVT", "bothAMVT_StrongCrossTrait")
 
-# run the simulation using r2pgs as anchors: 1%, 2%, 4%, 8%, 16% given n = 32K
-# run the simulation using n as anchors: 4K, 8K, 16K, 32K, 64K given r^2=4%
-conditionNames <- c("Model_r2_16", "Model_r2_8", "Model_r2_4", "Model_r2_2", "Model_r2_1")
+startingParamList <- list(vg1 = rep(.64,4),
+						   vg2 = rep(.36,4),
+						   am11 = c(rep(0.4,3),.05),
+						   am12 = c(.2,0,.2,.4),
+						   am21 = c(.2,0,.2,.4), 
+						   am22 = c(rep(0.3,3),.1),
+						   f11 = c(rep(0.15,3),0),
+						   f12 = c(0,.1,.1,.3),
+						   f21 = c(0,.05,.05,.25), 
+						   f22 = rep(0.1,4),
+						   Nfam = rep(8e4, 4),
+						   rg = rep(0,4),
+						   re = rep(0,4),
+						   prop.h2.latent1 = rep(.60/.64,4),
+						   prop.h2.latent2 = rep(.8,4))
 
 
 ```
@@ -392,11 +391,6 @@ iterativeMath(2)
 ```{r runIterativeMath3}
 iterativeMath(3)
 ```
-
 ```{r runIterativeMath4}
 iterativeMath(4)
-```
-
-```{r runIterativeMath5}
-iterativeMath(5)
 ```

@@ -16,25 +16,25 @@ if (!dir.exists(save_dir_summary)) {
 }
 
 # simulation conditions setup
-conditionNames <- c("onlyAM", "onlyVT", "bothAMVT")
+conditionNames <- c("onlyAM", "onlyVT", "bothAMVT", "bothAMVT_StrongCrossTrait")
 
-startingParamList1 <- list(vg1 = rep(.64,3),
-						   vg2 = rep(.36,3),
-						   am11 = rep(0.4,3),
-						   am12 = c(.2,0,.2),
-						   am21 = c(.2,0,.2), 
-						   am22 = rep(0.3,3),
-						   f11 = rep(0.15,3),
-						   f12 = c(0,.1,.1),
-						   f21 = c(0,.05,.05), 
-						   f22 = rep(0.1,3),
-						   Nfam = rep(8e4, 3),
-						   rg = rep(0,3),
-						   re = rep(0,3),
-						   prop.h2.latent1 = rep(.60/.64,3),
-						   prop.h2.latent2 = rep(.8,3))
+startingParamList1 <- list(vg1 = rep(.64,4),
+						   vg2 = rep(.36,4),
+						   am11 = c(rep(0.4,3),.05),
+						   am12 = c(.2,0,.2,.4),
+						   am21 = c(.2,0,.2,.4), 
+						   am22 = c(rep(0.3,3),.1),
+						   f11 = c(rep(0.15,3),0),
+						   f12 = c(0,.1,.1,.3),
+						   f21 = c(0,.05,.05,.25), 
+						   f22 = rep(0.1,4),
+						   Nfam = rep(8e4, 4),
+						   rg = rep(0,4),
+						   re = rep(0,4),
+						   prop.h2.latent1 = rep(.60/.64,4),
+						   prop.h2.latent2 = rep(.8,4))
 
-for (condition in 1:3){
+for (condition in 4:4){
 	# WILDCARD parameters
 	pop.size <-  startingParamList1["Nfam"][[1]][[condition]] #maybe something like 2e4, or 20000, when running for real
 	num.cvs <- 50 #maybe 25

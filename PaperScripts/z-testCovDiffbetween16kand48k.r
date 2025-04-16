@@ -1,6 +1,8 @@
 # test the covariance of the original files and merged files
 
 library(data.table)
+testdf <- fread("Data/Paper/Model_r2_8/nfam32000/loop5.rds_32000.txt")
+psych::describe(testdf)
 
 x16k <- fread("Data/Paper/Model_latent30/nfam16000/loop3.rds_16000.txt")
 x16k2 <- fread("Data/Paper/Model_latent30/nfam16000/loop56.rds_16000.txt")
