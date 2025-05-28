@@ -99,9 +99,9 @@ for (condition in 1:4){
 
 
 # # read the df final
-# df_final <- read.table("Analysis/Paper/UniModelBias/onlyAM_uniSEMPGS_estimates.txt", header = TRUE)
-# colnames(df_final)[2] <- gsub("e", "VE", colnames(df_final)[2])
-# conditionNames <- c("onlyAM", "onlyVT", "bothAMVT", "bothAMVT_StrongCrossTrait")
+df_final <- read.table("Analysis/Paper/UniModelBias/onlyAM_uniSEMPGS_estimates.txt", header = TRUE)
+colnames(df_final)[2] <- gsub("e", "VE", colnames(df_final)[2])
+conditionNames <- c("onlyAM", "onlyVT", "bothAMVT", "bothAMVT_StrongCrossTrait")
 
 # Create a dataframe to store the true values from iterative math
 df_true <- data.frame(matrix(NA, nrow = 13, ncol = 4))
@@ -229,7 +229,7 @@ plot_histogram <- function(df, param, trueValue, median, MAD, p_value) {
         scale_x_continuous(labels = function(x) sprintf("%.2f", x)) + 
         scale_y_continuous(expand = expansion(mult = c(0, 0.1))) +
         labs(title = paste(param),
-             x = param,
+             x = NULL,
              y = NULL) + 
              theme_minimal() +
         theme(

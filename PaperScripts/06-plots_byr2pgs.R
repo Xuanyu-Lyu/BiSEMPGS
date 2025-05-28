@@ -15,7 +15,7 @@ conditionNames <- c("Model_r2_1", "Model_r2_2", "Model_r2_4", "Model_r2_8", "Mod
 sample_sizes <- c(4000, 8000, 16000, 32000, 48000, 64000)
 # sort the conditionNames alphabetically
 
-SS = 5
+SS = 4
 # the true value file
 #file_tv <- read.table(paste0("Data/Paper/Expected/",conditionNames[condition],"_finalGen.txt"))
 
@@ -291,7 +291,7 @@ create_combined_plot <- function(params, ncol = 2) {
 
 # Define the parameters you want to plot
 params <- c("f11", "mu11")
-params <- c("f11", "mu11",  "delta11", "w11", "VY11","gc11")
+params <- c("f11", "mu11",  "w11", "v11", "delta11","gc11")
 
 
 # # Create the combined plot

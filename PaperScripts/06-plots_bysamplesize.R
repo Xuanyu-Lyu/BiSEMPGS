@@ -346,15 +346,15 @@ create_combined_plot_se <- function(params, ncol = 2) {
   combined_plot <- wrap_plots(plots, ncol = ncol, widths = rep(1, length(params)))
   return(combined_plot)
 }
-params3 <- c("f11", "mu11",  "delta11", "v11", "VY11","gc11")
+params3 <- c("f11", "mu11", "w11", "v11", "delta11", "gc11")
 combined_plot_se1 <- create_combined_plot_se(params3, ncol = 3)
 
 #print(combined_plot_se)
-ggsave(paste0("Analysis/Paper/p_11_", 2^(condition-1), "_se_samplesize_version3.png") , combined_plot_se1, width = 10, height = 6, type = "cairo-png", dpi = 600)
+ggsave(paste0("Analysis/Paper/p_11_", 2^(condition-1), "_se_samplesize_version4.png") , combined_plot_se1, width = 10, height = 6, type = "cairo-png", dpi = 600)
 
 params4 <- c("f12", "mu12",  "w12", "v12", "VY12","gc12")
 combined_plot_se2 <- create_combined_plot_se(params4, ncol = 3)
-ggsave(paste0("Analysis/Paper/p_12_", 2^(condition-1), "_se_samplesize_version3.png") , combined_plot_se2, width = 10, height = 6, type = "cairo-png", dpi = 600)
+ggsave(paste0("Analysis/Paper/p_12_", 2^(condition-1), "_se_samplesize_version4.png") , combined_plot_se2, width = 10, height = 6, type = "cairo-png", dpi = 600)
 
 # combined_plot_se2 <- create_combined_plot_se(params2, ncol = 3)
 # print(combined_plot_se2)

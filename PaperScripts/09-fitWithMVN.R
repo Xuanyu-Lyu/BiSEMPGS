@@ -659,7 +659,7 @@ plot_histogram <- function(df, param, trueValue, median, MAD, p_value) {
         scale_x_continuous(labels = function(x) sprintf("%.2f", x)) + 
         scale_y_continuous(expand = expansion(mult = c(0, 0.1))) +
         labs(title = paste(param),
-             x = param,
+             x = NULL,
              y = NULL) + 
              theme_minimal() +
         theme(
