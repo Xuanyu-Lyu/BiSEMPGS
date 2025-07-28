@@ -711,7 +711,7 @@ fitBiSEMPGS_m2_tol <- function(data_path,feaTol = 1e-6, optTol = 1e-8, jitterMea
     # Create the model:
         options(warning.length = 8000)
         Model1 <- mxModel("BiSEM_PGS", Params, Example_Data_Mx)
-        print(mxCheckIdentification(Model1,details = FALSE)$status)
+        #print(mxCheckIdentification(Model1,details = FALSE)$status)
         fitModel1 <- mxTryHard(Model1, extraTries = extraTries, OKstatuscodes = c(0,1), intervals=T, silent=T, showInits = F, exhaustive = exhaustive, jitterDistrib = "rnorm", loc=jitterMean, scale = jitterVar)
         #return(fitModel1)
         return(summary(fitModel1, verbose = TRUE))

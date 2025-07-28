@@ -6,45 +6,24 @@
 # load the necessary libraries
 library(ggplot2)
 library(patchwork)
-# load the necessary libraries
-library(ggplot2)
-library(patchwork)
-#conditionNames <- c("Model_r2_16", "Model_r2_8", "Model_r2_4", "Model_r2_2", "Model_r2_1")
-conditionNames <- c("Model_r2_1", "Model_r2_2", "Model_r2_4", "Model_r2_8", "Model_r2_16")
 
-sample_sizes <- c(4000, 8000, 16000, 32000, 48000, 64000)
+#conditionNames <- c("Model_r2_16", "Model_r2_8", "Model_r2_4", "Model_r2_2", "Model_r2_1")
+conditionNames <- c("r2pgs01", "r2pgs02", "r2pgs04", "r2pgs08", "r2pgs16")
+
+sample_sizes <- c(32000)
 # sort the conditionNames alphabetically
 
-SS = 4
+SS = 1
 # the true value file
 #file_tv <- read.table(paste0("Data/Paper/Expected/",conditionNames[condition],"_finalGen.txt"))
-
 # read each rds into a list
 for(i in 1: length(conditionNames)){
   var_name <- paste0("summary_list", i)
-  assign(var_name, readRDS(paste0("Analysis/Paper/", conditionNames[i], "/m2_paper_version2_", sample_sizes[SS],"_summary_list.rds")))
+  assign(var_name, readRDS(paste0("Analysis/Paper/test_v12/", conditionNames[i], "_MVN_summary_list_500.rds")))
   #print(paste0("Analysis/Paper/", conditionNames[i], "/m2_paper_", sample_sizes[SS],"_summary_list_fixedA.rds"))
-  assign(paste0("summary_list", i, "_fixedA"), readRDS(paste0("Analysis/Paper/", conditionNames[i], "/m2_paper_version2_", sample_sizes[SS],"_summary_list_fixedA.rds")))
+  assign(paste0("summary_list", i, "_fixedA"), readRDS(paste0("Analysis/Paper/test_v12/", conditionNames[i], "_MVN_summary_list_fixedA_500.rds")))
 }
-#test  <- readRDS("Analysis/Paper/Model_r2_1/m2_paper_16000_summary_list_fixedA.rds")
 
-# testModel <- readRDS("Analysis/Paper/Model_latent90/m2_paper_64000_summary_list.rds")
-# testModel[[1]]
-
-# testModel_fixed <- readRDS("Analysis/Paper/Model_latent90/m2_paper_64000_summary_list_fixedA.rds")
-# testModel_fixed[[1]]
-# summary_list1 <- readRDS("Analysis/Paper/Model_latent30/m2_paper_32000_summary_list.rds")
-# summary_list2 <- readRDS("Analysis/Paper/Model_latent50/m2_paper_32000_summary_list.rds")
-# summary_list3 <- readRDS("Analysis/Paper/Model_latent70/m2_paper_32000_summary_list.rds")
-# summary_list4 <- readRDS("Analysis/Paper/Model_latent90/m2_paper_32000_summary_list.rds")
-
-# summary_list1[[1]]$parameters
-
-
-# summary_list1_fixedA <- readRDS("Analysis/Paper/Model_latent30/m2_paper_32000_summary_list_fixedA.rds")
-# summary_list2_fixedA <- readRDS("Analysis/Paper/Model_latent50/m2_paper_32000_summary_list_fixedA.rds")
-# summary_list3_fixedA <- readRDS("Analysis/Paper/Model_latent70/m2_paper_32000_summary_list_fixedA.rds")
-# summary_list4_fixedA <- readRDS("Analysis/Paper/Model_latent90/m2_paper_32000_summary_list_fixedA.rds")
 
 getDf <- function(summary_list, fixed = FALSE) {
     status_codes <- sapply(summary_list, function(x) x$statusCode)
@@ -301,7 +280,7 @@ params <- c("f11", "mu11",  "w11", "v11", "delta11","gc11")
 # print(combined_plot)
 # ggsave("Analysis/Paper/p1.png", combined_plot, width = 10, height = 6, type = "cairo-png", dpi = 600)
 
-params2 <- c("f12", "v12",  "w21", "v21", "VY12","gc12")
+params2 <- c("f21",  "mu21", "w21","v21", "VY12", "gc12")
 
 # combined_plot2 <- create_combined_plot(params2, ncol = 3)
 # print(combined_plot2)
@@ -326,14 +305,14 @@ create_combined_plot_se <- function(params, ncol = 2) {
 
 combined_plot_se1 <- create_combined_plot_se(params, ncol = 3)
 print(combined_plot_se1)
-ggsave(paste0("Analysis/Paper/p_11_", sample_sizes[SS], "_se_r2pgs_version3.png") , combined_plot_se1, width = 10, height = 6, type = "cairo-png", dpi = 600)
+ggsave(paste0("Analysis/Paper/test_v12/p_11_", sample_sizes[SS], "_se_r2pgs_version_MVN.png") , combined_plot_se1, width = 10, height = 6, type = "cairo-png", dpi = 600)
 
 combined_plot_se2 <- create_combined_plot_se(params2, ncol = 3)
 print(combined_plot_se2)
-ggsave(paste0("Analysis/Paper/p_12_", sample_sizes[SS], "_se_r2pgs_version0717.png") , combined_plot_se2, width = 10, height = 6, type = "cairo-png", dpi = 600)
+ggsave(paste0("Analysis/Paper/test_v12/p_12_", sample_sizes[SS], "_se_r2pgs_version_MVN.png") , combined_plot_se2, width = 10, height = 6, type = "cairo-png", dpi = 600)
 
 
-# a hitogram of the estimates of v12 from df2
+# # a hitogram of the estimates of v12 from df2
 
 # hist(df2$v12, breaks = 30, main = "Histogram of v12 estimates from Model_r2_2", xlab = "v12 estimates")
 # summary(df2$v12)

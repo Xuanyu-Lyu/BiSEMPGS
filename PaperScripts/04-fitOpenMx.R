@@ -52,8 +52,8 @@ true_a <- list(c(0.6928203, 0.5366563),
             c(0.7937254,0.5366563))
 
 if(TRUE){
-    for (i in 1:5){
-    for (j in 5){
+    for (i in 3:5){
+    for (j in 4){
         data_path <- paste0("Data/Paper/", conditionNames[i], "/", folder_pattern[j])
         l_files <- list.files(data_path, pattern = data_pattern[j])
         # check if the data has been fitted
@@ -73,6 +73,7 @@ if(TRUE){
                                       extraTries = 5)
             summary_list[[l_files[k]]] <- fit
             cat(magenta("\n", conditionNames[i], "\tn=", folder_pattern[j], "\tModel", l_files[k], "has been fitted\n"))
+            cat("index:", k, "\n")
         }
         save_path <- paste0("Analysis/Paper/", conditionNames[i], "/m2_paper_version2", save_pattern[j], "_summary_list_fixedA.rds")
         saveRDS(summary_list, save_path)

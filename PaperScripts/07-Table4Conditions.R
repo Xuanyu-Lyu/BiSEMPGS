@@ -116,13 +116,15 @@ getDescriptive <- function(df, param, file_tv){
     #p_value <- wilcox.test(df[[param]], mu = trueValue, alternative = "two.sided")$p.value
 
     # compute the total variance and the variance from randomness
-    var_total <- var(df[[param]], na.rm = TRUE)
-    var_random <- sum((df[[param]] - trueValue)^2)/(length(df[[param]]) - 1)
-    var_systematic <- var_random - var_total
-    p_systematic <- var_systematic/var_random
-
+    var_random <- var(df[[param]], na.rm = TRUE)
+    var_total <- sum((df[[param]] - trueValue)^2)/(length(df[[param]]) - 1)
+    var_systematic <- var_total - var_random
+    p_systematic <- var_systematic/var_total
+    # proportion of variance explained by systematic effects
     final_v <- c(med, MAD, trueValue, p_value, p_systematic)
     
+
+
     names(final_v) <- c("median", "MAD", "trueValue", "p_value", "proportion_systematic")
     return(final_v)
 
