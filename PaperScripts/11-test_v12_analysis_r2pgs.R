@@ -280,7 +280,7 @@ params <- c("f11", "mu11",  "w11", "v11", "delta11","gc11")
 # print(combined_plot)
 # ggsave("Analysis/Paper/p1.png", combined_plot, width = 10, height = 6, type = "cairo-png", dpi = 600)
 
-params2 <- c("f21",  "mu21", "w21","v21", "VY12", "gc12")
+params2 <- c("f12",  "mu12", "w12","v12", "VY12", "gc12")
 
 # combined_plot2 <- create_combined_plot(params2, ncol = 3)
 # print(combined_plot2)
@@ -305,11 +305,11 @@ create_combined_plot_se <- function(params, ncol = 2) {
 
 combined_plot_se1 <- create_combined_plot_se(params, ncol = 3)
 print(combined_plot_se1)
-ggsave(paste0("Analysis/Paper/test_v12/p_11_", sample_sizes[SS], "_se_r2pgs_version_MVN.png") , combined_plot_se1, width = 10, height = 6, type = "cairo-png", dpi = 600)
+#ggsave(paste0("Analysis/Paper/test_v12/p_11_", sample_sizes[SS], "_se_r2pgs_version_MVN.png") , combined_plot_se1, width = 10, height = 6, type = "cairo-png", dpi = 600)
 
 combined_plot_se2 <- create_combined_plot_se(params2, ncol = 3)
 print(combined_plot_se2)
-ggsave(paste0("Analysis/Paper/test_v12/p_12_", sample_sizes[SS], "_se_r2pgs_version_MVN.png") , combined_plot_se2, width = 10, height = 6, type = "cairo-png", dpi = 600)
+#ggsave(paste0("Analysis/Paper/test_v12/p_12_", sample_sizes[SS], "_se_r2pgs_version_MVN.png") , combined_plot_se2, width = 10, height = 6, type = "cairo-png", dpi = 600)
 
 
 # # a hitogram of the estimates of v12 from df2
