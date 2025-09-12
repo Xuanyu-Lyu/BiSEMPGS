@@ -800,7 +800,7 @@ fitBiSEMPGS_m2_tol_fixH2 <- function(data_path, avalue,feaTol = 1e-6, optTol = 1
         ic   <- mxMatrix(type="Symm", nrow=2, ncol=2, free=c(T,T,T,T), values=c(.07,0.05,0.05,.05), label=c("ic11", "ic12", "ic12","ic22"), name="ic", lbound = -.05) 
         itlo_Algebra <- mxAlgebra(t(Gamma) %*% mu %*% Omega, name="itlo_Algebra") # E.g., cov(TPO, TML)
         itol_Algebra <- mxAlgebra(t(Omega) %*% mu %*% Gamma, name="itol_Algebra") # E.g., cov(TPL, TMO)
-        ic_Algebra <- mxAlgebra(.25 * (itlo + t(itlo) + itol + t(itol)), name="ic_Algebra") # ic should be symmetric
+        ic_Algebra <- mxAlgebra(.5 * (itlo + t(itol)), name="ic_Algebra") # ic should be full
         
         
 
