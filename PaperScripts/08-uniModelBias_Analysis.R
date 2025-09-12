@@ -75,7 +75,7 @@ getDf <- function(summary_list, fixed = FALSE) {
     return(df)
 }
 
-for (condition in 1:4){
+for (condition in 4:4){
     summary_list_path <- paste0("Analysis/Paper/uniModelBias/bias", conditionNames[condition] ,"_MVN_summary_list_500.rds")
     summary_list <- readRDS(summary_list_path)
     assign(paste0("df_", conditionNames[condition]), getDf(summary_list))
@@ -262,39 +262,39 @@ combine_plots <- function(df, params, descriptive_df, ncol=4) {
     combined_plot <- wrap_plots(plots, ncol = ncol)
 }
 
-# get plots for the first condition
-df1 <- df_onlyAM[,1:13]
-v_true_values1 <- df_true[,1]
-names(v_true_values1) <- colnames(df1)
-descriptive_df1 <- makeDescriptiveDf(df1, v_true_values1)
-# plot them
-p1 <- combine_plots(df1, names(v_true_values1)[-2], descriptive_df1, ncol = 3)
-p1
-ggsave(paste0("Analysis/Paper/", "UniBias_onlyAM_figure.png") , p1, width = 10, height = 12, type = "cairo-png", dpi = 600)
+# # get plots for the first condition
+# df1 <- df_onlyAM[,1:13]
+# v_true_values1 <- df_true[,1]
+# names(v_true_values1) <- colnames(df1)
+# descriptive_df1 <- makeDescriptiveDf(df1, v_true_values1)
+# # plot them
+# p1 <- combine_plots(df1, names(v_true_values1)[-2], descriptive_df1, ncol = 3)
+# p1
+# ggsave(paste0("Analysis/Paper/", "UniBias_onlyAM_figure.png") , p1, width = 10, height = 12, type = "cairo-png", dpi = 600)
 
 
-# get plots for the second condition
-df2 <- df_onlyVT[,1:13]
-#colnames(df2)[2] <- gsub("e", "VE", colnames(df2)[2])
-v_true_values2 <- df_true[,2]
-names(v_true_values2) <- colnames(df2)
-descriptive_df2 <- makeDescriptiveDf(df2, v_true_values2)
-# plot them
-p2 <- combine_plots(df2, names(v_true_values2)[-2], descriptive_df2, ncol = 3)
-p2
-ggsave(paste0("Analysis/Paper/", "UniBias_onlyVT_figure.png") , p2, width = 10, height = 12, type = "cairo-png", dpi = 600)
+# # get plots for the second condition
+# df2 <- df_onlyVT[,1:13]
+# #colnames(df2)[2] <- gsub("e", "VE", colnames(df2)[2])
+# v_true_values2 <- df_true[,2]
+# names(v_true_values2) <- colnames(df2)
+# descriptive_df2 <- makeDescriptiveDf(df2, v_true_values2)
+# # plot them
+# p2 <- combine_plots(df2, names(v_true_values2)[-2], descriptive_df2, ncol = 3)
+# p2
+# ggsave(paste0("Analysis/Paper/", "UniBias_onlyVT_figure.png") , p2, width = 10, height = 12, type = "cairo-png", dpi = 600)
 
 
-# get plots for the third condition
-df3 <- df_bothAMVT[,1:13]
-#colnames(df3)[2] <- gsub("e", "VE", colnames(df3)[2])
-v_true_values3 <- df_true[,3]
-names(v_true_values3) <- colnames(df3)
-descriptive_df3 <- makeDescriptiveDf(df3, v_true_values3)
-# plot them
-p3 <- combine_plots(df3, names(v_true_values3)[-2], descriptive_df3, ncol = 3)
-p3
-ggsave(paste0("Analysis/Paper/", "UniBias_bothAMVT_figure.png") , p3, width = 10, height = 12, type = "cairo-png", dpi = 600)
+# # get plots for the third condition
+# df3 <- df_bothAMVT[,1:13]
+# #colnames(df3)[2] <- gsub("e", "VE", colnames(df3)[2])
+# v_true_values3 <- df_true[,3]
+# names(v_true_values3) <- colnames(df3)
+# descriptive_df3 <- makeDescriptiveDf(df3, v_true_values3)
+# # plot them
+# p3 <- combine_plots(df3, names(v_true_values3)[-2], descriptive_df3, ncol = 3)
+# p3
+# ggsave(paste0("Analysis/Paper/", "UniBias_bothAMVT_figure.png") , p3, width = 10, height = 12, type = "cairo-png", dpi = 600)
 
 # get plots for the fourth condition
 df4 <- df_bothAMVT_StrongCrossTrait[,1:13]
@@ -306,3 +306,13 @@ descriptive_df4 <- makeDescriptiveDf(df4, v_true_values4)
 p4 <- combine_plots(df4, names(v_true_values4)[-2], descriptive_df4, ncol = 3)
 p4
 ggsave(paste0("Analysis/Paper/", "UniBias_bothAMVT_StrongCrossTrait_figure.png") , p4, width = 10, height = 12, type = "cairo-png", dpi = 600)
+
+
+# one additional analysis: Compare the sum of VF11, VF12, and VF22 with the VF from the univariate model
+df_bothAMVT_StrongCrossTrait$VF <- 2 * df_bothAMVT_StrongCrossTrait$f *  df_bothAMVT_StrongCrossTrait$VY * df_bothAMVT_StrongCrossTrait$f+ 
+    df_bothAMVT_StrongCrossTrait$f * df_bothAMVT_StrongCrossTrait$VY * df_bothAMVT_StrongCrossTrait$mu * df_bothAMVT_StrongCrossTrait$VY * df_bothAMVT_StrongCrossTrait$f + 
+    df_bothAMVT_StrongCrossTrait$f * df_bothAMVT_StrongCrossTrait$VY * df_bothAMVT_StrongCrossTrait$mu * df_bothAMVT_StrongCrossTrait$VY * df_bothAMVT_StrongCrossTrait$f
+
+summary(df_bothAMVT_StrongCrossTrait$VF)
+
+sum(0.3665343,0.3770437,0.3770437,0.4485974)
