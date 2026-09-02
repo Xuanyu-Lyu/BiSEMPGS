@@ -133,12 +133,12 @@ getDescriptive <- function(df, param, file_tv){
 
 all_df <- list()
 all_des <- list()
-for (i in 1:length(conditionNames)){
+for (i in 3){
     file_tv <- read.table(paste0("Data/Paper/Expected/",conditionNames[i],"_finalGen.txt"))
     df_list <- list()
     des_list <- list()
     for (j in 1:length(sample_sizes)){
-        data_path <- paste0("Analysis/Paper/", conditionNames[i], "/m2_paper_version2_", sample_sizes[j],"_summary_list_fixedA.rds")
+        data_path <- paste0("Analysis/Paper/", conditionNames[i], "/m2_paper_version4_", sample_sizes[j],"_summary_list.rds")
 
         df_estimates <- getDf(readRDS(data_path))
         df_estimates <- df_estimates[,colnames(df_estimates) %in% file_tv$V1]
@@ -164,7 +164,7 @@ for (i in 1:length(conditionNames)){
 }
 
 # create a seperate df for each condition
-for (i in 1:length(conditionNames)){
+for (i in 3){
     for (j in 1:length(sample_sizes)){
         all_des[[i]][[j]]$sample_sizes <- sample_sizes[j]
         # move the sample_sizes column to the first column
@@ -201,14 +201,17 @@ getLatex <- function(df){
     pack_rows(index = table(param_col))
 }
 
-for (i in 1:length(conditionNames)){
+for (i in 3){
     assign(paste0("latex_des_", conditionNames[i]), getLatex(get(paste0("des_", conditionNames[i]))))
 }
 
-# save the five latex code to a text file
-all_latex <- c("\\subsection{Effect size $r^2_{pgs1}$ = .16 with Freely Estimated $a$}\n" , latex_des_Model_r2_16,
-               "\\subsection{Effect size $r^2_{pgs1}$ = .16 with Freely Estimated $a$}\n" ,  latex_des_Model_r2_8,
-               "\\subsection{Effect size $r^2_{pgs1}$ = .16 with Freely Estimated $a$}\n" ,  latex_des_Model_r2_4,
-               "\\subsection{Effect size $r^2_{pgs1}$ = .16 with Freely Estimated $a$}\n" ,  latex_des_Model_r2_2,
-               "\\subsection{Effect size $r^2_{pgs1}$ = .16 with Freely Estimated $a$}\n" ,  latex_des_Model_r2_1)
-write(all_latex, "Analysis/Paper/Figure on manu/Appendix/latex_des_fixedA.txt")
+# # save the five latex code to a text file
+# all_latex <- c("\\subsection{Effect size $r^2_{pgs1}$ = .16 with Freely Estimated $a$}\n" , latex_des_Model_r2_16,
+#                "\\subsection{Effect size $r^2_{pgs1}$ = .16 with Freely Estimated $a$}\n" ,  latex_des_Model_r2_8,
+#                "\\subsection{Effect size $r^2_{pgs1}$ = .16 with Freely Estimated $a$}\n" ,  latex_des_Model_r2_4,
+#                "\\subsection{Effect size $r^2_{pgs1}$ = .16 with Freely Estimated $a$}\n" ,  latex_des_Model_r2_2,
+#                "\\subsection{Effect size $r^2_{pgs1}$ = .16 with Freely Estimated $a$}\n" ,  latex_des_Model_r2_1)
+# write(all_latex, "Analysis/Paper/Figure on manu/Appendix/latex_des_fixedA.txt")
+
+# write the third condition to a separate text file
+write(latex_des_Model_r2_4, "Analysis/Paper/Figure on manu/Appendix/latex_des_fixedA_r2_4.txt")
