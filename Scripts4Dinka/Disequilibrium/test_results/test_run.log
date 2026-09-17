@@ -1,0 +1,141 @@
+VT equilibrium reached after 17 generations; VY = 1.283646 | one-generation AM applied (mu = 0.3116123 )
+To take full advantage of multiple cores, use:
+  mxOption(key='Number of Threads', value=parallel::detectCores()) #now
+  Sys.setenv(OMP_NUM_THREADS=parallel::detectCores()) #before library(OpenMx)
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Beginning initial fit attemptFit attempt 0, fit=535332.682324567, new current best! (was Inf)Final run, for Hessian and/or standard errors and/or confidence intervals                                                                         
+ Solution found!  Final fit=535332.68 (started at 542151.82)  (1 attempt(s): 1 valid, 0 errors)
+
+
+========================================
+Model: DisEq_SameTrait_ObservedYPYM | status code: OK 
+ parameter   true   estimate       SE       diff flag
+      VY11 1.2836  1.284e+00 0.006918 -3.577e-05     
+      VE11 0.3600  3.600e-01 0.007600 -6.422e-06     
+   delta11 0.2000  2.000e-01 0.002797 -1.340e-06     
+       a11 0.7746  7.746e-01 0.017311 -1.819e-05     
+   Omega11 0.1176  1.176e-01 0.001021 -1.904e-07     
+   Gamma11 0.4556  4.556e-01 0.004123 -8.342e-06     
+      mu11 0.3116  3.116e-01 0.003328  8.355e-06     
+       f11 0.1500  1.500e-01 0.011992  4.417e-06     
+   meanYp1 0.0000 -1.271e-06 0.006334 -1.271e-06     
+   meanYm1 0.0000 -1.547e-06 0.006334 -1.547e-06     
+   meanYo1 0.0000 -2.171e-06 0.006334 -2.171e-06     
+   meanTp1 0.0000 -5.543e-07 0.003953 -5.543e-07     
+  meanNTp1 0.0000 -5.752e-08 0.003953 -5.752e-08     
+   meanTm1 0.0000 -4.196e-07 0.003953 -4.196e-07     
+  meanNTm1 0.0000  4.876e-07 0.003953  4.876e-07     
+PASS - DisEq_SameTrait_ObservedYPYM : 0 structural parameter(s) off by more than 0.02 
+Warning message:
+package ‘data.table’ was built under R version 4.4.1 
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Beginning initial fit attemptFit attempt 0, fit=365161.36810714, new current best! (was Inf)Final run, for Hessian and/or standard errors and/or confidence intervals                                                                         
+ Solution found!  Final fit=365161.37 (started at 365752.17)  (1 attempt(s): 1 valid, 0 errors)
+
+
+========================================
+Model: DisEq_SameTrait_LatentYPYM | status code: OK 
+ parameter   true   estimate       SE       diff flag
+      VY11 1.2836  1.284e+00 0.009952 -3.316e-05     
+      VE11 0.3600  3.600e-01 0.125220 -4.819e-05     
+   delta11 0.2000  2.000e-01 0.003945 -5.093e-07     
+       a11 0.7746  7.746e-01 0.031589  5.764e-06     
+   Omega11 0.1176  1.176e-01 0.003449 -4.263e-08     
+   Gamma11 0.4556  4.556e-01 0.030919  4.386e-06     
+      mu11 0.3116  3.116e-01 0.116069 -7.703e-06     
+       f11 0.1500  1.500e-01 0.023032  1.857e-06     
+   meanYo1 0.0000  9.612e-08 0.006333  9.612e-08     
+   meanTp1 0.0000 -7.557e-07 0.003953 -7.557e-07     
+  meanNTp1 0.0000 -8.301e-07 0.003953 -8.301e-07     
+   meanTm1 0.0000 -8.393e-08 0.003953 -8.393e-08     
+  meanNTm1 0.0000 -8.353e-07 0.003953 -8.353e-07     
+PASS - DisEq_SameTrait_LatentYPYM : 0 structural parameter(s) off by more than 0.02 
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Beginning initial fit attemptFit attempt 0, fit=356463.372243348, new current best! (was Inf)Final run, for Hessian and/or standard errors and/or confidence intervals                                                                         
+ Solution found!  Final fit=356463.37 (started at 356773.55)  (1 attempt(s): 1 valid, 0 errors)
+
+
+========================================
+Model: DisEq_DiffTrait_LatentYPYM | status code: OK 
+    parameter   true   estimate       SE       diff flag
+         VY11 1.2836  1.284e+00 0.009406 -4.037e-05     
+    VE_parent 0.3600  3.955e-01       NA  3.550e-02 FLAG
+ VE_offspring 0.5145  5.416e-01       NA  2.708e-02 FLAG
+    delta_p11 0.2000  2.341e-01       NA  3.412e-02 FLAG
+        a_p11 0.7746  7.560e-01       NA -1.862e-02     
+    delta_o11 0.3000  3.000e-01 0.003405 -2.068e-06     
+        a_o11 0.6500  6.431e-01       NA -6.898e-03     
+    Omega_p11 0.1176  1.366e-01       NA  1.897e-02     
+    Gamma_p11 0.4556  4.411e-01       NA -1.453e-02     
+         mu11 0.3116  2.310e-01       NA -8.061e-02 FLAG
+          f11 0.1500  1.431e-01       NA -6.886e-03     
+      meanYo1 0.0000  1.979e-06 0.006344  1.979e-06     
+      meanTp1 0.0000 -1.920e-06 0.003953 -1.920e-06     
+     meanNTp1 0.0000  6.965e-06 0.003954  6.965e-06     
+      meanTm1 0.0000 -1.920e-06 0.003957 -1.920e-06     
+     meanNTm1 0.0000  6.965e-06 0.003953  6.965e-06     
+FLAG - DisEq_DiffTrait_LatentYPYM : 4 structural parameter(s) off by more than 0.02 
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Beginning initial fit attemptFit attempt 0, fit=526979.088665452, new current best! (was Inf)Final run, for Hessian and/or standard errors and/or confidence intervals                                                                         
+ Solution found!  Final fit=526979.09 (started at 529848.8)  (1 attempt(s): 1 valid, 0 errors)
+
+
+========================================
+Model: DisEq_DiffTrait_ObservedYPYM_EstimatedAParent | status code: OK 
+    parameter   true   estimate       SE       diff flag
+    VY_parent 1.2836  1.284e+00 0.007720 -4.064e-05     
+ VY_offspring 1.2691  1.269e+00 0.008680 -2.604e-05     
+    VE_parent 0.3600  3.601e-01 0.067429  5.025e-05     
+ VE_offspring 0.5000  5.000e-01 0.026220 -3.437e-05     
+    delta_p11 0.2000  2.000e-01 0.004727 -2.608e-06     
+        a_p11 0.7746  7.745e-01 0.044636 -5.033e-05     
+    delta_o11 0.3000  3.000e-01 0.002571 -1.494e-06     
+        a_o11 0.6500  6.500e-01 0.007447  4.203e-06     
+    Omega_p11 0.1176  1.176e-01 0.002205 -5.620e-07     
+    Gamma_p11 0.4556  4.556e-01 0.020587 -2.584e-05     
+         mu11 0.3116  3.116e-01 0.003436  9.236e-06     
+          f11 0.1500  1.500e-01 0.010806  7.024e-06     
+      meanYp1 0.0000 -1.041e-06 0.006334 -1.041e-06     
+      meanYm1 0.0000 -1.041e-06 0.006334 -1.041e-06     
+      meanYo1 0.0000 -1.420e-06 0.006298 -1.420e-06     
+      meanTp1 0.0000 -4.698e-07 0.003953 -4.698e-07     
+     meanNTp1 0.0000 -2.861e-07 0.003953 -2.861e-07     
+      meanTm1 0.0000 -4.698e-07 0.003953 -4.698e-07     
+     meanNTm1 0.0000 -2.861e-07 0.003953 -2.861e-07     
+PASS - DisEq_DiffTrait_ObservedYPYM_EstimatedAParent : 0 structural parameter(s) off by more than 0.02 
+Polite note from mxTryHard: Hessian not checked as model contains mxConstraints
+Beginning initial fit attemptFit attempt 0, fit=526979.088666386, new current best! (was Inf)Final run, for Hessian and/or standard errors and/or confidence intervals                                                                         
+ Solution found!  Final fit=526979.09 (started at 529848.8)  (1 attempt(s): 1 valid, 0 errors)
+
+
+========================================
+Model: DisEq_DiffTrait_ObservedYPYM_FixedAParent | status code: OK 
+ parameter   true   estimate       SE       diff flag
+    VY_p11 1.2836  1.284e+00 0.007641 -2.925e-05     
+    VY_o11 1.2691  1.269e+00 0.008590 -2.099e-05     
+    VE_p11 0.3600  3.600e-01 0.007551 -1.672e-05     
+    VE_o11 0.5000  5.000e-01 0.005931 -8.828e-06     
+ delta_p11 0.2000  2.000e-01 0.003542  1.197e-06     
+     a_p11 0.7746  7.746e-01 0.001732 -1.838e-06     
+ delta_o11 0.3000  3.000e-01 0.001811 -2.176e-07     
+     a_o11 0.6500  6.500e-01 0.001857 -1.946e-06     
+ Omega_p11 0.1176  1.176e-01 0.002174  2.677e-07     
+ Gamma_p11 0.4556  4.556e-01 0.001785 -2.770e-06     
+      mu11 0.3116  3.116e-01 0.003431  8.661e-06     
+       f11 0.1500  1.500e-01 0.001603 -3.150e-06     
+   meanYp1 0.0000 -1.046e-06 0.006333 -1.046e-06     
+   meanYm1 0.0000 -1.046e-06 0.006330 -1.046e-06     
+   meanYo1 0.0000 -1.425e-06 0.006294 -1.425e-06     
+   meanTp1 0.0000 -4.694e-07 0.003952 -4.694e-07     
+  meanNTp1 0.0000 -2.896e-07 0.003952 -2.896e-07     
+   meanTm1 0.0000 -4.694e-07 0.003952 -4.694e-07     
+  meanNTm1 0.0000 -2.896e-07 0.003953 -2.896e-07     
+PASS - DisEq_DiffTrait_ObservedYPYM_FixedAParent : 0 structural parameter(s) off by more than 0.02 
+
+================ OVERALL ================
+SameTrait_Observed        PASS
+SameTrait_Latent          PASS
+DiffTrait_Latent          FLAG
+DiffTrait_Obs_EstA        PASS
+DiffTrait_Obs_FixedA      PASS
+Note: a FLAG can indicate an identification problem of that model variant rather than a coding bug.

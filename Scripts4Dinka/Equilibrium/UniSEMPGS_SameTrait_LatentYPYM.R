@@ -44,7 +44,8 @@ fitUniSEMPGS_SameTrait_LatentParents <- function(data_path, h2_RDR, feaTol = 1e-
     # RDR Constraint to identify 'a'
     # Current notation: sigma2 is VY, e^2 is VE
     rdr_left  <- mxAlgebra((2*a^2*j + 2*delta^2*k) * (2*a^2*j + 2*delta^2*k + VE), name="rdr_left")
-    rdr_right <- mxAlgebra(h2_RDR * VY, name="rdr_right")
+    h2mat     <- mxMatrix(type="Full", nrow=1, ncol=1, free=F, values=h2_RDR, name="h2mat")
+    rdr_right <- mxAlgebra(h2mat * VY, name="rdr_right")
     rdrCon    <- mxConstraint(rdr_left == rdr_right, name="rdrCon")
 
     # Assortative mating effects
@@ -119,9 +120,9 @@ fitUniSEMPGS_SameTrait_LatentParents <- function(data_path, h2_RDR, feaTol = 1e-
                 VY_Algebra, VF_Algebra, Omega_Algebra, Gamma_Algebra, j_Algebra, gt_Algebra, 
                 ht_Algebra, gc_Algebra, hc_Algebra, gchc_constraint_Algebra, itlo_Algebra, 
                 itol_Algebra, ic_Algebra, w_Algebra, v_Algebra, wv_constraint_algebra,
-                VY_Constraint, Gamma_Constraint, j_constraint, ht_constraint, hc_constraint, 
-                itlo_constraint, itol_constraint, ic_constraint, v_constraint, w_constraint,
-                rdr_left, rdr_right, rdrCon, # Identification for 'a'
+                VY_Constraint, Omega_Constraint, Gamma_Constraint, j_constraint, gt_constraint, ht_constraint,
+                gc_constraint, hc_constraint, itlo_constraint, itol_constraint, ic_constraint, v_constraint, w_constraint,
+                h2mat, rdr_left, rdr_right, rdrCon, # Identification for 'a'
                 thetaNT, thetaT, 
                 CovMatrix, Means, ModelExpectations, FitFunctionML)
 

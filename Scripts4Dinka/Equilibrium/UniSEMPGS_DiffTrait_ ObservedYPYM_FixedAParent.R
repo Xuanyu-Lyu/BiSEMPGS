@@ -16,24 +16,24 @@ fitUniSEMPGS_DiffTrait_ObservedYPYM_FixedAParent <- function(data_path, h2_RDR_p
     Example_Data  <- fread(data_path, header = T)
 
     # 1. Phenotypic and Residual Variances (Independently estimated)
-    VY_p  <- mxMatrix(type="Full", nrow=1, ncol=1, free=T, values=1.5, label="VY_p", name="VY_p", lbound = .001) 
-    VY_o  <- mxMatrix(type="Full", nrow=1, ncol=1, free=T, values=1.5, label="VY_o", name="VY_o", lbound = .001) 
-    VE_p  <- mxMatrix(type="Full", nrow=1, ncol=1, free=T, values=.5,  label="VE_p", name="VE_p", lbound = .001) 
-    VE_o  <- mxMatrix(type="Full", nrow=1, ncol=1, free=T, values=.5,  label="VE_o", name="VE_o", lbound = .001) 
+    VY_p  <- mxMatrix(type="Full", nrow=1, ncol=1, free=T, values=1.5, label="VY_p11", name="VY_p", lbound = .001) 
+    VY_o  <- mxMatrix(type="Full", nrow=1, ncol=1, free=T, values=1.5, label="VY_o11", name="VY_o", lbound = .001) 
+    VE_p  <- mxMatrix(type="Full", nrow=1, ncol=1, free=T, values=.5,  label="VE_p11", name="VE_p", lbound = .001) 
+    VE_o  <- mxMatrix(type="Full", nrow=1, ncol=1, free=T, values=.5,  label="VE_o11", name="VE_o", lbound = .001) 
 
     # 2. Genetic effects (Generation Specific)
-    delta_p <- mxMatrix(type="Full", nrow=1, ncol=1, free=T, values=.4, label="delta_p", name="delta_p") 
-    a_p     <- mxMatrix(type="Full", nrow=1, ncol=1, free=T, values=.6, label="a_p", name="a_p", lbound = .001)     
+    delta_p <- mxMatrix(type="Full", nrow=1, ncol=1, free=T, values=.4, label="delta_p11", name="delta_p") 
+    a_p     <- mxMatrix(type="Full", nrow=1, ncol=1, free=T, values=.6, label="a_p11", name="a_p", lbound = .001)     
     
-    delta_o <- mxMatrix(type="Full", nrow=1, ncol=1, free=T, values=.4, label="delta_o", name="delta_o") 
-    a_o     <- mxMatrix(type="Full", nrow=1, ncol=1, free=T, values=.6, label="a_o", name="a_o", lbound = .001)     
+    delta_o <- mxMatrix(type="Full", nrow=1, ncol=1, free=T, values=.4, label="delta_o11", name="delta_o") 
+    a_o     <- mxMatrix(type="Full", nrow=1, ncol=1, free=T, values=.6, label="a_o11", name="a_o", lbound = .001)     
     
     k <- mxMatrix(type="Full", nrow=1, ncol=1, free=F, values=.5, label="k11", name="k")     
     j <- mxMatrix(type="Full", nrow=1, ncol=1, free=F, values=.5, label="j11", name="j")     
 
     # 3. Covariances and Assortment
-    Omega_p <- mxMatrix(type="Full", nrow=1, ncol=1, free=T, values=.3, label="Omega_p", name="Omega_p") 
-    Gamma_p <- mxMatrix(type="Full", nrow=1, ncol=1, free=T, values=.2, label="Gamma_p", name="Gamma_p") 
+    Omega_p <- mxMatrix(type="Full", nrow=1, ncol=1, free=T, values=.3, label="Omega_p11", name="Omega_p") 
+    Gamma_p <- mxMatrix(type="Full", nrow=1, ncol=1, free=T, values=.2, label="Gamma_p11", name="Gamma_p") 
     
     mu <- mxMatrix(type="Full", nrow=1, ncol=1, free=T, values=.1, label="mu11", name="mu") 
     ic <- mxMatrix(type="Full", nrow=1, ncol=1, free=T, values=.02, label="ic11", name="ic") 
@@ -57,14 +57,21 @@ fitUniSEMPGS_DiffTrait_ObservedYPYM_FixedAParent <- function(data_path, h2_RDR_p
 
     # Identification via RDR heritability (Anchoring each trait)
     rdr_left_p  <- mxAlgebra((2*a_p^2*j + 2*delta_p^2*k) * (2*a_p^2*j + 2*delta_p^2*k + VE_p), name="rdr_left_p")
-    rdr_right_p <- mxAlgebra(h2_RDR_parent * VY_p, name="rdr_right_p")
-    
+    h2mat_p     <- mxMatrix(type="Full", nrow=1, ncol=1, free=F, values=h2_RDR_parent, name="h2mat_p")
+    rdr_right_p <- mxAlgebra(h2mat_p * VY_p, name="rdr_right_p")
+
     rdr_left_o  <- mxAlgebra((2*a_o^2*j + 2*delta_o^2*k) * (2*a_o^2*j + 2*delta_o^2*k + VE_o), name="rdr_left_o")
-    rdr_right_o <- mxAlgebra(h2_RDR_offspring * VY_o, name="rdr_right_o")
+    h2mat_o     <- mxMatrix(type="Full", nrow=1, ncol=1, free=F, values=h2_RDR_offspring, name="h2mat_o")
+    rdr_right_o <- mxAlgebra(h2mat_o * VY_o, name="rdr_right_o")
 
     # 7. Transmission and Cross-person Covariances
-    gt_Algebra <- mxAlgebra(Omega_p * mu * Omega_p, name="gt_Algebra") 
-    ht_Algebra <- mxAlgebra(Gamma_p * mu * Gamma_p, name="ht_Algebra") 
+    gt_Algebra <- mxAlgebra(Omega_p * mu * Omega_p, name="gt_Algebra")
+    ht_Algebra <- mxAlgebra(Gamma_p * mu * Gamma_p, name="ht_Algebra")
+
+    # Constraints tying ic, w and v to the equilibrium recursion (as in the same-trait script)
+    ic_Algebra <- mxAlgebra(.5 * (Gamma_p * mu * Omega_p + Omega_p * mu * Gamma_p), name="ic_Algebra")
+    w_Algebra  <- mxAlgebra(2 * f * Omega_p + 2 * f * VY_p * mu * Omega_p, name="w_Algebra")
+    v_Algebra  <- mxAlgebra(2 * f * Gamma_p + 2 * f * VY_p * mu * Gamma_p, name="v_Algebra")
     
     thetaNT <- mxAlgebra(2 * delta_o * gc + 2 * a_o * ic + .5 * w, name="thetaNT")
     thetaT  <- mxAlgebra(delta_o * k + thetaNT, name="thetaT")
@@ -99,6 +106,9 @@ fitUniSEMPGS_DiffTrait_ObservedYPYM_FixedAParent <- function(data_path, h2_RDR_p
         mxConstraint(Gamma_p == Gamma_p_Algebra, name="Ga_p_con"),
         mxConstraint(gc == gt_Algebra, name="gc_eq"),
         mxConstraint(hc == ht_Algebra, name="hc_eq"),
+        mxConstraint(ic == ic_Algebra, name="ic_eq"),
+        mxConstraint(w == w_Algebra, name="w_eq"),
+        mxConstraint(v == v_Algebra, name="v_eq"),
         mxConstraint(rdr_left_p == rdr_right_p, name="rdr_p_con"),
         mxConstraint(rdr_left_o == rdr_right_o, name="rdr_o_con")
     )
@@ -106,7 +116,8 @@ fitUniSEMPGS_DiffTrait_ObservedYPYM_FixedAParent <- function(data_path, h2_RDR_p
     Params <- list(
         VY_p, VY_o, VE_p, VE_o, delta_p, a_p, delta_o, a_o, k, j, Omega_p, Gamma_p, mu, ic, gc, hc, f, w, v,
         VY_p_Algebra, VF_p_Algebra, VY_o_Algebra, Omega_p_Algebra, Gamma_p_Algebra,
-        gt_Algebra, ht_Algebra, rdr_left_p, rdr_right_p, rdr_left_o, rdr_right_o,
+        gt_Algebra, ht_Algebra, ic_Algebra, w_Algebra, v_Algebra,
+        h2mat_p, h2mat_o, rdr_left_p, rdr_right_p, rdr_left_o, rdr_right_o,
         thetaNT, thetaT, Yp_Ym, Yo_Yp, Yp_PGSm,
         CovMatrix, Means, ModelExpectations, mxFitFunctionML(), Constraints
     )
